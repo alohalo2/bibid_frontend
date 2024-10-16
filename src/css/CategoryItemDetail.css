@@ -1,0 +1,678 @@
+/* 모든 요소의 기본 여백 제거 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 호버 효과 추가 스타일 */
+.CID-hover-link {
+    color: darkblue; /* 기본 텍스트 색상 */
+    cursor: pointer; /* 커서를 포인터로 변경 */
+    text-decoration: underline; /* 텍스트에 밑줄 추가 */
+}
+
+.CID-hover-link:hover {
+    color: #007bff; /* 호버 시 텍스트 색상 변경 */
+    font-weight: bold; /* 호버 시 텍스트 굵게 */
+}
+
+div.CID-item-block{
+    margin: 20px 20px;
+}
+
+
+/* 전체 페이지 레이아웃 */
+/* ====공통부분==== */
+
+
+
+.CID-bid-item-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 이미지 섹션 */
+.CID-image-section {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.CID-main-image {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+}
+
+.CID-thumbnail-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.CID-thumbnail {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+/* 판매자 섹션 */
+.CID-merchant-section {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.CID-merchant-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.CID-merchant-info p {
+    margin: 0;
+}
+
+.CID-merchant-link {
+    text-align: center;
+}
+
+.CID-merchant-link button {
+    padding: 10px 20px;
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* 입찰 섹션 */
+.CID-bid-section {
+    margin-top: 20px;
+    width: 45%;
+}
+
+.CID-bid-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px; /* 간격을 넓힘 */
+}
+
+.CID-price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px; /* 간격을 넓힘 */
+}
+
+.CID-bid-details {
+    /* align-items:flex-start; */
+    /* align-content: flex-start; */
+    /* justify-content: start; */
+    display: grid; /* 마진중첩 해결 */
+}
+
+.CID-bid-details p {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 30px; /* 간격을 넓힘 */
+}
+
+.CID-bid-controls {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px; /* 간격을 넓힘 */
+}
+
+.CID-bid-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.CID-bid-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 150px;
+    padding: 5px;
+}
+
+.CID-bid-input input {
+    width: 100px;
+    height: 35px;
+    text-align: right;
+    padding-right: 10px;
+    border: none;
+    font-size: 16px;
+}
+
+.CID-seller-more-info-hvr:hover{
+  background-color: darkgrey;
+}
+
+/* .CID-bid-buttons-vertical:hover {
+    color: #888; mypage 에서 지정한 버튼과 스타일 충돌남 확인하기
+} */
+
+/* .CID-bid-buttons-vertical button {
+    width: 30px;
+    height: 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    font-size: 16px
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}*/
+
+.CID-expected-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+    margin-top: 10px;
+    margin-bottom: 30px; /* 간격을 넓힘 */
+}
+
+.CID-divider {
+    border-top: 1px solid #ccc;
+    margin: 80px 0; /* 간격을 넓힘 */
+}
+
+.CID-bid-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 버튼 사이 간격 넓힘 */
+}
+
+.CID-bid-button {
+    padding: 20px 0;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.CID-bid-button:hover {
+   background-color: #0056b3;
+}
+
+.CID-buy-button {
+    background-color: #0d6efd;
+}
+
+/* ====item-block==== */
+
+
+
+div.CID-item-info{
+    /* background: lightpink; */
+    height: auto;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+
+div.CID-item-inquiry{
+    /* background: lightgreen; */
+    height: auto;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+
+/* 아이템정보 - 아이템 이미지 */
+.CID-item-img-container{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.CID-inquiry-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0;
+    float: right;
+}
+
+.CID-inquiry-button:hover {
+   background-color: #0056b3;
+}
+
+div.CID-item-return-info{
+    /* background: lightblue; */
+    height: auto;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+/* 탭 스타일 */
+.CID-tab {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: inset 0 -1px 0 0 #ccc; /* 내부 테두리 효과 */
+    z-index: 2;
+}
+
+.CID-tablinks {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    display: block;
+    font-size: 16px;
+}
+
+.CID-tablinks:hover {
+    background-color: white;
+    border-bottom: none;
+    font-weight: bold;
+    border-bottom: 1px solid white;
+}
+
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f1f1f1;
+    font-weight: normal;
+}
+
+.CID-empty-message {
+    color: #888;
+}
+
+/* 리스트 스타일 */
+h3 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li::before {
+    color: black;
+    font-weight: bold;
+}
+
+ul li {
+    margin-bottom: 0px;
+}
+
+.CID-info-box {
+    margin: 20px 0;
+    padding: 20px;
+    text-align: left; /* 왼쪽 정렬 */
+}
+
+.CID-info-box p {
+    margin: 0; /* 불필요한 여백 제거 */
+    line-height: 1.6; /* 가독성을 위한 줄 간격 */
+    text-align: left; /* p 태그 왼쪽 정렬 */
+}
+
+.CID-info-box h3 {
+    margin-bottom: 10px; /* h3와 p 태그 간격 조정 */
+}
+
+
+
+
+/* ====step-section==== */
+/* 단계 스타일 */
+.CID-steps-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.CID-step {
+    display: flex;
+    flex-direction: column; /* 세로 정렬을 위해 설정 */
+    align-items: center; /* 가로로 중앙 정렬 */
+    text-align: center;
+    flex: 1; /* 각 step이 동일한 너비를 가집니다. */
+    padding: 0 10px;
+}
+
+.CID-circle {
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4; /* 텍스트 간격 조정 */
+}
+/* Modal 공통 스타일 */
+/* 모달 내부 콘텐츠 */
+.CID-seller-modal-content,
+.CID-bidding-record-modal-content {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 600px;
+  margin: 0 auto;
+}
+/* 모달 오버레이 */
+.CID-seller-modal-overlay,
+.CID-bidding-record-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+/**************************** 판매자 정보 더 보기 모달 ****************************/
+  /* 판매자 정보 모달 상단 헤더 */
+  .CID-seller-modal-header {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .CID-seller-modal-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  /* .CID-seller-modal-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: grey;
+  } */
+  
+  .CID-seller-modal-close:hover {
+    color: black;
+  }
+  
+  /* 판매자 정보 테이블 */
+  .CID-seller-modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .CID-seller-modal-table th, .CID-seller-modal-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .CID-seller-modal-table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+  
+  /* 확인 버튼 */
+  .CID-seller-modal-confirm-button {
+    display: block;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .CID-seller-modal-confirm-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /**************************** 입찰 기록 보기 모달 ****************************/
+  .CID-bidding-record-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  .CID-bidding-record-table th,
+  .CID-bidding-record-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .CID-bidding-record-table th {
+    background-color: #f5f5f5;
+  }
+
+  .CID-bidding-record-pagination {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .CID-bidding-record-confirm-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .CID-bidding-record-confirm-button:hover {
+    background-color: #0056b3;
+  }
+
+  /**************************** 입찰하기 , 즉시구매 모달 ****************************/
+  .CID-bidding-now-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+  
+  .CID-bidding-now-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    outline: none;
+    justify-content: center;
+  }
+  
+  .CID-bidding-now-modal-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .CID-bidding-now-modal-body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .CID-bidding-now-modal-image img {
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: contain;
+  }
+  
+  .CID-bidding-now-modal-details {
+    margin-left: 20px;
+    flex-grow: 1;
+  }
+  
+  .CID-bidding-now-modal-details h3 {
+    margin-bottom: 20px;
+  }
+  
+  .CID-highlight-red {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .CID-bidding-now-modal-bid-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .CID-bidding-now-modal-bid-button:hover {
+    background-color: #0056b3;
+  }
+
+  .CID-bidding-now-modal-details-p {
+    display: inline-block;
+    width: 200px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
+  .CID-bidding-now-modal-price-info {
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
+
+  /**************************** 상품문의 모달 ****************************/
+  .CID-inquiring-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  /* 모달 박스 */
+  .CID-inquiring-modal-box {
+    background-color: white;
+    border-radius: 10px;
+    width: 600px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* 모달 헤더 */
+  .CID-inquiring-modal-header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  /* 설명 텍스트 */
+  .CID-inquiring-modal-subtext {
+    text-align: center;
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 20px;
+  }
+
+  /* 모달 본문 */
+  .CID-inquiring-modal-body {
+    margin-top: 10px;
+  }
+
+  .CID-inquiring-modal-body label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  /* 입력 필드 */
+  .CID-inquiring-modal-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+  }
+
+  .CID-inquiring-modal-footer {
+    text-align: center;
+  }
+
+  /* 제출 버튼 */
+  .CID-inquiring-modal-submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0033cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .CID-inquiring-modal-submit-button:hover {
+    background-color: #002299;
+  }

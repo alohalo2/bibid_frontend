@@ -1,0 +1,227 @@
+@media screen and (max-width: 768px) {
+    
+    .navbar {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 12px;
+    }
+    .navbar_menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+        margin-bottom: 1rem;
+    }
+    .navbar_member {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .navbar_searchbar {
+        display: none;
+    }
+
+    .navbar_alarm {
+        display: none;
+    }
+
+    .navbar_toggleBtn {
+        display: block;
+        margin: auto;
+        width: 70px;
+        height: 70px;
+    }
+
+    .navbar_menu.active,
+    .navbar_member.active {
+        display: flex;
+    }
+
+    main {
+        width: 100%;
+        margin: 0;
+    }
+
+    .contour {
+        display: none;
+    }
+
+    footer {
+        width: 100%;
+        margin: 0;
+        flex-direction: column;
+        padding: 8px 12px;
+    }
+
+    footer p {
+        white-space: nowrap;
+        font-size: 14px;
+    }
+
+    .footer_contents_body_content {
+        display: flex;
+    }
+
+    .footer_contents_body_content_menu {
+        flex-direction: column;
+        align-items: start;
+        margin-right: 3rem;
+    }
+
+    .footer_contents_body_content_detail {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer_contents_body_content_member {
+        display: none;
+    }
+
+    .footer_contents_body_logo {
+        display: none;
+    }
+
+    .footer_contour {
+        display: none;
+    }
+
+    .footer_icons {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+
+    .navbar_menu li a {
+        white-space: wrap;
+        font-size: 14px;
+    }
+
+    .navbar_member li a {
+        white-space: wrap;
+        font-size: 14px;
+    }
+
+    .navbar_searchbar input {
+        transform: scale(0.8);
+        width: 10rem;
+    }
+}
+
+@media screen and (max-width: 1536px) {
+    .HDnavbarMenuDetailFlex {
+        padding-left: 17rem !important;
+    }
+
+    .HDnavbarMenuDetail {
+        padding-left: 18px;
+    }
+
+    .HDnavbarMenuDetailBox {
+        top: 7.58rem !important;
+    }
+    .HDarrowIcon {
+        left: 32rem !important;
+    }
+
+    .HDnavbarMenuDetailCategory {
+        top: 2.2rem !important;
+    }
+
+    .SAsellerProductImage {
+        width: 58vh;
+        height: 40vh;
+    }
+
+    #SAmikeOnIcon {
+        bottom: 70px;
+    }
+
+    .SAbuyerPopup h2 {
+        font-size: 1.8em;
+    }
+
+    #SAsellerAuctionStartRemainTimeDiff {
+        font-size: 20px;
+    }
+
+    .SAsellerAuctionDetailsBox p {
+        font-size: 16px;
+    }
+
+    #SAsellerStreamingNote {
+        font-size: 16px;
+    }
+
+    .SAsellerStreamingInfo p {
+        font-size: 16px;
+    }
+
+    .SAsellerChatContainer {
+        left: 63.2rem;
+        height: 65vh;
+    }
+
+    .SAtotalBoxCloseButton {
+        right: 7.5rem;
+    }
+
+    .SAchatContainer {
+        left: 59.5rem;
+        height: 68vh;
+    }
+    
+    .SAauctionInfoTitle h3 {
+        font-size: 22px;
+    }
+
+    .SAauctionInfoTitle p {
+        font-size: 18px;
+    }
+
+    #SAbidInput {
+        width: 11rem;
+    }
+
+    .SAsellerEvaluationDetail {
+        font-size: 14px;
+    }
+
+    .SAsellerEvaluationDetail progress {
+        margin: 1.38rem 1rem;
+    }
+    
+    .SAproductInfo {
+        gap: 20px;
+    }
+
+    .SAproductImage {
+        width: 112vh;
+    }
+
+    .SAbuyerWaitCommnetBox h1 {
+        font-size: 48px;
+        margin-bottom: 6rem;
+    }
+
+    .SAbuyerWaitCommnetBox p {
+        font-size: 36px;
+    }
+
+    .SAbuyerWaitCommnetBox {
+        margin-top: 3.5rem;
+    }
+
+    .SAliveOnOffBox {
+        width: 6%;
+    }
+
+    .SAwaitPopup {
+        height: 78vh;
+    }
+}

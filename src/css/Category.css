@@ -1,0 +1,230 @@
+.CTG_category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.CTG_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 1200px;
+    height: 250px;
+    gap: 20px;
+}
+
+.CTG_main-btn {
+    cursor: pointer;
+}
+
+.CTG_Category-btn {
+    margin-top: 40px;
+    width: 150px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.CTG_grid-container-0 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.CTG_stick {    
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 2px;
+    height: 250px;
+    border-right: solid 2px #BFBFBF;
+
+}
+
+.CTG_grid-item1 {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    justify-items: center;
+    height: 120px; 
+    flex-direction: column;
+}
+
+.CTG_grid-container {
+    display: grid;
+    width: 500px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px; 
+}
+
+.CTG_grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    height: 120px;
+    flex-direction: column;
+}
+
+.CTG_item-content {
+    display: flex;
+    width: 80px;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.CTG_item-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black; 
+    height: 100%;
+    cursor: pointer;
+}
+
+.CTG_grid-item-none {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.blank {
+    height: 100px;
+}
+
+.CTG_BestItems {
+    width: 1200px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+.CTG_container2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 1200px;
+    height: 400px;
+}
+
+.CTG_grid-container-best {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 1200px) {
+    .CTG_grid-container-best {
+        width: 800px;
+        height: 500px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .CTG_BestItems {
+        width: 800px;
+        height: 100px;
+    }
+}
+
+.CTG_grid-item-best {
+    border: solid 1px #BFBFBF;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 393px;
+    height: 197px;
+    cursor: pointer;
+}
+
+.CTG_grid-img {
+    object-fit: contain;
+    width: 393px;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.CTG_grid-container-hob, .CTG_grid-container-clothing, .CTG_grid-container-elec {
+    display: grid;
+    width: 1200px;
+    height: 232px;
+    grid-template-columns: repeat(5, 1fr); 
+    grid-template-rows: repeat(1, 1fr);  
+    gap: 10px;
+}
+
+.CTG_grid-item-hob, .CTG_grid-item-clothing, .CTG_grid-item-elec {
+    border: solid 1px #BFBFBF;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 232px;
+    height: 232px;
+}
+
+.CTG_grid-img-hob, .CTG_grid-img-clothing, .CTG_grid-img-elec {
+    object-fit: contain;
+    width: 230px;
+    height: 230px;
+    border-radius: 5px;
+}
+
+.CTG_flex-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.CTG_grid-container-product {
+    display: grid;
+    width: 1200px;
+    height: 400px;
+    grid-template-columns: repeat(5, 1fr); 
+    grid-template-rows: repeat(1, 1fr);  
+    gap: 10px;
+}
+
+.CTG_grid-item-product {
+    border: solid 1px #BFBFBF;
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    height: 232px;
+    cursor: pointer;
+}
+
+.CTG_gird-item-text {
+    display: flex;
+    flex-direction: column;
+    width: 232px;
+    height: 90px;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.CTG_productText {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.CV_conveyor-img {
+    object-fit: contain;
+}
