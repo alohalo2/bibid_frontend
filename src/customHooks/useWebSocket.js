@@ -3,7 +3,7 @@ import SockJS from 'sockjs-client';
 import { Client } from '@stomp/stompjs';
 import { useSelector } from 'react-redux';
 
-const useWebSocket = (auctionIndex) => {
+const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
 
   const loginMemberNickname = useSelector((state) => state.memberSlice.nickname);
 
@@ -17,16 +17,11 @@ const useWebSocket = (auctionIndex) => {
   // WebSocket 연결 함수
   useEffect(() => {
 
-    if (!auctionIndex) return;
+    if (!auctionIndex || !isChatClosed) return;
 
     const connectWebSocket = () => {
-      let token = sessionStorage.getItem('ACCESS_TOKEN');
+      let token = localStorage.getItem('ACCESS_TOKEN');
 
-      if (!token) {
-        // sessionStorage에서 토큰이 없을 경우 localStorage에서 가져옴
-        token = localStorage.getItem('ACCESS_TOKEN');
-      }
-      
       const socket = new SockJS('http://localhost:8080/ws');
       const client = new Client({
         webSocketFactory: () => socket,
@@ -67,6 +62,7 @@ const useWebSocket = (auctionIndex) => {
       });
       client.activate();
       setStompClient(client);
+      setIsChatClosed(true);
     };
 
     connectWebSocket();
@@ -76,7 +72,7 @@ const useWebSocket = (auctionIndex) => {
         stompClient.deactivate();
       }
     };
-  }, [auctionIndex]);
+  }, [auctionIndex, isChatClosed]);
 
   // 메시지 전송 함수
   const sendMessage = () => {
