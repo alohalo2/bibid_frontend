@@ -205,8 +205,10 @@
     border-radius: 5px;
     align-items: center;
     justify-content: center;
+    width: 232px;
     height: 232px;
     cursor: pointer;
+    object-fit: contain;
 }
 
 .CTG_gird-item-text {

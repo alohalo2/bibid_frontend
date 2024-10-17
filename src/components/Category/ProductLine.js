@@ -1,26 +1,46 @@
-import React from 'react'
+import React from 'react';
 import '../../css/Category.css';
+import defaultFileImg from '../../images/defaultFileImg.png';
 
 const ProductLine = ({ products }) => {
   return (
     <div className='CTG_productLine'>
       <div className='CTG_grid-container-product'>
-        {products.map((product) => (
-          <div className='CTG_flex-item' key={product.id}>
-            <div className="CTG_grid-item-product" style={{ backgroundImage: `url(${product.image})` }} />
-            <div className='CTG_grid-item-text'>
-              <div className='CTG_productText'>
-                <p>{product.name}</p>
-                <p>{product.price} 원</p>
-                <p>입찰 {product.bids}회 | {product.timeLeft} </p>
-                <p>{product.seller}</p>
+        {products.map((product) => {
+          // 입찰 횟수는 AuctionInfo 리스트의 길이로 계산
+          const bids = product.auctionInfoDtoList ? product.auctionInfoDtoList.length : 0;
+
+          // 남은 시간 계산
+          const timeLeft = new Date(product.endingLocalDateTime) - new Date();
+          const timeLeftFormatted = timeLeft > 0
+            ? `${Math.floor(timeLeft / (1000 * 60 * 60))}시간 ${Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))}분 남음`
+            : '경매 종료';
+
+          // 이미지 URL 설정
+          const thumbnailImage = product.auctionImageDtoList.find(image => image.thumbnail === true);
+          const imageSrc = thumbnailImage && thumbnailImage.filetype === 'image'
+            ? `https://kr.object.ncloudstorage.com/bitcamp73/${thumbnailImage.filepath}${thumbnailImage.filename}`
+            : `${defaultFileImg}`; 
+
+          return (
+            <div className='CTG_flex-item' key={product.auctionIndex}>
+              <img src={imageSrc}
+                className="CTG_grid-item-product"
+              />
+              <div className='CTG_grid-item-text'>
+                <div className='CTG_productText'>
+                  <p>{product.productName}</p>
+                  <p>{product.startingPrice} 원</p>
+                  <p>입찰 {bids}회 | {timeLeftFormatted}</p>
+                  <p>{product.memberNickname}</p> {/* 판매자 이름 */}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
 };
 
-export default ProductLine
+export default ProductLine;

@@ -9,36 +9,35 @@ import axios from 'axios';
 const DetailedCategory = () => {
   const navi = useNavigate();
   const [products, setProducts] = useState([]);
-  const [visibleProducts, setVisibleProducts] = useState([]);
   const [page, setPage] = useState(0);
-  const itemsPerPage = 5; // 한 줄에 5개 상품
+  const itemsPerPage = 5; // 한 페이지에 표시할 아이템 수
   const [hasMore, setHasMore] = useState(true); // 추가 데이터 여부
 
-  const fetchProducts = async () => {
-    if (!hasMore) return; // 더 이상 데이터가 없으면 호출하지 않음
-
+  const fetchBestProducts = useCallback(async () => {
     try {
-      const response = await axios.get(`/api/auctions?page=${page}&size=${itemsPerPage}`);
-      const newProducts = response.data;
-
-      setProducts(prevProducts => [...prevProducts, ...newProducts]);
-      
-      // 데이터가 더 이상 없으면 hasMore를 false로 설정
-      if (newProducts.length < itemsPerPage) {
+      const response = await axios.get('http://localhost:8080/auction/best/취미, 수집');
+      if (response.status === 200) {
+        const data = response.data.pageItems.content || [];
+        setProducts(prevProducts => [...prevProducts, ...data]);
+        setHasMore(data.length === itemsPerPage); // 다음 페이지가 있는지 확인
+      } else {
+        console.error('상품 가져오기 실패');
         setHasMore(false);
       }
     } catch (error) {
-      console.error('Error fetching products:', error);
+      console.error('베스트 상품을 가져오는 중 오류 발생:', error);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    fetchProducts();
-  }, [page]); // page가 변경될 때마다 fetchProducts 호출
+    fetchBestProducts();
+  }, [fetchBestProducts, page]); // 컴포넌트 마운트 또는 페이지 변경 시 호출
 
   const loadMore = useCallback(() => {
-    setPage(prevPage => prevPage + 1);
-  }, []);
+    if (hasMore) {
+      setPage(prevPage => prevPage + 1);
+    }
+  }, [hasMore]);
 
   const toCategory = () => navi('/categories', { replace: true });
   const toAll = () => navi('/categories/all', { replace: true });
@@ -49,23 +48,6 @@ const DetailedCategory = () => {
   const toElec = () => navi('/categories/elec', { replace: true });
   const toPic = () => navi('/categories/pic', { replace: true });
   const toAntique = () => navi('/categories/antique', { replace: true });
-
-  // // 더미 데이터
-  // const mockProducts = Array.from({ length: 11 }, (_, index) => ({
-  //   id: index + 1,
-  //   name: `상품 ${index + 1}`,
-  //   price: 10000 + index * 1000,
-  //   bids: Math.floor(Math.random() * 20),
-  //   timeLeft: `${Math.floor(Math.random() * 5) + 1}일 남음`,
-  //   seller: `판매자 ${String.fromCharCode(65 + (index % 5))}`, // A, B, C, D, E
-  //   image: "https://thumbnail8.coupangcdn.com/thumbnails/remote/292x292ex/image/0820_amir_esrgan_inf80k_batch_1_max3k/b94b/26e39d5528dbad54fa05d0d935fa0b20b47f89eede86cb20bb680bd5a192.jpg",
-  // })).sort((a, b) => b.id - a.id);
-
-  // useEffect(() => {
-  //   // 가짜 데이터 설정
-  //   setProducts(mockProducts);
-  //   setVisibleProducts(mockProducts.slice(0, itemsPerPage * 3)); // 처음에 15개 보여주기 (3줄)
-  // }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,7 +68,9 @@ const DetailedCategory = () => {
       <div className='CTG_container'>
         <CategoryMenu />
       </div>
+      <div className='blank'/>
       <Conveyor />
+      <div className='blank'/>
       {products.length > 0 ? (
         <ProductLine products={products} />
       ) : (
