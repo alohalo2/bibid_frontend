@@ -73,6 +73,10 @@ footer p {
     grid-template-columns: 1fr 30px 1fr;
 }
 
+.FTcontentsBodyContentDetail p {
+    margin: 16px 0;
+}
+
 .FTcontentsBodyContentMember {
     display: flex;
     align-items: center;
