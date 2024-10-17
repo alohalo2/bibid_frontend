@@ -103,14 +103,14 @@ const Header = () => {
                             <li className="HDnavbarMenuItem">
                                 <a href='#'>일반경매</a>
                             </li>
-                            <li className="HDnavbarMenuItem"><a href="#">물품등록</a></li>
+                            <li className="HDnavbarMenuItem"><a href="/registration">물품등록</a></li>
                         </ul>
 
                         <div className="HDnavbarMenuDetailBox" onMouseOver={handleMouseOver}
                              onMouseLeave={handleMouseLeave} style={{height: boxHeight}}>
                             <div className='HDnavbarMenuDetailFlex'>
                                 <ul className="HDnavbarMenuDetail">
-                                    <li><a href="#">실시간</a></li>
+                                    <li><a href="/specialAuction">실시간</a></li>
                                     <li><a href="#">블라인드</a></li>
                                 </ul>
                                 <ul className="HDnavbarMenuDetail">

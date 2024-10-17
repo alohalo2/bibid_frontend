@@ -5,9 +5,11 @@ export const getAuctionData = createAsyncThunk(
   'specialAuction/getAuctionData',
   async (auctionType, thunkApi) => {
     try {
-      const token = sessionStorage.getItem('ACCESS_TOKEN');
+      let token = sessionStorage.getItem('ACCESS_TOKEN');
+
       if (!token) {
-        return thunkApi.rejectWithValue('No access token found');
+        // sessionStorage에서 토큰이 없을 경우 localStorage에서 가져옴
+        token = localStorage.getItem('ACCESS_TOKEN');
       }
 
       const response = await axios.get('http://localhost:8080/specialAuction', {
