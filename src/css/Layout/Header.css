@@ -18,7 +18,7 @@ body{
     justify-content: center;
     align-items: center;
     border-bottom: 2px solid #BFBFBF;
-    transition: all 0.3 ease;
+    transition: all 0.3s ease;
     white-space: nowrap;
     margin: auto;
 }
@@ -118,7 +118,7 @@ body{
     position: absolute; /* 상세 메뉴 박스를 절대 위치로 설정 */
     top: 3.15rem;
     left: 0;
-    background-color: #0A369D(247, 224, 224);
+    background-color: #0A369D;
     padding: 10px;
     z-index: 1000;
     list-style: none;
