@@ -35,6 +35,38 @@ function SAlist({activeTab}) {
     dispatch(getAuctionData('realtime')); // 'live' 경매 데이터를 가져오는 액션 디스패치
   }, [dispatch]);
 
+
+  const formatDateTime = (startDateTime, endDateTime) => {
+    // startDateTime과 endDateTime을 Date 객체로 변환
+    const start = new Date(startDateTime);
+    const end = new Date(endDateTime);
+
+    // 날짜 형식 변환
+    const formattedDate = new Intl.DateTimeFormat('ko-KR', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).format(start);
+
+    // 시간 형식 변환
+    const formattedStartTime = start.toLocaleTimeString('ko-KR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
+
+    const formattedEndTime = end.toLocaleTimeString('ko-KR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
+
+    return {
+        date: formattedDate.replace(/-/g, '.'),
+        time: `${formattedStartTime} ~ ${formattedEndTime}`
+    };
+  };
+
   // 실시간/블라인드 경매 리스트 렌더링
   const renderAuctions = () => {
 
@@ -45,22 +77,23 @@ function SAlist({activeTab}) {
       <div className="SAauctionList">
         {auctionList.map((item, index) => {
 
-          const thumbnailImage = item.auctionImageDtoList.find(image => image.thumbnail === true);
+          const thumbnailImage = item.auctionImageDtoList.find(image => image.isThumbnail === true);
 
           // 이미지가 있고 파일 타입이 'image'인 경우, 썸네일 경로를 생성
           const imageSrc = thumbnailImage && thumbnailImage.filetype === 'image'
             ? `https://kr.object.ncloudstorage.com/bitcamp121/${thumbnailImage.filepath}${thumbnailImage.filename}`
             : '/images/defaultFileImg.png';  // 썸네일이 없거나 이미지 파일이 아닌 경우 기본 이미지 사용
 
+          // 날짜와 시간을 포맷팅
+          const { date, time } = formatDateTime(item.startingLocalDateTime, item.endingLocalDateTime);
+
           return (
             <SAitem
               key={index}
               imageSrc={imageSrc} // 받는거랑 보내는거 여기 파라미터랑 dto 랑 이름 맞춰주기
-              title={item.title} 
-              auctionDate={item.auctionDate} 
-              auctionTime={item.auctionTime} 
-              linkText={item.linkText} 
-              alertText={item.alertText} 
+              title={item.productName} 
+              auctionDate={date} // 날짜 포맷팅 값 전달
+              auctionTime={time} // 시간 포맷팅 값 전달
               handleGoButtonClick={() => handleGoButtonClick(item.id)}
               handleAlertButtonClick={() => handleAlertButtonClick(item.id)}
             />
@@ -540,6 +573,7 @@ function SAlist({activeTab}) {
                           <div className='SAsellerAuctionContentsTitle'>
                             <p>경매 시작까지<br/>남은 시간</p>
                             <p>입찰단위</p>
+                            <p>현재가</p>
                             <p>경매 시작가</p>
                             <p>대기중인 사용자</p>
                           </div>
@@ -549,6 +583,7 @@ function SAlist({activeTab}) {
                               <p id='SAsellerAuctionStartRemainTime'>({formattedAuctionStartTime})</p>
                             </div>
                             <p>1000원</p>
+                            <p>735,000원</p>
                             <p>735,000원</p>
                             <p>20,584</p>
                           </div>
