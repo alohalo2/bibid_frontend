@@ -42,7 +42,7 @@ function App() {
                                 <Route path='/registration/*' element={<RegistrationForm/>}/>
                                 <Route path='/category' element={<Category/>}/>
                                 <Route path='/category/:category' element={<DetailedCategory/>}/>
-                                <Route path='/category-itemdetail' element={<CategoryItemDetail/>}/>
+                                <Route path='/category-itemdetail/:auctionIndex' element={<CategoryItemDetail/>}/>
                                 {/* mypage 에서 지정한 mui 버튼 스타일 충돌 */}
                                 <Route path="join/*" element={<JoinRoutes/>}/>
                                 <Route path='/mypage/' element={<Mypage/>}>

@@ -11,7 +11,50 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import { IconButton } from '@mui/material';
 
-const CatItDetMain = () => {
+const CatItDetMain = ({ response }) => {
+
+  // 경매 Index
+  const auctionIndex = response.auctionIndex;
+  // 맴버 index
+  const memberIndex = response.memberIndex;
+  // 경매 타입
+  const auctionType = response.auctionType;
+  // 카테고리
+  const category = response.category;
+  // 세부 카테고리
+  const subcategory = response.subcategory;
+  // 물품 제목 , 이름
+  const productName = response.productName;
+  // 물품 설명
+  const productDescription = response.productDescription;
+  
+  // 썸네일이미지
+  
+  // const 진행중인 경매수
+
+  // const 경매진행자 sellerName
+
+  // 경매 시작가
+  const startingPrice = response.startingPrice;
+  // 경매 시작시간
+  const starting_LocalDateTime = response.starting_LocalDateTime;
+  // 경매 종료시간
+  const ending_LocalDateTime = response.endting_LocalDateTime;
+  // 입찰단위
+  const bidIncreasement = response.bidIncreasement;
+  // 즉시구매 가격
+  const instantPurchasePrice = response.instantPurchasePrice
+  // 재경매 시작가
+  const reauctionStartingPrice = response.reauctionStartingPrice
+  // 경매 상태
+  const auctionStatus = response.auctionStatus;
+  // 조회수
+  const viewCnt = response.viewCnt;
+  // 경매 등록시간 - board의 regdate
+  const regdate = response.regdate;
+  // 경매 수정시간 - board의 moddate
+  const moddate = response.moddate;
+  
 
   // 판매자 정보 더 보기 모달창
   const [sellerModalOpen, setSellerModalOpen] = useState(false);
