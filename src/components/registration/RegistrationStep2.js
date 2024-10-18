@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { TextareaAutosize, Container, Select, MenuItem, TextField, Button, Typography, Grid2, Box } from '@mui/material';
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -6,14 +6,13 @@ import dayjs from 'dayjs';
 import styled from 'styled-components';
 import ThumbnailUpload from './ThumbnailUpload.js';
 import AdditionalImagesUpload from './AdditionalImagesUpload.js';
-  
+
 const CustomMenuItem = styled(MenuItem)(({ theme }) => ({
     height: '3rem',
     fontSize: '16px',
     fontWeight: 'bold',
     '&:hover': { backgroundColor: '#7B7B7B' },
 }));
-
 
 const bidIncrements = [1000, 5000, 10000];
 
@@ -22,7 +21,38 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!formData.thumbnail) {
+      alert('썸네일 이미지를 업로드해 주세요.');
+      return;
+  }
     nextStep(); // 다음 단계로 이동
+  };
+
+  const [errors, setErrors] = useState({
+    startingLocalDateTime: false,
+    endingLocalDateTime: false,
+  });
+
+    // 유효성 검사 함수
+  const validateRequired = (field, value) => {
+      setErrors((prevErrors) => ({
+          ...prevErrors,
+          [field]: !value,
+      }));
+  };
+
+    // 시작일 변경 핸들러
+  const handleStartDateChange = (newValue) => {
+    const formattedDate = newValue ? dayjs(newValue).format('YYYY-MM-DDTHH:mm:ss') : '';
+    setFormData({ ...formData, startingLocalDateTime: formattedDate });
+    validateRequired('startingLocalDateTime', formattedDate);
+  };
+
+  // 종료일 변경 핸들러
+  const handleEndDateChange = (newValue) => {
+    const formattedDate = newValue ? dayjs(newValue).format('YYYY-MM-DDTHH:mm:ss') : '';
+    setFormData({ ...formData, endingLocalDateTime: formattedDate });
+    validateRequired('endingLocalDateTime', formattedDate);
   };
 
   return (
@@ -55,6 +85,7 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
                 placeholder="물품 제목을 입력해주세요."
                 size="small"
                 sx={{ width:'50%', '& .MuiOutlinedInput-root': {fontWeight:'bold'}}}
+                required
               />
             </Grid2>
           </Grid2>
@@ -84,8 +115,8 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
             <Grid2 size={2.5} 
               sx={{textAlign:'center', 
               backgroundColor:'#E7E9FF', 
-              height:'300px',
-              lineHeight:'300px',
+              height:'320px',
+              lineHeight:'320px',
               fontWeight:'bold',
               border : '1px solid #7B7B7B'}}>
               물품 설명*
@@ -94,19 +125,21 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
               sx={{
                 display:'flex',
                 alignItems:'center',
-                height:'300px',
-                border : '1px solid #7B7B7B'}}>
+                height:'320px',
+                border : '1px solid #7B7B7B',
+                padding : '15px'}}>
                <TextareaAutosize
                     minRows={15}
                     value={formData.productDescription}
                     onChange={(e) => setFormData({ ...formData, productDescription: e.target.value })}
-                    style={{ width: '100%', padding: '10px', fontSize: '16px', borderColor: '#ccc', borderRadius: '4px' }}
+                    style={{ width: '100%', padding: '10px', fontSize: '16px', borderColor: '#ccc', borderRadius: '4px', resize: 'none' }}
                     placeholder="※ 직거래를 유도하는 문구, 개인정보(휴대폰, E-mail등)나 html 태그는 사용할 수 없습니다. 
                     <원티드 약관  15조 2항>’직거래 유도 문구 사용(연락처 및 이메일 포함) 
 
                     1건 : 경고 후 문구가 삭제되며, 문구 삭제가 불가능할 경우 물품을 삭제합니다.
                     2건 : 회원 아이디(ID)사용을 임의 정지할 수 있습니다."
                     sx={{"& .MuiOutlinedInput-root": { color: 'black', fontWeight: 'bold' }}}
+                    required
                     
                 />
             </Grid2>
@@ -130,13 +163,15 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
                 alignItems:'center',
                 height:'65px',
                 fontWeight:'bold',
-                border : '1px solid #7B7B7B'}}>
+                border : '1px solid #7B7B7B',
+                padding : '15px'}}>
               <TextField
                 variant="outlined"
                 size="small"
                 sx={{ width: '10rem', '& .MuiOutlinedInput-root': { fontWeight:'bold'} }} 
                 value={formData.startingPrice}
                 onChange={(e) => setFormData({ ...formData, startingPrice: e.target.value })}
+                required
               /> 
               <span style={{marginLeft : '5px'}}> 원 </span>
               <span style={{marginLeft : '40px'}}> **금액관련 주의사항 기재 필요 </span>
@@ -147,15 +182,15 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
             <Grid2 size={2.5} 
               sx={{textAlign:'center', 
               backgroundColor:'#E7E9FF', 
-              height:'60px',
-              lineHeight:'60px',
+              height:'80px',
+              lineHeight:'80px',
               fontWeight:'bold',
               border : '1px solid #7B7B7B'}}>
               경매 기간*
             </Grid2>
             <Grid2 size={9.5}
               sx={{
-                height:'60px',
+                height:'80px',
                 border : '1px solid #7B7B7B',
                 paddingLeft:'1rem',
                 display:'flex'
@@ -165,16 +200,34 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
                 <span style={{marginRight:'0.6rem'}}>시작일:</span>
                 <DateTimePicker
                   value={formData.startingLocalDateTime ? dayjs(formData.startingLocalDateTime) : null}
-                  onChange={(newValue) => setFormData({ ...formData, startingLocalDateTime: dayjs(newValue).format('YYYY-MM-DDTHH:mm:ss') })}
+                  onChange={handleStartDateChange}
+                  renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        error={errors.startingLocalDateTime}
+                        helperText={errors.startingLocalDateTime ? '시작일을 선택해 주세요.' : ''}
+                        required
+                    />
+                  )}
                 />
+
               </Box>
 
               <Box sx={{display:'flex', flexDirection:'row',  alignItems:'center' , my:1, ml:1}}>
                 <span style={{marginRight:'0.6rem'}}>종료일:</span>
                 <DateTimePicker
                   value={formData.endingLocalDateTime ? dayjs(formData.endingLocalDateTime) : null}
-                  onChange={(newValue) => setFormData({ ...formData, endingLocalDateTime: dayjs(newValue).format('YYYY-MM-DDTHH:mm:ss') })}
+                  onChange={handleEndDateChange}
+                  renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        error={errors.endingLocalDateTime}
+                        helperText={errors.endingLocalDateTime ? '종료일을 선택해 주세요.' : ''}
+                        required
+                    />
+                  )}
                 />
+                
               </Box>
 
             </Grid2>
@@ -196,13 +249,15 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
                 alignItems:'center',
                 height:'65px',
                 fontWeight:'bold',
-                border : '1px solid #7B7B7B'}}>
+                border : '1px solid #7B7B7B',
+                padding : '15px'}}>
               <Select
                 value={formData.bidIncrement}
                 onChange={(e) => setFormData({ ...formData, bidIncrement: e.target.value })}
                 displayEmpty
                 size="small"
                 sx={{ width: '10rem', fontWeight: 'bold' }}
+                required
               >
                 {bidIncrements.map((bid, index) => (
                     <CustomMenuItem key={index} value={bid}>

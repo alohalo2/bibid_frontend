@@ -30,6 +30,7 @@
 
 .SAauctionDetails h3 {
   font-size: 1.7rem;
+  margin-top: 2rem;
 }
 
 .SAauctionDetails p {
@@ -78,8 +79,9 @@
 
 .SAsellerSteamingBox {
   width: 55vw;
-  height: 70vh;
+  height: auto;
   border-radius: 8px;
+  padding: 20px;
   background-color: #444444;
 }
 
@@ -236,6 +238,10 @@ right: -0.3rem;
 background-color: transparent;
 }
 
+.SAcloseBttnBox {
+  position: relative;
+}
+
 /* 닫기 버튼 */
 .SAtotalBoxCloseButton {
 position: absolute;
@@ -246,7 +252,7 @@ cursor: pointer;
 background-color: transparent;
 border-radius: 5px;
 top: -4.5rem;
-right: 9.5rem;
+right: 10.5rem;
 }
 
 .SAtotalBoxCloseButton:hover {
@@ -274,7 +280,6 @@ flex-direction: column;
 
 /* 구매자 페이지 팝업 박스 */
 .SAbuyerPopup {
-position: relative;
 background: #222222; /* 어두운 배경 */
 color: white; /* 흰색 텍스트 */
 padding-left: 30px;
@@ -301,14 +306,13 @@ margin: 20px 0;
 }
 
 .SAliveOnOffBox {
-  width: 5%;
-  height: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  width: 100px;
+  margin: 0;
   background-color: #0A369D;
-  border-radius: 8px;
-  padding: 10px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 22px;
 }
 
 .SAbuyerWaitCommnetBox {
@@ -328,6 +332,7 @@ margin-bottom: 1.2rem;
 }
 
 .SAliveAuctionHeader {
+height: 12rem;
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -339,6 +344,10 @@ background-color: #0A369D;
 padding: 8px 16px;
 border-radius: 10px;
 font-size: 22px;
+}
+
+.SAliveAuctionHeader h1 {
+margin: 0;
 }
 
 .SAsellerLiveAuctionHeader {
@@ -410,6 +419,7 @@ justify-content: start;
 
 .SAproductSection h2 {
 text-align: center;
+margin: 2rem 0;
 }
 
 .SAsellerProductSection {
@@ -455,7 +465,7 @@ height: 72vh;
 
 .SAsellerProductImage {
 width: 52vh;
-height: 32vh;
+height: 31vh;
 margin-right: 2rem;
 }
 
@@ -475,6 +485,7 @@ font-weight: bold;
 font-size: 20px;
 font-weight: bold;
 color: #7A7A7A;
+margin: 0;
 }
 
 .SAsellerProfile {
@@ -491,15 +502,18 @@ justify-content: space-around;
 align-items: center;
 text-align: center;
 gap: 2rem;
+margin-bottom: 0.5rem;
+}
+
+.SAsellerMainInfo p {
 font-size: 18px;
 font-weight: bold;
-margin-bottom: 0.5rem;
 }
 
 .SAsellerEvaluation {
 width: 20vw;
 background-color: #535353;
-padding: 20px 30px;
+padding: 0 30px;
 border-radius: 8px;
 display: flex;
 justify-content: space-between;
@@ -567,6 +581,7 @@ margin-right: 2rem;
 }
 
 .SAauctionInfoTitle h3 {
+margin: 20px 0;
 font-size: 24px;
 font-weight: bold;
 }
@@ -577,6 +592,7 @@ font-weight: bold;
 }
 
 .SAauctionInfoContents h3{
+margin: 20px 0;
 font-size: 24px;
 font-weight: bold;
 }
@@ -667,8 +683,8 @@ background-color: #0A369D;
 
 .SAchatContainer {
 position: fixed;
-left: 75rem;
-width: 27vw;
+left: 71rem;
+width: 23vw;
 height: 72vh;
 background-color: #444444;
 border-radius: 8px;
@@ -681,8 +697,8 @@ justify-content: flex-end; /* 내용이 아래쪽으로 정렬 */
 
 .SAsellerChatContainer {
 position: fixed;
-left: 79rem;
-width: 24vw;
+left: 73.5rem;
+width: 20.5vw;
 height: 69.7vh;
 background-color: #444444;
 border-radius: 8px;
@@ -717,7 +733,7 @@ display:none;
 }
 
 .SAchatInput {
-width: calc(100% - 25px);
+width: calc(100% - 10px);
 margin: 5px;
 padding: 5px;
 height: 2em;

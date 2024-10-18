@@ -6,7 +6,7 @@ function BuyerAuctionScreen({
 }) {
 
   const { messages, inputMessage, setInputMessage, sendMessage, currentPrice, bidAmount, setBidAmount, handleBidSubmit } = webSocketProps;
-
+  
   const messagesEndRef = useRef(null);
 
   const formattedCurrentPrice = currentPrice?.toLocaleString() || '0';
@@ -60,7 +60,8 @@ function BuyerAuctionScreen({
             <h1>구매자</h1>
             <div className="SAviewerCount">
               <img src='/images/people_icon.svg' alt="Viewer Count" />
-              <p>20,584</p>
+              {/* <p>{viewerCount.toLocaleString()}</p>  */}
+              <p>20</p> {/* 참여자 수 표시 */}
             </div>
           </div>
           <div className='SAauctionContainer'>
@@ -101,7 +102,7 @@ function BuyerAuctionScreen({
                   </div>
                   <div className='SAsellerEvaluation'>
                     <div className='SAsellerEvaluationDetail'>
-                      <p>상품에 대한 설명</p>
+                      <p>상품 설명</p>
                       <p>배송 속도</p>
                       <p>응답 속도</p>
                       <p>친절도</p>

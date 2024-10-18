@@ -1,7 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../../css/SpecialAuction/SAsellerStreamingBox.css';
 
 const SAsellerSteamingBox = () => {
+
+    const [isKeyVisible, setIsKeyVisible] = useState(false);
+
+    // Server URL 
+    const serverURL = 'ewjgwrkoepwkfpoekwp';
+
+    // Stream key 
+    const streamKey = 'ewjgwrkoepwkfpoekwp';
+
+    // 눈모양 클릭하면 Stream key 보이게 or 안보이게
+    const toggleKeyVisibility = () => {
+        setIsKeyVisible(!isKeyVisible);
+    };
+
+    // 복사 버튼 누르면 클립보드에 복사
+    const copyToClipboard = (text) => {
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                alert('스트림 키가 복사되었습니다!');
+            })
+            .catch((err) => {
+                console.error('복사 실패:', err);
+            });
+    };
+
     return (
         <div className='SAsellerSteamingBox'>
             <h2>스트림 설정</h2>
@@ -25,7 +50,11 @@ const SAsellerSteamingBox = () => {
                     <h4><strong>OBS studio에서 설치 프로그램 다운로드</strong></h4>
                     <ul>
                         <li className='SAobsDownload'>
-                            <p>OBS studio</p><a href='https://obsproject.com/download'><span>설치</span></a>
+                            <p id='SAobsDownload_title'>OBS studio</p><a href='https://obsproject.com/download'>
+                            <div className='SAobsDownloadURL'>
+                                설치
+                            </div>
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -57,31 +86,38 @@ const SAsellerSteamingBox = () => {
                         </li>
                         <li>
                             <div>
-                                <p><strong>(서버)</strong> 방송 설정의 서버 스트림 URL</p>
+                                <p id='SAstreamingServerURL_title'><strong>(서버)</strong> 방송 설정의 서버 스트림 URL</p>
                                 <div className='SAstreamingServerURLBox'>
                                     <div className='SAstreamingServerURL'>
-                                        <p>ewjgwrkoepwkfpoekwp</p>
+                                        <p id='SAstreamingServerURLId'>ewjgwrkoepwkfpoekwp</p>
                                     </div>
-                                    <button>복사</button>
+                                    <button onClick={() => copyToClipboard(serverURL)}>복사</button>
                                 </div>
                             </div>
                         </li>
                         <li>
                         <div>
-                            <p><strong>(스트림 키)</strong> 방송 송출할 채널의 스트림 키</p>
+                            <p id='SAstreamingKey_title'><strong>(스트림 키)</strong> 방송 송출할 채널의 스트림 키</p>
                             <div className='SAstreamingKeyBox'>
                                 <div className='SAstreamingKey'>
-                                    <p>*************</p>
-                                    <img src='#'></img>
+                                    <p id='SAstreamingKeyId'>
+                                        {isKeyVisible ? streamKey : '*************'}
+                                    </p>
+                                    <div className='SAstreamingKeyEyeIcon' onClick={toggleKeyVisibility}>
+                                        <img
+                                            src={isKeyVisible ? '/images/open_eye_icon.svg' : '/images/close_eye_icon.svg'}
+                                            alt='Toggle visibility'
+                                        />
+                                    </div>
                                 </div>
-                                <button>복사</button>
+                                <button onClick={() => copyToClipboard(streamKey)}>복사</button>
                             </div>
                         </div>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <h4><strong>방송 시작</strong></h4>
+                    <h4 id='SAbroadcastStart'><strong>방송 시작</strong></h4>
                     <ul>
                         <p>경매 시작 시간에 맞춰 <strong>자동</strong>으로 시작</p>
                     </ul>

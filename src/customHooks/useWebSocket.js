@@ -46,7 +46,6 @@ const useWebSocket = (auctionIndex) => {
             setMessages((prevMessages) => [...prevMessages, newMessage]);
           });
 
-
           client.subscribe(`/topic/auction/${auctionIndex}`, (message) => {
               const auctionInfo = JSON.parse(message.body);
               console.log("Bid received:", auctionInfo);
