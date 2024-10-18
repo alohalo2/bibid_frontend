@@ -20,7 +20,6 @@ import Mypage_qna from './components/Mypage/Mypage_qna';
 import RegistrationForm from './pages/RegistrationForm';
 import useFCM from './util/useFCM';
 import FindMember from './pages/etc2_find/FindMember';
-import SAstreamingSetting from './pages/SAstreamingSetting';
 import CategoryItemDetail from './components/categoryItemDetail/CategoryItemDetail';
 
 function App() {
@@ -38,7 +37,6 @@ function App() {
                             <Route path='/' element={<Layout/>}>
                                 <Route index element={<Mainpage/>}/>
                                 <Route path='/specialAuction' element={<SpecialAuction/>}/>
-                                <Route path='/streamingSetting' element={<SAstreamingSetting/>}/>
                                 <Route path='/registration/*' element={<RegistrationForm/>}/>
                                 <Route path='/category' element={<Category/>}/>
                                 <Route path='/category/:category' element={<DetailedCategory/>}/>

@@ -1,3 +1,4 @@
+
 .SAtabs {
     display: flex;
     justify-content: space-between;
@@ -17,8 +18,7 @@
     background-color: #dfdfdf;
     border: 2px solid #ccc;
     outline: none;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-radius: 5px 5px 0 0;
     transition: background-color 0.3s;
     margin-right: 3px; 
     font-size: 1.1rem;
@@ -36,7 +36,6 @@
     background-color: white;
     font-weight: bold;
     border-bottom: 2px solid white;
-    border-radius: 5px 5px 0 0;
 }
 
 .SAnote {
