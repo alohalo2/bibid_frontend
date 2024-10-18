@@ -9,6 +9,7 @@ import infoBidsGoingIcon from '../../images/info_bids_going_icon.png';
 import infoInquiryIcon from '../../images/info_inquiry_icon.png';
 import { useLocation } from 'react-router-dom';
 
+
 const Mypage_sidebar = () => {
 	const location = useLocation();
 
