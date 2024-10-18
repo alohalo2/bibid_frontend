@@ -6,7 +6,7 @@ import CategoryMenu from '../components/Category/CategoryMenu';
 import ProductLine from '../components/Category/ProductLine';
 import axios from 'axios';
 
-const DetailedCategory = () => {
+const DetailedCategory_Hob = () => {
   const navi = useNavigate();
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(0);
@@ -15,7 +15,7 @@ const DetailedCategory = () => {
 
   const fetchBestProducts = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/auction/category/취미, 수집`, {
+      const response = await axios.get(`http://localhost:8080/auction/category/전자제품`, {
         params: { page: page }
       });
 
@@ -92,4 +92,4 @@ const DetailedCategory = () => {
   );
 };
 
-export default DetailedCategory;
+export default DetailedCategory_Hob;

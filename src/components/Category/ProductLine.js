@@ -12,15 +12,22 @@ const ProductLine = ({ products }) => {
 
           // 남은 시간 계산
           const timeLeft = new Date(product.endingLocalDateTime) - new Date();
-          const timeLeftFormatted = timeLeft > 0
-            ? `${Math.floor(timeLeft / (1000 * 60 * 60))}시간 ${Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))}분 남음`
-            : '경매 종료';
+
+          let timeLeftFormatted;
+          if (timeLeft > 0) {
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24)); // 남은 일 수 계산
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // 24시간 이하 남은 시간
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)); // 남은 분
+            timeLeftFormatted = `${days > 0 ? `${days}일 ` : ''}${hours}시간 ${minutes}분 남음`;
+          } else {
+            timeLeftFormatted = '경매 종료';
+          }
 
           // 이미지 URL 설정
           const thumbnailImage = product.auctionImageDtoList.find(image => image.thumbnail === true);
           const imageSrc = thumbnailImage && thumbnailImage.filetype === 'image'
             ? `https://kr.object.ncloudstorage.com/bitcamp73/${thumbnailImage.filepath}${thumbnailImage.filename}`
-            : defaultFileImg; 
+            : defaultFileImg;
 
           return (
             <div className='CTG_flex-item' key={product.auctionIndex}>
