@@ -1,4 +1,5 @@
 import Mainpage from './pages/Mainpage';
+import Search from './pages/search/Search';
 import Category from './pages/Category';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import SpecialAuction from './pages/SpecialAuction';
@@ -43,6 +44,7 @@ function App() {
                             <Route path='/find' element={<FindMember/>}/>
                             <Route path='/' element={<Layout/>}>
                                 <Route index element={<Mainpage/>}/>
+                                <Route path='/search' element={<Search/>}/>
                                 <Route path='/specialAuction' element={<SpecialAuction/>}/>
                                 <Route path='/registration/*' element={<RegistrationForm/>}/>
                                 <Route path='/category' element={<Category/>}/>
