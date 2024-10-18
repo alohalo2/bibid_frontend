@@ -1,9 +1,9 @@
   import React, { useState, useEffect } from 'react';
   import { useSelector, useDispatch } from 'react-redux';
   import { getAuctionData } from '../../apis/SpecialAuction/SAapis';
-  import '../../css/SpecialAuction/SAlist.css';
   import {   formatDateTime , formatAuctionTimeRange  } from '../../util/utils';
   import useWebSocket from '../../customHooks/useWebSocket';
+  import '../../css/SpecialAuction/SAlist.css';
 
   // 팝업 및 화면 컴포넌트
   import AlertPopup from './AlertPopup';
@@ -29,8 +29,9 @@
     const [selectedAuction, setSelectedAuction] = useState(null);
     const [remainingTime, setRemainingTime] = useState('');
     const [hasAuctionEnded, setHasAuctionEnded] = useState(false);
+    const [isChatClosed, setIsChatClosed] = useState(true);
 
-    const webSocketProps = useWebSocket(selectedAuction?.auctionIndex);
+    const webSocketProps = useWebSocket(selectedAuction?.auctionIndex, isChatClosed, setIsChatClosed);
 
     const [popupState, setPopupState] = useState({
       showBuyerPopup: false,
@@ -135,8 +136,8 @@
         {/* 팝업 컴포넌트들 */}
         {popupState.showAlertPopup && <AlertPopup auction={selectedAuction} handleClosePopup={() => togglePopup('showAlertPopup', false)} />}
         {popupState.showBuyerPopup && !popupState.showBuyerAuctionScreen && <BuyerWaitPopup handleClosePopup={() => togglePopup('showBuyerPopup', false)} />}
-        {popupState.showBuyerAuctionScreen && <BuyerAuctionScreen webSocketProps = {webSocketProps} auction={selectedAuction} remainingTime={remainingTime} closeBuyerPopup={() => togglePopup('showBuyerAuctionScreen', false)} />}
-        {popupState.showSellerAuctionScreen && <SellerAuctionScreen webSocketProps = {webSocketProps} auction={selectedAuction} remainingTime={remainingTime} closeSellerPage={() => togglePopup('showSellerAuctionScreen', false)} />}
+        {popupState.showBuyerAuctionScreen && <BuyerAuctionScreen webSocketProps = {webSocketProps} auction={selectedAuction} remainingTime={remainingTime} handleShowSellerInfo={() => togglePopup('showSellerInfoPopup', true) } closeBuyerPopup={() => {togglePopup('showBuyerAuctionScreen', false); setIsChatClosed(true);}} />}
+        {popupState.showSellerAuctionScreen && <SellerAuctionScreen webSocketProps = {webSocketProps} auction={selectedAuction} remainingTime={remainingTime} closeSellerPage={() => {togglePopup('showSellerAuctionScreen', false); setIsChatClosed(true);}} />}
         {popupState.showSellerInfoPopup && <SellerInfoPopup auction={selectedAuction} handleClosePopup={() => togglePopup('showSellerInfoPopup', false)} />}
         {popupState.showBidConfirmationPopup && <BidConfirmationPopup bidAmount={webSocketProps.bidAmount} handleClosePopup={() => togglePopup('showBidConfirmationPopup', false)} />}
         {popupState.showEndPopup && <AuctionEndPopup auction={selectedAuction} handleClosePopup={() => togglePopup('showEndPopup', false)} />}

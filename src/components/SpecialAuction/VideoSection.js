@@ -84,7 +84,7 @@ const VideoSection = ({
     return () => {
       if (stompClient && stompClient.connected) {
         console.log(stompClient);
-        let token = sessionStorage.getItem("ACCESS_TOKEN");
+        const token = localStorage.getItem("ACCESS_TOKEN");
         stompClient.send(`/app/sendMsg/${lectureId}/leave`, {
           Authorization: "Bearer " + token,
         });
