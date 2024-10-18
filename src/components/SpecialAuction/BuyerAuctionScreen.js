@@ -1,9 +1,34 @@
 import React, { useEffect, useRef } from 'react';
 import { getFormattedRemainingTime } from '../../util/utils';
+import axios from 'axios';
 
 function BuyerAuctionScreen({ 
   webSocketProps, auction, remainingTime, closeBuyerPopup, handleShowSellerInfo
 }) {
+
+  useEffect(() => {
+    const fetchStreamingInfo = async () => {
+      try {
+        // API 호출로 streaming 정보 가져오기
+        const token = localStorage.getItem('ACCESS_TOKEN');
+
+        const response = await axios.get(`http://localhost:8080/streaming?auctionIndex=${auction.auctionIndex}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const streamingData = response.data.item; // response에서 streaming data 추출
+  
+        // streaming 관련 데이터를 적절히 처리 (예: UI 업데이트 등)
+        console.log('Streaming Info:', streamingData);
+      } catch (error) {
+        console.error('Error fetching streaming info:', error);
+      }
+    };
+  
+    // 비동기 함수 호출
+    fetchStreamingInfo();
+  }, [auction.auctionIndex]); 
 
   const { messages, inputMessage, setInputMessage, sendMessage, currentPrice, bidAmount, setBidAmount, handleBidSubmit } = webSocketProps;
   

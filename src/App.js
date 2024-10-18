@@ -21,6 +21,7 @@ import RegistrationForm from './pages/RegistrationForm';
 import useFCM from './util/useFCM';
 import FindMember from './pages/etc2_find/FindMember';
 import CategoryItemDetail from './components/categoryItemDetail/CategoryItemDetail';
+import CheckNcloudApi from './components/SpecialAuction/CheckNcloudApi';
 import DetailedCategory_All from './pages/DetailedCategory_All';
 import DetailedCategory_Hob from './pages/DetailedCategory_Hob';
 import DetailedCategory_Clothing from './pages/DetailedCategory_Clothing';
@@ -57,6 +58,7 @@ function App() {
                                 <Route path='/category/pic' element={<DetailedCategory_Pic/>}/>
                                 <Route path='/category/antique' element={<DetailedCategory_Antique/>}/>
                                 <Route path='/category-itemdetail' element={<CategoryItemDetail/>}/>
+                                <Route path='/checkNcloudApi' element={<CheckNcloudApi/>}/>
                                 {/* mypage 에서 지정한 mui 버튼 스타일 충돌 */}
                                 <Route path="join/*" element={<JoinRoutes/>}/>
                                 <Route path='/mypage/' element={<Mypage/>}>
