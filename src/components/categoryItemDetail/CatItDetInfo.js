@@ -9,11 +9,11 @@ import CatItDetTab from './CatItDetTab';
 
 import CatItDetAxios from './CatItDetAxios';
 
-const CatItDetInfo = ({ response }) => {
+const CatItDetInfo = ({ auctionNumber, auctionItem }) => {
 
-  console.log(response);
-  if (!response) {
-    return <div>Loading...</div>; // response가 없을 때 로딩 메시지를 출력
+  console.log(auctionItem);
+  if (!auctionItem) {
+    return <div>Loading...</div>; // auctionItem + auctionImg 가 없을 때 로딩 메시지를 출력
   }
 
   return (
@@ -21,7 +21,7 @@ const CatItDetInfo = ({ response }) => {
       <CatItDetTab/>
       <div className="CID-info-box">
         <h3>상품 설명</h3>
-        <p> {response.productDescription} 마감되어 있습니다. 각 장치의 버튼은 소유자에게 만족스러운 클릭과 프레스 후 반송으로 보상합니다.</p>
+        <p> {auctionItem.productDescription} 마감되어 있습니다. 각 장치의 버튼은 소유자에게 만족스러운 클릭과 프레스 후 반송으로 보상합니다.</p>
           <br/>
         <legend>특징 :</legend>
         <ul style={{ listStyle: 'disc', paddingLeft: '20px' }}>
