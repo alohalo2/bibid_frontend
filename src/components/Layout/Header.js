@@ -71,6 +71,10 @@ const Header = () => {
         navi('/mypage/wallet_management');  // mainpage로 페이지 이동
     };
 
+    const handleChargeCategory = () => {
+        window.location.href = '/category';  // /category로 이동
+    };
+
     const keepLogin = useSelector(state => state.memberSlice.keepLogin);
     const [token, setToken] = useState(false);
 
@@ -121,7 +125,7 @@ const Header = () => {
                             <li className="HDnavbarMenuItem">
                                 <a href='#'>특수경매</a>
                             </li>
-                            <li className="HDnavbarMenuItem">
+                            <li className="HDnavbarMenuItem" onClick={handleChargeCategory}>
                                 <a href='#'>일반경매</a>
                             </li>
                             <li className="HDnavbarMenuItem"><a href="/registration">물품등록</a></li>
