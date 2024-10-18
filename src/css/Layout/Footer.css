@@ -14,6 +14,7 @@ footer {
     background: #000000;
     opacity: 85%;
     margin: auto;
+    position : relative;
     box-sizing: border-box;
     white-space: nowrap;
     /* transform : translateY(-100%); */
@@ -70,10 +71,6 @@ footer p {
 .FTcontentsBodyContentDetail {
     display: grid;
     grid-template-columns: 1fr 30px 1fr;
-}
-
-.FTcontentsBodyContentDetail p {
-    margin: 16px 0;
 }
 
 .FTcontentsBodyContentMember {

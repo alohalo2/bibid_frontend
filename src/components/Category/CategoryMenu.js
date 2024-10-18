@@ -6,39 +6,39 @@ const CategoryMenu = () => {
         const navi = useNavigate();
 
         const toCategory = () => {
-            navi('/category');
+            navi('/category', {replace: true});
         }
       
         const toAll = () => {
-          navi('/category/all');
+          navi('/category/all', {replace: true});
           };
       
         const toClothing = () => {
-          navi('/category/clothing');
+          navi('/category/clothing', {replace: true});
           };
       
         const toHob = () => {
-          navi('/category/hob');
+          navi('/category/hob', {replace: true});
           };
           
         const toBook = () => {
-          navi('/category/book');
+          navi('/category/book', {replace: true});
           };
         
         const toArt = () => {
-          navi('/category/art');
+          navi('/category/art', {replace: true});
           };
       
         const toElec = () => {
-          navi('/category/elec');
+          navi('/category/elec', {replace: true});
           };
       
         const toPic = () => {
-          navi('/category/pic');
+          navi('/category/pic', {replace: true});
           };
         
         const toAntique = () => {
-          navi('/category/antique');
+          navi('/category/antique', {replace: true});
           };
 
   return (

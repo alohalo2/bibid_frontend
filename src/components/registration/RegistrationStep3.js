@@ -32,12 +32,10 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep }) => {
         formDataToSend.append('additionalImages', file);
       });
 
-      const token = localStorage.getItem('ACCESS_TOKEN');
-      
       // 서버로 FormData 전송 (예: axios 사용)
       axios.post('http://localhost:8080/auction/post', formDataToSend, {
         headers: {
-           Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${sessionStorage.getItem('ACCESS_TOKEN')}`,
           "Content-Type": "multipart/form-data"
         }
       })

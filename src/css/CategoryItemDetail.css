@@ -1,9 +1,9 @@
-/* 모든 요소의 기본 여백 제거
+/* 모든 요소의 기본 여백 제거 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} */
+}
 
 /* 호버 효과 추가 스타일 */
 .CID-hover-link {
