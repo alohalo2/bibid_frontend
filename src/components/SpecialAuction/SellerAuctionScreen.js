@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { getFormattedRemainingTime } from '../../util/utils';
+import SAsellerSteamingBox from './SAsellerStreamingBox';
+import '../../css/SpecialAuction/SAitem.css';
 
 function SellerAuctionScreen({ 
   webSocketProps, auction, remainingTime, closeSellerPage
@@ -76,6 +78,7 @@ function SellerAuctionScreen({
                   <p id='SAsellerStreamingNote'>* 경매 시간이 되면 자동으로 스트리밍을 시작합니다.</p>
                   <p id='SAsellerStreamingNoteContent'>실시간 스트리밍을 시작하려면 스트리밍 소프트웨어에서 동영상 전송을 시작하세요.</p>
                 </div>
+                <SAsellerSteamingBox/>
               </div>
 
               {/* Chat Section */}

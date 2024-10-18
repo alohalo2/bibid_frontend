@@ -69,7 +69,7 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep }) => {
               name="shippingMethod"
               value={formData.shippingMethod || ''}
               onChange={(e) => setFormData({ ...formData, shippingMethod: e.target.value })}
-              sx={{ marginRight: '1rem' }}
+              sx={{ marginRight: '1rem', padding: '15px' }}
             >
               <FormControlLabel value="택배" control={<Radio />} label="택배" />
               <FormControlLabel value="우편" control={<Radio />} label="우편" />
@@ -88,7 +88,7 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep }) => {
               name="costResponsibility"
               value={formData.costResponsibility || ''}
               onChange={(e) => setFormData({ ...formData, costResponsibility: e.target.value })}
-              sx={{ marginRight: '1rem' }}
+              sx={{ marginRight: '1rem', padding: '15px' }}
             >
               <FormControlLabel value="선불" control={<Radio />} label="선불(판매자 부담)" />
               <FormControlLabel value="착불" control={<Radio />} label="착불" />
@@ -102,13 +102,13 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep }) => {
           <Grid2 size={2.5} sx={{ textAlign: 'center', backgroundColor: '#E7E9FF', height: '65px', lineHeight: '65px', fontWeight: 'bold', border: '1px solid #7B7B7B' }}>
             즉시구매가*
           </Grid2>
-          <Grid2 size={9.5} sx={{ display: 'flex', alignItems: 'center', height: '65px', fontWeight: 'bold', border: '1px solid #7B7B7B' }}>
+          <Grid2 size={9.5} sx={{ display: 'flex', alignItems: 'center', height: '65px', border: '1px solid #7B7B7B' }}>
             <RadioGroup
               row
               name="instantPurchaseEnabled"
               value={formData.instantPurchaseEnabled ? 'true' : 'false'}
               onChange={(e) => setFormData({ ...formData, instantPurchaseEnabled: e.target.value === 'true' })}
-              sx={{ marginRight: '1rem' }}
+              sx={{ marginRight: '1rem', padding: '15px' }}
             >
               <FormControlLabel value="false" control={<Radio />} label="불가능" />
               <FormControlLabel value="true" control={<Radio />} label="가능" />
@@ -120,9 +120,16 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep }) => {
               onChange={(e) => setFormData({ ...formData, instantPurchasePrice: e.target.value })}
               sx={{ width: '10rem' }}
               disabled={!formData.instantPurchaseEnabled} // 즉시구매가 불가능할 때 비활성화
+              InputProps={{
+                sx: {
+                    '& .MuiOutlinedInput-input': {
+                        padding: '8px 16px', // 원하는 padding 값으로 수정하세요
+                    }
+                }
+              }}
             />
             <span>원</span>
-            <span style={{marginLeft : '2rem', color:'red'}}>*시작가 보다 30% 이상으로 등록 가능</span>
+            <span style={{marginLeft : '2rem', color:'red', fontWeight: 'bold'}}>*시작가 보다 30% 이상으로 등록 가능</span>
           </Grid2>
         </Grid2>
 
@@ -136,7 +143,7 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep }) => {
               name="autoReauctionEnabled"
               value={formData.autoReauctionEnabled ? 'true' : 'false'}
               onChange={(e) => setFormData({ ...formData, autoReauctionEnabled: e.target.value === 'true' })}
-              sx={{ marginRight: '1rem' }}
+              sx={{ marginRight: '1rem', padding: '15px' }}
             >
               <FormControlLabel value="false" control={<Radio />} label="없음" />
               <FormControlLabel value="true" control={<Radio />} label="있음" />
@@ -147,14 +154,21 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep }) => {
               variant="outlined"
               value={formData.reauctionStartingPrice || ''}
               onChange={(e) => setFormData({ ...formData, reauctionStartingPrice: e.target.value })}
-              sx={{ width: '10rem' }}
+              sx={{ width: '10rem', marginLeft: '7px'}}
               disabled={!formData.autoReauctionEnabled} // 재경매가 불가능할 때 비활성화
+              InputProps={{
+                sx: {
+                    '& .MuiOutlinedInput-input': {
+                        padding: '8px 16px', // 원하는 padding 값으로 수정하세요
+                    }
+                }
+              }}
             />
             <span>원</span>
           </Grid2>
         </Grid2>
                       
-        <Grid2 container sx={{ mt: 10, backgroundColor: '#EBEBEB', paddingLeft: '20px' }}>
+        <Grid2 container sx={{ mt: 10, backgroundColor: '#EBEBEB', padding: '20px' }}>
           <Grid2 size={12} sx={{ fontWeight: 'bold', my: '5px' }}>
             &lt;주의사항&gt;
           </Grid2>

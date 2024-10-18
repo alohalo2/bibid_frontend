@@ -49,7 +49,7 @@ const AdditionalImagesUpload = ({ formData, setFormData }) => {
     };
 
     return (
-        <Box sx={{ width: '100%', padding: '10px', height: 'auto' }}>
+        <Box sx={{ width: '100%', padding: '15px', height: 'auto' }}>
             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                 <Typography sx={{ minWidth: '15%', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     기타 이미지

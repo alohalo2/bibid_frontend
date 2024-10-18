@@ -82,6 +82,7 @@ const RegistrationStep1 = ({ formData, setFormData, nextStep}) => {
               displayEmpty
               renderValue={(selected) => selected || <Typography sx={{ color: '#777777', fontWeight: 'bold' }}>-경매 종류 선택-</Typography>}
               sx={{ width: '200px', mr: 2, fontWeight: 'bold' }}
+              required
             >
               <CustomMenuItem value="실시간 경매">실시간 경매</CustomMenuItem>
               <CustomMenuItem value="블라인드 경매">블라인드 경매</CustomMenuItem>
@@ -95,6 +96,7 @@ const RegistrationStep1 = ({ formData, setFormData, nextStep}) => {
               displayEmpty
               renderValue={(selected) => selected || <Typography sx={{ color: '#777777', fontWeight: 'bold' }}>카테고리 선택</Typography>}
               sx={{ width: '200px', mr: 2, fontWeight: 'bold' }}
+              required
             >
               {/* map을 사용해 카테고리 배열을 동적으로 렌더링 */}
                 {categories.map((cat, index) => (
@@ -113,6 +115,7 @@ const RegistrationStep1 = ({ formData, setFormData, nextStep}) => {
                 selected || <Typography sx={{ color: "#777777", fontWeight: "bold" }}>세부 카테고리 선택</Typography>
               }
               sx={{ width: "200px", mr: 2, fontWeight: "bold" }}
+              required
             >
               {categoryData[formData.category]?.map((subcat, index) => (
                 <CustomMenuItem  key={index} value={subcat}>
@@ -130,7 +133,7 @@ const RegistrationStep1 = ({ formData, setFormData, nextStep}) => {
           <Grid2 container justifyContent="center" sx={{ mt: 2 }}>
             <Button
               variant="contained"
-              sx={{ width: '8rem', backgroundColor: '#D9D9D9', color: 'black', fontWeight: 'bold', fontSize: '1rem' }}
+              sx={{ width: '8rem', backgroundColor: '#D9D9D9', color: 'black', fontWeight: 'bold', fontSize: '1rem' , marginBottom: '2rem'}}
               type="submit"
             >
               다음단계

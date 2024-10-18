@@ -24,28 +24,5 @@ export const getAuctionData = createAsyncThunk(
   }
 );
 
-export const getAuctionItemList = createAsyncThunk(
-  'specialAuction/getAuctionItemList',
-  async (_, thunkApi) => {
-    try {
-      const token = sessionStorage.getItem('ACCESS_TOKEN');
-      if (!token) {
-        return thunkApi.rejectWithValue('No access token found');
-      }
-
-      const response = await axios.get('http://localhost:8080/specialAuction', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      console.log("getAuctionItemList: ", response.data);
-      return response.data;
-    } catch (e) {
-      return thunkApi.rejectWithValue(e);
-    }
-  }
-);
-
 
 
