@@ -54,7 +54,7 @@ function App() {
                                 <Route path='/category/elec' element={<DetailedCategory_Elec/>}/>
                                 <Route path='/category/pic' element={<DetailedCategory_Pic/>}/>
                                 <Route path='/category/antique' element={<DetailedCategory_Antique/>}/>
-                                <Route path='/category-itemdetail/:auctionNumbers' element={<CategoryItemDetail/>}/>
+                                <Route path='/category-itemdetail/:auctionNumber' element={<CategoryItemDetail/>}/>
                                 {/* mypage 에서 지정한 mui 버튼 스타일 충돌 */}
                                 <Route path="join/*" element={<JoinRoutes/>}/>
                                 <Route path='/mypage/' element={<Mypage/>}>
