@@ -15,19 +15,28 @@ const DetailedCategory = () => {
 
   const fetchBestProducts = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:8080/auction/best/취미, 수집');
+      const response = await axios.get(`http://localhost:8080/auction/category/취미, 수집`, {
+        params: { page: page }
+      });
+
       if (response.status === 200) {
         const data = response.data.pageItems.content || [];
+        
+        // 이전 데이터에 새 데이터를 추가
         setProducts(prevProducts => [...prevProducts, ...data]);
-        setHasMore(data.length === itemsPerPage); // 다음 페이지가 있는지 확인
+        
+        // 남은 데이터가 5개 미만이면 더 이상 불러오지 않도록 설정
+        setHasMore(data.length === itemsPerPage);
+        console.log(data)
       } else {
         console.error('상품 가져오기 실패');
         setHasMore(false);
       }
     } catch (error) {
       console.error('베스트 상품을 가져오는 중 오류 발생:', error);
+      setHasMore(false);
     }
-  }, []);
+  }, [page]); // 페이지 변경 시 다시 호출
 
   useEffect(() => {
     fetchBestProducts();
@@ -71,11 +80,14 @@ const DetailedCategory = () => {
       <div className='blank'/>
       <Conveyor />
       <div className='blank'/>
+      <div className='DC_productContainer'>
       {products.length > 0 ? (
         <ProductLine products={products} />
       ) : (
         <p>상품이 없습니다.</p>
       )}
+      </div>
+      <div className='blank'/>
     </div>
   );
 };

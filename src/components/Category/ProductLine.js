@@ -20,19 +20,19 @@ const ProductLine = ({ products }) => {
           const thumbnailImage = product.auctionImageDtoList.find(image => image.thumbnail === true);
           const imageSrc = thumbnailImage && thumbnailImage.filetype === 'image'
             ? `https://kr.object.ncloudstorage.com/bitcamp73/${thumbnailImage.filepath}${thumbnailImage.filename}`
-            : `${defaultFileImg}`; 
+            : defaultFileImg; 
 
           return (
             <div className='CTG_flex-item' key={product.auctionIndex}>
               <img src={imageSrc}
                 className="CTG_grid-item-product"
+                alt={product.productName} // 이미지 설명 추가
               />
               <div className='CTG_grid-item-text'>
                 <div className='CTG_productText'>
-                  <p>{product.productName}</p>
-                  <p>{product.startingPrice} 원</p>
-                  <p>입찰 {bids}회 | {timeLeftFormatted}</p>
-                  <p>{product.memberNickname}</p> {/* 판매자 이름 */}
+                  <p className="CTG_productName">{product.productName}</p>
+                  <p className="CTG_startingPrice">{product.startingPrice !== null ? product.startingPrice.toLocaleString() : '가격 정보 없음'} 원</p> {/* 가격에 천 단위 구분자 추가 */}
+                  <p className="CTG_bidInfo">입찰 {bids}회 | {timeLeftFormatted}</p>
                 </div>
               </div>
             </div>
