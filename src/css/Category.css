@@ -193,7 +193,7 @@
 .CTG_grid-container-product {
     display: grid;
     width: 1200px;
-    height: 400px;
+    height: auto;
     grid-template-columns: repeat(5, 1fr); 
     grid-template-rows: repeat(1, 1fr);  
     gap: 10px;
@@ -205,8 +205,10 @@
     border-radius: 5px;
     align-items: center;
     justify-content: center;
+    width: 232px;
     height: 232px;
     cursor: pointer;
+    object-fit: contain;
 }
 
 .CTG_gird-item-text {
@@ -227,4 +229,11 @@
 
 .CV_conveyor-img {
     object-fit: contain;
+}
+
+.CTG_productText {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 10px 0;
+    gap: 10px;
 }

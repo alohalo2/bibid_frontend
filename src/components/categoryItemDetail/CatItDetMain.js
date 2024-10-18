@@ -11,7 +11,51 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import { IconButton } from '@mui/material';
 
-const CatItDetMain = () => {
+const CatItDetMain = ({ auctionNumber, auctionItem, auctionInfo, seller }) => {
+
+  console.log(auctionNumber, auctionItem, auctionInfo, seller);
+  // // 경매 Index
+  // const auctionIndex = auctionItem.auctionIndex;
+  // // 맴버 index
+  // const memberIndex = auctionItem.memberIndex;
+  // // 경매 타입
+  // const auctionType = auctionItem.auctionType;
+  // // 카테고리
+  // const category = auctionItem.category;
+  // // 세부 카테고리
+  // const subcategory = auctionItem.subcategory;
+  // // 물품 제목 , 이름
+  // const productName = auctionItem.productName;
+  // // 물품 설명
+  // const productDescription = auctionItem.productDescription;
+  
+  // // 썸네일이미지
+  
+  // // const 진행중인 경매수
+
+  // // const 경매진행자 sellerName
+
+  // // 경매 시작가
+  // const startingPrice = auctionItem.startingPrice;
+  // // 경매 시작시간
+  // const starting_LocalDateTime = auctionItem.starting_LocalDateTime;
+  // // 경매 종료시간
+  // const ending_LocalDateTime = auctionItem.endting_LocalDateTime;
+  // // 입찰단위
+  // const bidIncreasement = auctionItem.bidIncreasement;
+  // // 즉시구매 가격
+  // const instantPurchasePrice = auctionItem.instantPurchasePrice
+  // // 재경매 시작가
+  // const reauctionStartingPrice = auctionItem.reauctionStartingPrice
+  // // 경매 상태
+  // const auctionStatus = auctionItem.auctionStatus;
+  // // 조회수
+  // const viewCnt = auctionItem.viewCnt;
+  // // 경매 등록시간 - board의 regdate
+  // const regdate = auctionItem.regdate;
+  // // 경매 수정시간 - board의 moddate
+  // const moddate = auctionItem.moddate;
+  
 
   // 판매자 정보 더 보기 모달창
   const [sellerModalOpen, setSellerModalOpen] = useState(false);

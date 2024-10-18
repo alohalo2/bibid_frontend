@@ -1,0 +1,81 @@
+.SAsellerSteamingBox h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.SAstreamingStatus {
+    background-color: #D9D9D9;
+    border-radius: 5px;
+}
+
+.SAstreamingStatusHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    background-color: #7E7E7E;
+    border-radius: 5px 5px 0 0;
+}
+
+.SAstreamingStatusHeader h3 {
+    color: black;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.SAstreamingStatusContents {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.SAstreamingStatusContentsContour {
+    border-left: 1px solid rgb(136, 136, 136);
+    height: 4rem;
+}
+
+.SAstreamingStatusContents p {
+    color: black;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.SAstreamingGuideList {
+    padding: 0;
+    padding-left: 20px;
+}
+
+.SAstreamingGuideList ul {
+    list-style: none;
+    padding: 0;
+}
+.SAstreamingGuideList strong {
+    color: white;
+} 
+
+.SAstreamingGuideList p {
+    color: #8F8F8F;
+    font-weight: 900;
+} 
+
+.SAstreamingGuideList a {
+    text-decoration: none;
+    color: #8F8F8F;
+}
+
+.SAstreamingGuideList span {
+    color: #F4900C;
+    font-weight: 900;
+    text-decoration: underline;
+} 
+
+.SAobsDownload {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.SAstreamingServerURLBox {
+    
+}

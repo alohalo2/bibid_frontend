@@ -40,6 +40,7 @@ const memberSlice = createSlice({
             alert(`${action.payload.memberId}님 환영합니다.`);
 
             localStorage.setItem('ACCESS_TOKEN', action.payload.token);
+            // sessionStorage.setItem('ACCESS_TOKEN', action.payload.token);
 
             return {
                 ...state,
