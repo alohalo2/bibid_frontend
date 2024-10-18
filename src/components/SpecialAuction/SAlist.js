@@ -14,6 +14,7 @@
   import BidConfirmationPopup from './BidConfirmationPopup';
   import AuctionEndPopup from './AuctionEndPopup';
   import SAitem from './SAitem';
+import axios from 'axios';
 
   function SAlist({ activeTab }) {
 
@@ -85,6 +86,7 @@
 
     const handleGoButtonClick = (auction) => {
       setSelectedAuction(auction);
+
       webSocketProps.setCurrentPrice(auction.startingPrice);
       webSocketProps.setBidAmount(auction.startingPrice);
     
