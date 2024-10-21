@@ -68,14 +68,10 @@ const Header = () => {
         navi('/mypage/wallet_management');  // mainpage로 페이지 이동
     };
 
-<<<<<<< HEAD
     const handleChargeCategory = () => {
         window.location.href = '/category';  // /category로 이동
     };
 
-    const keepLogin = useSelector(state => state.memberSlice.keepLogin);
-=======
->>>>>>> 9cc748800800d8d3fae83b6f0a939dc62ec6e142
     const [token, setToken] = useState(false);
 
     const getCookieValue = useCallback(() => {
