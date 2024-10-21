@@ -80,7 +80,6 @@ const memberSlice = createSlice({
             return state;
         });
         builder.addCase(findMember.fulfilled, (state, action) => {
-            alert("이메일 인증번호 발송완료");
 
             return {
                 ...state,

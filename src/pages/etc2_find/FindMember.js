@@ -1,5 +1,16 @@
-import React, {useCallback, useState} from 'react';
-import {Button, Container, Grid, InputAdornment, Menu, MenuItem, TextField, Typography} from "@mui/material";
+import React, {useCallback, useEffect, useState} from 'react';
+import {
+    Button,
+    Container,
+    Divider,
+    Grid,
+    InputAdornment,
+    List, ListItem, ListItemText,
+    Menu,
+    MenuItem,
+    TextField,
+    Typography
+} from "@mui/material";
 import '../../css/Login.css';
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
@@ -21,14 +32,14 @@ const CenteredContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    margin: 10%;
 `
 
 const HeaderTitle = styled.div`
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 `
 
 const FindMember = () => {
@@ -45,14 +56,22 @@ const FindMember = () => {
         const [emailError, setEmailError] = useState('');
         const [isButtonVisible, setIsButtonVisible] = useState(false);
         const [verificationButtonVisible, setVerificationButtonVisible] = useState(false);
+        const [mailCodeCheck, setMailCodeCheck] = useState(false);
+        const [emailCheck, setEmailCheck] = useState(false);
 
 
         const handleFind = useCallback((e) => {
             e.preventDefault();
-            console.log(findForm); // findForm의 값을 확인
+
+            alert("인증번호가 발송되었습니다.");
 
             dispatch(findMember(findForm));
 
+            setVerificationButtonVisible(true);
+
+            setMailCodeCheck(false);
+
+            setEmailCheck(true);
 
         }, [findForm, dispatch]);
 
@@ -75,22 +94,31 @@ const FindMember = () => {
                 [e.target.name]: e.target.value
             });
 
-        }, [findForm, codeForm]);
+            if (mailCodeCheck) {
+                document.querySelector("#emailInput").style.dispaly = 'block';
+                document.querySelector("#emailButton").removeAttribute('disabled');
+            }
+
+        }, [findForm, codeForm, mailCodeCheck]);
 
         const emailRegex = /^(?=.*@)(?=.*\.).+$/;
 
         const validateEmail = (email) => {
             if (email.trim() === '') {
                 setEmailError('이메일 주소를 입력해주세요.');
+                setMailCodeCheck(false);
                 return false;
             } else if (!emailRegex.test(email)) {
                 setEmailError('올바른 이메일 형식이 아닙니다.');
+                setMailCodeCheck(false);
                 return false;
             } else {
                 setEmailError('');
+                setMailCodeCheck(true);
                 return true;
             }
         };
+
 
         const handleVerification = useCallback(async (e) => {
             e.preventDefault();
@@ -110,14 +138,23 @@ const FindMember = () => {
 
         }, [codeForm, dispatch]);
 
+        const instructions = [
+            "가입여부 확인이 필요한 이메일을 입력해서 인증번호를 전송해주세요.",
+            "입력한 이메일로 발송된 인증번호를 확인해서 인증을 완료해주세요.",
+            "이메일가입자는 인증 후 새 비밀번호를 설정할 수 있습니다.",
+            "소셜가입자는 인증 후 어떤 소셜 서비스로 연결되었는지 확인할 수 있습니다.",
+            "회원탈퇴한 이메일은 탈퇴일로부터 30일 동안은 재가입이 불가능합니다."
+        ];
+
+
+
         return (
             <CenteredContainer>
                 <FindBlock>
                     <HeaderTitle>계정 찾기</HeaderTitle>
                     <Container sx={{mt: 5, width: '100%'}}>
                         <form onSubmit={handleFind}>
-
-                            <Grid item xs={12} textAlign='right' style={{marginBottom: "15px"}}>
+                            <Grid item xs={12} textAlign='right' style={{marginBottom: "10px"}}>
                                 <TextField
                                     label="이메일"
                                     name="email"
@@ -125,6 +162,8 @@ const FindMember = () => {
                                     value={findForm.email}
                                     onChange={changeTextField}
                                     error={!!emailError}
+                                    id='emailInput'
+                                    disabled={emailCheck}
                                     fullWidth
                                 />
                             </Grid>
@@ -137,7 +176,42 @@ const FindMember = () => {
                                     {emailError}
                                 </Typography>
                             )}
-                            {isButtonVisible && ( // 버튼 표시 조건 추가
+                            {isButtonVisible && (
+                                <Button
+                                    name="transport-button"
+                                    variant="contained"
+                                    type="submit"
+                                    style={{
+                                        backgroundColor: "#2196F3",
+                                        height: "43px",
+                                        fontSize: "18px"
+                                    }}
+                                    fullWidth
+                                    id='emailButton'
+                                    disabled={!mailCodeCheck}
+                                >
+                                    인증번호 전송
+                                </Button>
+                            )}
+                        </form>
+                    </Container>
+                    <Container sx={{width: '100%'}}>
+                        {verificationButtonVisible && (
+                            <form onSubmit={handleVerification}>
+                                <Grid item xs={12} style={{marginTop: '10px'}}>
+                                    <Divider />
+                                </Grid>
+                                <Grid item xs={12} style={{display: 'flex', alignItems: 'center', marginTop: '10px'}}>
+                                    <TextField
+                                        label="인증번호"
+                                        name="verificationCode"
+                                        required
+                                        fullWidth
+                                        value={codeForm.verificationCode}
+                                        onChange={changeTextField}
+                                        style={{flex: 1}}
+                                    />
+                                </Grid>
                                 <Button
                                     name="transport-button"
                                     variant="contained"
@@ -150,46 +224,23 @@ const FindMember = () => {
                                     }}
                                     fullWidth
                                 >
-                                    인증번호 전송
+                                    인증번호 확인
                                 </Button>
-                            )}
-                        </form>
-                    </Container>
-                    <Container sx={{mt: 5, width: '100%'}}>
-                        <form onSubmit={handleVerification}>
-                            <Grid item xs={12} style={{display: 'flex', alignItems: 'center'}}>
-                                <TextField
-                                    label="인증번호"
-                                    name="verificationCode"
-                                    required
-                                    fullWidth
-                                    value={codeForm.verificationCode}
-                                    onChange={changeTextField}
-                                    // error={!!codeError}
-                                    style={{flex: 1}} // 텍스트 필드가 남은 공간을 차지하도록 설정
-                                />
-                            </Grid>
-                            {/*{verificationButtonVisible && ( // 버튼 표시 조건 추가*/}
-                            <Button
-                                name="transport-button"
-                                variant="contained"
-                                type="submit"
-                                style={{
-                                    margin: '10px 0',
-                                    backgroundColor: "#2196F3",
-                                    height: "43px",
-                                    fontSize: "18px"
-                                }}
-                                fullWidth
-                            >
-                                인증번호 전송
-                            </Button>
-                        </form>
+                            </form>
+                        )}
+                        <List>
+                            {instructions.map((instruction, index) => (
+                                <ListItem key={index}>
+                                    <ListItemText primary={`• ${instruction}`} sx={{ marginLeft: '8px' }} />
+                                </ListItem>
+                            ))}
+                        </List>
                     </Container>
                 </FindBlock>
             </CenteredContainer>
 
-        );
+        )
+            ;
     }
 ;
 
