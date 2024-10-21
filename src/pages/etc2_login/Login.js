@@ -16,7 +16,6 @@ import {useNavigate} from 'react-router-dom';
 import styled from "styled-components";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import '../../css/Login.css';
-import {keep_Login} from '../../slices/etc2_memberslice/memberSlice';
 
 
 const LoginBlock = styled.div`
@@ -52,7 +51,6 @@ const Login = () => {
     });
     const [showMemberPw, setShowMemberPw] = useState(false);
 
-    const isLogin = useSelector(state => state.memberSlice.isLogin);
 
     const dispatch = useDispatch();
     const navi = useNavigate();
@@ -64,35 +62,42 @@ const Login = () => {
         });
     }, [loginForm]);
 
+    const setCookie = (name, value, days) => {
+        let expires = '';
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = `; expires=${date.toUTCString()}`;
+        }
+        document.cookie = `${name}=${value || ''}${expires}; path=/`;
+    };
+
     const handleLogin = useCallback((e) => {
         e.preventDefault();
 
         dispatch(login(loginForm)).then((action) => {
-            if (login.fulfilled.match(action)) { // 액션 타입 확인을 위해 match 사용
-                if (isLogin) {
-                    localStorage.setItem('isLogin', 'true');
-                }
-                navi("/");
-            } else {
-                console.error('로그인 실패');
-            }
-        });
+                if (login.fulfilled.match(action)) { // 액션 타입 확인을 위해 match 사용
+                    const token = action.payload.token;
 
-    }, [loginForm, dispatch, navi, isLogin]);
+                    if (rememberMe) {
+                        setCookie('ACCESS_TOKEN', token, 7)
+                    } else {
+                        setCookie('ACCESS_TOKEN', token)
+                    }
+                    navi("/");
+                } else {
+                    console.error('로그인 실패');
+                }
+            }
+        );
+
+    }, [loginForm, dispatch, navi]);
 
     const toggleShowMemberPw = () => {
         setShowMemberPw((prev) => !prev);
     };
 
-    const [isChecked, setIsChecked] = useState(false);
-
-    const handleKeepLogin = useCallback((e) => {
-        const checked = e.target.checked;
-        setIsChecked(checked);
-        dispatch(keep_Login(checked));
-        console.log(checked)
-        console.log(dispatch(keep_Login(checked)))
-    }, [dispatch, isChecked]);
+    const [rememberMe, setRememberMe] = useState(false);
 
     return (
         <CenteredContainer>
@@ -139,8 +144,8 @@ const Login = () => {
                             <FormControlLabel
                                 control={
                                     <Checkbox
-                                        checked={isChecked}
-                                        onChange={handleKeepLogin}
+                                        checked={rememberMe}
+                                        onChange={() => setRememberMe(!rememberMe)}
                                     />
                                 }
                                 label="로그인 상태 유지"
@@ -150,7 +155,12 @@ const Login = () => {
                             <Button
                                 variant="contained"
                                 type="submit" // type을 submit으로 설정
-                                style={{margin: '10px 0', backgroundColor: "#2196F3", height: "43px", fontSize: "18px"}}
+                                style={{
+                                    margin: '10px 0',
+                                    backgroundColor: "#2196F3",
+                                    height: "43px",
+                                    fontSize: "18px"
+                                }}
                                 fullWidth
                             >
                                 로그인

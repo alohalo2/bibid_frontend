@@ -5,13 +5,10 @@ import '../../css/Layout/Wallet.css';
 import Alarm from '../Layout/Alarm';
 import logo from '../../images/logo.svg';
 import rightArrowIcon from '../../images/right_arrow_icon.svg';
-import alarmIcon from '../../images/alarm.svg';
 import hamburgerIcon from '../../images/hamburger_icon.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {logout} from "../../apis/etc2_memberapis/memberApis"
-import {keep_Login} from "../../slices/etc2_memberslice/memberSlice";
-
 
 const Header = () => {
 
@@ -46,7 +43,7 @@ const Header = () => {
     const handleMouseLeaveWallet = () => {
         setShowWalletPopup(false);
     };
-    
+
     let clickCate = true;
 
     const handleMouseClick = (e) => {
@@ -71,42 +68,50 @@ const Header = () => {
         navi('/mypage/wallet_management');  // mainpage로 페이지 이동
     };
 
-    const keepLogin = useSelector(state => state.memberSlice.keepLogin);
     const [token, setToken] = useState(false);
 
-    const handleLogout = useCallback(() => {
-        // 쿠키에서 ACCESS_TOKEN 삭제
-        dispatch(logout()).then(() => {
-            document.cookie = "ACCESS_TOKEN=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            setToken(false);
-            navi("/");
-        });
-    }, [dispatch]);
+    const getCookieValue = useCallback(() => {
 
-    // 쿠키에서 ACCESS_TOKEN을 읽어오는 함수
-    const getCookie = (name) => {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
+        const cookies = document.cookie.split('; ');
+        const accessTokenName = cookies.find(cookie => cookie.startsWith('ACCESS_TOKEN='));
+
+        return accessTokenName ? 'ACCESS_TOKEN' : null;
+
+    }, [token]);
+
+// 쿠키에서 ACCESS_TOKEN 삭제
+    const deleteCookie = (name) => {
+        document.cookie = `${name}=; Max-Age=0; path=/`; // Max-Age를 0으로 설정하여 쿠키 삭제
     };
 
-    // window.addEventListener('unload', function () {
-    //         localStorage.removeItem('ACCESS_TOKEN');
-    // });
+    const [cookieValue, setCookieValue] = useState(null);
 
-    // 컴포넌트가 마운트될 때 쿠키를 확인
+    // 쿠키 값을 상태로 관리
     useEffect(() => {
-        if (localStorage.getItem('ACCESS_TOKEN')) {
-            setToken(true)
-        } else if (keepLogin) {
-            const expirationDays = 7;
-            const date = new Date();
-            date.setTime(date.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
-            const expires = "expires=" + date.toUTCString();
-            document.cookie = `ACCESS_TOKEN=${token}; ${expires}; path=/`
+        const value = getCookieValue(); // 쿠키 값을 가져옵니다.
+        setCookieValue(value); // 상태 업데이트
+    }, [getCookieValue]); // getCookieValue가 변경될 때 실행
+
+    useEffect(() => {
+
+        if (cookieValue === 'ACCESS_TOKEN') {
+            setToken(true);
+        } else {
+            setToken(false);
         }
 
-    }, [dispatch, keepLogin]);
+    }, [cookieValue, token]);
+
+    const handleLogout = useCallback(() => {
+        dispatch(logout()).then(() => {
+            if (logout.fulfilled) {
+                if (cookieValue === 'ACCESS_TOKEN') {
+                    deleteCookie(cookieValue); // 쿠키 삭제
+                    setCookieValue(null);
+                }
+            }
+        });
+    }, [dispatch, cookieValue, token]);
 
     return (
         <>
@@ -135,12 +140,14 @@ const Header = () => {
                                     <li><a href="#">블라인드</a></li>
                                 </ul>
                                 <ul className="HDnavbarMenuDetail">
-                            <li><a href="#">전체보기</a></li>
-                                <li id='HDnavbarMenuDetailCate' onClick={handleMouseClick} onMouseOver={handleMouseOverCate} onMouseLeave={handleMouseLeaveCate}><a href='#'>카테고리</a></li>
-                            </ul>
-                            <div className='HDarrowIcon'>
-                                <img src={rightArrowIcon}></img>
-                            </div>
+                                    <li><a href="#">전체보기</a></li>
+                                    <li id='HDnavbarMenuDetailCate' onClick={handleMouseClick}
+                                        onMouseOver={handleMouseOverCate} onMouseLeave={handleMouseLeaveCate}><a
+                                        href='#'>카테고리</a></li>
+                                </ul>
+                                <div className='HDarrowIcon'>
+                                    <img src={rightArrowIcon}></img>
+                                </div>
                                 <div className="HDnavbarMenuDetailCategoryBox">
                                     <ul className="HDnavbarMenuDetailCategory">
                                         <li><a href="#">의류/잡화</a></li>
@@ -165,10 +172,10 @@ const Header = () => {
                                 <ul className="HDnavbarMember">
                                     <li><a onClick={handleLogout}>로그아웃</a></li>
                                 </ul>
-                                <div className="HDnavbarAlarm" style={{ marginRight: '40px', position: 'relative' }} 
-                                        onMouseOver={handleMouseOverWallet}
-                                        onMouseLeave={handleMouseLeaveWallet}>
-                                        <img
+                                <div className="HDnavbarAlarm" style={{marginRight: '40px', position: 'relative'}}
+                                     onMouseOver={handleMouseOverWallet}
+                                     onMouseLeave={handleMouseLeaveWallet}>
+                                    <img
                                         src="/images/Ellipse%202.png"
                                         alt="My Page"/>
 

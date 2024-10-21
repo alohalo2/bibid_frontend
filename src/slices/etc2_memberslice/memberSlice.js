@@ -12,7 +12,6 @@ import {
 const memberSlice = createSlice({
     name: 'members',
     initialState: {
-        isLogin: false,
         memberIndex: 0,
         memberId: '',
         nickname: '',
@@ -22,10 +21,7 @@ const memberSlice = createSlice({
         keepLogin: false
     },
     reducers: {
-        keep_Login: (state, action) => ({
-            ...state,
-            keepLogin: action.payload
-        })
+
     },
     extraReducers: (builder) => {
         builder.addCase(join.fulfilled, (state, action) => {
@@ -39,12 +35,8 @@ const memberSlice = createSlice({
         builder.addCase(login.fulfilled, (state, action) => {
             alert(`${action.payload.memberId}님 환영합니다.`);
 
-            localStorage.setItem('ACCESS_TOKEN', action.payload.token);
-            // sessionStorage.setItem('ACCESS_TOKEN', action.payload.token);
-
             return {
                 ...state,
-                isLogin: true,
                 memberIndex: action.payload.memberIndex,
                 memberId: action.payload.memberId,
                 nickname: action.payload.nickname,
@@ -65,11 +57,9 @@ const memberSlice = createSlice({
         });
         builder.addCase(logout.fulfilled, (state, action) => {
             alert("로그아웃 완료.");
-            localStorage.removeItem("ACCESS_TOKEN");
 
             return {
                 ...state,
-                isLogin: false,
                 memberIndex: 0,
                 nickname: '',
                 token: ''
@@ -114,7 +104,5 @@ const memberSlice = createSlice({
         });
     }
 });
-
-export const {keep_Login} = memberSlice.actions;
 
 export default memberSlice.reducer;

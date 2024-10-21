@@ -23,11 +23,7 @@ export const login = createAsyncThunk('members/login', async (member, thunkApi) 
 
 export const logout = createAsyncThunk('members/logout', async (_, thunkApi) => {
     try {
-        const response = await axios.get(`http://localhost:8080/members/logout`, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
-            }
-        });
+        const response = await axios.get(`http://localhost:8080/members/logout`);
 
         return response.data.item;
     } catch (e) {
