@@ -17,3 +17,21 @@ export const getProductsByCategory = createAsyncThunk(
         }
     }
 ); 
+
+export const getBoards = createAsyncThunk(
+    'auction/getBoards',
+    async (searchObj, thunkApi) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/auction/${searchObj.searchCondition}/${searchObj.searchKeyword}`, {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem('ACCESS_TOKEN')}`
+                }
+            });
+            console.log(response.data);
+            return response.data; // 응답 데이터를 반환
+        } catch (e) {
+            console.error('Error fetching boards:', e); // 에러 로그 추가
+            return thunkApi.rejectWithValue(e);
+        }
+    }
+);

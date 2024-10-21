@@ -237,3 +237,7 @@
     margin: 10px 0 10px 0;
     gap: 10px;
 }
+
+.SR_container {
+    background-color: gray;
+}
