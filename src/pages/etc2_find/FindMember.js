@@ -14,8 +14,8 @@ import {
 import '../../css/Login.css';
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {fetchMemberId, findMember, verificationCodeCheck} from "../../apis/etc2_memberapis/memberApis";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchMemberId, findIdByEmail, findMember, verificationCodeCheck} from "../../apis/etc2_memberapis/memberApis";
 
 const FindBlock = styled.div`
     display: flex;
@@ -56,9 +56,34 @@ const FindMember = () => {
         const [emailError, setEmailError] = useState('');
         const [isButtonVisible, setIsButtonVisible] = useState(false);
         const [verificationButtonVisible, setVerificationButtonVisible] = useState(false);
-        const [mailCodeCheck, setMailCodeCheck] = useState(false);
+        const [mailCodeCheck, setMailCodeCheck] = useState(true);
         const [emailCheck, setEmailCheck] = useState(false);
+        const [viewButton, setViewButton] = useState(false);
+        const [isPasswordFind, setIsPasswordFind] = useState(false);
 
+        const changeTextField = useCallback((e) => {
+            setFindForm(prevForm => {
+                const updatedForm = {
+                    ...prevForm,
+                    [e.target.name]: e.target.value
+                };
+
+                const email = updatedForm.email;
+                validateEmail(email);
+
+                return updatedForm;
+            });
+
+            setCodeForm({
+                ...codeForm,
+                [e.target.name]: e.target.value
+            });
+
+            if (mailCodeCheck) {
+                document.querySelector("#emailInput").style.display = 'block';
+            }
+
+        }, [findForm, codeForm, mailCodeCheck]);
 
         const handleFind = useCallback((e) => {
             e.preventDefault();
@@ -71,64 +96,54 @@ const FindMember = () => {
 
             setMailCodeCheck(false);
 
+            setIsButtonVisible(false);
+
             setEmailCheck(true);
 
         }, [findForm, dispatch]);
-
-        const changeTextField = useCallback((e) => {
-            setFindForm(prevForm => {
-                const updatedForm = {
-                    ...prevForm,
-                    [e.target.name]: e.target.value
-                };
-
-                const email = updatedForm.email; // 업데이트된 form에서 email 가져오기
-                const isValidEmail = validateEmail(email);
-                setIsButtonVisible(isValidEmail);
-
-                return updatedForm; // 업데이트된 form 반환
-            });
-
-            setCodeForm({
-                ...codeForm,
-                [e.target.name]: e.target.value
-            });
-
-            if (mailCodeCheck) {
-                document.querySelector("#emailInput").style.dispaly = 'block';
-                document.querySelector("#emailButton").removeAttribute('disabled');
-            }
-
-        }, [findForm, codeForm, mailCodeCheck]);
 
         const emailRegex = /^(?=.*@)(?=.*\.).+$/;
 
         const validateEmail = (email) => {
             if (email.trim() === '') {
                 setEmailError('이메일 주소를 입력해주세요.');
-                setMailCodeCheck(false);
+                setIsButtonVisible(false);
                 return false;
             } else if (!emailRegex.test(email)) {
                 setEmailError('올바른 이메일 형식이 아닙니다.');
-                setMailCodeCheck(false);
+                setIsButtonVisible(false);
                 return false;
             } else {
                 setEmailError('');
-                setMailCodeCheck(true);
+                if (!viewButton) {
+                    setIsButtonVisible(true);
+                    setViewButton(true);
+                }
                 return true;
             }
         };
 
+        // const memberId = useSelector((state) => state.memberSlice.memberId);
 
         const handleVerification = useCallback(async (e) => {
             e.preventDefault();
 
             try {
                 const result = await dispatch(verificationCodeCheck(codeForm));
-                console.log(result);
+
+                const response = await dispatch(findIdByEmail(findForm));
 
                 if (result.payload) {
-                    alert("인증을 성공하였습니다");
+                    if (response.payload.item == null) // db에 이메일이 없을 때
+                    {
+                        alert("가입되지 않은 회원입니다. 회원가입을 진행해 주세요.");
+                        navi("/login");
+                    } else  // db에 이메일이 있을 때
+                    {
+                        alert(`사용자가 가입한 아이디는 '${response.payload.item}'입니다. 비밀번호를 새로 설정하고 싶으면 버튼을 클릭해주세요.`);
+                        setVerificationButtonVisible(false);
+                        setIsPasswordFind(true);
+                    }
                 } else {
                     alert("인증번호가 틀렸습니다. 다시 입력해주세요.");
                 }
@@ -146,7 +161,11 @@ const FindMember = () => {
             "회원탈퇴한 이메일은 탈퇴일로부터 30일 동안은 재가입이 불가능합니다."
         ];
 
+        const handleFindPasswd = (e) => {
+            e.preventDefault();
 
+            navi("/ModifyPasswd");
+        };
 
         return (
             <CenteredContainer>
@@ -199,7 +218,7 @@ const FindMember = () => {
                         {verificationButtonVisible && (
                             <form onSubmit={handleVerification}>
                                 <Grid item xs={12} style={{marginTop: '10px'}}>
-                                    <Divider />
+                                    <Divider/>
                                 </Grid>
                                 <Grid item xs={12} style={{display: 'flex', alignItems: 'center', marginTop: '10px'}}>
                                     <TextField
@@ -231,16 +250,30 @@ const FindMember = () => {
                         <List>
                             {instructions.map((instruction, index) => (
                                 <ListItem key={index}>
-                                    <ListItemText primary={`• ${instruction}`} sx={{ marginLeft: '8px' }} />
+                                    <ListItemText primary={`• ${instruction}`} sx={{marginLeft: '8px'}}/>
                                 </ListItem>
                             ))}
                         </List>
+                        {isPasswordFind && (
+                            <Button
+                                name="transport-button"
+                                variant="contained"
+                                type="submit"
+                                style={{
+                                    backgroundColor: "#2196F3",
+                                    height: "43px",
+                                    fontSize: "18px"
+                                }}
+                                fullWidth
+                                onClick={handleFindPasswd}
+                            >
+                                비밀번호 찾기
+                            </Button>
+                        )}
                     </Container>
                 </FindBlock>
             </CenteredContainer>
-
-        )
-            ;
+        );
     }
 ;
 

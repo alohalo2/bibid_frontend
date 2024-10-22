@@ -30,6 +30,8 @@ import DetailedCategory_Art from './pages/DetailedCategory_Art';
 import DetailedCategory_Elec from './pages/DetailedCategory_Elec';
 import DetailedCategory_Pic from './pages/DetailedCategory_Pic';
 import DetailedCategory_Antique from './pages/DetailedCategory_Antique';
+import FindPasswd from "./pages/etc2_find/ModifyPasswd";
+import ModifyPasswd from "./pages/etc2_find/ModifyPasswd";
 
 function App() {
 
@@ -43,6 +45,7 @@ function App() {
                         <Routes>
                             <Route path='/login' element={<Login/>}/>
                             <Route path='/find' element={<FindMember/>}/>
+                            <Route path='/modifyPasswd' element={<ModifyPasswd/>}/>
                             <Route path='/' element={<Layout/>}>
                                 <Route index element={<Mainpage/>}/>
                                 <Route path='/search' element={<Search/>}/>

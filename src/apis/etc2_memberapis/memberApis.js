@@ -31,21 +31,10 @@ export const logout = createAsyncThunk('members/logout', async (_, thunkApi) => 
     }
 });
 
-export const fetchMemberId = createAsyncThunk('members/memberId-fetch', async (_, thunkApi) => {
-    try {
-        const response = await axios.get(`http://localhost:8080/members/memberId-fetch`);
-
-        return response.data.item;
-    } catch (e) {
-        return thunkApi.rejectWithValue(e);
-    }
-});
-
 export const findMember = createAsyncThunk(
     'members/mailSend',
 
     async (formData, thunkApi) => {
-        console.log("Received formData in findMember:", formData); // 추가
 
         try {
             const response = await axios.post(`http://localhost:8080/members/mailSend`, formData)
@@ -60,12 +49,14 @@ export const findMember = createAsyncThunk(
 export const verificationCodeCheck = createAsyncThunk(
     'members/mailCheck',
 
-    async(formData, thunkApi) => {
+    async (formData, thunkApi) => {
 
         try {
-            const response = await axios.post(`http://localhost:8080/members/mailCheck`, formData);
+            const response = await axios.post(`http://localhost:8080/members/mailCheck`, {
+                verificationCode: formData.verificationCode
+            });
 
-            console.log("memberApis response:" + response.data);
+            console.log(formData.verificationCode);
 
             return response.data;
 
@@ -75,5 +66,52 @@ export const verificationCodeCheck = createAsyncThunk(
             return thunkApi.rejectWithValue(e);
         }
     });
+
+export const findIdByEmail = createAsyncThunk(
+    'members/findByEmail',
+
+    async (formData, thunkApi) => {
+
+        try {
+            const response = await axios.post(`http://localhost:8080/members/findByEmail`, {
+                email: formData.email
+            });
+
+            return response.data;
+
+        } catch (e) {
+            console.log("오류 발생");
+            console.log(formData);
+            return thunkApi.rejectWithValue(e);
+        }
+    });
+
+export const modifyPasswd = createAsyncThunk(
+    'members/modifyPasswd',
+
+    async (formData, thunkApi) => {
+
+        try {
+            const response = await axios.post(`http://localhost:8080/members/modifyPasswd`,
+                null,
+                {
+                    params: {
+                        newPasswd: formData.memberPw
+                    }
+                }
+            );
+
+            return response.data;
+
+        } catch (e) {
+            console.log("오류 발생");
+            console.log(formData);
+            return thunkApi.rejectWithValue(e);
+        }
+    });
+
+
+
+
 
 

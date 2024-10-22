@@ -1,11 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {
-    fetchMemberId,
+    findIdByEmail,
     findMember,
-    join, Keeplogin,
+    join,
     login,
-    logout,
-    verificationCode,
+    logout, modifyPasswd,
     verificationCodeCheck
 } from '../../apis/etc2_memberapis/memberApis';
 
@@ -18,7 +17,8 @@ const memberSlice = createSlice({
         email: '',
         verificationCode: '',
         token: '',
-        keepLogin: false
+        keepLogin: false,
+        memberPw: ''
     },
     reducers: {
 
@@ -69,16 +69,16 @@ const memberSlice = createSlice({
             alert("에러가 발생했습니다.");
             return state;
         });
-        builder.addCase(fetchMemberId.fulfilled, (state, action) => {
-            return {
-                ...state,
-                memberId: action.payload
-            }
-        });
-        builder.addCase(fetchMemberId.rejected, (state, action) => {
-            alert("에러가 발생했습니다.");
-            return state;
-        });
+        // builder.addCase(fetchMemberId.fulfilled, (state, action) => {
+        //     return {
+        //         ...state,
+        //         memberId: action.payload
+        //     }
+        // });
+        // builder.addCase(fetchMemberId.rejected, (state, action) => {
+        //     alert("에러가 발생했습니다.");
+        //     return state;
+        // });
         builder.addCase(findMember.fulfilled, (state, action) => {
 
             return {
@@ -98,6 +98,28 @@ const memberSlice = createSlice({
             }
         });
         builder.addCase(verificationCodeCheck.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
+        });
+        builder.addCase(findIdByEmail.fulfilled, (state, action) => {
+
+            return {
+                ...state,
+                memberId: action.payload.item
+            }
+        });
+        builder.addCase(findIdByEmail.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
+        });
+        builder.addCase(modifyPasswd.fulfilled, (state, action) => {
+
+            return {
+                ...state,
+                memberPw: action.payload.item
+            }
+        });
+        builder.addCase(modifyPasswd.rejected, (state, action) => {
             alert("에러가 발생했습니다.");
             return state;
         });
