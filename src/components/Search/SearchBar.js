@@ -20,27 +20,29 @@ const SearchBar = () => {
 
     const handleSearch = useCallback((e) => {
         e.preventDefault();
-
-        // 유효성 검사: 검색어가 비어있으면 검색하지 않음
-        if (!localSearchKeyword.trim()) {
+        
+        // 유효성 검사: 검색어가 비어있고 조건이 'all'이 아닐 때 검색하지 않음
+        if (!localSearchKeyword.trim() && searchCondition !== 'all') {
             alert("검색어를 입력해 주세요.");
             return;
         }
-
-        // Redux에 검색어 저장
-        dispatch(change_searchKeyword(localSearchKeyword.trim()));
-
+    
+        // 검색어 설정
+        const keyword = localSearchKeyword.trim(); // 모든 경우에 검색어를 전달
+        dispatch(change_searchKeyword(keyword));
+    
         // 검색 실행
         dispatch(getBoards({
             searchCondition,
-            searchKeyword: localSearchKeyword.trim(),
+            searchKeyword: keyword,
         }));
-
-        setLocalSearchKeyword(''); // 검색 후 로컬 상태 초기화
+    
+        // 검색 후 로컬 상태 초기화
+        setLocalSearchKeyword(''); 
     }, [dispatch, searchCondition, localSearchKeyword]);
 
     // 버튼 활성화 조건
-    const isButtonDisabled = !localSearchKeyword.trim();
+    const isButtonDisabled = !localSearchKeyword.trim() && searchCondition !== 'all';
 
     return (
         <Container component='div' maxWidth='md' style={{ marginTop: '3%' }}>
