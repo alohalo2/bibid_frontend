@@ -179,13 +179,17 @@ const Login = () => {
                         </Grid>
                         <Grid container justifyContent="center" alignItems="center">
                             <div className="circle">
-                                <img src="/images/logo/kakao.png" alt="샘플 이미지"/>
+                                <a href="/oauth2/authorization/kakao">
+                                    <img src="/images/logo/kakao.png" alt="샘플 이미지"/>
+                                </a>
                             </div>
                             <div className="circle">
-                                <img src="/images/logo/naver.png" alt="샘플 이미지"/>
+                                <a href="/oauth2/authorization/naver">
+                                    <img src="/images/logo/naver.png" alt="샘플 이미지"/>
+                                </a>
                             </div>
                             <div className="circle">
-                                <img src="/images/logo/google.png" alt="샘플 이미지"/>
+                            <img src="/images/logo/google.png" alt="샘플 이미지"/>
                             </div>
                             <div className="circle">
                                 <img src="/images/logo/apple.png" alt="샘플 이미지"/>

@@ -30,8 +30,9 @@ import DetailedCategory_Art from './pages/DetailedCategory_Art';
 import DetailedCategory_Elec from './pages/DetailedCategory_Elec';
 import DetailedCategory_Pic from './pages/DetailedCategory_Pic';
 import DetailedCategory_Antique from './pages/DetailedCategory_Antique';
-import FindPasswd from "./pages/etc2_find/ModifyPasswd";
 import ModifyPasswd from "./pages/etc2_find/ModifyPasswd";
+import Loginpage from "./pages/oauth2test/Loginpage";
+import KakaoLogin from "./pages/oauth2test/KakaoLogin";
 
 function App() {
 
@@ -40,42 +41,44 @@ function App() {
     const persiststore = persistStore(store);
 
     return (
-            <Provider store={store}>
-                <PersistGate loading={null} persistor={persiststore}>
-                        <Routes>
-                            <Route path='/login' element={<Login/>}/>
-                            <Route path='/find' element={<FindMember/>}/>
-                            <Route path='/modifyPasswd' element={<ModifyPasswd/>}/>
-                            <Route path='/' element={<Layout/>}>
-                                <Route index element={<Mainpage/>}/>
-                                <Route path='/search' element={<Search/>}/>
-                                <Route path='/specialAuction' element={<SpecialAuction/>}/>
-                                <Route path='/registration/*' element={<RegistrationForm/>}/>
-                                <Route path='/category' element={<Category/>}/>
-                                <Route path='/category/all' element={<DetailedCategory_All/>}/>
-                                <Route path='/category/clothing' element={<DetailedCategory_Clothing/>}/>
-                                <Route path='/category/hob' element={<DetailedCategory_Hob/>}/>
-                                <Route path='/category/book' element={<DetailedCategory_Book/>}/>
-                                <Route path='/category/art' element={<DetailedCategory_Art/>}/>
-                                <Route path='/category/elec' element={<DetailedCategory_Elec/>}/>
-                                <Route path='/category/pic' element={<DetailedCategory_Pic/>}/>
-                                <Route path='/category/antique' element={<DetailedCategory_Antique/>}/>
-                                <Route path='/category-itemdetail' element={<CategoryItemDetail/>}/>
-                                <Route path='/checkNcloudApi' element={<CheckNcloudApi/>}/>
-                                {/* mypage 에서 지정한 mui 버튼 스타일 충돌 */}
-                                <Route path="join/*" element={<JoinRoutes/>}/>
-                                <Route path='/mypage/' element={<Mypage/>}>
-                                    <Route path='info' element={<Mypage_info/>}/>
-                                    <Route path='update' element={<Mypage_info_update/>}/>
-                                    <Route path='bids_history' element={<Mypage_bids_history/>}/>
-                                    <Route path='wallet_management' element={<Mypage_wallet_management/>}></Route>
-                                    <Route path='bids_progress' element={<Mypage_bids_progress/>}></Route>
-                                    <Route path='qna' element={<Mypage_qna/>}></Route>
-                                </Route>
-                            </Route>
-                        </Routes>
-                </PersistGate>
-            </Provider>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persiststore}>
+                <Routes>
+                    <Route path="/loginpage" element={<Loginpage/>} />
+                    <Route path="/auth/kakao/callback" element={<KakaoLogin/>} />
+                    <Route path='/login' element={<Login/>}/>
+                    <Route path='/find' element={<FindMember/>}/>
+                    <Route path='/modifyPasswd' element={<ModifyPasswd/>}/>
+                    <Route path='/' element={<Layout/>}>
+                        <Route index element={<Mainpage/>}/>
+                        <Route path='/search' element={<Search/>}/>
+                        <Route path='/specialAuction' element={<SpecialAuction/>}/>
+                        <Route path='/registration/*' element={<RegistrationForm/>}/>
+                        <Route path='/category' element={<Category/>}/>
+                        <Route path='/category/all' element={<DetailedCategory_All/>}/>
+                        <Route path='/category/clothing' element={<DetailedCategory_Clothing/>}/>
+                        <Route path='/category/hob' element={<DetailedCategory_Hob/>}/>
+                        <Route path='/category/book' element={<DetailedCategory_Book/>}/>
+                        <Route path='/category/art' element={<DetailedCategory_Art/>}/>
+                        <Route path='/category/elec' element={<DetailedCategory_Elec/>}/>
+                        <Route path='/category/pic' element={<DetailedCategory_Pic/>}/>
+                        <Route path='/category/antique' element={<DetailedCategory_Antique/>}/>
+                        <Route path='/category-itemdetail' element={<CategoryItemDetail/>}/>
+                        <Route path='/checkNcloudApi' element={<CheckNcloudApi/>}/>
+                        {/* mypage 에서 지정한 mui 버튼 스타일 충돌 */}
+                        <Route path="join/*" element={<JoinRoutes/>}/>
+                        <Route path='/mypage/' element={<Mypage/>}>
+                            <Route path='info' element={<Mypage_info/>}/>
+                            <Route path='update' element={<Mypage_info_update/>}/>
+                            <Route path='bids_history' element={<Mypage_bids_history/>}/>
+                            <Route path='wallet_management' element={<Mypage_wallet_management/>}></Route>
+                            <Route path='bids_progress' element={<Mypage_bids_progress/>}></Route>
+                            <Route path='qna' element={<Mypage_qna/>}></Route>
+                        </Route>
+                    </Route>
+                </Routes>
+            </PersistGate>
+        </Provider>
     );
 }
 
