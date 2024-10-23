@@ -25,6 +25,7 @@ const DetailedCategory_All = () => {
         if (data.length === 0) {
           setHasMore(false);
         } else {
+          console.log(data);
           setProducts(prevProducts => [...prevProducts, ...data]);
           setHasMore(data.length === itemsPerPage);
         }
@@ -36,7 +37,7 @@ const DetailedCategory_All = () => {
       console.error('베스트 상품을 가져오는 중 오류 발생:', error);
       setHasMore(false);
     } finally {
-      setIsLoading(false); // 로딩 종료
+      setIsLoading(false);
     }
   }, [page]);
 
@@ -45,7 +46,7 @@ const DetailedCategory_All = () => {
   }, [fetchBestProducts, page]);
 
   const loadMore = useCallback(() => {
-    if (hasMore && !isLoading) { // 로딩 중이 아닐 때만 페이지 증가
+    if (hasMore && !isLoading) { 
       setTimeout(() => {
         setPage(prevPage => prevPage + 1);
       }, 50);
@@ -59,7 +60,7 @@ const DetailedCategory_All = () => {
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
           loadMore();
-        }, 20); // 0.2초 딜레이 추가
+        }, 50); 
       }
     };
 

@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import '../../css/Category.css';
 import Conveyor from '../../components/Category/Conveyor';
-import CategoryMenu from '../../components/Category/CategoryMenu';
-import ProductLine from '../../components/Category/ProductLine';
 import axios from 'axios';
 import SearchBar from '../../components/Search/SearchBar';
 import { useSelector } from 'react-redux';
+import ProductLineForSearch from '../../components/Category/ProductLineForSearch';
 
 export const Search = () => {
     const [products, setProducts] = useState([]);
@@ -17,84 +16,87 @@ export const Search = () => {
     const searchCondition = useSelector(state => state.auction.searchCondition);
     const searchKeyword = useSelector(state => state.auction.searchKeyword);
 
-    const fetchBestProducts = useCallback(async () => {
-        if (!searchCondition) return; // searchCondition이 없으면 리턴
-    
-        setIsLoading(true);
+    const fetchSearchProducts = useCallback(async () => {
         try {
-            const params = { page, size: itemsPerPage };
-            
-            // searchCondition이 'all'일 때 searchKeyword를 포함하지 않음
+            setIsLoading(true);
+            console.log("Fetching products with:", searchCondition, searchKeyword);
             const response = await axios.get(`http://localhost:8080/auction/${searchCondition}/${searchKeyword}`, {
-                params,
+                params: { page: page, size: itemsPerPage }
             });
-    
+
             if (response.status === 200) {
                 const data = response.data.pageItems.content || [];
-        
-                if (data.length === 0) {
-                  setHasMore(false);
-                } else {
-                  setProducts(prevProducts => [...prevProducts, ...data]);
-                  setHasMore(data.length === itemsPerPage);
 
-                  console.log(data);
+                if (data.length === 0) {
+                    setHasMore(false);
+                } else {
+                    setProducts(prevProducts => [...prevProducts, ...data]);
+                    setHasMore(data.length === itemsPerPage);
+                    console.log(data);
                 }
-              } else {
+            } else {
                 console.error('상품 가져오기 실패');
                 setHasMore(false);
-              }
+            }
         } catch (error) {
             console.error('상품 가져오기 중 오류 발생:', error);
             setHasMore(false);
         } finally {
             setIsLoading(false);
         }
-    }, [searchCondition, searchKeyword, page]);
+    }, [page, searchCondition, searchKeyword]);
 
+    // 검색 조건이나 키워드가 변경될 때마다 제품 초기화
+    useEffect(() => {
+        setProducts([]);
+        setPage(0);
+        window.scrollTo(0, 0);
+        console.log('asdsadawsdasd');
+        
+    }, [searchCondition, searchKeyword]);
+
+    // 페이지가 변경될 때마다 검색 제품을 가져옴
     useEffect(() => {
         if (searchCondition && searchKeyword) {
-            setProducts([]);
-            setPage(0);
-            fetchBestProducts();
+            fetchSearchProducts();
         }
-    }, [searchCondition, searchKeyword, fetchBestProducts]);
+    }, [fetchSearchProducts, searchCondition, searchKeyword]);
 
     const loadMore = useCallback(() => {
-        if (hasMore && !isLoading) { // 로딩 중이 아닐 때만 페이지 증가
-          setTimeout(() => {
-            setPage(prevPage => prevPage + 1);
-          }, 50);
+        if (hasMore && !isLoading) {
+            setTimeout(() => {
+                setPage(prevPage => prevPage + 1);
+            }, 50);
         }
-      }, [hasMore]);
+    }, [hasMore]);
 
     useEffect(() => {
         let timeoutId;
         const handleScroll = () => {
-          if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 100 && !isLoading) {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => {
-              loadMore();
-            }, 200); // 0.2초 딜레이 추가
-          }
+            if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 100 && !isLoading) {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    loadMore();
+                }, 50);
+            }
         };
-    
+
         window.addEventListener('scroll', handleScroll);
         return () => {
-          window.removeEventListener('scroll', handleScroll);
-          clearTimeout(timeoutId);
+            window.removeEventListener('scroll', handleScroll);
+            clearTimeout(timeoutId);
         };
-      }, [loadMore, isLoading]);
+    }, [loadMore, isLoading]);
 
     return (
         <div className='CTG_category'>
             <div className='blank' />
-            <Conveyor />
+            
             <div className='blank' />
-            <SearchBar />
+            <SearchBar fetchSearchProducts={fetchSearchProducts}/>
             <div className='DC_productContainer'>
                 {products.length > 0 ? (
-                    <ProductLine products={products} />
+                    <ProductLineForSearch products={products} />
                 ) : (
                     <p>검색된 상품이 없습니다.</p>
                 )}

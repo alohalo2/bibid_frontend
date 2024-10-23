@@ -2,11 +2,11 @@ import React from 'react';
 import '../../css/Category.css';
 import defaultFileImg from '../../images/defaultFileImg.png';
 
-const ProductLine = ({ products = [] }) => {
+const ProductLine = ({ products = {} }) => {
   return (
     <div className='CTG_productLine'>
       <div className='CTG_grid-container-product'>
-        {products.map((product) => {
+        {Object.values(products).map((product) => {
           const bids = product.auctionInfoDtoList ? product.auctionInfoDtoList.length : 0;
 
           const timeLeft = new Date(product.endingLocalDateTime) - new Date();
