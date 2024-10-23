@@ -1,76 +1,68 @@
-import React, { useCallback, useState } from 'react';
+import { Button, Container, Grid, NativeSelect, TextField } from '@mui/material';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { change_searchCondition, change_searchKeyword } from '../../slices/search/searchSlice';
+import { changeSearchCondition, changeSearchKeyword } from '../../slices/search/searchSlice'; // 수정된 액션 이름 사용
+import { getBoards } from '../../api/ProductApi';
 
-const SearchBar = ({ fetchSearchProducts}) => {
+const SearchBar = () => {
     const dispatch = useDispatch();
     const searchCondition = useSelector(state => state.auction.searchCondition);
-    const searchKeyword = useSelector(state => state.auction.searchKeyword);
-    
-    // 로컬 상태로 입력값 관리
-    const [localKeyword, setLocalKeyword] = useState(searchKeyword);
+const searchKeyword = useSelector(state => state.auction.searchKeyword);
 
-    const changeSearchCondition = useCallback((e) => {
-        dispatch(change_searchCondition(e.target.value));
+    const handleChangeSearchCondition = useCallback((e) => {
+        dispatch(changeSearchCondition(e.target.value)); // 수정된 액션 이름 사용
     }, [dispatch]);
 
-    const handleKeywordChange = (e) => {
-        setLocalKeyword(e.target.value);
-    };
+    const handleChangeSearchKeyword = useCallback((e) => {
+        dispatch(changeSearchKeyword(e.target.value)); // 수정된 액션 이름 사용
+    }, [dispatch]);
 
     const handleSearch = useCallback((e) => {
         e.preventDefault();
 
-        if (searchCondition === 'all' && !localKeyword.trim()) {
-            alert("검색어를 입력해 주세요.");
-            return;
-        }
-
-        // URL 쿼리 업데이트
-        const queryParams = new URLSearchParams({
-            condition: searchCondition,
-            keyword: localKeyword.trim(),
-        }).toString();
-
-        window.history.pushState(null, '', `?${queryParams}`);
-        
-        // 검색 키워드 업데이트는 검색 시에만
-        dispatch(change_searchKeyword(localKeyword.trim()));
-
-        // 검색 실행
-        fetchSearchProducts(); // 새로운 검색 실행
-    }, [dispatch, searchCondition, localKeyword, fetchSearchProducts]);
-
-    const isButtonDisabled = !localKeyword.trim() && searchCondition !== 'all';
+        dispatch(getBoards({
+            searchCondition: searchCondition, // 수정된 searchCondition 사용
+            searchKeyword: searchKeyword, // 수정된 searchKeyword 사용
+            page: 0
+        }));
+    }, [dispatch, searchCondition, searchKeyword]);
 
     return (
-        <div style={{ marginTop: '3%', maxWidth: '600px', margin: '0 auto' }}>
+        <Container component='div' maxWidth='md' style={{marginTop: '3%'}}>
             <form onSubmit={handleSearch}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <select
-                        value={searchCondition}
-                        onChange={changeSearchCondition}
-                        style={{ marginRight: '8px', padding: '8px' }}
-                    >
-                        <option value='all'>전체</option>
-                        <option value='productName'>물품 제목</option>
-                        <option value='category'>카테고리</option>
-                        <option value='productDescription'>글 내용</option>
-                    </select>
-                    <input
-                        type='text'
-                        name='searchKeyword'
-                        value={localKeyword}
-                        onChange={handleKeywordChange}
-                        style={{ flex: 1, marginRight: '8px', padding: '8px' }}
-                        placeholder='검색어를 입력하세요'
-                    />
-                    <button type='submit' disabled={isButtonDisabled}>
-                        검색
-                    </button>
-                </div>
+                <Grid container spacing={1}>
+                    <Grid item md={3}>
+                        <NativeSelect
+                            defaultValue={searchCondition}
+                            inputProps={{
+                                name: 'searchCondition'
+                            }}
+                            fullWidth
+                            onChange={handleChangeSearchCondition} // 수정된 함수 이름 사용
+                        >
+                            <option value='all'>전체</option>
+                            <option value='productName'>물품 제목</option>
+                            <option value='category'>카테고리</option>
+                            <option value='productDescription'>글 내용</option>
+                        </NativeSelect>
+                    </Grid>
+                    <Grid item md={7}>
+                        <TextField
+                            name='searchKeyword'
+                            fullWidth
+                            variant='standard'
+                            value={searchKeyword}
+                            onChange={handleChangeSearchKeyword} // 수정된 함수 이름 사용
+                        />
+                    </Grid>
+                    <Grid item md={2}>
+                        <Button type='submit' color='primary'>
+                            검색
+                        </Button>
+                    </Grid>
+                </Grid>
             </form>
-        </div>
+        </Container>
     );
 };
 

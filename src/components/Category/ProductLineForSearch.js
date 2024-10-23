@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../css/Category.css';
 import defaultFileImg from '../../images/defaultFileImg.png';
+import { useSelector } from 'react-redux';
+import { setBoards } from '../../slices/search/searchSlice';
 
-const ProductLineForSearch = ({ products = [] }) => {
+const ProductLineForSearch = () => {
+    const products = useSelector(state => state.auction.boards);
+
+    useEffect(() => {
+        if (products) {
+            // boards 데이터를 products로 설정
+            setBoards(products);
+        }
+    }, [products]);
+
     return (
         <div className='CTG_productLine'>
             <div className='CTG_grid-container-product'>

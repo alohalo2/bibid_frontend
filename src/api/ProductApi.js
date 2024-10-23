@@ -18,11 +18,12 @@ export const getProductsByCategory = createAsyncThunk(
     }
 ); 
 
+// 검색하면 키워드와 조건을 통해 상품을 가져오는 API
 export const getBoards = createAsyncThunk(
-    'auction/getBoards',
+    'products/getBoards',
     async (searchObj, thunkApi) => {
         try {
-            const response = await axios.get(`http://localhost:8080/auction/${searchObj.searchCondition}/${searchObj.searchKeyword}`, {
+            const response = await axios.get('http://localhost:8080/auction', {
                 headers: {
                     Authorization: `Bearer ${sessionStorage.getItem('ACCESS_TOKEN')}`
                 },
@@ -32,10 +33,9 @@ export const getBoards = createAsyncThunk(
                     page: searchObj.page
                 }
             });
-            console.log(response.data);
+            console.log("받아온 데이터:", response.data);
             return response.data;
-        } catch (e) {
-            console.error('Error fetching boards:', e); // 에러 로그 추가
+        } catch(e) {
             return thunkApi.rejectWithValue(e);
         }
     }
