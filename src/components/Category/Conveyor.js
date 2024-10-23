@@ -72,7 +72,7 @@ function Conveyor() {
             <Slide isPaused={isPaused}
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}>
-                {bestProducts.concat(bestProducts).map((auction, index) => {
+                {bestProducts.map((auction, index) => {
                     const thumbnailImage = auction.auctionImageDtoList.find(image => image.thumbnail === true);
                     const imageSrc = thumbnailImage && thumbnailImage.filetype === 'image'
                         ? `https://kr.object.ncloudstorage.com/bitcamp119/${thumbnailImage.filepath}${thumbnailImage.filename}`

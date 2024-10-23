@@ -14,15 +14,15 @@ const Category = () => {
   const navi = useNavigate();
       
         const toAll = () => {
-          navi('/categories/all', {replace: true});
+          navi('/category/all');
           };
       
         const toClothing = () => {
-          navi('/categories/clothing', {replace: true});
+          navi('/category/clothing');
           };
       
         const toHob = () => {
-          navi('/categories/hob', {replace: true});
+          navi('/category/hob');
           };
           
         const toBook = () => {
@@ -34,7 +34,7 @@ const Category = () => {
           };
       
         const toElec = () => {
-          navi('/categories/elec', {replace: true});
+          navi('/category/elec');
           };
       
         const toPic = () => {

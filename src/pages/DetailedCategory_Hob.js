@@ -57,11 +57,16 @@ const DetailedCategory_Hob = () => {
   const toElec = () => navi('/categories/elec', { replace: true });
   const toPic = () => navi('/categories/pic', { replace: true });
   const toAntique = () => navi('/categories/antique', { replace: true });
+  const [isLoading, setIsLoading] = useState(false); // 추가된 상태
 
   useEffect(() => {
+    let timeoutId;
     const handleScroll = () => {
-      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 100) {
-        loadMore(); // 스크롤이 바닥에 가까워지면 다음 페이지 로드
+      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 100 && !isLoading) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          loadMore();
+        }, 50);
       }
     };
 
