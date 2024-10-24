@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { getFormattedRemainingTime } from '../../util/utils';
 import axios from 'axios';
 import VideoSection from './VideoSection';
+import Cookies from "js-cookie";
 
 function BuyerAuctionScreen({ 
   webSocketProps, auction, remainingTime, closeBuyerPopup, handleShowSellerInfo, openBidConfirmPopup
@@ -13,7 +14,7 @@ function BuyerAuctionScreen({
     const fetchChannelInfo = async () => {
       try {
 
-        const token = localStorage.getItem('ACCESS_TOKEN');
+        const token = Cookies.get('ACCESS_TOKEN');
         const response = await axios.get(`http://localhost:8080/specialAuction/channelInfo/${auction.auctionIndex}`, {
           headers: {
             Authorization: `Bearer ${token}`,
