@@ -17,6 +17,8 @@
 
   function SAlist({ activeTab }) {
 
+    const bucketName = process.env.REACT_APP_BUCKET_NAME;
+
     const dispatch = useDispatch();
 
     // 경매 데이터를 가져오는 디스패치 호출
@@ -57,7 +59,7 @@
           {auctionList.map((auction, index) => {
             const thumbnailImage = auction.auctionImageDtoList.find((image) => image.thumbnail === true);
             const imageSrc = thumbnailImage
-              ? `https://kr.object.ncloudstorage.com/bitcamp73/${thumbnailImage.filepath}${thumbnailImage.filename}`
+              ? `https://kr.object.ncloudstorage.com/${bucketName}/${thumbnailImage.filepath}${thumbnailImage.filename}`
               : '/images/defaultFileImg.png';
 
             return (
