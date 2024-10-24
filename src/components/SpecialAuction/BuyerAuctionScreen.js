@@ -1,9 +1,37 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getFormattedRemainingTime } from '../../util/utils';
+import axios from 'axios';
+import VideoSection from './VideoSection';
 
 function BuyerAuctionScreen({ 
   webSocketProps, auction, remainingTime, closeBuyerPopup, handleShowSellerInfo, openBidConfirmPopup
 }) {
+
+  const [streamingUrl, setStreamingUrl] = useState([]);
+
+  useEffect(() => {
+    const fetchChannelInfo = async () => {
+      try {
+
+        const token = localStorage.getItem('ACCESS_TOKEN');
+        const response = await axios.get(`http://localhost:8080/specialAuction/channelInfo/${auction.auctionIndex}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const channelInfoDto = response.data.item; 
+
+        setStreamingUrl(channelInfoDto.serviceUrlList);
+
+      } catch (error) {
+        console.error('Error fetching streaming info:', error);
+      }
+    };
+   
+    fetchChannelInfo();
+  }, [auction.auctionIndex]);
+
+
 
   const [isSoundOn, setIsSoundOn] = useState(true); // 사운드 상태 관리
   const [showAuctionInfo, setShowAuctionInfo] = useState(false);
@@ -129,7 +157,8 @@ function BuyerAuctionScreen({
                 </div>
                 {/*streaming div*/}
                 <div>
-                  <img src="/images/streaming_img.png" alt="Product" className="SAproductImage" />
+                  {/* <img src="/images/streaming_img.png" alt="Product" className="SAsellerProductImage" /> */}
+                  <VideoSection streamingUrl = {streamingUrl}></VideoSection>
                 </div>
               </div>
 
