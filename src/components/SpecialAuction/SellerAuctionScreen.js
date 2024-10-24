@@ -38,28 +38,70 @@ function SellerAuctionScreen({
       });
   };
 
-  // OBS에서 텍스트 소스 추가 함수
-  const displayBidOnOBS = (bidAmount, bidderIndex) => {
+  // // OBS에서 텍스트 소스 추가 함수
+  // const displayBidOnOBS = (bidAmount, bidderIndex) => {
+  //   if (isObsConnected) {
+  //     obs.current.call('CreateInput', {
+  //       sceneName: 'Scene',  // 방송에서 사용하는 장면 이름
+  //       inputName: 'Bid Overlay',
+  //       inputKind: 'text_ft2_source_v2',
+  //       inputSettings: {
+  //         text: `Bid: ${bidAmount} from Bidder ${bidderIndex}`,
+  //         font: { face: 'Arial', size: 48 },
+  //         color: 0xFFFFFFFF,
+  //         backgroundColor: 0x000000FF,
+  //         align: 'center',
+  //       }
+  //     }).then(() => {
+  //       console.log('OBS에 텍스트 추가 성공');
+  //       setTimeout(() => {
+  //         obs.current.call('RemoveInput', { inputName: 'Bid Overlay' });
+  //         console.log('OBS에서 텍스트 제거 성공');
+  //       }, 5000);
+  //     }).catch(err => {
+  //       console.error('OBS에 텍스트 추가 실패:', err);
+  //     });
+  //   }
+  // };
+
+  const displayBidWithImageOnOBS = (bidAmount, bidderIndex, imagePath) => {
     if (isObsConnected) {
+      // 먼저 이미지 소스를 추가
       obs.current.call('CreateInput', {
         sceneName: 'Scene',  // 방송에서 사용하는 장면 이름
-        inputName: 'Bid Overlay',
-        inputKind: 'text_ft2_source_v2',
+        inputName: 'Bid Image Overlay',  // 이미지 소스 이름
+        inputKind: 'image_source',  // 이미지 소스 종류
         inputSettings: {
-          text: `Bid: ${bidAmount} from Bidder ${bidderIndex}`,
-          font: { face: 'Arial', size: 48 },
-          color: 0xFFFFFFFF,
-          backgroundColor: 0x000000FF,
-          align: 'center',
+          file: imagePath,  // 이미지 경로
+          width: 500,  // 이미지 가로 크기 (적절히 조정)
+          height: 200,  // 이미지 세로 크기 (적절히 조정)
         }
       }).then(() => {
+        console.log('OBS에 이미지 추가 성공');
+        
+        // 이미지 추가 후 텍스트 소스를 그 위에 추가
+        return obs.current.call('CreateInput', {
+          sceneName: 'Scene',  // 방송에서 사용하는 장면 이름
+          inputName: 'Bid Text Overlay',  // 텍스트 소스 이름
+          inputKind: 'text_ft2_source_v2',  // 텍스트 소스 종류
+          inputSettings: {
+            text: `Bid: ${bidAmount} from Bidder ${bidderIndex}`,
+            font: { face: 'Arial', size: 48 },
+            color1: 0xFFFFFFFF,  // 흰색
+            alignment: 2,  // 텍스트 가운데 정렬
+          }
+        });
+      }).then(() => {
         console.log('OBS에 텍스트 추가 성공');
+        
+        // 일정 시간 후 텍스트와 이미지 소스 모두 제거
         setTimeout(() => {
-          obs.current.call('RemoveInput', { inputName: 'Bid Overlay' });
-          console.log('OBS에서 텍스트 제거 성공');
-        }, 5000);
+          obs.current.call('RemoveInput', { inputName: 'Bid Text Overlay' });
+          obs.current.call('RemoveInput', { inputName: 'Bid Image Overlay' });
+          console.log('OBS에서 이미지 및 텍스트 제거 성공');
+        }, 50000);  // 5초 후 제거
       }).catch(err => {
-        console.error('OBS에 텍스트 추가 실패:', err);
+        console.error('OBS에 이미지 또는 텍스트 추가 실패:', err);
       });
     }
   };
@@ -100,13 +142,14 @@ function SellerAuctionScreen({
     }
   };
 
+  const imagePath = 'C:/Users/BIT/Pictures/Screenshots/donation.png'; 
   
   // 입찰 정보 처리 (WebSocket에서 받은 정보 사용)
   useEffect(() => {
     if (webSocketProps.bidAmounts[auction.auctionIndex]) {
       const bidAmount = webSocketProps.bidAmounts[auction.auctionIndex];
       const bidderIndex = auction.auctionIndex; // 적절한 bidderIndex 값을 할당하세요
-      displayBidOnOBS(bidAmount, bidderIndex);
+      displayBidWithImageOnOBS(bidAmount, bidderIndex, imagePath);
     }
   }, [webSocketProps.bidAmounts, auction.auctionIndex]);
 
