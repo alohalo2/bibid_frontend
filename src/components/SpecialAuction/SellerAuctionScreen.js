@@ -39,15 +39,15 @@ function SellerAuctionScreen({
   };
 
   // OBS에서 텍스트 소스 추가 함수
-  const displayBidOnOBS = (bidAmount, bidderIndex) => {
+  const displayBidOnOBS = (bidAmount, bidderNickname) => {
     if (isObsConnected) {
       obs.current.call('CreateInput', {
         sceneName: 'Scene',  // 방송에서 사용하는 장면 이름
         inputName: 'Bid Overlay',
         inputKind: 'text_ft2_source_v2',
         inputSettings: {
-          text: `Bid: ${bidAmount} from Bidder ${bidderIndex}`,
-          font: { face: 'Arial', size: 48 },
+          text: `${bidderNickname} 님이 ${bidAmount} 를 입찰하였습니다.`,
+          font: { face: 'Malgun Gothic', size: 48 },
           color: 0xFFFFFFFF,
           backgroundColor: 0x000000FF,
           align: 'center',
@@ -57,7 +57,7 @@ function SellerAuctionScreen({
         setTimeout(() => {
           obs.current.call('RemoveInput', { inputName: 'Bid Overlay' });
           console.log('OBS에서 텍스트 제거 성공');
-        }, 5000);
+        }, 20000);
       }).catch(err => {
         console.error('OBS에 텍스트 추가 실패:', err);
       });
@@ -105,10 +105,10 @@ function SellerAuctionScreen({
   useEffect(() => {
     if (webSocketProps.bidAmounts[auction.auctionIndex]) {
       const bidAmount = webSocketProps.bidAmounts[auction.auctionIndex];
-      const bidderIndex = auction.auctionIndex; // 적절한 bidderIndex 값을 할당하세요
-      displayBidOnOBS(bidAmount, bidderIndex);
+      const bidderNickname = webSocketProps.bidderNicknames[auction.auctionIndex];
+      displayBidOnOBS(bidAmount, bidderNickname);
     }
-  }, [webSocketProps.bidAmounts, auction.auctionIndex]);
+  }, [webSocketProps.bidAmounts, webSocketProps.bidderNicknames, auction.auctionIndex]);
 
   // OBS WebSocket 연결 및 재연결 처리
   useEffect(() => {
@@ -160,7 +160,7 @@ function SellerAuctionScreen({
   const [remainingText, setRemainingText] = useState("경매 시작까지 남은 시간"); // 남은 시간 텍스트
   const [formattedTimeText, setFormattedTimeText] = useState(""); // 포맷된 시간 텍스트
 
-  const { messages, inputMessage, setInputMessage, sendMessage, currentPrices, participantCount } = webSocketProps;
+  const { messages, inputMessage, setInputMessage, sendMessage, currentPrices, participantCount, bidderNicknames } = webSocketProps;
 
   const messagesEndRef = useRef(null);
 
