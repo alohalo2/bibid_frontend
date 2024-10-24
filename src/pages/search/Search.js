@@ -5,6 +5,7 @@ import SearchBar from '../../components/Search/SearchBar';
 import { useSelector, useDispatch } from 'react-redux';
 import ProductLineForSearch from '../../components/Category/ProductLineForSearch';
 import { getBoards } from '../../api/ProductApi';
+import SAtab from '../../components/SpecialAuction/SAtab';
 
 export const Search = () => {
     const [page, setPage] = useState(0);
@@ -17,6 +18,8 @@ export const Search = () => {
     const searchKeyword = useSelector(state => state.auction.searchKeyword);
     const products = useSelector(state => state.auction.boards);
 
+    const [activeTab, setActiveTab] = useState('realtime');
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -27,18 +30,13 @@ export const Search = () => {
         }));
     }, [dispatch]);
 
-    // useEffect(() => {
-    //     if (boards) {
-    //         // boards 데이터를 products로 설정
-    //         setProducts(boards);
-    //     }
-    // }, [boards]);
+    
 
     
     return (
         <div className='CTG_category'>
             <div className='blank' />
-            
+            <Conveyor />
             <div className='blank' />
             <SearchBar />
             <div className='DC_productContainer'>
@@ -48,6 +46,8 @@ export const Search = () => {
                     <p>검색된 상품이 없습니다.</p>
                 )}
             </div>
+            <div className='blank' />
+                <SAtab activeTab={activeTab}/>
             <div className='blank' />
         </div>
     );

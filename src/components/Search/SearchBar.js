@@ -20,11 +20,18 @@ const searchKeyword = useSelector(state => state.auction.searchKeyword);
     const handleSearch = useCallback((e) => {
         e.preventDefault();
 
+        if (searchKeyword === '') {
+
+            alert('검색어를 입력해주세요');
+            
+        } else {
+
         dispatch(getBoards({
             searchCondition: searchCondition, // 수정된 searchCondition 사용
             searchKeyword: searchKeyword, // 수정된 searchKeyword 사용
             page: 0
         }));
+    }
     }, [dispatch, searchCondition, searchKeyword]);
 
     return (
