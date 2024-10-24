@@ -12,7 +12,7 @@ function SellerAuctionScreen({
 }) {
 
   const obs = useRef(new OBSWebSocket());
-  const [isConnected, setIsConnected] = useState(false); // WebSocket 연결 상태 관리
+  const [isObsConnected, setIsObsConnected] = useState(false); // OBS 소켓 관리
   const [isStreaming, setIsStreaming] = useState(false); // 스트리밍 상태 관리
 
   const [channelInfo, setChannelInfo] = useState({
@@ -29,14 +29,41 @@ function SellerAuctionScreen({
     obs.current.connect('ws://localhost:4455') // OBS WebSocket 서버로 연결
       .then(() => {
         console.log('OBS WebSocket 연결 성공');
-        setIsConnected(true); // 연결 성공 시 상태 업데이트
+        setIsObsConnected(true); // 연결 성공 시 상태 업데이트
         checkStreamingStatus(); // 연결 후 스트리밍 상태 확인
       })
       .catch(err => {
         console.error('OBS WebSocket 연결 실패:', err);
-        setIsConnected(false); // 연결 실패 시 상태 업데이트
+        setIsObsConnected(false); // 연결 실패 시 상태 업데이트
       });
   };
+
+  // OBS에서 텍스트 소스 추가 함수
+  const displayBidOnOBS = (bidAmount, bidderIndex) => {
+    if (isObsConnected) {
+      obs.current.call('CreateInput', {
+        sceneName: 'Scene',  // 방송에서 사용하는 장면 이름
+        inputName: 'Bid Overlay',
+        inputKind: 'text_ft2_source_v2',
+        inputSettings: {
+          text: `Bid: ${bidAmount} from Bidder ${bidderIndex}`,
+          font: { face: 'Arial', size: 48 },
+          color: 0xFFFFFFFF,
+          backgroundColor: 0x000000FF,
+          align: 'center',
+        }
+      }).then(() => {
+        console.log('OBS에 텍스트 추가 성공');
+        setTimeout(() => {
+          obs.current.call('RemoveInput', { inputName: 'Bid Overlay' });
+          console.log('OBS에서 텍스트 제거 성공');
+        }, 5000);
+      }).catch(err => {
+        console.error('OBS에 텍스트 추가 실패:', err);
+      });
+    }
+  };
+
 
   // OBS의 현재 스트리밍 상태 확인 (OBS WebSocket v5)
   const checkStreamingStatus = () => {
@@ -72,6 +99,16 @@ function SellerAuctionScreen({
       });
     }
   };
+
+  
+  // 입찰 정보 처리 (WebSocket에서 받은 정보 사용)
+  useEffect(() => {
+    if (webSocketProps.bidAmounts[auction.auctionIndex]) {
+      const bidAmount = webSocketProps.bidAmounts[auction.auctionIndex];
+      const bidderIndex = auction.auctionIndex; // 적절한 bidderIndex 값을 할당하세요
+      displayBidOnOBS(bidAmount, bidderIndex);
+    }
+  }, [webSocketProps.bidAmounts, auction.auctionIndex]);
 
   // OBS WebSocket 연결 및 재연결 처리
   useEffect(() => {
