@@ -6,6 +6,7 @@ import axios from 'axios';
 import VideoSection from './VideoSection';
 import { OBSWebSocket } from 'obs-websocket-js';
 import Cookies from "js-cookie";
+import { border } from '@chakra-ui/react';
 
 function SellerAuctionScreen({ 
   webSocketProps, auction, remainingTime, closeSellerPage
@@ -49,6 +50,7 @@ function SellerAuctionScreen({
           file: imagePath,  // 이미지 경로
           width: 500,  // 이미지 가로 크기 (적절히 조정)
           height: 200,  // 이미지 세로 크기 (적절히 조정)
+          // border: none,
         }
       }).then(() => {
         console.log('OBS에 이미지 추가 성공');
@@ -117,14 +119,14 @@ function SellerAuctionScreen({
     }
   };
 
-  const imagePath = 'C:/Users/BIT/Pictures/Screenshots/donation.png';
+  const imagePath = 'D:/lecture/Final Project(Crown_bids)/frontend/public/images/bid.gif';
 
   // 입찰 정보 처리 (WebSocket에서 받은 정보 사용)
   useEffect(() => {
     if (webSocketProps.bidAmounts[auction.auctionIndex]) {
       const bidAmount = webSocketProps.bidAmounts[auction.auctionIndex];
       const bidderNickname = webSocketProps.bidderNicknames[auction.auctionIndex];
-      displayBidOnOBS(bidAmount, bidderNickname);
+      displayBidWithImageOnOBS(bidAmount, bidderNickname, imagePath);
     }
   }, [webSocketProps.bidAmounts, webSocketProps.bidderNicknames, auction.auctionIndex]);
 
