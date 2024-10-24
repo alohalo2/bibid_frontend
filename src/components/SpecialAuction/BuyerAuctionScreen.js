@@ -3,6 +3,7 @@ import { getFormattedRemainingTime } from '../../util/utils';
 import axios from 'axios';
 import VideoSection from './VideoSection';
 import Cookies from "js-cookie";
+import Draggable from 'react-draggable'; // react-draggable import
 
 function BuyerAuctionScreen({ 
   webSocketProps, auction, remainingTime, closeBuyerPopup, handleShowSellerInfo, openBidConfirmPopup
@@ -166,100 +167,104 @@ function BuyerAuctionScreen({
               {/* Product Information Section */}
               <div className="SAproductInfo">
               {showAuctionInfo && (
-                <div className="SAauctionInfoBox">
-                  <div className='SAminiminzeButtonBox'>
-                    <button className='SAminiminzeButton' onClick={toggleAuctionInfo}>
-                      <img src='/images/minimize_icon.svg'></img>
-                    </button>
-                  </div>
-                  <div className="SAauctionInfo">
-                    <div className='SAauctionInfoTitle'>
-                      <h3>현재가:</h3>
-                      <p>남은시간:</p>
-                      <p>경매번호:</p>
-                      <p>입찰단위:</p>
-                      <p>희망 입찰가:</p>
-                      <p>예상 구매가:</p>
+                <Draggable defaultPosition={{x: 0, y: 0}} bounds="body">
+                  <div className="SAauctionInfoBox">
+                    <div className='SAminiminzeButtonBox'>
+                      <button className='SAminiminzeButton' onClick={toggleAuctionInfo}>
+                        <img src='/images/minimize_icon.svg'></img>
+                      </button>
                     </div>
-                    <div className='SAauctionInfoContents'>
-                      <h3>{formattedCurrentPrice}원</h3>
-                      <div className='SAremainingTime'>
-                        <p>{formattedRemainingTime}</p>
-                        <p id='SArealEndTime'>({formattedAuctionEndTime})</p>
+                    <div className="SAauctionInfo">
+                      <div className='SAauctionInfoTitle'>
+                        <h3>현재가:</h3>
+                        <p>남은시간:</p>
+                        <p>경매번호:</p>
+                        <p>입찰단위:</p>
+                        <p>희망 입찰가:</p>
+                        <p>예상 구매가:</p>
                       </div>
-                      <p>{auction.auctionIndex}</p>
-                      <p>{formattedBidIncrement}원</p>
-                      <div className='SAbidBox'>
-                        <input type="text" id="SAbidInput" value={formattedBidAmount} readOnly /> <p>원</p>
-                        <div className='SAbidButtonBox'>
-                          <button onClick={handleBidIncrease} className="SAbidButton">+</button>
-                          <button onClick={handleBidDecrease} className="SAbidButton">-</button>
+                      <div className='SAauctionInfoContents'>
+                        <h3>{formattedCurrentPrice}원</h3>
+                        <div className='SAremainingTime'>
+                          <p>{formattedRemainingTime}</p>
+                          <p id='SArealEndTime'>({formattedAuctionEndTime})</p>
+                        </div>
+                        <p>{auction.auctionIndex}</p>
+                        <p>{formattedBidIncrement}원</p>
+                        <div className='SAbidBox'>
+                          <input type="text" id="SAbidInput" value={formattedBidAmount} readOnly /> <p>원</p>
+                          <div className='SAbidButtonBox'>
+                            <button onClick={handleBidIncrease} className="SAbidButton">+</button>
+                            <button onClick={handleBidDecrease} className="SAbidButton">-</button>
+                          </div>
+                        </div>
+                        <div className='SAexpectedPurchase'>
+                          <p>{formattedExpectedPurchasePrice}원</p>
+                          <p id='SAexpectedPurchaseCalc'>({formattedCurrentPrice}원 + 구매수수료 {formattedPurchaseFee}원)</p>
                         </div>
                       </div>
-                      <div className='SAexpectedPurchase'>
-                        <p>{formattedExpectedPurchasePrice}원</p>
-                        <p id='SAexpectedPurchaseCalc'>({formattedCurrentPrice}원 + 구매수수료 {formattedPurchaseFee}원)</p>
-                      </div>
+                    </div>
+                    <div className='SAbidSubmitButtonBox'>
+                      <button className="SAbidSubmitButton" onClick={openBidConfirmPopup}>입찰하기</button>
                     </div>
                   </div>
-                  <div className='SAbidSubmitButtonBox'>
-                    <button className="SAbidSubmitButton" onClick={openBidConfirmPopup}>입찰하기</button>
-                  </div>
-                </div>
+                </Draggable>
               )}
 
               {showSellerInfo && (
-                <div className="SAsellerInfo">
-                  <div className='SAminiminzeButtonBox'>
-                    <button className='SAminiminzeButton' onClick={toggleSellerInfo}>
-                      <img src='/images/minimize_icon.svg'></img>
-                    </button>
-                  </div>
-                  <div className='SAsellerProfile'>
-                    <img src='/images/seller_img.svg' alt="Seller Profile" />
-                    <div>
-                      <h3>{auction.memberNickname}</h3>
-                      <p>Seller</p>
+                <Draggable defaultPosition={{x: 0, y: 0}} bounds="body">
+                  <div className="SAsellerInfo">
+                    <div className='SAminiminzeButtonBox'>
+                      <button className='SAminiminzeButton' onClick={toggleSellerInfo}>
+                        <img src='/images/minimize_icon.svg'></img>
+                      </button>
+                    </div>
+                    <div className='SAsellerProfile'>
+                      <img src='/images/seller_img.svg' alt="Seller Profile" />
+                      <div>
+                        <h3>{auction.memberNickname}</h3>
+                        <p>Seller</p>
+                      </div>
+                    </div>
+                    <div className='SAsellerMainInfo'>
+                      <div>
+                        <p>판매 건수</p>
+                        <p>186</p>
+                      </div>
+                      <div>
+                        <p>총 평가 점수</p>
+                        <p>4.9</p>
+                      </div>
+                      <div>
+                        <p>주 판매 목록</p>
+                        <p>신발</p>
+                      </div>
+                    </div>
+                    <div className='SAsellerEvaluation'>
+                      <div className='SAsellerEvaluationDetail'>
+                        <p>상품 설명</p>
+                        <p>배송 속도</p>
+                        <p>응답 속도</p>
+                        <p>친절도</p>
+                      </div>
+                      <div className='SAsellerEvaluationDetail'>
+                        <progress className='SAprogress' value="100" min="0" max="100"></progress>
+                        <progress className='SAprogress' value="90" min="0" max="100"></progress>
+                        <progress className='SAprogress' value="100" min="0" max="100"></progress>
+                        <progress className='SAprogress' value="100" min="0" max="100"></progress>
+                      </div>
+                      <div className='SAsellerEvaluationDetail'>
+                        <p>5.0</p>
+                        <p>4.8</p>
+                        <p>5.0</p>
+                        <p>5.0</p>
+                      </div>
+                    </div>
+                    <div className='SAmoreInfoButtonBox'>
+                      <button className="SAmoreInfoButton" onClick={handleShowSellerInfo}>판매자 정보 더보기</button>
                     </div>
                   </div>
-                  <div className='SAsellerMainInfo'>
-                    <div>
-                      <p>판매 건수</p>
-                      <p>186</p>
-                    </div>
-                    <div>
-                      <p>총 평가 점수</p>
-                      <p>4.9</p>
-                    </div>
-                    <div>
-                      <p>주 판매 목록</p>
-                      <p>신발</p>
-                    </div>
-                  </div>
-                  <div className='SAsellerEvaluation'>
-                    <div className='SAsellerEvaluationDetail'>
-                      <p>상품 설명</p>
-                      <p>배송 속도</p>
-                      <p>응답 속도</p>
-                      <p>친절도</p>
-                    </div>
-                    <div className='SAsellerEvaluationDetail'>
-                      <progress className='SAprogress' value="100" min="0" max="100"></progress>
-                      <progress className='SAprogress' value="90" min="0" max="100"></progress>
-                      <progress className='SAprogress' value="100" min="0" max="100"></progress>
-                      <progress className='SAprogress' value="100" min="0" max="100"></progress>
-                    </div>
-                    <div className='SAsellerEvaluationDetail'>
-                      <p>5.0</p>
-                      <p>4.8</p>
-                      <p>5.0</p>
-                      <p>5.0</p>
-                    </div>
-                  </div>
-                  <div className='SAmoreInfoButtonBox'>
-                    <button className="SAmoreInfoButton" onClick={handleShowSellerInfo}>판매자 정보 더보기</button>
-                  </div>
-                </div>
+                </Draggable>
               )}
 
               </div>
@@ -267,39 +272,41 @@ function BuyerAuctionScreen({
 
             {/* Chat Section */}
             {showChatContainer && (
-              <div className="SAbuyerChatContainer">
-                <div className='SAchatMiniminzeButtonBox'>
-                    <button className='SAminiminzeButton' onClick={toggleChatContainer}>
-                      <img src='/images/minimize_icon.svg'></img>
-                    </button>
-                </div>
-                <div className="SAbuyerChatSection">
-                  <div>
-                    <ul>
-                      {webSocketProps.messages[auction?.auctionIndex]?.map((msg, index) => (
-                        <li key={index}>
-                          <em>{formatTime(msg.sendTime)}</em> <strong style={{ color: msg.color }}>{msg.senderNickname}:</strong> {msg.chatMessage}</li>
-                      )) || <li>메시지가 없습니다.</li>}
-                      <div ref={messagesEndRef} />
-                    </ul>
+              <Draggable defaultPosition={{x: 0, y: 0}} bounds="body">
+                <div className="SAbuyerChatContainer">
+                  <div className='SAchatMiniminzeButtonBox'>
+                      <button className='SAminiminzeButton' onClick={toggleChatContainer}>
+                        <img src='/images/minimize_icon.svg'></img>
+                      </button>
+                  </div>
+                  <div className="SAbuyerChatSection">
+                    <div>
+                      <ul>
+                        {webSocketProps.messages[auction?.auctionIndex]?.map((msg, index) => (
+                          <li key={index}>
+                            <em>{formatTime(msg.sendTime)}</em> <strong style={{ color: msg.color }}>{msg.senderNickname}:</strong> {msg.chatMessage}</li>
+                        )) || <li>메시지가 없습니다.</li>}
+                        <div ref={messagesEndRef} />
+                      </ul>
+                    </div>
+                  </div>
+                  <div className='SAbuyerChatInputBox'>
+                    <input
+                      className='SAbuyerChatInput'
+                      type="text"
+                      value={inputMessage}
+                      onChange={(e) => setInputMessage(e.target.value)}
+                      onKeyDown={handleKeyPress}
+                      placeholder="메시지를 입력하세요..."
+                    />
                   </div>
                 </div>
-                <div className='SAbuyerChatInputBox'>
-                  <input
-                    className='SAbuyerChatInput'
-                    type="text"
-                    value={inputMessage}
-                    onChange={(e) => setInputMessage(e.target.value)}
-                    onKeyDown={handleKeyPress}
-                    placeholder="메시지를 입력하세요..."
-                  />
-                </div>
-              </div>
+              </Draggable>
             )}
 
           </div>    
         </div>
-        <button className="SAtotalBoxCloseButton" onClick={closeBuyerPopup}>
+        <button className="SAbuyerTotalBoxCloseButton" onClick={closeBuyerPopup}>
           <img src='/images/white_close_button_icon.svg' alt="close button" />
         </button>
       </div>

@@ -191,7 +191,7 @@ function SellerAuctionScreen({
   return (
     <div className="SAoverlay">
       <div className='SAtotalPopup'>
-        <div className="SAbuyerPopup">
+        <div className="SAsellerPopup">
           <div className="SAsellerLiveAuctionHeader">
             <h3>{isLive ? "Live On" : "Live Off"}</h3>
             <h1>판매자</h1>
@@ -201,13 +201,6 @@ function SellerAuctionScreen({
               <div className='SAsellerViewBox'>
                 <div className="SAsellerAuctionContentBox">
                   <div className="SAsellerProductSection">
-                    <div className='SAsoundBttn' onClick={handleMikeToggle}>
-                      {isMikeOn ? (
-                        <img id='SAmikeOnIcon' src='/images/mike_on_icon.svg' alt="Mic On" />
-                      ) : (
-                        <img id='SAmikeOffIcon' src='/images/mike_off_icon.svg' alt="Mic Off" />
-                      )}
-                    </div>
                     {/* isStreaming 상태에 따라 UI를 다르게 렌더링 */}
                     {isStreaming ? (
                         // OBS 방송이 시작된 경우, HLS 스트리밍을 VideoSection을 통해 재생
@@ -287,7 +280,7 @@ function SellerAuctionScreen({
               </div>
             </div>
           </div>
-          <button className="SAtotalBoxCloseButton" onClick={closeSellerPage}>
+          <button className="SAsllerTotalBoxCloseButton" onClick={closeSellerPage}>
             <img src='/images/white_close_button_icon.svg' alt="close button" />
           </button>
         </div>
