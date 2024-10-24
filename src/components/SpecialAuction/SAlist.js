@@ -32,6 +32,7 @@
     const [isChatClosed, setIsChatClosed] = useState(true);
 
     const webSocketProps = useWebSocket(selectedAuction?.auctionIndex, isChatClosed, setIsChatClosed);
+    const {disconnectWebSocket} = webSocketProps;
 
     const [popupState, setPopupState] = useState({
       showBuyerPopup: false,
@@ -69,7 +70,7 @@
                 linkText="바로가기"
                 alertText="* 알림은 경매 시작 30분 전에 발송됩니다."
                 handleGoButtonClick={() => handleGoButtonClick(auction)}
-                handleAlertButtonClick={() => togglePopup('showAlertPopup', true)}
+                handleAlertButtonClick={() => { togglePopup('showAlertPopup', true); handleAlertButtonClick(auction); }}
               />
             );
           })}
@@ -85,20 +86,42 @@
 
     const handleGoButtonClick = (auction) => {
       setSelectedAuction(auction);
-      webSocketProps.setCurrentPrice(auction.startingPrice);
-      webSocketProps.setBidAmount(auction.startingPrice);
-    
+      console.log("Selected Auction: ", auction);
+      setIsChatClosed(false);
+
+      // currentPrices에 값이 없을 때만 시작 가격 설정
+      webSocketProps.setCurrentPrices((prev) => ({
+        ...prev,
+        [auction.auctionIndex]: prev[auction.auctionIndex] ||
+          (auction.auctionInfoDtoList?.length > 0
+            ? auction.auctionInfoDtoList[auction.auctionInfoDtoList.length - 1].bidAmount
+            : auction.startingPrice)
+      }));
+      // bidAmounts에 값이 없을 때만 시작 가격 설정
+      webSocketProps.setBidAmounts((prev) => ({
+        ...prev,
+        [auction.auctionIndex]: prev[auction.auctionIndex] ||
+          (auction.auctionInfoDtoList?.length > 0
+            ? auction.auctionInfoDtoList[auction.auctionInfoDtoList.length - 1].bidAmount
+            : auction.startingPrice)
+      }));
+
       const now = new Date();
-      const auctionEndTime = new Date(auction.endingLocalDateTime);
       const auctionStartTime = new Date(auction.startingLocalDateTime);
-      
+      const auctionEndTime = new Date(auction.endingLocalDateTime);
       const userIsSeller = auction.memberNickname === loginMemberNickname;
     
-      if (hasAuctionEnded || now > auctionEndTime) {
+      // 경매 종료 여부 확인 후 상태 업데이트
+      if (now > auctionEndTime) {
+        setHasAuctionEnded(true);
         togglePopup('showEndPopup', true); // 경매 종료 팝업
         return;
       }
-    
+      setHasAuctionEnded(false); // 경매가 아직 종료되지 않았으므로 false로 설정
+
+      console.log("auction.memberNickname: ", auction.memberNickname);
+      console.log("loginMemberNickname: ", loginMemberNickname);
+      
       if (userIsSeller) {
         togglePopup('showSellerAuctionScreen', true); // 판매자 경매 화면 열기
       } else {
@@ -109,7 +132,11 @@
         }
       }
     };
-    
+
+    const handleAlertButtonClick = (auction) => {
+      setSelectedAuction(auction);
+    };
+
     useEffect(() => {
       if (selectedAuction) {
         const interval = setInterval(() => {
@@ -130,20 +157,33 @@
     }, [selectedAuction, hasAuctionEnded]);
   
 
+    // 구매자 팝업 닫기 + 웹 소켓 연결 해제
+    const closeBuyerPopupAnddisconnectWebSocket = ()  => {
+      togglePopup('showBuyerAuctionScreen', false);
+      setIsChatClosed(true);
+      disconnectWebSocket();
+    }
+
+    // 판매자 팝업 닫기 + 웹 소켓 연결 해제
+    const closeSellerPopupAnddisconnectWebSocket = ()  => {
+      togglePopup('showSellerAuctionScreen', false);
+      setIsChatClosed(true);
+      disconnectWebSocket();
+    }
+
     return (
       <div className="SAauctionList">
         {renderAuctions()}
         {/* 팝업 컴포넌트들 */}
-        {popupState.showAlertPopup && <AlertPopup auction={selectedAuction} handleClosePopup={() => togglePopup('showAlertPopup', false)} />}
+        {popupState.showAlertPopup && selectedAuction && <AlertPopup auction={selectedAuction} handleClosePopup={() => togglePopup('showAlertPopup', false)} />}
         {popupState.showBuyerPopup && !popupState.showBuyerAuctionScreen && <BuyerWaitPopup handleClosePopup={() => togglePopup('showBuyerPopup', false)} />}
-        {popupState.showBuyerAuctionScreen && <BuyerAuctionScreen webSocketProps = {webSocketProps} auction={selectedAuction} remainingTime={remainingTime} handleShowSellerInfo={() => togglePopup('showSellerInfoPopup', true) } closeBuyerPopup={() => {togglePopup('showBuyerAuctionScreen', false); setIsChatClosed(true);}} />}
-        {popupState.showSellerAuctionScreen && <SellerAuctionScreen webSocketProps = {webSocketProps} auction={selectedAuction} remainingTime={remainingTime} closeSellerPage={() => {togglePopup('showSellerAuctionScreen', false); setIsChatClosed(true);}} />}
+        {popupState.showBuyerAuctionScreen && <BuyerAuctionScreen  webSocketProps = {webSocketProps} auction={selectedAuction} remainingTime={remainingTime} handleShowSellerInfo={() => togglePopup('showSellerInfoPopup', true) } openBidConfirmPopup={ () => togglePopup('showBidConfirmationPopup', true) } closeBuyerPopup={closeBuyerPopupAnddisconnectWebSocket} />}
+        {popupState.showSellerAuctionScreen && <SellerAuctionScreen  webSocketProps = {webSocketProps} auction={selectedAuction} remainingTime={remainingTime} closeSellerPage={closeSellerPopupAnddisconnectWebSocket} />}
         {popupState.showSellerInfoPopup && <SellerInfoPopup auction={selectedAuction} handleClosePopup={() => togglePopup('showSellerInfoPopup', false)} />}
-        {popupState.showBidConfirmationPopup && <BidConfirmationPopup bidAmount={webSocketProps.bidAmount} handleClosePopup={() => togglePopup('showBidConfirmationPopup', false)} />}
-        {popupState.showEndPopup && <AuctionEndPopup auction={selectedAuction} handleClosePopup={() => togglePopup('showEndPopup', false)} />}
+        {popupState.showBidConfirmationPopup && <BidConfirmationPopup auction={selectedAuction} webSocketProps = {webSocketProps} handleClosePopup={() => togglePopup('showBidConfirmationPopup', false)} />}
+        {popupState.showEndPopup && <AuctionEndPopup auction={selectedAuction} handleClosePopup={() => togglePopup('showEndPopup', false) } />}
       </div>
     );
-
   }
 
   export default SAlist;
