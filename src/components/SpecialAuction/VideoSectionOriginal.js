@@ -8,7 +8,6 @@ import axios from "axios";
 import ViewerList from "./ViewerList";
 import Cookies from "js-cookie";
 
-
 const VideoEmojiWrapper = styled.div`
   width: 75%;
   height: 100%;
@@ -106,7 +105,7 @@ const VideoSectionOriginal = ({
     const channelId = channelInfoFromSession.channelId;
 
     try {
-      let token = sessionStorage.getItem("ACCESS_TOKEN");
+      const token = Cookies.get('ACCESS_TOKEN');
       stompClient.send(`/app/sendMsg/${lectureId}/exit`, {
         Authorization: "Bearer " + token,
       });

@@ -3,7 +3,6 @@ import SockJS from 'sockjs-client';
 import { Client } from '@stomp/stompjs';
 import { useSelector } from 'react-redux';
 import Cookies from "js-cookie";
-    
 
 const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
 
