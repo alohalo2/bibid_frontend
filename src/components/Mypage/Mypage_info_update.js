@@ -344,7 +344,7 @@ const Mypage_info_update = () => {
 			<form onSubmit={handleModify} >
 			<div className='etc1_profile-image'>
 				<img src={joinForm.profileImage && joinForm.profileImage.filetype === 'image'
-					? `https://kr.object.ncloudstorage.com/bitcamp-134/${joinForm.profileImage.filepath}${joinForm.profileImage.newfilename}`
+					? `https://kr.object.ncloudstorage.com/bitcamp119/${joinForm.profileImage.filepath}${joinForm.profileImage.newfilename}`
 					: profileImageUrl
 				 } 
 					 alt='Profile Image'
