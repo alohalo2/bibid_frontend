@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Hls from "hls.js";
 import axios from "axios";
 import ViewerList from "./ViewerList";
+import Cookies from "js-cookie";
 
 const VideoEmojiWrapper = styled.div`
   width: 75%;
@@ -84,7 +85,7 @@ const VideoSectionOriginal = ({
     return () => {
       if (stompClient && stompClient.connected) {
         console.log(stompClient);
-        const token = localStorage.getItem("ACCESS_TOKEN");
+        const token = Cookies.get('ACCESS_TOKEN');
         stompClient.send(`/app/sendMsg/${lectureId}/leave`, {
           Authorization: "Bearer " + token,
         });
@@ -104,7 +105,7 @@ const VideoSectionOriginal = ({
     const channelId = channelInfoFromSession.channelId;
 
     try {
-      let token = sessionStorage.getItem("ACCESS_TOKEN");
+      const token = Cookies.get('ACCESS_TOKEN');
       stompClient.send(`/app/sendMsg/${lectureId}/exit`, {
         Authorization: "Bearer " + token,
       });

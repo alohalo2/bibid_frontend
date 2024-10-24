@@ -49,6 +49,10 @@
   white-space: pre-wrap;
 }
 
+.SAsellerAuctionDetails {
+  margin-left: 3.5rem;
+}
+
 .SAsellerAuctionDetailsBox {
   display: flex;
   justify-content: flex-start;
@@ -59,11 +63,13 @@
   margin-top: 0;
   margin-bottom: 0;
   overflow-wrap: break-word;
+  margin-bottom: 1.5rem;
 }
 
 .SAsellerAuctionDetailsBox p {
   font-size: 18px;
   font-weight: bold;
+  margin-bottom: 1.5rem;
 }
 
 .SAsellerAuctionContentsTitle {
@@ -82,14 +88,6 @@
   color: #7A7A7A;
 }
 
-.SAsellerSteamingBox {
-  width: 55vw;
-  height: auto;
-  border-radius: 8px;
-  padding: 20px;
-  background-color: #444444;
-}
-
 .SAsellerStreamingInfo p {
   font-size: 18px;
   font-weight: bold;
@@ -100,11 +98,14 @@
   font-weight: bolder;
   color: red;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 0.5rem;
 }
+
+
 
 #SAsellerStreamingNoteContent {
   margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .SAauctionButtons {
@@ -161,6 +162,7 @@ z-index: 999; /* 위로 띄우기 */
 position: relative;
 width: 100%;
 display: flex;
+align-items: flex-end;
 justify-content: center;
 }
 
@@ -247,8 +249,8 @@ background-color: transparent;
   position: relative;
 }
 
-/* 닫기 버튼 */
-.SAtotalBoxCloseButton {
+/* 판매자 닫기 버튼 */
+.SAsllerTotalBoxCloseButton {
 position: absolute;
 margin-top: 20px;
 padding: 5px 10px;
@@ -260,9 +262,26 @@ top: -4.5rem;
 right: 12rem;
 }
 
-.SAtotalBoxCloseButton:hover {
+/* 구매자 닫기 버튼 */
+.SAbuyerTotalBoxCloseButton {
+  position: absolute;
+  margin-top: 20px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 5px;
+  top: -0.5rem;
+  right: 8rem;
+  }
+
+.SAsllerTotalBoxCloseButton:hover {
 background-color: transparent;
 }
+
+.SAbuyerTotalBoxCloseButton:hover {
+  background-color: transparent;
+  }
 
 .SAcloseButton img {
 width: 30px;
@@ -290,16 +309,26 @@ color: white; /* 흰색 텍스트 */
 padding-left: 30px;
 padding-right: 30px;
 border-radius: 10px;
-height: 85vh;
+height: 100vh;
 width: 80%;
 box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 display: flex;
 flex-direction: column;
 }
 
-/* .SAbuyerPopup::-webkit-scrollbar{
-display:none;
-} */
+/* 판매자 페이지 팝업 박스 */
+.SAsellerPopup {
+  background: #222222; /* 어두운 배경 */
+  color: white; /* 흰색 텍스트 */
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 10px;
+  height: 85vh;
+  width: 80%;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  }
 
 /* 팝업 내부 텍스트 */
 .SAbuyerPopup h2 {
@@ -413,18 +442,21 @@ flex-direction: column;
 
 .SAsellerAuctionContentBox {
 display: flex;
+margin-bottom: 1rem;
 }
 
 .SAproductSection {
 position: relative;
+width: 1460px;
+height: auto;
 }
 
 .SAproductTitle {
 background-color: rgba(0, 0, 0, 0.6);
 border-radius: 8px;
 display: inline-block;
-margin-top: 1rem;
-margin-right: 1rem;
+margin-top: 0.5rem;
+margin-right: 0.5rem;
 padding: 10px;
 }
 
@@ -438,6 +470,8 @@ position: relative;
 display: flex;
 flex-direction: column;
 justify-content: start;
+width: 540px;
+height: 330px;
 }
 
 .SAsellerProductSection h2 {
@@ -1122,6 +1156,11 @@ color: white;
   justify-content: space-between;
   position: fixed;
   width: 1460px;
+  z-index: 1001;
+}
+
+html:fullscreen .SAliveStreamingHeader {
+  display: block; /* 전체 화면에서도 버튼을 유지 */
 }
 
 .SAliveStreamingButtonBox {
@@ -1137,6 +1176,7 @@ padding: 10px;
 border-radius: 50px;
 width: 50px;
 height: 50px;
+z-index: 1001;
 }
 
 .SAliveStreamingButton img {
@@ -1147,14 +1187,16 @@ height: 50px;
 
 #SAmikeOnIcon {
 position: absolute;
-bottom: 30px;
-right: 45px;
+bottom: 100px;
+right: 20px;
 cursor: pointer;
+z-index: 1001;
 }
 
 #SAmikeOffIcon {
 position: absolute;
-bottom: 30px;
-right: 45px;
+bottom: 100px;
+right: 20px;
 cursor: pointer;
+z-index: 1001;
 }

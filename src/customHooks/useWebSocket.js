@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import SockJS from 'sockjs-client';
 import { Client } from '@stomp/stompjs';
 import { useSelector } from 'react-redux';
+import Cookies from "js-cookie";
 
 const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
 
@@ -47,7 +48,7 @@ const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
     if (!auctionIndex || isChatClosed) return;
 
     const connectWebSocket = () => {
-      let token = localStorage.getItem('ACCESS_TOKEN');
+      const token = Cookies.get('ACCESS_TOKEN');
 
       const socket = new SockJS('http://localhost:8080/ws');
       const client = new Client({
