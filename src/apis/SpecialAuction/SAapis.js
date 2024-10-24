@@ -5,15 +5,11 @@ export const getAuctionData = createAsyncThunk(
   'specialAuction/getAuctionData',
   async (auctionType, thunkApi) => {
     try {
-      const token = localStorage.getItem('ACCESS_TOKEN');
 
-      const response = await axios.get('http://localhost:8080/specialAuction', {
+      const response = await axios.get('http://localhost:8080/specialAuction/list', {
         params: {
           auctionType: auctionType,
-        },
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        }
       });
 
       console.log("getAuctionData: ", response.data);

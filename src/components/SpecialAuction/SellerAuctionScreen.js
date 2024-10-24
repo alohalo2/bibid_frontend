@@ -5,6 +5,7 @@ import '../../css/SpecialAuction/SAitem.css';
 import axios from 'axios';
 import VideoSection from './VideoSection';
 import { OBSWebSocket } from 'obs-websocket-js';
+import Cookies from "js-cookie";
 
 function SellerAuctionScreen({ 
   webSocketProps, auction, remainingTime, closeSellerPage
@@ -91,7 +92,7 @@ function SellerAuctionScreen({
     const fetchChannelInfo = async () => {
       try {
         // API 호출로 streaming 정보 가져오기
-        const token = localStorage.getItem('ACCESS_TOKEN');
+        const token = Cookies.get('ACCESS_TOKEN');
         const response = await axios.get(`http://localhost:8080/specialAuction/channelInfo/${auction.auctionIndex}`, {
           headers: {
             Authorization: `Bearer ${token}`,
