@@ -119,7 +119,9 @@ const SAsellerSteamingBox = () => {
                 <li>
                     <h4 id='SAbroadcastStart'><strong>방송 시작</strong></h4>
                     <ul>
-                        <p>경매 시작 시간에 맞춰 <strong>자동</strong>으로 시작</p>
+                        <p>경매 시작 시간에 맞춰 <strong>수동</strong>으로 방송시작</p>
+                        <p>OBS 프로그램 내 <strong>방송 시작</strong> 버튼 클릭</p>
+                        <p>OBS 프로그램 내 <strong>녹화 시작</strong> 버튼 클릭</p>
                     </ul>
                 </li>
             </ol>
