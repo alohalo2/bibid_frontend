@@ -14,6 +14,7 @@ const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
   const [connected, setConnected] = useState(false);
   const [currentPrices, setCurrentPrices] = useState({});
   const [bidAmounts, setBidAmounts] = useState({});
+  const [bidderNicknames, setBidderNicknames] = useState({});
   const [participantCount, setParticipantCount] = useState({}); // 참여자 수 상태 추가
 
   // 컬러 배열 정의
@@ -95,6 +96,10 @@ const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
                   ...prev,
                   [auctionIndex]: auctionInfo.bidAmount,
                 }));
+                setBidderNicknames((prev) => ({
+                  ...prev,
+                  [auctionIndex]: auctionInfo.bidderNickname,
+                }))
               }
           });
 
@@ -259,6 +264,7 @@ const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
     setBidAmounts,
     participantCount, // 추가된 참여자 수 상태 반환
     disconnectWebSocket, // 연결 해제 함수 반환
+    bidderNicknames
   };
 };
 

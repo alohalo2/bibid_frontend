@@ -38,33 +38,7 @@ function SellerAuctionScreen({
       });
   };
 
-  // // OBS에서 텍스트 소스 추가 함수
-  // const displayBidOnOBS = (bidAmount, bidderIndex) => {
-  //   if (isObsConnected) {
-  //     obs.current.call('CreateInput', {
-  //       sceneName: 'Scene',  // 방송에서 사용하는 장면 이름
-  //       inputName: 'Bid Overlay',
-  //       inputKind: 'text_ft2_source_v2',
-  //       inputSettings: {
-  //         text: `Bid: ${bidAmount} from Bidder ${bidderIndex}`,
-  //         font: { face: 'Arial', size: 48 },
-  //         color: 0xFFFFFFFF,
-  //         backgroundColor: 0x000000FF,
-  //         align: 'center',
-  //       }
-  //     }).then(() => {
-  //       console.log('OBS에 텍스트 추가 성공');
-  //       setTimeout(() => {
-  //         obs.current.call('RemoveInput', { inputName: 'Bid Overlay' });
-  //         console.log('OBS에서 텍스트 제거 성공');
-  //       }, 5000);
-  //     }).catch(err => {
-  //       console.error('OBS에 텍스트 추가 실패:', err);
-  //     });
-  //   }
-  // };
-
-  const displayBidWithImageOnOBS = (bidAmount, bidderIndex, imagePath) => {
+  const displayBidWithImageOnOBS = (bidAmount, bidderNickname, imagePath) => {
     if (isObsConnected) {
       // 먼저 이미지 소스를 추가
       obs.current.call('CreateInput', {
@@ -78,22 +52,23 @@ function SellerAuctionScreen({
         }
       }).then(() => {
         console.log('OBS에 이미지 추가 성공');
-        
+
         // 이미지 추가 후 텍스트 소스를 그 위에 추가
         return obs.current.call('CreateInput', {
           sceneName: 'Scene',  // 방송에서 사용하는 장면 이름
           inputName: 'Bid Text Overlay',  // 텍스트 소스 이름
           inputKind: 'text_ft2_source_v2',  // 텍스트 소스 종류
           inputSettings: {
-            text: `Bid: ${bidAmount} from Bidder ${bidderIndex}`,
-            font: { face: 'Arial', size: 48 },
-            color1: 0xFFFFFFFF,  // 흰색
-            alignment: 2,  // 텍스트 가운데 정렬
+              text: `${bidderNickname} 님이 ${bidAmount} 를 입찰하였습니다.`,
+              font: { face: 'Malgun Gothic', size: 48 },
+              color: 0xFFFFFFFF,
+              backgroundColor: 0x000000FF,
+              align: 'center',
           }
         });
       }).then(() => {
         console.log('OBS에 텍스트 추가 성공');
-        
+
         // 일정 시간 후 텍스트와 이미지 소스 모두 제거
         setTimeout(() => {
           obs.current.call('RemoveInput', { inputName: 'Bid Text Overlay' });
@@ -142,16 +117,16 @@ function SellerAuctionScreen({
     }
   };
 
-  const imagePath = 'C:/Users/BIT/Pictures/Screenshots/donation.png'; 
-  
+  const imagePath = 'C:/Users/BIT/Pictures/Screenshots/donation.png';
+
   // 입찰 정보 처리 (WebSocket에서 받은 정보 사용)
   useEffect(() => {
     if (webSocketProps.bidAmounts[auction.auctionIndex]) {
       const bidAmount = webSocketProps.bidAmounts[auction.auctionIndex];
-      const bidderIndex = auction.auctionIndex; // 적절한 bidderIndex 값을 할당하세요
-      displayBidWithImageOnOBS(bidAmount, bidderIndex, imagePath);
+      const bidderNickname = webSocketProps.bidderNicknames[auction.auctionIndex];
+      displayBidOnOBS(bidAmount, bidderNickname);
     }
-  }, [webSocketProps.bidAmounts, auction.auctionIndex]);
+  }, [webSocketProps.bidAmounts, webSocketProps.bidderNicknames, auction.auctionIndex]);
 
   // OBS WebSocket 연결 및 재연결 처리
   useEffect(() => {
@@ -203,7 +178,7 @@ function SellerAuctionScreen({
   const [remainingText, setRemainingText] = useState("경매 시작까지 남은 시간"); // 남은 시간 텍스트
   const [formattedTimeText, setFormattedTimeText] = useState(""); // 포맷된 시간 텍스트
 
-  const { messages, inputMessage, setInputMessage, sendMessage, currentPrices, participantCount } = webSocketProps;
+  const { messages, inputMessage, setInputMessage, sendMessage, currentPrices, participantCount, bidderNicknames } = webSocketProps;
 
   const messagesEndRef = useRef(null);
 
