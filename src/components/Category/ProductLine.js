@@ -24,7 +24,7 @@ const ProductLine = ({ products = {} }) => {
           // 이미지 URL 설정
           const thumbnailImage = product.auctionImageDtoList.find(image => image.thumbnail === true);
           const imageSrc = thumbnailImage && thumbnailImage.filetype === 'image'
-            ? `https://kr.object.ncloudstorage.com/bitcamp119/${thumbnailImage.filepath}${thumbnailImage.filename}`
+            ? `https://kr.object.ncloudstorage.com/bitcamp73/${thumbnailImage.filepath}${thumbnailImage.filename}`
             : defaultFileImg;
 
           return (

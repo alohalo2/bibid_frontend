@@ -24,9 +24,9 @@ export const getBoards = createAsyncThunk(
     async (searchObj, thunkApi) => {
         try {
             const response = await axios.get('http://localhost:8080/auction', {
-                headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('ACCESS_TOKEN')}`
-                },
+                // headers: {
+                //     Authorization: `Bearer ${sessionStorage.getItem('ACCESS_TOKEN')}`
+                // },
                 params: {
                     searchCondition: searchObj.searchCondition,
                     searchKeyword: searchObj.searchKeyword,
