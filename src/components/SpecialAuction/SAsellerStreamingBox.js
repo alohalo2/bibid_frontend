@@ -90,7 +90,7 @@ const SAsellerSteamingBox = ({channelInfo}) => {
                         </li>
                         <li>
                             <div>
-                                <p id='SAstreamingServerURL_title'><strong>(서버)</strong> 방송 설정의 서버 스트림 URL</p>
+                                <p id='SAstreamingServerURL_title'><strong>서버 URL : </strong> 방송 설정 서버의 스트림 URL</p>
                                 <div className='SAstreamingServerURLBox'>
                                     <div className='SAstreamingServerURL'>
                                         <p id='SAstreamingServerURLId'>{serverURL}</p>
@@ -101,7 +101,7 @@ const SAsellerSteamingBox = ({channelInfo}) => {
                         </li>
                         <li>
                         <div>
-                            <p id='SAstreamingKey_title'><strong>(스트림 키)</strong> 방송 송출할 채널의 스트림 키</p>
+                            <p id='SAstreamingKey_title'><strong>스트림 키 : </strong> 방송 송출할 채널의 스트림 키</p>
                             <div className='SAstreamingKeyBox'>
                                 <div className='SAstreamingKey'>
                                     <p id='SAstreamingKeyId'>
