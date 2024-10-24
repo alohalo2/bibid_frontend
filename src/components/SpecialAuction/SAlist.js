@@ -57,7 +57,7 @@
           {auctionList.map((auction, index) => {
             const thumbnailImage = auction.auctionImageDtoList.find((image) => image.thumbnail === true);
             const imageSrc = thumbnailImage
-              ? `https://kr.object.ncloudstorage.com/bitcamp73/${thumbnailImage.filepath}${thumbnailImage.filename}`
+              ? `https://kr.object.ncloudstorage.com/bitcamp121/${thumbnailImage.filepath}${thumbnailImage.filename}`
               : '/images/defaultFileImg.png';
 
             return (

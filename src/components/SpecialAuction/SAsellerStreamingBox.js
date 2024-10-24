@@ -1,15 +1,19 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../css/SpecialAuction/SAsellerStreamingBox.css';
 
-const SAsellerSteamingBox = () => {
+const SAsellerSteamingBox = ({channelInfo}) => {
 
     const [isKeyVisible, setIsKeyVisible] = useState(false);
 
     // Server URL 
-    const serverURL = 'ewjgwrkoepwkfpoekwp';
+    const serverURL = channelInfo.serverURL;
+
+    useEffect(() => {
+        console.log('channelInfo:', channelInfo);
+    }, [channelInfo]);
 
     // Stream key 
-    const streamKey = 'ewjgwrkoepwkfpoekwp';
+    const streamKey = channelInfo.streamKey;
 
     // 눈모양 클릭하면 Stream key 보이게 or 안보이게
     const toggleKeyVisibility = () => {
@@ -37,11 +41,11 @@ const SAsellerSteamingBox = () => {
                 </div>
                 <div className='SAstreamingStatusContents'>
                     <div>
-                        <p>스트림 키 & 서버 : 생성 중</p>
+                        <p>스트림 키 & 서버 : {channelInfo.channelStatus}</p>
                     </div>
                     <div className='SAstreamingStatusContentsContour'></div>
                     <div>
-                        <p>스트림 송출 : 대기 중</p>
+                        <p>스트림 송출 : {channelInfo.cdnStatusName}</p>
                     </div>
                 </div>
             </div>
@@ -89,7 +93,7 @@ const SAsellerSteamingBox = () => {
                                 <p id='SAstreamingServerURL_title'><strong>(서버)</strong> 방송 설정의 서버 스트림 URL</p>
                                 <div className='SAstreamingServerURLBox'>
                                     <div className='SAstreamingServerURL'>
-                                        <p id='SAstreamingServerURLId'>ewjgwrkoepwkfpoekwp</p>
+                                        <p id='SAstreamingServerURLId'>{serverURL}</p>
                                     </div>
                                     <button onClick={() => copyToClipboard(serverURL)}>복사</button>
                                 </div>
@@ -101,7 +105,7 @@ const SAsellerSteamingBox = () => {
                             <div className='SAstreamingKeyBox'>
                                 <div className='SAstreamingKey'>
                                     <p id='SAstreamingKeyId'>
-                                        {isKeyVisible ? streamKey : '*************'}
+                                        {isKeyVisible ? streamKey : '************'}
                                     </p>
                                     <div className='SAstreamingKeyEyeIcon' onClick={toggleKeyVisibility}>
                                         <img
@@ -119,9 +123,7 @@ const SAsellerSteamingBox = () => {
                 <li>
                     <h4 id='SAbroadcastStart'><strong>방송 시작</strong></h4>
                     <ul>
-                        <p>경매 시작 시간에 맞춰 <strong>수동</strong>으로 방송시작</p>
-                        <p>OBS 프로그램 내 <strong>방송 시작</strong> 버튼 클릭</p>
-                        <p>OBS 프로그램 내 <strong>녹화 시작</strong> 버튼 클릭</p>
+                        <p>경매 시작 시간에 맞춰 <strong>자동</strong>으로 시작</p>
                     </ul>
                 </li>
             </ol>
