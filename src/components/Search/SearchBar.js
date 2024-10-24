@@ -3,18 +3,19 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSearchCondition, changeSearchKeyword } from '../../slices/search/searchSlice'; // 수정된 액션 이름 사용
 import { getBoards } from '../../api/ProductApi';
+import '../../css/Category.css';
 
 const SearchBar = () => {
     const dispatch = useDispatch();
     const searchCondition = useSelector(state => state.auction.searchCondition);
-const searchKeyword = useSelector(state => state.auction.searchKeyword);
+    const searchKeyword = useSelector(state => state.auction.searchKeyword);
 
     const handleChangeSearchCondition = useCallback((e) => {
-        dispatch(changeSearchCondition(e.target.value)); // 수정된 액션 이름 사용
+        dispatch(changeSearchCondition(e.target.value));
     }, [dispatch]);
 
     const handleChangeSearchKeyword = useCallback((e) => {
-        dispatch(changeSearchKeyword(e.target.value)); // 수정된 액션 이름 사용
+        dispatch(changeSearchKeyword(e.target.value)); 
     }, [dispatch]);
 
     const handleSearch = useCallback((e) => {
@@ -27,47 +28,74 @@ const searchKeyword = useSelector(state => state.auction.searchKeyword);
         } else {
 
         dispatch(getBoards({
-            searchCondition: searchCondition, // 수정된 searchCondition 사용
-            searchKeyword: searchKeyword, // 수정된 searchKeyword 사용
+            searchCondition: searchCondition, 
+            searchKeyword: searchKeyword,
             page: 0
         }));
+        
     }
     }, [dispatch, searchCondition, searchKeyword]);
 
     return (
-        <Container component='div' maxWidth='md' style={{marginTop: '3%'}}>
+        <Container component='div' style={{marginTop: '3%', 
+                                           widows: '1200px', 
+                                           height: '200px',
+                                           display: 'flex',
+                                           justifyContent: 'center',
+                                           alignItems: 'center',
+                                           backgroundColor: '#F1F1F1'
+                                           }}>
             <form onSubmit={handleSearch}>
-                <Grid container spacing={1}>
-                    <Grid item md={3}>
+                <div className='SB_searchContainer'>
+                    <div className='SB_searchCondition'>
                         <NativeSelect
                             defaultValue={searchCondition}
                             inputProps={{
                                 name: 'searchCondition'
                             }}
                             fullWidth
-                            onChange={handleChangeSearchCondition} // 수정된 함수 이름 사용
+                            onChange={handleChangeSearchCondition}
+                            sx={{
+                                border: 'none',
+                                '&:before, &:after': {
+                                    display: 'none',
+                                }
+                            }}
+                            style={{ width: '140px',
+                                     backgroundColor: 'white',
+                                     paddingLeft: '10px'
+                             }}
                         >
                             <option value='all'>전체</option>
                             <option value='productName'>물품 제목</option>
                             <option value='category'>카테고리</option>
                             <option value='productDescription'>글 내용</option>
                         </NativeSelect>
-                    </Grid>
-                    <Grid item md={7}>
-                        <TextField
-                            name='searchKeyword'
-                            fullWidth
-                            variant='standard'
-                            value={searchKeyword}
-                            onChange={handleChangeSearchKeyword} // 수정된 함수 이름 사용
-                        />
-                    </Grid>
-                    <Grid item md={2}>
-                        <Button type='submit' color='primary'>
+                    </div>
+                        <div className='SB_textFiled'>
+                            <Container component='div' style={{ 
+                                                                border: '2px solid #BFBFBF', 
+                                                                borderRadius: '5px', 
+                                                                width: '500px', 
+                                                                height: '35px',
+                                                                backgroundColor: 'white' 
+                                                                }}>
+                                <TextField
+                                    name='searchKeyword'
+                                    fullWidth
+                                    variant='standard'
+                                    value={searchKeyword}
+                                    onChange={handleChangeSearchKeyword}
+                                    InputProps={{ disableUnderline: true }}
+                                    style={{
+                                    }}
+                                />
+                            </Container>
+                        </div>
+                        <Button type='submit' className='SB_Button'>
                             검색
                         </Button>
-                    </Grid>
-                </Grid>
+                </div>
             </form>
         </Container>
     );
