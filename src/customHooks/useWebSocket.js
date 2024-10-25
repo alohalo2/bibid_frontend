@@ -16,6 +16,7 @@ const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
   const [bidAmounts, setBidAmounts] = useState({});
   const [bidderNicknames, setBidderNicknames] = useState({});
   const [participantCount, setParticipantCount] = useState({}); // 참여자 수 상태 추가
+  const [auctionStatuses, setAuctionStatuses] = useState({});
 
   // 컬러 배열 정의
   const colors = [
@@ -162,6 +163,30 @@ const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
         },
       });
 
+      // // 경매 종료 구독
+      // client.subscribe(`/topic/auction/end/${auctionIndex}`, (message) => {
+      //   const auctionEndInfo = JSON.parse(message.body);
+      //   console.log("Auction end received:", auctionEndInfo);
+
+      //   // auctionIndex에 따라 경매 종료 상태를 업데이트
+      //   setAuctionStatuses((prev) => ({
+      //     ...prev,
+      //     [auctionIndex]: "ended", // 해당 경매의 상태를 "ended"로 설정
+      //   }));
+      // });
+
+      // // 경매 일시 중지 구독
+      // client.subscribe(`/topic/auction/suspended/${auctionIndex}`, (message) => {
+      //   const auctionSuspendedInfo = JSON.parse(message.body);
+      //   console.log("Auction suspended received:", auctionSuspendedInfo);
+
+      //   // auctionIndex에 따라 경매 중단 상태를 업데이트
+      //   setAuctionStatuses((prev) => ({
+      //     ...prev,
+      //     [auctionIndex]: "suspended", // 해당 경매의 상태를 "suspended"로 설정
+      //   }));
+      // });
+
       client.activate();
       setStompClient(client);
       setIsChatClosed(true);
@@ -264,7 +289,8 @@ const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
     setBidAmounts,
     participantCount, // 추가된 참여자 수 상태 반환
     disconnectWebSocket, // 연결 해제 함수 반환
-    bidderNicknames
+    bidderNicknames,
+    // auctionStatuses
   };
 };
 

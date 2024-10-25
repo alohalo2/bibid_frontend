@@ -12,19 +12,11 @@ function SellerAuctionScreen({
   webSocketProps, auction, remainingTime, closeSellerPage
 }) {
 
-  const obs = useRef(new OBSWebSocket());
+  const obs = useRef(null);
+
   const [isObsConnected, setIsObsConnected] = useState(false); // OBS 소켓 관리
   const [isStreaming, setIsStreaming] = useState(false); // 스트리밍 상태 관리
 
-  const [channelInfo, setChannelInfo] = useState({
-    serverURL: '',
-    streamKey: '',
-    channelStatus: 'CREATING',
-    cdnStatusName: 'CREATING',
-    streamingUrl: []
-  });
-
-  // OBS WebSocket 연결 설정 함수
   const connectOBS = () => {
     obs.current = new OBSWebSocket();
     obs.current.connect('ws://localhost:4455') // OBS WebSocket 서버로 연결
@@ -38,6 +30,52 @@ function SellerAuctionScreen({
         setIsObsConnected(false); // 연결 실패 시 상태 업데이트
       });
   };
+
+  // OBS의 현재 스트리밍 상태 확인 (OBS WebSocket v5)
+  const checkStreamingStatus = () => {
+  if (obs.current) {
+    // 스트리밍 아웃풋 상태 확인
+    obs.current.call('GetOutputStatus', { outputName: 'simple_stream' }) // 아웃풋 이름을 'simple_stream'으로 지정
+      .then(response => {
+        if (response.outputActive) { // outputActive가 true면 스트리밍 중
+          console.log('OBS는 현재 스트리밍 중입니다.');
+          setIsStreaming(true); // 스트리밍 중인 상태로 업데이트
+        } else {
+          console.log('OBS는 스트리밍 중이 아닙니다.');
+          setIsStreaming(false); // 스트리밍이 아닌 상태로 업데이트
+        }
+      })
+      .catch(err => {
+        console.error('OBS 스트리밍 상태 확인 실패:', err);
+      });
+    }
+  };
+  
+  const lastStreamingStatus = useRef(null); // 이전 상태를 저장
+
+  const listenToStreamEvents = () => {
+    if (obs.current) {
+      obs.current.on('StreamStateChanged', (data) => {
+        const isCurrentlyStreaming = data.outputActive;
+        
+        // 현재 상태와 이전 상태가 다를 때만 로그 출력 및 상태 업데이트
+        if (lastStreamingStatus.current !== isCurrentlyStreaming) {
+          if (isCurrentlyStreaming) {
+            console.log('OBS 스트리밍이 시작되었습니다.');
+            setIsStreaming(true);
+          } else {
+            console.log('OBS 스트리밍이 중지되었습니다.');
+            setIsStreaming(false);
+          }
+          
+          // 현재 상태를 마지막 상태로 업데이트
+          lastStreamingStatus.current = isCurrentlyStreaming;
+        }
+      });
+    }
+  };
+
+  const imagePath = 'C:/Users/BIT/Desktop/최종 - 프론트/public/images/bid.gif';
 
   const displayBidWithImageOnOBS = (bidAmount, bidderNickname, imagePath) => {
     if (isObsConnected) {
@@ -76,74 +114,20 @@ function SellerAuctionScreen({
           obs.current.call('RemoveInput', { inputName: 'Bid Text Overlay' });
           obs.current.call('RemoveInput', { inputName: 'Bid Image Overlay' });
           console.log('OBS에서 이미지 및 텍스트 제거 성공');
-        }, 50000);  // 5초 후 제거
+        }, 10000);  // 5초 후 제거
       }).catch(err => {
         console.error('OBS에 이미지 또는 텍스트 추가 실패:', err);
       });
     }
   };
 
-
-  // OBS의 현재 스트리밍 상태 확인 (OBS WebSocket v5)
-  const checkStreamingStatus = () => {
-    if (obs.current) {
-      // 스트리밍 아웃풋 상태 확인
-      obs.current.call('GetOutputStatus', { outputName: 'simple_stream' }) // 아웃풋 이름을 'simple_stream'으로 지정
-        .then(response => {
-          if (response.outputActive) { // outputActive가 true면 스트리밍 중
-            console.log('OBS는 현재 스트리밍 중입니다.');
-            setIsStreaming(true); // 스트리밍 중인 상태로 업데이트
-          } else {
-            console.log('OBS는 스트리밍 중이 아닙니다.');
-            setIsStreaming(false); // 스트리밍이 아닌 상태로 업데이트
-          }
-        })
-        .catch(err => {
-          console.error('OBS 스트리밍 상태 확인 실패:', err);
-        });
-    }
-  };
-
-   // OBS에서 스트리밍 상태 이벤트 감지
-   const listenToStreamEvents = () => {
-    if (obs.current) {
-      obs.current.on('StreamStateChanged', (data) => {
-        if (data.outputActive) {
-          console.log('OBS 스트리밍이 시작되었습니다.');
-          setIsStreaming(true); // 스트리밍 시작 상태로 변경
-        } else {
-          console.log('OBS 스트리밍이 중지되었습니다.');
-          setIsStreaming(false); // 스트리밍 중지 상태로 변경
-        }
-      });
-    }
-  };
-
-  const imagePath = 'D:/lecture/Final Project(Crown_bids)/frontend/public/images/bid.gif';
-
-  // 입찰 정보 처리 (WebSocket에서 받은 정보 사용)
-  useEffect(() => {
-    if (webSocketProps.bidAmounts[auction.auctionIndex]) {
-      const bidAmount = webSocketProps.bidAmounts[auction.auctionIndex];
-      const bidderNickname = webSocketProps.bidderNicknames[auction.auctionIndex];
-      displayBidWithImageOnOBS(bidAmount, bidderNickname, imagePath);
-    }
-  }, [webSocketProps.bidAmounts, webSocketProps.bidderNicknames, auction.auctionIndex]);
-
-  // OBS WebSocket 연결 및 재연결 처리
-  useEffect(() => {
-    connectOBS(); // 컴포넌트 마운트 시 OBS 연결
-    listenToStreamEvents();
-
-    // 컴포넌트 언마운트 시 WebSocket 연결 해제 및 이벤트 리스너 제거
-    return () => {
-      if (obs.current) {
-        obs.current.off('StreamStateChanged'); // 이벤트 리스너 제거
-        obs.current.disconnect();
-        console.log('OBS WebSocket 연결 해제 및 리스너 제거');
-      }
-    };
-  }, []);
+  const [channelInfo, setChannelInfo] = useState({
+    serverURL: '',
+    streamKey: '',
+    channelStatus: 'CREATING',
+    cdnStatusName: 'CREATING',
+    streamingUrl: []
+  });
 
   useEffect(() => {
     const fetchChannelInfo = async () => {
@@ -172,8 +156,33 @@ function SellerAuctionScreen({
     fetchChannelInfo();
   }, [auction.auctionIndex]);
 
+    // OBS WebSocket 연결 및 재연결 처리
+    useEffect(() => {
+      connectOBS(); // 컴포넌트 마운트 시 OBS 연결
+      
+      if (obs.current) {
+        // StreamStateChanged 이벤트 리스너가 중복 등록되지 않도록 설정
+        obs.current.removeAllListeners('StreamStateChanged');
+        listenToStreamEvents();
+    }
+  
+      // 컴포넌트 언마운트 시 WebSocket 연결 해제 및 이벤트 리스너 제거
+      return () => {
+        if (obs.current) {
+            obs.current.disconnect();
+            console.log('OBS WebSocket 연결 해제 및 리스너 제거');
+        }
+      };
+    }, []);
 
-
+   // 입찰 정보 처리 (WebSocket에서 받은 정보 사용)
+   useEffect(() => {
+    if (webSocketProps.bidAmounts[auction.auctionIndex]) {
+      const bidAmount = webSocketProps.bidAmounts[auction.auctionIndex];
+      const bidderNickname = webSocketProps.bidderNicknames[auction.auctionIndex];
+      displayBidWithImageOnOBS(bidAmount, bidderNickname, imagePath);
+    }
+  }, [webSocketProps.bidAmounts, webSocketProps.bidderNicknames, auction.auctionIndex]);
 
   const [isMikeOn, setIsMikeOn] = useState(true); // 마이크 상태 관리
   const [isLive, setIsLive] = useState(false); // 라이브 상태 관리
@@ -183,7 +192,6 @@ function SellerAuctionScreen({
   const { messages, inputMessage, setInputMessage, sendMessage, currentPrices, participantCount, bidderNicknames } = webSocketProps;
 
   const messagesEndRef = useRef(null);
-
 
   const auctionStartTime = new Date(auction.startingLocalDateTime);
   const auctionEndTime = new Date(auction.endingLocalDateTime);
