@@ -35,6 +35,7 @@ import KakaoLogin from "./pages/oauth2test/KakaoLogin";
 import Mypage_UserInfo from './pages/mypage/Mypage_UserInfo';
 import Mypage_AuctionInfo from './pages/mypage/Mypage_AuctionInfo';
 import Mypage_Wallet from './pages/mypage/Mypage_Wallet';
+import Mypage_UserInfoModify from './pages/mypage/Mypage_UserInfoModify';
 
 function App() {
 
@@ -70,6 +71,7 @@ function App() {
                         {/* mypage 에서 지정한 mui 버튼 스타일 충돌 */}
                         <Route path="join/*" element={<JoinRoutes/>}/>
                         <Route path='/mypage/userinfo/' element={<Mypage_UserInfo/>}/>
+                        <Route path='/mypage/userInfo/modify' element={<Mypage_UserInfoModify/>}/>
                         <Route path='/mypage/auctioninfo/' element={<Mypage_AuctionInfo/>}/>
                         <Route path='/mypage/wallet/' element={<Mypage_Wallet/>}/>
                             {/* <Route path='info' element={<Mypage_info/>}/>
