@@ -7,6 +7,8 @@ import { setBoards } from '../../slices/search/searchSlice';
 const ProductLineForSearch = () => {
     const products = useSelector(state => state.auction.boards);
 
+    const bucketName = process.env.REACT_APP_BUCKET_NAME;
+
     useEffect(() => {
         if (products) {
             // boards 데이터를 products로 설정
@@ -33,7 +35,7 @@ const ProductLineForSearch = () => {
 
                     const thumbnailImage = product.auctionImageDtoList.find(image => image.thumbnail === true);
                     const imageSrc = thumbnailImage && thumbnailImage.filetype === 'image'
-                        ? `https://kr.object.ncloudstorage.com/bitcamp119/${thumbnailImage.filepath}${thumbnailImage.filename}`
+                        ? `https://kr.object.ncloudstorage.com/${bucketName}/${thumbnailImage.filepath}${thumbnailImage.filename}`
                         : defaultFileImg;
 
                     return (
