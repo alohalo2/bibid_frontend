@@ -4,7 +4,7 @@ import { Client } from '@stomp/stompjs';
 import { useSelector } from 'react-redux';
 import Cookies from "js-cookie";
 
-const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
+const useWebSocket = (auctionIndex, isChatClosed) => {
 
   const loginMemberNickname = useSelector((state) => state.memberSlice.nickname);
 
@@ -53,6 +53,7 @@ const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
       const token = Cookies.get('ACCESS_TOKEN');
 
       const socket = new SockJS('http://localhost:8080/ws');
+
       const client = new Client({
         webSocketFactory: () => socket,
         connectHeaders: {
@@ -189,8 +190,6 @@ const useWebSocket = (auctionIndex, isChatClosed, setIsChatClosed) => {
 
       client.activate();
       setStompClient(client);
-      setIsChatClosed(true);
-
     };
 
     connectWebSocket();
