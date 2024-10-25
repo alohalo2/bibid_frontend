@@ -4,6 +4,8 @@ import  axios  from 'axios';
 import defaultFileImg from '../../images/defaultFileImg.png';
 
 const BestProduct_Elec = ({category}) => {
+  
+  const bucketName = process.env.REACT_APP_BUCKET_NAME;
 
   const [bestProducts, setBestProducts] = useState([]);
 
@@ -35,7 +37,7 @@ const BestProduct_Elec = ({category}) => {
 
         const thumbnailImage = auction.auctionImageDtoList.find(image => image.thumbnail === true);
         const imageSrc = thumbnailImage && thumbnailImage.filetype === 'image'
-          ? `https://kr.object.ncloudstorage.com/bitcamp73/${thumbnailImage.filepath}${thumbnailImage.filename}`
+          ? `https://kr.object.ncloudstorage.com/${bucketName}/${thumbnailImage.filepath}${thumbnailImage.filename}`
           : `${defaultFileImg}`;  // 이미지가 없거나 썸네일이 아닐 경우 기본 이미지
 
         return (

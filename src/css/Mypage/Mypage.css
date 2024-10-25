@@ -1,998 +1,183 @@
-.etc1_container {
+.blank {
+    height: 100px;
+}
+
+.Mypage_Container {
+    width: 1200px;
+    height: max-content;
+    background-color: #BFBFBF;
     display: flex;
-    max-width: 1200px;
-    margin: 20px auto;
-}
-/* Mypage 사이드바 관련 css */
-.etc1_sidebar {
-    width: 21%;
-    height: 55rem;
-    background: #fff;
-    padding: 1.5%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-    border: 1px solid black;
-    border-radius: 10px;
 }
 
-@media screen and (max-width: 700px) {
-    img {
-        width: 174px;
-    }
-
-    .etc1_seller img {
-        width: 36px;
-    }
-
-    .etc1_buyer img {
-        width: 36px;
-    }
-}
-
-.etc1_sidebar img {
-    padding: 0 3.125rem;
-    object-fit: contain;
-}
-
-.etc1_sidebar h2 {
-    margin-top: 0;
-    text-align: center;
-}
-
-.etc1_seller_buyer {
+.Mypage_SideBarContainer {
+    width: 300px;
+    height: 800px;
+    background-color: red;
     display: flex;
-    justify-content: flex-start;
-    margin: 1.25rem 0;
-    padding: 0 0 1.875rem;
-    border-bottom: 1px solid black;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 2px solid #BFBFBF;
 }
 
-/* .etc1_sidebar nav h2 {
-    text-shadow: 0px 2px 4px black;
-} */
-
-.etc1_sidebar span {
-    padding: 0 42px;
-}
-
-.etc1_sidebar li {
-    list-style-type: none;
-}
-
-.etc1_sidebar a:hover {
-    color: #0A369D;
-}
-
-.etc1_sidebar nav ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: center;
-}
-
-.etc1_sidebar nav ul a {
-    margin: 10px 0;
-    text-align: left;
+.Mypage_SideBarProfile {
     display: flex;
+    width: 300px;
+    height: 300px;
+    background-color: blue;
+    border: 2px solid #BFBFBF;
+    border-radius: 5px;
+    justify-content: center;
     align-items: center;
-    font-weight: bold;
+    flex-direction: column;
 }
 
-.etc1_sidebar nav ul li {
-    margin: 10px 0;
-    text-align: left;
+.Mypage_ProfileImg {
     display: flex;
-    align-items: center;
-}
-
-.etc1_sidebar nav ul li img {
-    width: 21px;
-    margin-top: 15px;
-    margin-right: -70px;
-    margin-bottom: 15px;
-    
-}
-.etc1_sidebar nav ul li a {
-    text-decoration: none;
-    color: #333;
-}
-
-/* Mypage_info 컴포넌트 관련 css */
-.etc1_profile {
-    width: 75%;
-    height: 55rem;
-    margin-left: 2%;
-    background: #fff;
-    padding: 1.5%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-    border: 1px solid black;
-    border-radius: 10px;
-}
-
-
-.etc1_profile_title {
-    margin-top: 2%;
-    text-align: center;
-    font-weight: bold;
-}
-
-.etc1_profile-image {
-    text-align: center;
-}
-
-.etc1_profile-image img {
-    border-radius: 50%;
     width: 200px;
     height: 200px;
-    display: inline;
-}
-
-.etc1_info {
-    margin-top: 20px;
-    width: 100%;
-    border-top: 4px solid gray;
-    border-bottom: 4px solid gray;
-    border-collapse: collapse;
-}
-
-.etc1_info tr {
-    border-bottom: 1px solid gray;
-    height: 50px;
-}
-
-.etc1_address_detail_1,.etc1_address_detail_2 {
-    width: 100%;
-    height: 3.438rem;
-    box-sizing: border-box;
-    display: block;
-    border-bottom: 1px solid gray;
-}
-
-.etc1_info .etc1_address_detail_2 {
-    border-bottom: none;
-}
-
-.etc1_info th {
-    font-weight: bold;
-}
-.etc1_info p {
-    margin: 10px 0;
-}
-
-button:hover {
-    background-color: #0056b3;
-    color: white;
-    font-weight: bold;
-}
-
-.info_update_btn {
-    margin-top: 20px;
-    margin-left: 45%;
-    width: 100px;
-    height: 30px;
-    cursor: pointer;
-    background-color: #0A369D;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
+    border-radius: 100%;
+    background-color: red;
+    border: 5px solid #BFBFBF;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: end;
     
 }
 
-/* Mypage_info_update 컴포넌트 관련 css */
-.etc1_change_profile_image {
-    margin-top: 20px;
-    margin-left: 38%;
-    width: 200px;
-    background-color: #BFBFBF;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.Mypage_ProfileImgModifyBtn {
+    width: 40px;
+    height: 40px;
+    background-color: black;
 }
 
-.etc1_validation_box {
-    text-align: right;
-}
-
-strong {
-    color: #0056b3;
-}
-
-.etc1_validation_msg {
-    font-weight: bold;
-}
-
-.etc1_info input {
-    height: 30px;
-}
-
-.etc1_info select {
-    margin-left: 10px;
-    height: 35px;
-}
-
-.etc1_address_search_button {
-    margin: 0 0 0 20px;
-    width: 100px;
-    height: 35px;
-    background-color: #4B4B4B;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#etc1_address_detail_search2 {
-    width: 90%;
-}
-
-.etc1_button_roundary {
-    display: inline-flex;
-    margin-left: 35%;
-
-}
-
-#etc1_update_button {
-    margin-top: 10px;
-    width: 100px;
-    height: 30px;
-    background-color: #BFBFBF;
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-}
-
-#etc1_update_button:hover {
-    margin-top: 10px;
-    width: 100px;
-    height: 30px;
-    background-color: #0056b3;
-    color:white;
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-}
-
-#etc1_cancel_button {
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 100px;
-    height: 30px;
-    background-color: #BFBFBF;
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-}
-
-#etc1_cancel_button:hover {
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 100px;
-    height: 30px;
-    background-color: #0056b3;
-    color:white;
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-}
-
-/* Mypage_bids_history 관련 css */
-.etc1_auction-container {
-    max-width: 75%;
-    margin-left: 2%;
-    width: 100%;
-    border: 1px solid black;
-    border-radius: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    padding: 20px;
-}
-
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.etc1_tabs button {
-    width: 17.5%;
-    background-color: #BFBFBF;
-    color: black;
-    font-weight: bold;
-    border-radius: 0;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-}
-
-.etc1_tabs .etc1_active {
-    width: 17.5%;
-    background-color: white;
-    color: black;
-    font-weight: bold;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-}
-
-.etc1_tabs button:hover {
-    background-color: white;
-    font-weight: bold;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-}
-
-.etc1_auction_table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    border: 1px solid black;
-    /* border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black; */
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.etc1_auction_table th, .etc1_auction_table td {
-    border: none;
-    padding: 10px;
-    text-align: center;
-}
-
-.etc1_auction_table th {
-    background-color: #f2f2f2;
-}
-
-.etc1_auction_table img {
-    width: 100px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-.etc1_auction_table button {
-    width: 2rem;
-    background-color: white;
-    border: none;
-}
-
-.etc1_auction_table button:hover {
-    border: 1px solid black;
-    border-radius: 10px;
-}
-
-.etc1_bids_button_roundary {
-    text-align: center;
-    padding-bottom: 20px;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-.etc1_bids_button_roundary button {
-    background-color: #BFBFBF;
-    margin-left: 10px;
-    width: 100px;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-}
-
-.etc1_bids_button_roundary button:hover {
-    background-color: white;
-    border: 1px solid black;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#bids_interest_delete_btn {
-    background-color: #0056b3;
-    color: white;
-    font-weight: bold;
-}
-
-/* Mypage_interest_bids_detail 관련 */
-.etc1_interest_bids_detail {
-    max-width: 75%;
-    margin-left: 2%;
-    width: 100%;
-    height: 55rem;
-    border: 1px solid black;
-    border-radius: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    padding: 18px;
-}
-
-.etc1_interest_bids_detail_box {
+.Mypage_SideBarCategory {
+    width: 300px;
+    height: 500px;
+    background-color: bisque;
     display: flex;
+    border: 2px solid #BFBFBF;
+    border-radius: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
-.etc1_interest_bids_detail_info {
-    margin-left: 2%;
-    width: 100%;
-}
-
-.etc1_interest_bids_title_box {
+.Mypage_ProfileBoxContainer {
     display: flex;
+    width: 900px;
+    height: 800px;
+    background-color: yellowgreen;
+    display: flex;
+    border-radius: 5px;
+    border: 2px solid #BFBFBF;
+    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
 }
 
-.etc1_interest_bids_title_box .interest_heart_icon {
-    padding-top: 5%;
-    height: 24px;
+.Mypage_UserInfoContainer {
+    display: flex;
+    width: 800px;
+    height: 600px;
+    background-color: gray;
+    flex-direction: column;
 }
 
-.etc1_current_price_box {
-    display: flex;
+.Mypage_UserInfoDetail {
+    display: grid;
+    width: 800px;
+    height: 75px;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.Mypage_UserInfoDetail2 {
+    display: grid;
+    width: 800px;
+    height: 150px;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.Mypage_UserInfoDetail2 .right-column {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
     align-items: center;
 }
 
-.etc1_current_price_title {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.etc1_current_price_value {
-    margin-left: 13%;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.etc1_rest_time_box {
+.rightOne, .rightTwo {
     display: flex;
-    margin-top: 5%;
+    width: 500px;
+    height: 75px;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-.etc1_rest_time_title {
-    margin-top: 3%;
-    font-size: 18px;
-}
-
-.etc1_rest_time_value {
-    width: 100%;
-    margin-left: 27%;
-    font-size: 20px;
-}
-
-.etc1_due_time_value {
-    width: 100%;
-    margin-left: 27%;
-    font-size: 18px;
-    color:gray;
-}
-
-.etc1_bids_number_box {
+.Mypage_UserInfoTitle {
     display: flex;
-    margin-top: 5%;
+    height: 75px;
+    align-items: center;
 }
 
-.etc1_bids_number_title {
-    font-size: 18px;
-}
-
-.etc1_bids_number_value, .etc1_bids_record_value, .etc1_bids_unit_value {
-    margin-left: 13%;
-    font-size: 18px;
-    color: gray;
-}
-
-.etc1_bids_record_box {
+.Mypage_UserInfoModifyBtn {
     display: flex;
-    margin-top: 5%;
+    width: 100px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
 }
 
-.etc1_bids_record_title {
-    font-size: 18px;
-}
-
-.etc1_bids_unit_box {
+.Mypage_AuctionInfoContainer {
     display: flex;
-    margin-top: 5%;
+    width: 800px;
+    height: 800px;
+    background-color: gray;
+    flex-direction: column;
 }
 
-.etc1_bids_unit_title {
-    font-size: 18px;
-}
-
-.etc1_bids_hope_price_box {
+.Mypage_WalletInfoContainer {
     display: flex;
-    margin-top: 5%;
+    width: 800px;
+    height: 150px;
+    background-color: black;
 }
 
-.etc1_bids_hope_price_title {
-    margin-top: 4%;
-    font-size: 18px;
-}
-
-.etc1_bid_input_price {
-    margin-top: 4%;
-    margin-left: 8%;
-    height: 25px;
-    text-align: right;
-}
-
-.etc1_bids_input_price_unit {
-    margin-top: 4%;
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
-.etc1_button_container {
-    display: inline-grid;
-    gap: 10%;
-}
-
-.etc1_bid_input_price {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.etc1_button_container .bid_pirce_plus_btn, .bid_pirce_minus_btn {
-    background-color: #BFBFBF;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.etc1_bids_predict_price_box {
+.Mypage_WalletBoxContainer {
     display: flex;
-}
-
-.etc1_bids_predict_price_title {
-    margin-top: 4%;
-    font-size: 18px;
-}
-
-.etc1_predict_value_box {
-    display: grid;
-    margin-top: 2%;
-    margin-left: 8%;
-}
-
-.etc1_predict_value {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.etc1_more_bids_images {
+    width: 900px;
+    height: 800px;
+    background-color: yellowgreen;
     display: flex;
+    border-radius: 5px;
+    border: 2px solid #BFBFBF;
+    align-items: center;
+    flex-direction: column;
 }
 
-.etc1_image_box {
-    display: contents;
-}
-.etc1_predict_and_charge_value {
-    color:gray;
-}
-
-.etc1_arrow_icon {
-    margin-bottom: 1%;
-}
-
-.etc1_slide_box {
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
-.etc1_line_box {
-    margin-top: 2%;
-    margin-left: 2%;
-}
-
-.etc1_seller_info_box {
-    margin-top: 4px;
-    margin-left: 2%;
-}
-
-.etc1_seller_info_box strong {
-    font-size: 20px;
-    color: black;
-}
-
-.etc1_seller_info_box button {
-    margin-top: 3%;
-    margin-left: 15%;
-    background-color: #BFBFBF;
-    color: black;
-}
-
-.etc1_bids_btn_box {
+.Mypage_WalletUsedContainer {
     display: flex;
+    width: 700px;
+    height: 500px;
+    background-color: pink;
+    justify-content: center;
+    align-items: center;
 }
 
-.etc1_bids_buy_btn {
-    margin-top: -10%;
-    margin-left: 48%;
-    
+.Mypage_WalletUsed {
+    width: 650px;
+    height: 450px;
+    background-color: rosybrown;
+    overflow-y: auto;
 }
 
-.etc1_bids_buy_btn button {
-    display: block;
-    width: 90%;
-    background-color: #BFBFBF;
-    color: black;
-    font-weight: bold;
-}
-
-.etc1_bid_buy_btn {
-    margin-top: 1%;
-    margin-bottom: 2%;
-}
-
-.etc1_bid_buy_btn, .etc1_instant_buy_btn {
-    font-size: 18px;
-}
-
-.etc1_delete_interest_bids_btn {
-    margin-top: 14%;
-    margin-bottom: 1%;
-    margin-left: 33%;
-    background-color: #0A369D;
-    width: 30%;
-    font-size: 18px;
-}
-/* Mypage_wallet_management 관련 */
-.etc1_wallet_management_container {
-    max-width: 75%;
-    margin-left: 2%;
-    width: 100%;
-    height: 55rem;
+.test1 {
+    height: 100px;
+    background-color: white;
     border: 1px solid black;
-    border-radius: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    padding: 18px;
-}
-
-.etc1_wallet_menu {
-    display: flex;
-}
-
-.etc1_wallet_menu img {
-    height: 50px;
-}
-
-.etc1_wallet_balance {
-    display: flex;
-    margin-top: 3%;
-    padding-top: 3%;
-}
-
-.etc1_wallet_balance_title {
-    margin-left: 12%;
-    font-size: 24px;
-    font-weight: bold;
-    width: 110px;
-}
-
-.etc1_wallet_balance_value {
-    margin-left: 12%;
-    font-size: 24px;
-    font-weight: bold;
-    width: 230px;
-}
-
-.etc1_wallet_manage {
-    display: flex;
-    font-size: 18px;
-    margin-top: 3%;
-    text-align: center;
-    gap: 10%;
-}
-
-.etc1_bids_sell {
-    margin-left: 45%;
-}
-
-.etc1_wallet_management_container h3 {
-    margin-left: 5%;
-}
-
-.etc1_cash_charge_history {
-    max-width: 85%;
-    margin-top: 0%;
-    margin-left: 4.2%;
-    width: 100%;
-    height: 31.25rem;
-    border: 1px solid black;
-    border-radius: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-}
-
-.etc1_cash_charge_history_item {
-    display: flex;
-    padding-bottom: 2%;
-    border-bottom: 1px solid gray;
-}
-
-.etc1_cash_charge_history .etc1_info {
-    margin-left: 3%;
-    width: 100%;
-}
-
-.etc1_cash_charge_history_item_info_type_date {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2%;
-    width: 40rem;
-}
-
-.etc1_cash_charge_history_item_info_type_date .etc1_cash_charge_history_item_info_type {
-    margin-bottom: 1%;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.etc1_cash_charge_history_item_info_type_date .etc1_cash_charge_history_item_info_date {
-    color:#BFBFBF;
-}
-
-.etc1_cash_charge_history_item_info_calculate_balance {
-    margin-top: 1%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.etc1_cash_charge_history_item_info_calculate_balance .etc1_cash_charge_history_item_info_balance {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.etc1_balance_up {
-    color: #D42D2D;
-}
-
-.etc1_balance_down {
-    color: #0056b3;
-}
-
-.etc1_exchange_img_class, .etc1_seller_img_class, .etc1_buyer_img_class {
-    height: 100%;
-    margin-right: 3%;
-    padding-top: 4%;
-}
-
-.etc1_cash_img_class {
-    height: 100%;
-    margin-right: 2%;
-    padding-top: 4%;
-}
-
-.etc1_charge_btn {
-    margin-top: 3%;
-    margin-left: 43%;
-    width: 7rem;
-    font-size: 20px;
-    background-color: #0056b3;
-}
-
-/* Mypage_bids_progress 관련 */
-.etc1_category_progress {
-    border : 1px solid #BFBFBF;
-    border-radius: 8px;
-}
-
-.etc1_category_progress h3 {
-    text-align: center;
-}
-
-.etc1_category_progress button {
-    margin: 0 1% 1% 2.5%;
-    width: 8.5rem;
-    height: 2rem;
-    color: black;
-    background-color: #BFBFBF;
-    font-weight: bold;
-}
-
-.etc1_category_progress button:hover {
-    background-color: #0056b3;
-    color: white;
-}
-
-.etc1_common_action_item {
-    margin-top: 2%;
-    border : 1px solid #BFBFBF;
-    border-radius: 8px;
-    height: 20rem;
-}
-
-.etc1_common_action_status {
-    background-color: #f4f4f4;
-    display: flex;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    height: 5rem;
-}
-
-.etc1_common_action_status h3 {
-    margin-top: 3%;
-    margin-left: 2%;
-}
-
-.etc1_progressbar {
-    display: block;
-    margin-top: 2%;
-    margin-left: 5%;
-    width: 33rem;
-}
-
-.etc1_progressbar_img img {
-    height: 0.3rem;
-}
-
-/* .etc1_progressbar_img_left {
-    background-color: #0056b3;
-    width: 10rem;
-}
-
-.etc1_progressbar_img_right {
-    background-color: #BFBFBF;
-    width: 23rem;
-} */
-
-.etc1_progressbar_msg {
-    display: flex;
-    justify-content: space-between;
-}
-
-.etc1_prgressbar_info_btn {
-    margin-top: 3%;
-    margin-left: 3%;
-}
-
-.etc1_prgressbar_info_btn button {
-    background-color: #BFBFBF;
-    color: black;
-    font-weight: bold;
-    width: 8.5rem;
-}
-
-.etc1_bids_detail_info {
-    display: flex;
-}
-
-.etc1_bids_image {
-    margin-top: 3%;
-    margin-left: 3%;
-    width: 7rem;
-    height: 7rem;
-}
-
-.etc1_bids_title {
-    margin-left: 5%;
-    font-weight: bold;
-}
-
-.etc1_bids_seller_info {
-    display: flex;
-}
-
-.etc1_bids_seller_price {
-    display: grid;
-    gap: 10%;
-    width: 7rem;
-}
-
-.etc1_bid_seller_number {
-    display: grid;
-    gap: 10%;
-    height: 4rem;
-    border-left: 3px solid #BFBFBF;
-    border-right: 3px solid #BFBFBF;
-    margin-left: 2%;
-    margin-right: 2%;
-    padding-left: 4%;
-    padding-right: 4%;
-    text-align: center;
-}
-
-.etc1_bid_seller_name {
-    display: grid;
-    text-align: center;
-    gap: 10%;
-    width: 7rem;
-}
-
-.etc1_bids_deal_or_cancel {
-    display: grid;
-    margin: 3% 0;
-    width: 8.5rem;
-    height: 5rem;
-}
-
-.etc1_bids_deal_or_cancel button {
-    margin-bottom: 5%;
-    background-color: #BFBFBF;
-    color: black;
-    font-weight: bold;
-}
-
-.etc1_bids_warning_msg {
-    display: grid;
-    margin-top: 1%;
-    margin-left: 20%;
-}
-
-.etc1_warning_red {
-    color: red;
-    font-size:large;
-    font-weight: bold;
-}
-
-/* Mypage_qna 관련 */
-.etc1_qna {
-    max-width: 75%;
-    margin-left: 1.5%;
-    width: 100%;
-    border: 1px solid black;
-    border-radius: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    padding: 20px;
-}
-
-.etc1_qna_box {
-    border: 1px solid black;
-    border-radius: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    padding: 10% 3%;
-}
-
-.etc1_check_msg {
-    color:gray;
-}
-
-.etc1_qna_list {
-    width: 100%;
-    border-top: 4px solid gray;
-    border-bottom: 1px solid black;
-    border-collapse: collapse;
-}
-
-.etc1_qna_list th {
-    font-size: 20px;
-    font-weight: bold;
-    padding: 1% 0;
-}
-
-.etc1_qna_list td {
-    text-align: center;
-    border-top: 1px solid #BFBFBF;
-    padding: 0.7% 0;
-}
-
-.etc1_qna_accept {
-    color: orange;
+    border-radius: 5px;
+    margin: 5px 5px 5px 5px;
 }

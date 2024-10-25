@@ -3,6 +3,9 @@ import '../../css/Category.css';
 import defaultFileImg from '../../images/defaultFileImg.png';
 
 const ProductLine = ({ products = {} }) => {
+
+  const bucketName = process.env.REACT_APP_BUCKET_NAME;
+
   return (
     <div className='CTG_productLine'>
       <div className='CTG_grid-container-product'>
@@ -24,7 +27,7 @@ const ProductLine = ({ products = {} }) => {
           // 이미지 URL 설정
           const thumbnailImage = product.auctionImageDtoList.find(image => image.thumbnail === true);
           const imageSrc = thumbnailImage && thumbnailImage.filetype === 'image'
-            ? `https://kr.object.ncloudstorage.com/bitcamp73/${thumbnailImage.filepath}${thumbnailImage.filename}`
+            ? `https://kr.object.ncloudstorage.com/${bucketName}/${thumbnailImage.filepath}${thumbnailImage.filename}`
             : defaultFileImg;
 
           return (

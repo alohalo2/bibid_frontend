@@ -7,6 +7,9 @@ import SearchAddressModal from "../../components/etc2_join/SearchAddressModal";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const Mypage_info_update = () => {
+
+	const bucketName = process.env.REACT_APP_BUCKET_NAME;
+
 	const [joinForm, setJoinForm] = useState({
 		memberIndex: '',
 		profileImage: '',
@@ -344,7 +347,7 @@ const Mypage_info_update = () => {
 			<form onSubmit={handleModify} >
 			<div className='etc1_profile-image'>
 				<img src={joinForm.profileImage && joinForm.profileImage.filetype === 'image'
-					? `https://kr.object.ncloudstorage.com/bitcamp73/${joinForm.profileImage.filepath}${joinForm.profileImage.newfilename}`
+					? `https://kr.object.ncloudstorage.com/${bucketName}/${joinForm.profileImage.filepath}${joinForm.profileImage.newfilename}`
 					: profileImageUrl
 				 } 
 					 alt='Profile Image'

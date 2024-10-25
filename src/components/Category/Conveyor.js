@@ -4,6 +4,8 @@ import '../../css/Category.css';
 import  axios  from 'axios';
 import defaultFileImg from '../../images/defaultFileImg.png';
 
+const bucketName = process.env.REACT_APP_BUCKET_NAME;
+
 const View = styled.div`
     display: flex;
     width:1200px;
@@ -75,7 +77,7 @@ function Conveyor() {
                 {bestProducts.concat(bestProducts).map((auction, index) => {
                     const thumbnailImage = auction.auctionImageDtoList.find(image => image.thumbnail === true);
                     const imageSrc = thumbnailImage && thumbnailImage.filetype === 'image'
-                        ? `https://kr.object.ncloudstorage.com/bitcamp73/${thumbnailImage.filepath}${thumbnailImage.filename}`
+                        ? `https://kr.object.ncloudstorage.com/${bucketName}/${thumbnailImage.filepath}${thumbnailImage.filename}`
                         : `${defaultFileImg}`;
 
                     return (
