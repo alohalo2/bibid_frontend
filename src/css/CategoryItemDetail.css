@@ -1,9 +1,9 @@
-/* 모든 요소의 기본 여백 제거 */
+/* 모든 요소의 기본 여백 제거
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 /* 호버 효과 추가 스타일 */
 .CID-hover-link {
@@ -46,6 +46,7 @@ div.CID-item-block{
     width: 100%;
     height: auto;
     border: 1px solid #ddd;
+    margin-bottom: 10px;
 }
 
 .CID-thumbnail-container {
@@ -101,15 +102,19 @@ div.CID-item-block{
 }
 
 .CID-bid-title {
-    font-size: 22px;
+    font-size: 30px;
     font-weight: bold;
-    margin-bottom: 20px; /* 간격을 넓힘 */
+    margin-bottom: 30px; /* 간격을 넓힘 */
 }
 
 .CID-price {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 30px; /* 간격을 넓힘 */
+}
+.CID-price span{
+  border-bottom: 2px solid #f1f1f1; /* 두께 2px, 회색 밑줄 */
+  padding-bottom: 5px; /* 밑줄과 텍스트 사이에 약간의 간격 추가 */
 }
 
 .CID-bid-details {
@@ -123,7 +128,7 @@ div.CID-item-block{
     font-size: 16px;
     font-weight: bold;
     margin-top: 20px;
-    margin-bottom: 30px; /* 간격을 넓힘 */
+    margin-bottom: 20px; /* 간격을 넓힘 */
 }
 
 .CID-bid-controls {
@@ -184,7 +189,7 @@ div.CID-item-block{
     font-weight: bold;
     color: #444;
     margin-top: 10px;
-    margin-bottom: 30px; /* 간격을 넓힘 */
+    margin-bottom: 35px; /* 간격을 넓힘 */
 }
 
 .CID-divider {
