@@ -9,6 +9,10 @@ const CategoryItemDetail = () => {
     const [auctionItem, setAuctionItem] = useState(null);
     const [auctionBidInfo, setAuctionBidInfo] = useState(null);
     const [seller, setSeller] = useState(null);
+    const [biddingMember, setBiddingMember] = useState(null);
+    const [infoExtension, setInfoExtension] = useState(null);
+    const [sellerDetailInfo, setSellerDetailInfo] = useState(null);
+    const [auctionImages, setAuctionImages] = useState(null);
 
     return (
         <div className='CID-item-block'>
@@ -17,11 +21,15 @@ const CategoryItemDetail = () => {
                 setAuctionItem={setAuctionItem}
                 setAuctionBidInfo={setAuctionBidInfo}
                 setSeller={setSeller}
+                setBiddingMember={setBiddingMember}
+                setInfoExtension={setInfoExtension}
+                setSellerDetailInfo={setSellerDetailInfo}
+                setAuctionImages={setAuctionImages}
             />
 
-            <CategoryItemDetailMain auctionItem = {auctionItem} auctionBidInfo = {auctionBidInfo} seller = {seller}/>
-            <CategoryItemDetailInfo auctionItem = {auctionItem} auctionBidInfo = {auctionBidInfo} seller = {seller}/>
-            <CategoryItemDetailInquiry auctionItem = {auctionItem} auctionBidInfo = {auctionBidInfo} seller = {seller}/>
+            <CategoryItemDetailMain auctionItem = {auctionItem} auctionBidInfo = {auctionBidInfo} seller = {seller} biddingMember = {biddingMember} infoExtension = {infoExtension} sellerDetailInfo = {sellerDetailInfo} auctionImages = {auctionImages}/>
+            <CategoryItemDetailInfo auctionItem = {auctionItem} auctionBidInfo = {auctionBidInfo} seller = {seller} biddingMember = {biddingMember} auctionImages = {auctionImages}/>
+            <CategoryItemDetailInquiry auctionItem = {auctionItem} auctionBidInfo = {auctionBidInfo} seller = {seller} biddingMember = {biddingMember}/>
             <CategoryItemDetailReturn/>
         </div>
     );

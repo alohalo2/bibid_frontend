@@ -1,43 +1,45 @@
 import React, { useState } from 'react';
 import '../../css/CategoryItemDetail.css';
-import img1 from '../../images/img1.png';
-import img2 from '../../images/img2.png';
-import img3 from '../../images/img3.png';
-import img4 from '../../images/img4.png';
-import img5 from '../../images/img5.png';
 import CatItDetTab from './CatItDetTab';
 
-import CatItDetAxios from './CatItDetAxios';
+const CatItDetInfo = ({ auctionNumber, auctionItem, auctionImages }) => {
 
-const CatItDetInfo = ({ auctionNumber, auctionItem }) => {
-
-  console.log(auctionItem);
+  console.log("== CatItDetInfo 실행 ==")
+  
   if (!auctionItem) {
     return <div>Loading...</div>; // auctionItem + auctionImg 가 없을 때 로딩 메시지를 출력
   }
+
+  const startingLocalDateTime = (auctionItem.startingLocalDateTime);
+  const endingLocalDateTime = (auctionItem.endingLocalDateTime);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 0-11을 1-12로 변환
+    const day = String(date.getDate()).padStart(2, '0');
+    const minute = String(date.getMinutes());
+    return `${year}년 ${month}월 ${day}일 ${minute}분`;
+  };
 
   return (
     <div className="CID-item-info" id='CID-item-info'>
       <CatItDetTab/>
       <div className="CID-info-box">
         <h3>상품 설명</h3>
-        <p> {auctionItem.productDescription} 마감되어 있습니다. 각 장치의 버튼은 소유자에게 만족스러운 클릭과 프레스 후 반송으로 보상합니다.</p>
-          <br/>
-        <legend>특징 :</legend>
+        <p> {auctionItem.productDescription}</p>
         <ul style={{ listStyle: 'disc', paddingLeft: '20px' }}>
-          <li>특징1</li>
-          <li>특징2</li>
-          <li>특징3</li>
-          <li>특징4</li>
-          <li>특징5</li>
-          <li style={{ listStyle: 'square', color: '#007bff' }}>연령제한 주의사항</li>
+          <br/>
+          <li>경매 시작일 : {formatDate(startingLocalDateTime)} 시작</li>
+          <br/>
+          <li>경매 마감일 : {formatDate(endingLocalDateTime)} 종료</li>
+          <br/>
+          <li style={{ listStyle: 'square', color: '#007bff' }}>연령제한 주의</li>
         </ul>
         <div className="CID-item-img-container">
-          <img src={img1} alt="Item 1" />
-          <img src={img2} alt="Item 2" />
-          <img src={img3} alt="Item 3" />
-          <img src={img4} alt="Item 4" />
-          <img src={img5} alt="Item 5" />
+          {auctionImages.map((imageUrl, index) => (
+                <img key={index} src={imageUrl} alt={`Item ${index}`}/>
+                ))}
         </div>
       </div>
     </div>
