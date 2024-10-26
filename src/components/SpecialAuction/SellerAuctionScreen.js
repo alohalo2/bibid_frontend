@@ -12,6 +12,9 @@ function SellerAuctionScreen({
   webSocketProps, auction, remainingTime, closeSellerPage
 }) {
 
+  // 대기 화면 이미지 경로 (React public 폴더의 이미지 URL)
+  const waitingImagePath = 'C:/Users/BIT/Desktop/최종 - 프론트/public/images/4113724.jpg';
+
   const obs = useRef(null);
 
   const [isObsConnected, setIsObsConnected] = useState(false); // OBS 소켓 관리
@@ -190,9 +193,6 @@ function SellerAuctionScreen({
       displayBidWithImageOnOBS(bidAmount, bidderNickname, imagePath);
     }
   }, [webSocketProps.bidAmounts, webSocketProps.bidderNicknames, auction.auctionIndex]);
-
-  // 대기 화면 이미지 경로 (React public 폴더의 이미지 URL)
-  const waitingImagePath = 'C:/Users/bitcamp/Desktop/bibid_front/public/images/bid.gif';
 
   const setupOBSScenes = () => {
     if (obs.current && isObsConnected) {
