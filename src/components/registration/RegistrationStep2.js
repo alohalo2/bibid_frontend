@@ -208,7 +208,8 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
                 <DateTimePicker
                   value={formData.startingLocalDateTime ? dayjs(formData.startingLocalDateTime) : null}
                   onChange={handleStartDateChange}
-                  minDateTime={dayjs().add(1, 'hour')} 
+                  // minDateTime={dayjs().add(1, 'hour')} 
+                  minDateTime={dayjs()} 
                   renderInput={(params) => (
                     <TextField
                         {...params}

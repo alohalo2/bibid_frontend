@@ -10,6 +10,16 @@ function BuyerAuctionScreen({
 }) {
 
   const [streamingUrl, setStreamingUrl] = useState([]);
+  const [isLive, setIsLive] = useState(true);
+  const [isBidDisabled, setIsBidDisabled] = useState(false); // 입찰 버튼 비활성화 상태 관리
+
+  useEffect(() => {
+    if (auction.auctionStatus === '방송중') {
+      setIsBidDisabled(false);
+    } else {
+      setIsBidDisabled(true);
+    }
+  }, [auction]);
 
   useEffect(() => {
     const fetchChannelInfo = async () => {
@@ -122,7 +132,7 @@ function BuyerAuctionScreen({
       <div className='SAtotalPopup'>
         <div className="SAbuyerPopup">
           <div className="SAliveAuctionHeader">
-            <h3>Live On</h3>
+            <h3>{isLive ? 'Live On' : 'Live Off'}</h3>
             <h1>구매자</h1>
             <div className="SAviewerCount">
               <img src='/images/people_icon.svg' alt="Viewer Count" />
@@ -205,7 +215,7 @@ function BuyerAuctionScreen({
                       </div>
                     </div>
                     <div className='SAbidSubmitButtonBox'>
-                      <button className="SAbidSubmitButton" onClick={openBidConfirmPopup}>입찰하기</button>
+                      <button className="SAbidSubmitButton" onClick={openBidConfirmPopup} disabled={isBidDisabled}>입찰하기</button>
                     </div>
                   </div>
                 </Draggable>
