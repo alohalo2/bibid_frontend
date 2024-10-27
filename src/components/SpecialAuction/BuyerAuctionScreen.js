@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { getFormattedRemainingTime } from '../../util/utils';
 import axios from 'axios';
 import VideoSection from './VideoSection';
-import Cookies from "js-cookie";
 import Draggable from 'react-draggable'; // react-draggable import
 
 function BuyerAuctionScreen({ 
@@ -25,12 +24,7 @@ function BuyerAuctionScreen({
     const fetchChannelInfo = async () => {
       try {
 
-        const token = Cookies.get('ACCESS_TOKEN');
-        const response = await axios.get(`http://localhost:8080/specialAuction/channelInfo/${auction.auctionIndex}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(`http://localhost:8080/specialAuction/channelInfo/${auction.auctionIndex}`, { withCredentials: true });
         const channelInfoDto = response.data.item; 
 
         setStreamingUrl(channelInfoDto.serviceUrlList);
@@ -215,7 +209,8 @@ function BuyerAuctionScreen({
                       </div>
                     </div>
                     <div className='SAbidSubmitButtonBox'>
-                      <button className="SAbidSubmitButton" onClick={openBidConfirmPopup} disabled={isBidDisabled}>입찰하기</button>
+                      {/* <button className="SAbidSubmitButton" onClick={openBidConfirmPopup} disabled={isBidDisabled}>입찰하기</button> */}
+                      <button className="SAbidSubmitButton" onClick={openBidConfirmPopup}>입찰하기</button>
                     </div>
                   </div>
                 </Draggable>

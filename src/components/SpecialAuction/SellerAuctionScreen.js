@@ -5,8 +5,6 @@ import '../../css/SpecialAuction/SAitem.css';
 import axios from 'axios';
 import VideoSection from './VideoSection';
 import { OBSWebSocket } from 'obs-websocket-js';
-import Cookies from "js-cookie";
-import { border } from '@chakra-ui/react';
 
 function SellerAuctionScreen({ 
   webSocketProps, auction, remainingTime, closeSellerPage
@@ -136,12 +134,7 @@ function SellerAuctionScreen({
     const fetchChannelInfo = async () => {
       try {
         // API 호출로 streaming 정보 가져오기
-        const token = Cookies.get('ACCESS_TOKEN');
-        const response = await axios.get(`http://localhost:8080/specialAuction/channelInfo/${auction.auctionIndex}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(`http://localhost:8080/specialAuction/channelInfo/${auction.auctionIndex}`, { withCredentials: true });
         const channelInfoDto = response.data.item;
 
         // 서버와 스트림 키 업데이트
@@ -326,12 +319,7 @@ function SellerAuctionScreen({
 
   // 백엔드에 경매 상태 및 채널 상태 갱신 요청 함수
   const updateBackendStatusToLive  = () => {
-    const token = Cookies.get('ACCESS_TOKEN'); // 인증 토큰 사용
-    axios.post(`http://localhost:8080/specialAuction/startLive/${auction.auctionIndex}`, {}, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    axios.post(`http://localhost:8080/specialAuction/startLive/${auction.auctionIndex}`, {}, { withCredentials: true })
       .then(response => {
         console.log('백엔드 경매 및 채널 상태 갱신 성공:', response.data);
       })
@@ -380,12 +368,7 @@ function SellerAuctionScreen({
 
   // 백엔드에 경매 및 채널 상태 종료로 갱신 요청 함수
   const updateBackendStatusToEnd = () => {
-    const token = Cookies.get('ACCESS_TOKEN');
-    axios.post(`http://localhost:8080/specialAuction/endLive/${auction.auctionIndex}`, {}, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    axios.post(`http://localhost:8080/specialAuction/endLive/${auction.auctionIndex}`, {}, { withCredentials: true })
       .then(response => {
         console.log('백엔드 경매 및 채널 상태 종료로 갱신 성공:', response.data);
       })
