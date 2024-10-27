@@ -37,6 +37,7 @@ import Mypage_AuctionInfo from './pages/mypage/Mypage_AuctionInfo';
 import Mypage_Wallet from './pages/mypage/Mypage_Wallet';
 import Mypage_UserInfoModify from './pages/mypage/Mypage_UserInfoModify';
 import NaverLogin from "./pages/oauth2test/NaverLogin";
+import KakaoLogout from "./pages/oauth2test/KakaoLogout";
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
                 <Routes>
                     <Route path="/loginpage" element={<Loginpage/>} />
                     <Route path="/auth/kakao/callback" element={<KakaoLogin/>} />
+                    <Route path="/auth/kakao/logout" element={<KakaoLogout/>} />
                     <Route path="/auth/naver/callback" element={<NaverLogin/>}/>
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/find' element={<FindMember/>}/>

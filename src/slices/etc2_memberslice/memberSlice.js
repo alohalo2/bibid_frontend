@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {
     findIdByEmail,
-    findMember, getAccessToken,
+    findMember, getAccessToken, getTokenAndType,
     join, kakaoJwtToken,
     login,
     logout, modifyPasswd, naverJwtToken, oauthLogin,
@@ -19,6 +19,8 @@ const memberSlice = createSlice({
         token: '',
         keepLogin: false,
         memberPw: '',
+        oauthType: '',
+        isLogin: false
     },
     reducers: {
 
@@ -40,7 +42,8 @@ const memberSlice = createSlice({
                 memberIndex: action.payload.memberIndex,
                 memberId: action.payload.memberId,
                 nickname: action.payload.nickname,
-                token: action.payload.token
+                token: action.payload.token,
+                isLogin: true
             };
         });
         builder.addCase(login.rejected, (state, action) => {
@@ -56,13 +59,13 @@ const memberSlice = createSlice({
             return state;
         });
         builder.addCase(logout.fulfilled, (state, action) => {
-            alert("로그아웃 완료.");
 
             return {
                 ...state,
                 memberIndex: 0,
                 nickname: '',
                 token: '',
+                isLogin:false
             }
         });
         builder.addCase(logout.rejected, (state, action) => {
@@ -134,15 +137,16 @@ const memberSlice = createSlice({
             alert("에러가 발생했습니다.");
             return state;
         });
-        builder.addCase(getAccessToken.fulfilled, (state, action) => {
+        builder.addCase(getTokenAndType.fulfilled, (state, action) => {
 
             return{
                 ...state,
-                token: action.payload
+                token: action.payload.token,
+                oauthType: action.payload.oauthType
             }
 
         })
-        builder.addCase(getAccessToken.rejected, (state,action) => {
+        builder.addCase(getTokenAndType.rejected, (state,action) => {
             alert("에러가 발생했습니다.");
             return state;
         })

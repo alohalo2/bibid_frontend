@@ -8,7 +8,7 @@ import rightArrowIcon from '../../images/right_arrow_icon.svg';
 import hamburgerIcon from '../../images/hamburger_icon.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {getAccessToken, logout} from "../../apis/etc2_memberapis/memberApis"
+import {getAccessToken, getTokenAndType, logout} from "../../apis/etc2_memberapis/memberApis"
 
 const Header = () => {
 
@@ -72,28 +72,44 @@ const Header = () => {
         window.location.href = '/category';  // /category로 이동
     };
 
-
+    const isLogin = useSelector(state => state.memberSlice.isLogin);
     const jwtToken = useSelector(state => state.memberSlice.token);
+    const memberState = useSelector(state => state.memberSlice);
 
     const [token, setToken] = useState(null);
 
     useEffect(() => {
+        console.log("memberState:", memberState);
+        console.log("isLogin:" + isLogin);
 
-        dispatch(getAccessToken());
+        if (isLogin) {
+            dispatch(getTokenAndType());
+        }
 
-    }, [dispatch]);
+    }, [dispatch, isLogin]);
 
     useEffect(() => {
-        if(jwtToken){
+        if (jwtToken) {
             console.log("jwtToken:" + jwtToken);
             setToken(true);
         } else {
             setToken(false);
         }
+
     }, [jwtToken, token]);
 
-    const handleLogout = useCallback(() => {
-        dispatch(logout());
+
+    const handleLogout = useCallback(async () => {
+        await dispatch(logout());
+        const kakaoLogoutParams = {
+            client_id: "29e81fa9fda262c573f312af9934fa5c",
+            logout_redirect_uri: "http://localhost:3000/"
+        }
+        // if (btnType === 'kakao') {
+        const url = 'https://kauth.kakao.com/oauth/logout';
+        window.location.href = `${url}?client_id=${kakaoLogoutParams.client_id}&logout_redirect_uri=${kakaoLogoutParams.logout_redirect_uri}`;
+        // }
+
     }, [dispatch]);
 
     return (
