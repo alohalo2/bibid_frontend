@@ -107,7 +107,6 @@ export const modifyPasswd = createAsyncThunk(
 
         } catch (e) {
             console.log("오류 발생");
-            console.log(formData);
             return thunkApi.rejectWithValue(e);
         }
     });
@@ -150,15 +149,15 @@ export const naverJwtToken = createAsyncThunk(
         }
     });
 
-export const getAccessToken = createAsyncThunk(
-    'auth/getToken',
+export const getTokenAndType = createAsyncThunk(
+    'auth/getTokenAndType',
     async (_, thunkApi) => {
         try {
-            const response = await axios.get(`http://localhost:8080/auth/api/token`, {
+            const response = await axios.get(`http://localhost:8080/auth/api/token/type`, {
                 withCredentials: true
             });
 
-            return response.data;
+            return response.data.item;
 
         } catch (e) {
             console.log("오류 발생");

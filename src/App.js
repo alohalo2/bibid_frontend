@@ -37,6 +37,7 @@ import Mypage_AuctionInfo from './pages/mypage/Mypage_AuctionInfo';
 import Mypage_Wallet from './pages/mypage/Mypage_Wallet';
 import Mypage_UserInfoModify from './pages/mypage/Mypage_UserInfoModify';
 import NaverLogin from "./pages/oauth2test/NaverLogin";
+import React from "react";
 
 function App() {
 
