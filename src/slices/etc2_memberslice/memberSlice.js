@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {
     findIdByEmail,
-    findMember, getAccessToken, getTokenAndType,
+    findMember, getTokenAndType,
     join, kakaoJwtToken,
     login,
-    logout, modifyPasswd, naverJwtToken, oauthLogin,
+    logout, modifyPasswd, naverJwtToken,
     verificationCodeCheck
 } from '../../apis/etc2_memberapis/memberApis';
 
@@ -19,8 +19,8 @@ const memberSlice = createSlice({
         token: '',
         keepLogin: false,
         memberPw: '',
-        oauthType: '',
-        isLogin: false
+        oauthType: null,
+        isLogin: false,
     },
     reducers: {
 
@@ -120,7 +120,8 @@ const memberSlice = createSlice({
 
             return {
                 ...state,
-                token: action.payload
+                token: action.payload,
+                isLogin: true
             }
         });
         builder.addCase(kakaoJwtToken.rejected, (state, action) => {
@@ -144,7 +145,6 @@ const memberSlice = createSlice({
                 token: action.payload.token,
                 oauthType: action.payload.oauthType
             }
-
         })
         builder.addCase(getTokenAndType.rejected, (state,action) => {
             alert("에러가 발생했습니다.");

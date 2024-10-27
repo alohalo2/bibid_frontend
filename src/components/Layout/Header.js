@@ -74,13 +74,19 @@ const Header = () => {
 
     const isLogin = useSelector(state => state.memberSlice.isLogin);
     const jwtToken = useSelector(state => state.memberSlice.token);
+    const membertoken = useSelector(state => state.memberSlice.token);
+    const oauthType = useSelector(state => state.memberSlice.oauthType);
+
     const memberState = useSelector(state => state.memberSlice);
 
     const [token, setToken] = useState(null);
 
     useEffect(() => {
-        console.log("memberState:", memberState);
+
         console.log("isLogin:" + isLogin);
+        console.log("oauthType:" + oauthType);
+        console.log("memberState:" + memberState);
+        console.log("membertoken:" + membertoken);
 
         if (isLogin) {
             dispatch(getTokenAndType());
@@ -89,6 +95,7 @@ const Header = () => {
     }, [dispatch, isLogin]);
 
     useEffect(() => {
+
         if (jwtToken) {
             console.log("jwtToken:" + jwtToken);
             setToken(true);
@@ -100,15 +107,16 @@ const Header = () => {
 
 
     const handleLogout = useCallback(async () => {
+
         await dispatch(logout());
         const kakaoLogoutParams = {
             client_id: "29e81fa9fda262c573f312af9934fa5c",
             logout_redirect_uri: "http://localhost:3000/"
         }
-        // if (btnType === 'kakao') {
-        const url = 'https://kauth.kakao.com/oauth/logout';
-        window.location.href = `${url}?client_id=${kakaoLogoutParams.client_id}&logout_redirect_uri=${kakaoLogoutParams.logout_redirect_uri}`;
-        // }
+        if (oauthType === "Kakao") {
+            const url = 'https://kauth.kakao.com/oauth/logout';
+            window.location.href = `${url}?client_id=${kakaoLogoutParams.client_id}&logout_redirect_uri=${kakaoLogoutParams.logout_redirect_uri}`;
+        }
 
     }, [dispatch]);
 
