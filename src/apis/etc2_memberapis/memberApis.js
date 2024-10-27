@@ -23,7 +23,9 @@ export const login = createAsyncThunk('members/login', async (member, thunkApi) 
 
 export const logout = createAsyncThunk('members/logout', async (_, thunkApi) => {
     try {
-        const response = await axios.get(`http://localhost:8080/members/logout`);
+        const response = await axios.get(`http://localhost:8080/members/logout`, {
+            withCredentials: true
+        });
 
         return response.data.item;
     } catch (e) {
@@ -111,7 +113,55 @@ export const modifyPasswd = createAsyncThunk(
     });
 
 
+export const kakaoJwtToken = createAsyncThunk(
+    'auth/kakaoJwtToken',
+    async (code, thunkApi) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/auth/kakao/callback`, {
+                params: {
+                    code: code // 쿼리 파라미터로 코드 전달
+                },
+                withCredentials: true
+            });
 
+            return response.data.item; // 성공적으로 가져온 JWT 반환
 
+        } catch (e) {
+            console.log("오류 발생");
+            return thunkApi.rejectWithValue(e);
+        }
+    });
 
+export const naverJwtToken = createAsyncThunk(
+    'auth/naverJwtToken',
+    async (code, thunkApi) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/auth/naver/callback`, {
+                params: {
+                    code: code // 쿼리 파라미터로 코드 전달
+                }
+            });
 
+            return response.data.item; // 성공적으로 가져온 JWT 반환
+
+        } catch (e) {
+            console.log("오류 발생");
+            return thunkApi.rejectWithValue(e);
+        }
+    });
+
+export const getAccessToken = createAsyncThunk(
+    'auth/getToken',
+    async (_, thunkApi) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/auth/api/token`, {
+                withCredentials: true
+            });
+
+            return response.data;
+
+        } catch (e) {
+            console.log("오류 발생");
+            return thunkApi.rejectWithValue(e);
+        }
+    });

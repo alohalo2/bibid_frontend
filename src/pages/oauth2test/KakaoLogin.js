@@ -3,105 +3,46 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useRecoilState} from "recoil";
 import {userInfoState} from './userInfoState';
+import "./KakaoLogin.css"
+import {useDispatch, useSelector} from "react-redux";
+import {kakaoJwtToken} from "../../apis/etc2_memberapis/memberApis";
+import styled from "styled-components";
+
+const CenteredContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+`
 
 function KakaoLogin() {
-    const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-    const navigate = useNavigate();
-    const PARAMS = new URL(document.location).searchParams;
-    const KAKAO_CODE = PARAMS.get("code");
-    const [accessTokenFetching, setAccessTokenFetching] = useState(false);
 
-    console.log("KAKAO_CODE:", KAKAO_CODE);
+    const dispatch = useDispatch();
+    const navi = useNavigate();
 
     // Access Token 받아오기
-    const getAccessToken = async () => {
-        if (accessTokenFetching) return; // Return early if fetching
+    useEffect(() => {
+        // URL에서 'code' 파라미터를 추출
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
 
-        console.log("getAccessToken 호출");
-
-        try {
-            setAccessTokenFetching(true); // Set fetching to true
-
-            const response = await axios.post(
-                "~~~/api/auth/kakao",
-                {
-                    authorizationCode: KAKAO_CODE,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-            const accessToken = response.data.accessToken;
-            console.log("accessToken:", accessToken);
-
-            setUserInfo({
-                ...userInfo,
-                accessToken: accessToken,
-            });
-
-            setAccessTokenFetching(false); // Reset fetching to false
-            getProfile();
-        } catch (error) {
-            console.error("Error:", error);
-            setAccessTokenFetching(false); // Reset fetching even in case of error
-        }
-    };
-
-    const getProfile = async () => {
-        try {
-            console.log("getProfile 호출");
-            // Check if accessToken is available
-            if (userInfo.accessToken) {
-                console.log("accessToken in getProfile:", userInfo.accessToken);
-                const response = await axios.get(
-                    "~~~/users/profile",
-                    {
-                        headers: {
-                            Authorization: `${userInfo.accessToken}`,
-                        },
-                    }
-                );
-                console.log("message:", response.data.message);
-                setUserInfo({
-                    ...userInfo,
-                    id: response.data.result.id,
-                    name: response.data.result.name,
-                    email: response.data.result.email,
-                    nickname: response.data.result.nickname,
-                    profileImage: response.data.result.profile_image_url,
-                    isLogin: true,
-                });
-                navigate("/");
-            } else {
-                console.log("No accessToken available");
+        const fetchData = async() => {
+            if (code) {
+                // 백엔드로 인가 코드 전송
+                await dispatch(kakaoJwtToken(code));
+                navi("/");
             }
-        } catch (error) {
-            console.error("Error:", error);
         }
-    };
 
-    useEffect(() => {
-        if (KAKAO_CODE && !userInfo.accessToken) {
-            getAccessToken();
-        }
-    }, [KAKAO_CODE, userInfo]);
+        fetchData();
 
-    useEffect(() => {
-        if (userInfo.accessToken) {
-            getProfile();
-        }
-    }, [userInfo]);
+    }, [dispatch, navi]);
 
     return (
-        <div className="LoginHandeler">
-            <div className="notice">
-                <p>로그인 중입니다.</p>
-                <p>잠시만 기다려주세요.</p>
-                <div className="spinner"></div>
-            </div>
-        </div>    );
+        <CenteredContainer>
+            <div className="loader"></div>
+        </CenteredContainer>
+    )
 }
 
 export default KakaoLogin;

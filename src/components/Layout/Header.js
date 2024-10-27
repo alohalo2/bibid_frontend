@@ -8,8 +8,7 @@ import rightArrowIcon from '../../images/right_arrow_icon.svg';
 import hamburgerIcon from '../../images/hamburger_icon.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {logout} from "../../apis/etc2_memberapis/memberApis"
-import HeaderSearchBar from '../Search/HeaderSearchBar';
+import {getAccessToken, logout} from "../../apis/etc2_memberapis/memberApis"
 
 const Header = () => {
 
@@ -73,50 +72,28 @@ const Header = () => {
         window.location.href = '/category';  // /category로 이동
     };
 
-    const [token, setToken] = useState(false);
 
-    const getCookieValue = useCallback(() => {
+    const jwtToken = useSelector(state => state.memberSlice.token);
 
-        const cookies = document.cookie.split('; ');
-        const accessTokenName = cookies.find(cookie => cookie.startsWith('ACCESS_TOKEN='));
-
-        return accessTokenName ? 'ACCESS_TOKEN' : null;
-
-    }, [token]);
-
-// 쿠키에서 ACCESS_TOKEN 삭제
-    const deleteCookie = (name) => {
-        document.cookie = `${name}=; Max-Age=0; path=/`; // Max-Age를 0으로 설정하여 쿠키 삭제
-    };
-
-    const [cookieValue, setCookieValue] = useState(null);
-
-    // 쿠키 값을 상태로 관리
-    useEffect(() => {
-        const value = getCookieValue(); // 쿠키 값을 가져옵니다.
-        setCookieValue(value); // 상태 업데이트
-    }, [getCookieValue]); // getCookieValue가 변경될 때 실행
+    const [token, setToken] = useState(null);
 
     useEffect(() => {
 
-        if (cookieValue === 'ACCESS_TOKEN') {
+        dispatch(getAccessToken());
+
+    }, [dispatch]);
+
+    useEffect(() => {
+        if(jwtToken){
             setToken(true);
         } else {
             setToken(false);
         }
-
-    }, [cookieValue, token]);
+    }, [jwtToken, token]);
 
     const handleLogout = useCallback(() => {
-        dispatch(logout()).then(() => {
-            if (logout.fulfilled) {
-                if (cookieValue === 'ACCESS_TOKEN') {
-                    deleteCookie(cookieValue); // 쿠키 삭제
-                    setCookieValue(null);
-                }
-            }
-        });
-    }, [dispatch, cookieValue, token]);
+        dispatch(logout());
+    }, [dispatch]);
 
     return (
         <>
@@ -168,10 +145,9 @@ const Header = () => {
                         </div>
                     </div>
 
-                    {/* <div className="HDnavbarSearchbar">
+                    <div className="HDnavbarSearchbar">
                         <input type="text"></input>
-                    </div> */}
-                    <HeaderSearchBar />
+                    </div>
                     {
                         token ?
                             <>

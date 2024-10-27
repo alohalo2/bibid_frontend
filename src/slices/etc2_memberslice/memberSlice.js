@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {
     findIdByEmail,
-    findMember,
-    join,
+    findMember, getAccessToken,
+    join, kakaoJwtToken,
     login,
-    logout, modifyPasswd,
+    logout, modifyPasswd, naverJwtToken, oauthLogin,
     verificationCodeCheck
 } from '../../apis/etc2_memberapis/memberApis';
 
@@ -18,7 +18,7 @@ const memberSlice = createSlice({
         verificationCode: '',
         token: '',
         keepLogin: false,
-        memberPw: ''
+        memberPw: '',
     },
     reducers: {
 
@@ -62,23 +62,13 @@ const memberSlice = createSlice({
                 ...state,
                 memberIndex: 0,
                 nickname: '',
-                token: ''
+                token: '',
             }
         });
         builder.addCase(logout.rejected, (state, action) => {
             alert("에러가 발생했습니다.");
             return state;
         });
-        // builder.addCase(fetchMemberId.fulfilled, (state, action) => {
-        //     return {
-        //         ...state,
-        //         memberId: action.payload
-        //     }
-        // });
-        // builder.addCase(fetchMemberId.rejected, (state, action) => {
-        //     alert("에러가 발생했습니다.");
-        //     return state;
-        // });
         builder.addCase(findMember.fulfilled, (state, action) => {
 
             return {
@@ -123,6 +113,39 @@ const memberSlice = createSlice({
             alert("에러가 발생했습니다.");
             return state;
         });
+        builder.addCase(kakaoJwtToken.fulfilled, (state, action) => {
+
+            return {
+                ...state,
+                token: action.payload
+            }
+        });
+        builder.addCase(kakaoJwtToken.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
+        });
+        builder.addCase(naverJwtToken.fulfilled, (state, action) => {
+
+            return {
+                ...state
+            }
+        });
+        builder.addCase(naverJwtToken.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
+        });
+        builder.addCase(getAccessToken.fulfilled, (state, action) => {
+
+            return{
+                ...state,
+                token: action.payload
+
+            }
+        })
+        builder.addCase(getAccessToken.rejected, (state,action) => {
+            alert("에러가 발생했습니다.");
+            return state;
+        })
     }
 });
 
