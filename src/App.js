@@ -10,7 +10,6 @@ import {store} from './store/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import JoinRoutes from "./routes/etc2_join/JoinRoutes";
 import Login from "./pages/etc2_login/Login";
-import Mypage from './pages/Mypage';
 import Mypage_info from './components/Mypage/Mypage_info';
 import Mypage_info_update from './components/Mypage/Mypage_info_update';
 import Mypage_bids_history from './components/Mypage/Mypage_bids_history';
@@ -31,10 +30,13 @@ import DetailedCategory_Elec from './pages/DetailedCategory_Elec';
 import DetailedCategory_Pic from './pages/DetailedCategory_Pic';
 import DetailedCategory_Antique from './pages/DetailedCategory_Antique';
 import ModifyPasswd from "./pages/etc2_find/ModifyPasswd";
+import Loginpage from "./pages/oauth2test/Loginpage";
 import KakaoLogin from "./pages/oauth2test/KakaoLogin";
-import JoinToken from "./pages/etc2_join/JoinToken";
+import Mypage_UserInfo from './pages/mypage/Mypage_UserInfo';
+import Mypage_AuctionInfo from './pages/mypage/Mypage_AuctionInfo';
+import Mypage_Wallet from './pages/mypage/Mypage_Wallet';
+import Mypage_UserInfoModify from './pages/mypage/Mypage_UserInfoModify';
 import NaverLogin from "./pages/oauth2test/NaverLogin";
-
 
 function App() {
 
@@ -46,8 +48,8 @@ function App() {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persiststore}>
                 <Routes>
-                    <Route path="/jointoken" element={<JoinToken/>}/>
-                    <Route path="/auth/kakao/callback" element={<KakaoLogin/>}/>
+                    <Route path="/loginpage" element={<Loginpage/>} />
+                    <Route path="/auth/kakao/callback" element={<KakaoLogin/>} />
                     <Route path="/auth/naver/callback" element={<NaverLogin/>}/>
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/find' element={<FindMember/>}/>
@@ -66,18 +68,21 @@ function App() {
                         <Route path='/category/elec' element={<DetailedCategory_Elec/>}/>
                         <Route path='/category/pic' element={<DetailedCategory_Pic/>}/>
                         <Route path='/category/antique' element={<DetailedCategory_Antique/>}/>
-                        <Route path='/category-itemdetail' element={<CategoryItemDetail/>}/>
+                        <Route path='/category-itemdetail/:auctionNumber' element={<CategoryItemDetail/>}/>
                         <Route path='/checkNcloudApi' element={<CheckNcloudApi/>}/>
                         {/* mypage 에서 지정한 mui 버튼 스타일 충돌 */}
                         <Route path="join/*" element={<JoinRoutes/>}/>
-                        <Route path='/mypage/' element={<Mypage/>}>
-                            <Route path='info' element={<Mypage_info/>}/>
+                        <Route path='/mypage/userinfo/' element={<Mypage_UserInfo/>}/>
+                        <Route path='/mypage/userInfo/modify' element={<Mypage_UserInfoModify/>}/>
+                        <Route path='/mypage/auctioninfo/' element={<Mypage_AuctionInfo/>}/>
+                        <Route path='/mypage/wallet/' element={<Mypage_Wallet/>}/>
+                            {/* <Route path='info' element={<Mypage_info/>}/>
                             <Route path='update' element={<Mypage_info_update/>}/>
                             <Route path='bids_history' element={<Mypage_bids_history/>}/>
                             <Route path='wallet_management' element={<Mypage_wallet_management/>}></Route>
                             <Route path='bids_progress' element={<Mypage_bids_progress/>}></Route>
                             <Route path='qna' element={<Mypage_qna/>}></Route>
-                        </Route>
+                        </Route> */}
                     </Route>
                 </Routes>
             </PersistGate>
@@ -86,3 +91,5 @@ function App() {
 }
 
 export default App;
+
+

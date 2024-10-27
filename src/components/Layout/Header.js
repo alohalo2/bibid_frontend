@@ -85,6 +85,7 @@ const Header = () => {
 
     useEffect(() => {
         if(jwtToken){
+            console.log("jwtToken:" + jwtToken);
             setToken(true);
         } else {
             setToken(false);

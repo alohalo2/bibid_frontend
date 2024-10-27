@@ -139,8 +139,8 @@ const memberSlice = createSlice({
             return{
                 ...state,
                 token: action.payload
-
             }
+
         })
         builder.addCase(getAccessToken.rejected, (state,action) => {
             alert("에러가 발생했습니다.");
