@@ -381,6 +381,8 @@
     align-items: center;
     justify-content: center;
     width: 420px;
+    background-color: black;
+    color: white;
 }
 
 .Mypage_AuctionCardBtnCategory {
