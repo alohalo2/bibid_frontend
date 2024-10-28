@@ -167,9 +167,9 @@ const Header = () => {
                         </div>
                     </div>
 
-                    <div className="HDnavbarSearchbar">
-                        <input type="text"></input>
-                    </div>
+                    {/*<div className="HDnavbarSearchbar">*/}
+                    {/*    <input type="text"></input>*/}
+                    {/*</div>*/}
                     <HeaderSearchBar />
                     {
                         token ?
