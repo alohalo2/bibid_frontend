@@ -9,7 +9,7 @@ import hamburgerIcon from '../../images/hamburger_icon.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import HeaderSearchBar from '../Search/HeaderSearchBar'
-import {getAccessToken, getTokenAndType, getType, logout} from "../../apis/etc2_memberapis/memberApis"
+import {checkLogin, getAccessToken, getTokenAndType, getType, logout} from "../../apis/etc2_memberapis/memberApis"
 
 const Header = () => {
 
@@ -73,32 +73,28 @@ const Header = () => {
         window.location.href = '/category';  // /category로 이동
     };
 
-    const isLogin = useSelector(state => state.memberSlice.isLogin);
-    const oauthType = useSelector(state => state.memberSlice.oauthType);
-
     const [token, setToken] = useState(null);
 
-    const address = useSelector(state => state.memberSlice.address);
+    const oauthType = useSelector(state => state.memberSlice.oauthType);
+    const checkLoginState = useSelector(state => state.memberSlice.checkLogin);
 
     useEffect(() => {
 
-        if (isLogin) {
-            dispatch(getType());
-        }
+        dispatch(checkLogin());
 
-    }, [dispatch, isLogin]);
+    }, [dispatch]);
 
     useEffect(() => {
 
-        if (isLogin) {
+        console.log("현재상태:" + checkLoginState);
+
+        if (checkLoginState === "ROLE_USER") {
             setToken(true);
-        } else {
+        } else if (checkLoginState === "notLogin") {
             setToken(false);
         }
 
-        console.log("oauthType:" + oauthType);
-
-    }, [isLogin]);
+    }, [checkLoginState]);
 
 
     const handleLogout = useCallback(async () => {

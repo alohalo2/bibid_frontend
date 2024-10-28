@@ -169,11 +169,11 @@ export const googleJwtToken = createAsyncThunk(
     }
 );
 
-export const getType = createAsyncThunk(
-    'auth/getTokenAndType',
+export const checkLogin = createAsyncThunk(
+    'auth/checkLogin',
     async (_, thunkApi) => {
         try {
-            const response = await axios.get(`http://localhost:8080/auth/api/token/type`, {
+            const response = await axios.get(`http://localhost:8080/auth/checkLogin`, {
                 withCredentials: true
             });
 
