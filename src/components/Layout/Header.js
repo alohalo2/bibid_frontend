@@ -8,8 +8,8 @@ import rightArrowIcon from '../../images/right_arrow_icon.svg';
 import hamburgerIcon from '../../images/hamburger_icon.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {getAccessToken, getTokenAndType, logout} from "../../apis/etc2_memberapis/memberApis"
 import HeaderSearchBar from '../Search/HeaderSearchBar'
+import {getAccessToken, getTokenAndType, getType, logout} from "../../apis/etc2_memberapis/memberApis"
 
 const Header = () => {
 
@@ -74,15 +74,16 @@ const Header = () => {
     };
 
     const isLogin = useSelector(state => state.memberSlice.isLogin);
-    const jwtToken = useSelector(state => state.memberSlice.token);
     const oauthType = useSelector(state => state.memberSlice.oauthType);
 
     const [token, setToken] = useState(null);
 
+    const address = useSelector(state => state.memberSlice.address);
+
     useEffect(() => {
 
         if (isLogin) {
-            dispatch(getTokenAndType());
+            dispatch(getType());
         }
 
     }, [dispatch, isLogin]);
@@ -95,22 +96,26 @@ const Header = () => {
             setToken(false);
         }
 
-    }, [jwtToken]);
+        console.log("oauthType:" + oauthType);
+
+    }, [isLogin]);
 
 
     const handleLogout = useCallback(async () => {
 
         await dispatch(logout());
-        const kakaoLogoutParams = {
-            client_id: "29e81fa9fda262c573f312af9934fa5c",
-            logout_redirect_uri: "http://localhost:3000/"
-        }
+
         if (oauthType === "Kakao") {
+            const kakaoLogoutParams = {
+                client_id: "29e81fa9fda262c573f312af9934fa5c",
+                logout_redirect_uri: "http://localhost:3000/"
+            }
+
             const url = 'https://kauth.kakao.com/oauth/logout';
             window.location.href = `${url}?client_id=${kakaoLogoutParams.client_id}&logout_redirect_uri=${kakaoLogoutParams.logout_redirect_uri}`;
         }
 
-    }, [dispatch]);
+    }, [dispatch, oauthType]);
 
     return (
         <>
@@ -162,9 +167,9 @@ const Header = () => {
                         </div>
                     </div>
 
-                    {/* <div className="HDnavbarSearchbar">
-                        <input type="text"></input>
-                    </div> */}
+                    {/*<div className="HDnavbarSearchbar">*/}
+                    {/*    <input type="text"></input>*/}
+                    {/*</div>*/}
                     <HeaderSearchBar />
                     {
                         token ?

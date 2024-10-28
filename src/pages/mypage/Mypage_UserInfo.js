@@ -14,7 +14,8 @@ const Mypage_UserInfo = () => {
     // API 호출 함수
     const fetchMemberInfo = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/mypage/${memberIndex}`);
+        console.log(memberIndex);
+        const response = await axios.get(`http://localhost:8080/mypage/userInfo/${memberIndex}`);
         console.log("Fetched member info:", response.data.item);
         setMemberInfo(response.data.item); // 응답에서 멤버 정보 저장
       } catch (error) {

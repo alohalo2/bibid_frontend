@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import '../../css/Category.css';
 import  axios  from 'axios';
 import defaultFileImg from '../../images/defaultFileImg.png';
+import { useNavigate } from 'react-router-dom';
 
 export const BestProduct = () => {
 
   const bucketName = process.env.REACT_APP_BUCKET_NAME;
 
   const [bestProducts, setBestProducts] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBestProducts = async () => {
@@ -28,6 +31,11 @@ export const BestProduct = () => {
     fetchBestProducts();
   }, []);
 
+  const handleItemClick = (auctionIndex) => {
+    window.location.href = `/category-itemdetail/${auctionIndex}`;
+  };
+  
+
   return (
     <div className='CTG_container2'>
       <div className='CTG_grid-container-best'>
@@ -43,7 +51,9 @@ export const BestProduct = () => {
 
                 <img 
                 className='CTG_grid-img'
-                src={imageSrc} alt={auction.productName} />
+                src={imageSrc} alt={auction.productName} 
+                onClick={() => handleItemClick(auction.auctionIndex)}
+                />
             </div>  
           )
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../css/SpecialAuction/SAitem.css';
 
-function SAitem({ imageSrc, title, auctionDate, auctionTime, linkText, handleGoButtonClick, handleAlertButtonClick}) {
+function SAitem({ imageSrc, title, auctionDate, price , auctionTime, linkText, handleGoButtonClick, handleAlertButtonClick}) {
 
   return (
     <div className="SAauctionItem">
@@ -11,6 +11,9 @@ function SAitem({ imageSrc, title, auctionDate, auctionTime, linkText, handleGoB
           <div className='SAauctionDetailsTitle'>
             <h3>{title}</h3>
           </div>
+          <dic className='SAauctionPrice'>
+            <p>경매 시작가 : {price.toLocaleString()} 원</p>
+          </dic>
           <div className='SAauctionDetailsDate'>
             <p>경매 날짜: {auctionDate}</p>
             <p>경매 시간: {auctionTime}</p>
