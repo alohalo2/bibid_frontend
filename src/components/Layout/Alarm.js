@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { useNavigate } from 'react-router-dom'; // 페이지 이동을 위해 추가
 import alarmIcon from '../../images/alarm.svg';
 import alarmActiveIcon from '../../images/alarm_active_Icon.svg';
 import '../../css/Layout/Alarm.css';
+import { NotificationContext } from '../../context/NotificationContext';
 
 const Alarm = () => {
   const [showNotifications, setShowNotifications] = useState(false);  // 알림창 보이기 상태
@@ -10,14 +11,8 @@ const Alarm = () => {
   const navigate = useNavigate();  // 페이지 이동 함수
 
 
-  // 알림 목록을 관리하는 상태 추가
-  const [notifications, setNotifications] = useState([
-    { title: '판매완료', content: '경매에 등록했던 물품(덩크)이/가 판매완료 되었습니다.', date: '10.11. (금)', link: '/mypage/bids_history' },
-    { title: '판매완료', content: '경매에 등록했던 물품(블로퍼)이/가 판매완료 되었습니다.', date: '10.10. (목)', link: '/mypage/bids_history' },
-    { title: '구매완료', content: '경매 물품(조던)이/가 구매완료 되었습니다.', date: '10.02. (수)', link: '/mypage/bids_history' },
-    { title: '판매완료', content: '경매에 등록했던 물품(덩크)이/가 판매완료 되었습니다.', date: '09.02. (월)', link: '/mypage/bids_history'},
-    { title: '결제완료', content: '(포인트 충전)이/가 안전하게 결제되었습니다.', date: '08.30. (일)', link: '/mypage/wallet_management'}
-]);
+  // NotificationContext에서 알림 데이터 가져오기
+  const { notifications } = useContext(NotificationContext);
 
   // 알림 버튼 클릭 시 알림 목록 보이기 상태 변경
   const handleNotificationClick = () => {
