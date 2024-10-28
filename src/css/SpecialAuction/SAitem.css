@@ -1,21 +1,24 @@
-.SAauctionList {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
 .SAauctionItem {
   border: 2px solid #ccc;
-  padding: 20px;
   border-radius: 10px;
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  height: 500px;
   /*텍스트에서 \n을 사용한 줄바꿈이 의도한 대로 출력됩니다. 
   * white-space: pre-line 속성은 공백과 줄바꿈을 유지하면서 텍스트를 렌더링해 주는 CSS 속성입니다.
   */
-  white-space: pre-line; 
+  /* white-space: pre-line;  */
   transition: all 0.3s ease-in-out;
+  justify-content: center;
+  align-items: center;
+}
+
+.SAauctionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  height: 440px;
 }
 
 .SAauctionItem:hover {
@@ -23,16 +26,17 @@
 }
 
 .SAauctionImage {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   object-fit: contain;
 }
 
 .SAauctionDetails {
-  margin-left: 2rem;
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
 }
-
+/* 
 .SAauctionDetails h3 {
   font-size: 1.7rem;
   margin-top: 2rem;
@@ -47,6 +51,17 @@
 .SAauctionDetails p strong {
   font-size: 1.3em;
   white-space: pre-wrap;
+} */
+
+.SAauctionDetailsTitle {
+  display: flex;
+}
+
+.SAauctionDetailsDate {
+  display: flex;
+  height: 100px;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .SAsellerAuctionDetails {
@@ -110,21 +125,20 @@
 
 .SAauctionButtons {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 2.2rem;
-  margin-right: 2rem;
+  flex-direction: row;
+  width: 250px;
+  justify-content: space-around;
 }
 
 .SAgoButton, .SAalertButton {
-  width: 150px;
+  width: 100px;
   background-color: #ccc;
   color: black;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 15px;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
 }
