@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import SockJS from 'sockjs-client';
 import { Client } from '@stomp/stompjs';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNotification } from '../slices/notification/notificationSlice';
 
 const useNotificationWebSocket = () => {
   const [notifications, setNotifications] = useState([]);
+  const memberIndex = useSelector((state) => state.memberSlice.memberIndex);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const notificationSocket = new SockJS('http://localhost:8080/ws-notifications');
@@ -12,11 +16,13 @@ const useNotificationWebSocket = () => {
       onConnect: () => {
         console.log("Notification WebSocket 연결됨");
 
-        // 알림 구독 경로 설정
-        notificationClient .subscribe('/topic/notifications', (message) => {
+        // 유저별 구독 경로 설정
+        const subscriptionPath = `/topic/notifications/${memberIndex}`;
+        notificationClient.subscribe(subscriptionPath, (message) => {
           const newNotification = JSON.parse(message.body);
           console.log("알림 수신:", newNotification);
           setNotifications((prev) => [...prev, newNotification]); // 새로운 알림 추가
+          dispatch(addNotification(newNotification)); // Redux 상태에 추가
         });
       },
       onStompError: (error) => {

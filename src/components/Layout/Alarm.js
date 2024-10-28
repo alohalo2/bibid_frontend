@@ -73,9 +73,9 @@ const Alarm = () => {
             <div className="ALnotificationList">
               {notifications.map((notification, index) => (
                 <div className="ALnotificationItem" key={index} onClick={() => handleItemClick(notification.link)}>
-                  <p className="ALnotificationTitle">{notification.title}</p>
-                  <p>{notification.content}</p>
-                  <p>{notification.date}</p>
+                  <p className="ALnotificationTitle">{notification.alertTitle}</p>
+                  <p>{notification.alertContent}</p>
+                  <p>{notification.alertDate}</p>
                 </div>
                 ))}
             </div>
