@@ -11,7 +11,7 @@ function SellerAuctionScreen({
 }) {
 
   // 대기 화면 이미지 경로 (React public 폴더의 이미지 URL)
-  const waitingImagePath = 'C:/Users/BIT/Desktop/최종 - 프론트/public/images/4113724.jpg';
+  const waitingImagePath = 'https://kr.object.ncloudstorage.com/bitcamp119/auction/SA_wait_image.jpg';
 
   const obs = useRef(null);
 
@@ -215,6 +215,27 @@ function SellerAuctionScreen({
                   inputKind: 'image_source',
                   inputSettings: {
                     file: waitingImagePath, // public 폴더 이미지 경로
+                  },
+                });
+              })
+              .then(() => {
+                console.log('Waiting Scene에 이미지 소스 추가 완료');
+                // 텍스트 소스 추가
+                return obs.current.call('CreateInput', {
+                  sceneName: 'Waiting Scene',
+                  inputName: 'Auction End Time',
+                  inputKind: 'text_gdiplus', // 텍스트 소스 종류
+                  inputSettings: {
+                    text: `경매 종료 시간: ${auctionEndTime}`, // 경매 종료 시간을 표시
+                    font: {
+                      face: 'Arial',     // 글꼴
+                      size: 48,          // 글자 크기
+                      style: 'Bold',     // 스타일
+                    },
+                    color: 0xFFFFFF,       // 글자 색상 (흰색)
+                    background_color: 0x000000, // 배경색 (검정색)
+                    vertical: 'center',    // 수직 정렬
+                    horizontal: 'center',  // 수평 정렬
                   },
                 });
               })

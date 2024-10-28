@@ -81,8 +81,20 @@ const RegistrationStep1 = ({ formData, setFormData, nextStep}) => {
             <Select
               value={formData.auctionType}
               onChange={(e) => setFormData({ ...formData, auctionType: e.target.value })}
-              MenuProps={StyledMenuProps}
               displayEmpty
+              // anchorEl={anchorEl}
+              MenuProps={{
+                ...StyledMenuProps,
+                disableScrollLock: true,
+                anchorOrigin: {
+                  vertical: "bottom",
+                  horizontal: "left"
+                },
+                transformOrigin: {
+                  vertical: "top",
+                  horizontal: "left"
+                }
+              }}
               renderValue={(selected) => selected || <Typography sx={{ color: '#777777', fontWeight: 'bold' }}>-경매 종류 선택-</Typography>}
               sx={{ width: '200px', mr: 2, fontWeight: 'bold' }}
               required
@@ -95,8 +107,21 @@ const RegistrationStep1 = ({ formData, setFormData, nextStep}) => {
             <Select
              value={formData.category}
              onChange={(e) => setFormData({ ...formData, category: e.target.value, subcategory: ''})}
-              MenuProps={StyledMenuProps}
               displayEmpty
+              // anchorEl={anchorEl}
+              MenuProps={{
+                ...StyledMenuProps,
+                disableScrollLock: true,
+                anchorOrigin: {
+                  vertical: "bottom",
+                  horizontal: "left"
+                },
+                transformOrigin: {
+                  vertical: "top",
+                  horizontal: "left"
+                }
+              }}
+              inputProps={{MenuProps: {disableScrollLock: true}}}
               renderValue={(selected) => selected || <Typography sx={{ color: '#777777', fontWeight: 'bold' }}>카테고리 선택</Typography>}
               sx={{ width: '200px', mr: 2, fontWeight: 'bold' }}
               required
@@ -112,8 +137,20 @@ const RegistrationStep1 = ({ formData, setFormData, nextStep}) => {
             <Select
               value={formData.subcategory}
               onChange={(e) => setFormData({ ...formData, subcategory: e.target.value })}
-              MenuProps={StyledMenuProps}
               displayEmpty
+              MenuProps={{
+                ...StyledMenuProps,
+                disableScrollLock: true,
+                anchorOrigin: {
+                  vertical: "bottom",
+                  horizontal: "left"
+                },
+                transformOrigin: {
+                  vertical: "top",
+                  horizontal: "left"
+                }
+              }}
+              inputProps={{MenuProps: {disableScrollLock: true}}}
               renderValue={(selected) =>
                 selected || <Typography sx={{ color: "#777777", fontWeight: "bold" }}>세부 카테고리 선택</Typography>
               }

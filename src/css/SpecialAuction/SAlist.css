@@ -11,14 +11,16 @@
 }
 
 .SAnoAuction {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-size: 32px;
-  font-weight: 900; /* 가능한 가장 굵은 값 */
-  color: #000000; /* 메시지 색상 */
-  line-height: 1;
+width: 1200px;
+height: 504px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+font-size: 32px;
+font-weight: 900;
+color: #000000;
+line-height: 1;
 }
 
   .SAnoAuction p {
