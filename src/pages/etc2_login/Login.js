@@ -118,7 +118,6 @@ const Login = () => {
         `redirect_uri=${google_redirect_uri}&` +
         `response_type=token&` +
         `scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile`;
-
     const handleKakaoLogin = () => {
         window.location.href = kakaoURL
     }
@@ -130,6 +129,7 @@ const Login = () => {
     const handleGoogleLogin = () => {
         window.location.href = googleURL
     }
+
 
     return (
         <CenteredContainer>

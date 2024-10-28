@@ -167,9 +167,12 @@ const memberSlice = createSlice({
         });
         builder.addCase(googleJwtToken.fulfilled, (state, action) => {
 
+            console.log(action.payload);
+
             return {
                 ...state,
                 isLogin: true,
+                memberIndex: action.payload.memberIndex,
                 type: action.payload.type,
                 addressDetail: action.payload.addressDetail,
                 email: action.payload.email,
