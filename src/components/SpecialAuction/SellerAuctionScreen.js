@@ -276,8 +276,8 @@ function SellerAuctionScreen({
       setRemainingText("경매 종료까지 <br/>남은 시간");
       setFormattedTimeText(`(${formattedAuctionEndTime})`); // 경매 종료 시간으로 표시
     } else {
-      setRemainingText("경매가 종료되었습니다");
-      setFormattedTimeText(""); // 종료 후에는 시간을 표시하지 않음
+      setRemainingText("경매 종료까지 <br/>남은 시간");
+      setFormattedTimeText(`(${formattedAuctionEndTime})`); // 종료 후에는 시간을 표시하지 않음
     }
   }, [auctionStartTime, auctionEndTime]);
 
@@ -384,10 +384,12 @@ function SellerAuctionScreen({
           <div className="SAsellerLiveAuctionHeader">
             <h3>{isLive ? "Live On" : "Live Off"}</h3>
             <h1>판매자</h1>
-            <button onClick={startStreaming}>방송 시작</button>
-            <button onClick={pauseStreaming}>방송 일시 정지</button>
-            <button onClick={resumeStreaming}>방송 재개</button>
-            <button onClick={stopStreaming}>방송 종료</button>
+            <div className='SAstreamingBttnBox'>
+              <button onClick={startStreaming}>경매 시작</button>
+              <button onClick={pauseStreaming}>경매 일시 정지</button>
+              <button onClick={resumeStreaming}>경매 재개</button>
+              <button onClick={stopStreaming}>경매 종료</button>
+            </div>
             {winnerInfo && (
               <div>
                 <h3>낙찰자 정보</h3>
