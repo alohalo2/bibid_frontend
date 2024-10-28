@@ -91,7 +91,8 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
     axios.post(`http://localhost:8080/auctionDetail/category-item-detail/${auctionItem.auctionIndex}`, biddingData, {
       headers: {
         'Content-Type': 'application/json', // 요청의 콘텐츠 타입을 JSON으로 지정
-      }
+      },
+      withCredentials : true
     })
     .then((response) => {
       console.log('Success:', response.data); // 성공 시 서버로부터 응답 데이터 출력
