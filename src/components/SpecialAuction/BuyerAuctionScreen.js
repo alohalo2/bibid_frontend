@@ -140,13 +140,6 @@ function BuyerAuctionScreen({
               <div className="SAproductSection">
                 <div className='SAliveStreamingHeader'>
                   <div className='SAliveStreamingButtonBox'>
-                    <div className='SAliveStreamingButton' onClick={handleSoundToggle}>
-                      {isSoundOn ? (
-                        <img id='SAsoundOnIcon' src='/images/sound_on_icon.svg' alt="Sound On" />
-                      ) : (
-                        <img id='SAsoundOffIcon' src='/images/sound_off_icon.svg' alt="Sound Off" />
-                      )}
-                    </div>
                     <div className='SAliveStreamingButton' onClick={toggleAuctionInfo}>
                       <img src='/images/SA_bid_icon.svg'></img>
                     </div>

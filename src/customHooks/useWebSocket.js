@@ -28,8 +28,8 @@ const useWebSocket = (auctionIndex, isChatClosed) => {
 
   // 해시 함수로 닉네임을 해싱하여 색상 선택
   const getNicknameColor = (nickname) => {
-    if (nickname === '시스템') {
-      return '#0000FF'; // 파란색
+    if (nickname == '시스템') {
+      return '#0A369D'; // 파란색
     }
 
     // 닉네임의 해시 값을 계산
