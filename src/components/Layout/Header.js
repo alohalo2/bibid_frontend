@@ -9,7 +9,7 @@ import hamburgerIcon from '../../images/hamburger_icon.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {getAccessToken, getTokenAndType, logout} from "../../apis/etc2_memberapis/memberApis"
-import HeaderSearchBar from '../Search/HeaderSearchBar';
+import HeaderSearchBar from '../Search/HeaderSearchBar'
 
 const Header = () => {
 
