@@ -118,6 +118,8 @@ const memberSlice = createSlice({
         });
         builder.addCase(kakaoJwtToken.fulfilled, (state, action) => {
 
+            console.log(action.payload);
+
             return {
                 ...state,
                 isLogin: true

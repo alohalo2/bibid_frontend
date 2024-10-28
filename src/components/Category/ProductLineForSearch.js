@@ -16,6 +16,10 @@ const ProductLineForSearch = () => {
         }
     }, [products]);
 
+    const handleItemClick = (auctionIndex) => {
+        window.location.href = `/category-itemdetail/${auctionIndex}`;
+      };
+
     return (
         <div className='CTG_productLine'>
             <div className='CTG_grid-container-product'>
@@ -43,11 +47,20 @@ const ProductLineForSearch = () => {
                             <img src={imageSrc}
                                 className="CTG_grid-item-product"
                                 alt={product.productName}
+                                onClick={() => handleItemClick(product.auctionIndex)}
                             />
                             <div className='CTG_grid-item-text'>
                                 <div className='CTG_productText'>
                                     <p className="CTG_productName">{product.productName}</p>
-                                    <p className="CTG_startingPrice">{product.startingPrice !== null ? product.startingPrice.toLocaleString() : '가격 정보 없음'} 원</p>
+                                    <p className="CTG_startingPrice">
+                                        {product.startingPrice !== null && 
+                                        (product.auctionInfoDtoList.length === 0 || 
+                                            product.auctionInfoDtoList[product.auctionInfoDtoList.length - 1].bidderIndex === null)
+                                            ? product.startingPrice.toLocaleString() 
+                                            : product.auctionInfoDtoList.length > 0 
+                                            ? product.auctionInfoDtoList[product.auctionInfoDtoList.length - 1].bidAmount.toLocaleString() 
+                                            : '가격 정보 없음'} 원
+                                        </p>
                                     <p className="CTG_bidInfo">입찰 {bids}회 | {timeLeftFormatted}</p>
                                 </div>
                             </div>

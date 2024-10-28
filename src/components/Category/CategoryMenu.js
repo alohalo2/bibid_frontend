@@ -5,40 +5,76 @@ const CategoryMenu = () => {
 
         const navi = useNavigate();
 
-        const toCategory = () => {
-            navi('/category');
+        // const toCategory = () => {
+        //     navi('/category');
+        // }
+      
+        // const toAll = () => {
+        //   navi('/category/all');
+        //   };
+      
+        // const toClothing = () => {
+        //   navi('/category/clothing');
+        //   };
+      
+        // const toHob = () => {
+        //   navi('/category/hob');
+        //   };
+          
+        // const toBook = () => {
+        //   navi('/category/book');
+        //   };
+        
+        // const toArt = () => {
+        //   navi('/category/art');
+        //   };
+      
+        // const toElec = () => {
+        //   navi('/category/elec');
+        //   };
+      
+        // const toPic = () => {
+        //   navi('/category/pic');
+        //   };
+        
+        // const toAntique = () => {
+        //   navi('/category/antique');
+        //   };
+
+          const toCategory = () => {
+            window.location.href ='/category';
         }
       
         const toAll = () => {
-          navi('/category/all');
+          window.location.href ='/category/all';
           };
       
         const toClothing = () => {
-          navi('/category/clothing');
+          window.location.href ='/category/clothing';
           };
       
         const toHob = () => {
-          navi('/category/hob');
+          window.location.href ='/category/hob';
           };
           
         const toBook = () => {
-          navi('/category/book');
+          window.location.href ='/category/book';
           };
         
         const toArt = () => {
-          navi('/category/art');
+          window.location.href ='/category/art';
           };
       
         const toElec = () => {
-          navi('/category/elec');
+          window.location.href = '/category/elec';
           };
       
         const toPic = () => {
-          navi('/category/pic');
+          window.location.href = '/category/pic';
           };
         
         const toAntique = () => {
-          navi('/category/antique');
+          window.location.href = '/category/antique';
           };
 
   return (
