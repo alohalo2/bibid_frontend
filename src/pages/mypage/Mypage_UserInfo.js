@@ -8,13 +8,14 @@ import MypageProfileBox from '../../components/Mypage/MypageProfileBox';
 const Mypage_UserInfo = () => {
 
     const [memberInfo, setMemberInfo] = useState(null);
-    const memberIndex = useSelector((state) => state.memberSlice.memberIndex); 
+    const memberIndex = useSelector((state) => state.memberSlice.memberIndex);
+    const nickname = useSelector((state) => state.memberSlice.nickname);
 
   useEffect(() => {
     // API 호출 함수
     const fetchMemberInfo = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/mypage/${memberIndex}`);
+        const response = await axios.get(`http://localhost:8080/mypage/${nickname}`);
         console.log("Fetched member info:", response.data.item);
         setMemberInfo(response.data.item); // 응답에서 멤버 정보 저장
       } catch (error) {
