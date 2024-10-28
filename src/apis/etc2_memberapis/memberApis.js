@@ -138,10 +138,30 @@ export const naverJwtToken = createAsyncThunk(
             const response = await axios.get(`http://localhost:8080/auth/naver/callback`, {
                 params: {
                     code: code // 쿼리 파라미터로 코드 전달
-                }
+                },
+                withCredentials: true
             });
 
-            return response.data.item; // 성공적으로 가져온 JWT 반환
+            return response.data.statusMessage; // 성공적으로 가져온 JWT 반환
+
+        } catch (e) {
+            console.log("오류 발생");
+            return thunkApi.rejectWithValue(e);
+        }
+    });
+
+export const googleJwtToken = createAsyncThunk(
+    'auth/googleJwtToken',
+    async (code, thunkApi) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/auth/google/callback`, {
+                params: {
+                    code: code // 쿼리 파라미터로 코드 전달
+                },
+                withCredentials: true
+            });
+
+            return response.data.statusMessage; // 성공적으로 가져온 JWT 반환
 
         } catch (e) {
             console.log("오류 발생");
@@ -164,3 +184,4 @@ export const getTokenAndType = createAsyncThunk(
             return thunkApi.rejectWithValue(e);
         }
     });
+

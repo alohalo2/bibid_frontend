@@ -74,19 +74,11 @@ const Header = () => {
 
     const isLogin = useSelector(state => state.memberSlice.isLogin);
     const jwtToken = useSelector(state => state.memberSlice.token);
-    const membertoken = useSelector(state => state.memberSlice.token);
     const oauthType = useSelector(state => state.memberSlice.oauthType);
-
-    const memberState = useSelector(state => state.memberSlice);
 
     const [token, setToken] = useState(null);
 
     useEffect(() => {
-
-        console.log("isLogin:" + isLogin);
-        console.log("oauthType:" + oauthType);
-        console.log("memberState:" + memberState);
-        console.log("membertoken:" + membertoken);
 
         if (isLogin) {
             dispatch(getTokenAndType());
@@ -96,14 +88,13 @@ const Header = () => {
 
     useEffect(() => {
 
-        if (jwtToken) {
-            console.log("jwtToken:" + jwtToken);
+        if (isLogin) {
             setToken(true);
         } else {
             setToken(false);
         }
 
-    }, [jwtToken, token]);
+    }, [jwtToken]);
 
 
     const handleLogout = useCallback(async () => {

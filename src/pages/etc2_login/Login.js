@@ -11,7 +11,7 @@ import {
     Typography
 } from '@mui/material';
 import {useDispatch, useSelector} from 'react-redux';
-import {login} from '../../apis/etc2_memberapis/memberApis';
+import {googleJwtToken, login} from '../../apis/etc2_memberapis/memberApis';
 import {useNavigate} from 'react-router-dom';
 import styled from "styled-components";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
@@ -106,9 +106,18 @@ const Login = () => {
 
 
     const naver_api_key = 'wa3QkzrBALL4WACeB12Z' //REST API KEY
-    const naver_redirect_uri = 'http://localhost:3000/auth/naver/callback' //Redirect URI
+    const naver_redirect_uri = 'http://localhost:3000/auth/google/callback' //Redirect URI
     const state = 1234;
     const naverURL = `https://nid.naver.com/oauth2.0/authorize?client_id=${naver_api_key}&response_type=code&redirect_uri=${naver_redirect_uri}&state=${state}`
+
+    const google_api_key = '255369569867-roag3v486bjk47771oeu1o9js0dbgdvh.apps.googleusercontent.com' //REST API KEY
+    const google_redirect_uri = 'http://localhost:3000/auth/google/callback' //Redirect URI
+    // const state = 1234;
+    const googleURL = `https://accounts.google.com/o/oauth2/v2/auth?` +
+        `client_id=${google_api_key}&` +
+        `redirect_uri=${google_redirect_uri}&` +
+        `response_type=token&` +
+        `scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile`;
 
     const handleKakaoLogin = () => {
         window.location.href = kakaoURL
@@ -116,6 +125,10 @@ const Login = () => {
 
     const handleNaverLogin = () => {
         window.location.href = naverURL
+    }
+
+    const handleGoogleLogin = () => {
+        window.location.href = googleURL
     }
 
     return (
@@ -204,7 +217,7 @@ const Login = () => {
                                 <img src="/images/logo/naver.png" alt="샘플 이미지" onClick={handleNaverLogin}/>
                             </div>
                             <div className="circle">
-                                <img src="/images/logo/google.png" alt="샘플 이미지"/>
+                                <img src="/images/logo/google.png" alt="샘플 이미지" onClick={handleGoogleLogin}/>
                             </div>
                         </Grid>
                     </Container>

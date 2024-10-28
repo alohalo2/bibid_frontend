@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {
     findIdByEmail,
-    findMember, getTokenAndType,
+    findMember, getTokenAndType, googleJwtToken,
     join, kakaoJwtToken,
     login,
     logout, modifyPasswd, naverJwtToken,
@@ -19,7 +19,7 @@ const memberSlice = createSlice({
         token: '',
         keepLogin: false,
         memberPw: '',
-        oauthType: null,
+        oauthType: '',
         isLogin: false,
     },
     reducers: {
@@ -120,7 +120,6 @@ const memberSlice = createSlice({
 
             return {
                 ...state,
-                token: action.payload,
                 isLogin: true
             }
         });
@@ -131,8 +130,20 @@ const memberSlice = createSlice({
         builder.addCase(naverJwtToken.fulfilled, (state, action) => {
 
             return {
-                ...state
+                ...state,
+                isLogin: true
             }
+        });
+        builder.addCase(googleJwtToken.fulfilled, (state, action) => {
+
+            return {
+                ...state,
+                isLogin: true
+            }
+        });
+        builder.addCase(googleJwtToken.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
         });
         builder.addCase(naverJwtToken.rejected, (state, action) => {
             alert("에러가 발생했습니다.");
@@ -143,7 +154,7 @@ const memberSlice = createSlice({
             return{
                 ...state,
                 token: action.payload.token,
-                oauthType: action.payload.oauthType
+                oauthType: action.payload.type
             }
         })
         builder.addCase(getTokenAndType.rejected, (state,action) => {

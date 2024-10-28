@@ -38,6 +38,7 @@ import Mypage_Wallet from './pages/mypage/Mypage_Wallet';
 import Mypage_UserInfoModify from './pages/mypage/Mypage_UserInfoModify';
 import NaverLogin from "./pages/oauth2test/NaverLogin";
 import KakaoLogout from "./pages/oauth2test/KakaoLogout";
+import GoogleLogin from "./pages/oauth2test/GoogleLogin";
 
 function App() {
 
@@ -53,6 +54,7 @@ function App() {
                     <Route path="/auth/kakao/callback" element={<KakaoLogin/>} />
                     <Route path="/auth/kakao/logout" element={<KakaoLogout/>} />
                     <Route path="/auth/naver/callback" element={<NaverLogin/>}/>
+                    <Route path="/auth/google/callback" element={<GoogleLogin/>}/>
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/find' element={<FindMember/>}/>
                     <Route path='/modifyPasswd' element={<ModifyPasswd/>}/>
