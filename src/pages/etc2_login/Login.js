@@ -106,7 +106,7 @@ const Login = () => {
 
 
     const naver_api_key = 'wa3QkzrBALL4WACeB12Z' //REST API KEY
-    const naver_redirect_uri = 'http://localhost:3000/auth/google/callback' //Redirect URI
+    const naver_redirect_uri = 'http://localhost:3000/auth/naver/callback' //Redirect URI
     const state = 1234;
     const naverURL = `https://nid.naver.com/oauth2.0/authorize?client_id=${naver_api_key}&response_type=code&redirect_uri=${naver_redirect_uri}&state=${state}`
 

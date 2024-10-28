@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {
     findIdByEmail,
-    findMember, getTokenAndType, googleJwtToken,
+    findMember, getType, googleJwtToken,
     join, kakaoJwtToken,
     login,
     logout, modifyPasswd, naverJwtToken,
@@ -21,6 +21,10 @@ const memberSlice = createSlice({
         memberPw: '',
         oauthType: '',
         isLogin: false,
+        address: '',
+        addressDetail: '',
+        name: '',
+        memberPnum:''
     },
     reducers: {
 
@@ -118,9 +122,21 @@ const memberSlice = createSlice({
         });
         builder.addCase(kakaoJwtToken.fulfilled, (state, action) => {
 
+            console.log(action.payload);
+
+
             return {
                 ...state,
-                isLogin: true
+                isLogin: true,
+                memberIndex: action.payload.memberIndex,
+                type: action.payload.type,
+                addressDetail: action.payload.addressDetail,
+                email: action.payload.email,
+                address: action.payload.memberAddress,
+                memberId: action.payload.memberId,
+                nickname: action.payload.nickname,
+                name: action.payload.name,
+                memberPnum: action.payload.memberPnum
             }
         });
         builder.addCase(kakaoJwtToken.rejected, (state, action) => {
@@ -129,36 +145,54 @@ const memberSlice = createSlice({
         });
         builder.addCase(naverJwtToken.fulfilled, (state, action) => {
 
+            console.log(action.payload);
+
             return {
                 ...state,
-                isLogin: true
+                isLogin: true,
+                memberIndex: action.payload.memberIndex,
+                type: action.payload.type,
+                addressDetail: action.payload.addressDetail,
+                email: action.payload.email,
+                address: action.payload.memberAddress,
+                memberId: action.payload.memberId,
+                nickname: action.payload.nickname,
+                name: action.payload.name,
+                memberPnum: action.payload.memberPnum
             }
+        });
+        builder.addCase(naverJwtToken.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
         });
         builder.addCase(googleJwtToken.fulfilled, (state, action) => {
 
             return {
                 ...state,
-                isLogin: true
+                isLogin: true,
+                type: action.payload.type,
+                addressDetail: action.payload.addressDetail,
+                email: action.payload.email,
+                address: action.payload.memberAddress,
+                memberId: action.payload.memberId,
+                nickname: action.payload.nickname,
+                name: action.payload.name,
+                memberPnum: action.payload.memberPnum
             }
         });
         builder.addCase(googleJwtToken.rejected, (state, action) => {
             alert("에러가 발생했습니다.");
             return state;
         });
-        builder.addCase(naverJwtToken.rejected, (state, action) => {
-            alert("에러가 발생했습니다.");
-            return state;
-        });
-        builder.addCase(getTokenAndType.fulfilled, (state, action) => {
+        builder.addCase(getType.fulfilled, (state, action) => {
 
             return{
                 ...state,
-                token: action.payload.token,
                 oauthType: action.payload.type
             }
 
         })
-        builder.addCase(getTokenAndType.rejected, (state,action) => {
+        builder.addCase(getType.rejected, (state,action) => {
             alert("에러가 발생했습니다.");
             return state;
         })

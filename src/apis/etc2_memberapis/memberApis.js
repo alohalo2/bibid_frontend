@@ -142,7 +142,7 @@ export const naverJwtToken = createAsyncThunk(
                 withCredentials: true
             });
 
-            return response.data.statusMessage; // 성공적으로 가져온 JWT 반환
+            return response.data.item; // 성공적으로 가져온 JWT 반환
 
         } catch (e) {
             console.log("오류 발생");
@@ -169,7 +169,7 @@ export const googleJwtToken = createAsyncThunk(
         }
     });
 
-export const getTokenAndType = createAsyncThunk(
+export const getType = createAsyncThunk(
     'auth/getTokenAndType',
     async (_, thunkApi) => {
         try {
@@ -177,7 +177,7 @@ export const getTokenAndType = createAsyncThunk(
                 withCredentials: true
             });
 
-            return response.data.item;
+            return response.data;
 
         } catch (e) {
             console.log("오류 발생");
