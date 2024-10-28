@@ -129,32 +129,6 @@ function SellerAuctionScreen({
     streamingUrl: []
   });
 
-  useEffect(() => {
-    const fetchChannelInfo = async () => {
-      try {
-        // API 호출로 streaming 정보 가져오기
-        const token = Cookies.get('ACCESS_TOKEN');
-        const response = await axios.get(`http://localhost:8080/specialAuction/channelInfo/${auction.auctionIndex}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const channelInfoDto = response.data.item;
-
-        // 서버와 스트림 키 업데이트
-        setChannelInfo({
-          streamKey: channelInfoDto.streamKey,
-          serverURL: channelInfoDto.publishUrl,
-          channelStatus: channelInfoDto.channelStatus,
-          cdnStatusName: channelInfoDto.cdnStatusName,
-          streamingUrl: channelInfoDto.serviceUrlList
-        });
-      } catch (error) {
-        console.error('스트리밍 정보 가져오기 실패:', error);
-      }
-    };
-    fetchChannelInfo();
-  }, [auction.auctionIndex]);
 
   // OBS WebSocket 연결 및 재연결 처리
   useEffect(() => {
