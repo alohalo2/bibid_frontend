@@ -184,4 +184,3 @@ export const getTokenAndType = createAsyncThunk(
             return thunkApi.rejectWithValue(e);
         }
     });
-

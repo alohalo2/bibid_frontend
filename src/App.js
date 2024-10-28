@@ -39,6 +39,7 @@ import Mypage_UserInfoModify from './pages/mypage/Mypage_UserInfoModify';
 import NaverLogin from "./pages/oauth2test/NaverLogin";
 import KakaoLogout from "./pages/oauth2test/KakaoLogout";
 import GoogleLogin from "./pages/oauth2test/GoogleLogin";
+import React from "react";
 
 function App() {
 

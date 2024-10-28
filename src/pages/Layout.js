@@ -7,7 +7,7 @@ import '../css/Layout/Layout.css';
 const Layout = () => {
   return (
     <>
-      <Header/>ㅈ
+      <Header/>
         <main>
             <Outlet/>
         </main>

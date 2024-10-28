@@ -156,6 +156,7 @@ const memberSlice = createSlice({
                 token: action.payload.token,
                 oauthType: action.payload.type
             }
+
         })
         builder.addCase(getTokenAndType.rejected, (state,action) => {
             alert("에러가 발생했습니다.");
