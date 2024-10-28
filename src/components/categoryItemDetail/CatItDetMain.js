@@ -188,13 +188,16 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
     <div className="CID-item-block">
       <div className="CID-bid-item-container">
         {/* 이미지 섹션 */}
+
         <div className="CID-image-section">
-          <img src={auctionImages[0]} alt="Main Image" className="CID-main-image" />
-          <div className="CID-thumbnail-container">
-            {auctionImages.slice(1).map((imageUrl, index) => (
-              <img key={index} src={imageUrl} alt={`Image ${index + 1}`} className="CID-thumbnail" />
-              ))}
-          </div>
+
+        <img src={auctionImages[0]} alt="Main Image" className="CID-main-image" />
+        <div className="CID-thumbnail-container">
+          {auctionImages.slice(1).map((imageUrl, index) => (
+            <img key={index} src={imageUrl} alt={`Image ${index + 1}`} className="CID-thumbnail" />
+            ))}
+        </div>
+
           {/* 판매자 섹션 */}
           <div className="CID-merchant-section">
             <div className="CID-merchant-info">
