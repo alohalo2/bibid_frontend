@@ -57,7 +57,8 @@ import useAuctionWebSocket from '../../customHooks/useAuctionWebSocket';
       const auctionType = activeTab === 'realtime' ? '실시간 경매' : '블라인드 경매';
 
       return auctionList.length > 0 ? (
-        <div className="SAauctionList">
+        <div className={`SAauctionList ${liveAuctionList.length >= 4 ? 'overflow' : ''}`}>
+
           {auctionList.map((auction, index) => {
             const thumbnailImage = auction.auctionImageDtoList.find((image) => image.thumbnail === true);
             const imageSrc = thumbnailImage
