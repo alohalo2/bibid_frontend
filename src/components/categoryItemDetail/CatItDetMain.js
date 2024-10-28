@@ -91,12 +91,14 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
     axios.post(`http://localhost:8080/auctionDetail/category-item-detail/${auctionItem.auctionIndex}`, biddingData, {
       headers: {
         'Content-Type': 'application/json', // 요청의 콘텐츠 타입을 JSON으로 지정
-      }
+      },
+      withCredentials : true
     })
     .then((response) => {
       console.log('Success:', response.data); // 성공 시 서버로부터 응답 데이터 출력
       alert('입찰이 성공적으로 전송되었습니다.');
       closeBiddingNowModal();
+      window.location.href = `/category-itemdetail/${auctionItem.auctionIndex}`;
     })
     .catch((error) => {
       console.error('Error:', error); // 오류 발생 시 오류 메시지 출력

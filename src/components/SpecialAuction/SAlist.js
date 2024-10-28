@@ -2,7 +2,6 @@
   import { useSelector, useDispatch } from 'react-redux';
   import { getAuctionData } from '../../apis/SpecialAuction/SAapis';
   import {   formatDateTime , formatAuctionTimeRange  } from '../../util/utils';
-  import useWebSocket from '../../customHooks/useWebSocket';
   import '../../css/SpecialAuction/SAlist.css';
 
   // 팝업 및 화면 컴포넌트
@@ -14,6 +13,7 @@
   import BidConfirmationPopup from './BidConfirmationPopup';
   import AuctionEndPopup from './AuctionEndPopup';
   import SAitem from './SAitem';
+  import useAuctionWebSocket from '../../customHooks/useAuctionWebSocket';
 
   function SAlist({ activeTab }) {
 
@@ -34,7 +34,7 @@
     const [hasAuctionEnded, setHasAuctionEnded] = useState(false);
     const [isChatClosed, setIsChatClosed] = useState(true);
 
-    const webSocketProps = useWebSocket(selectedAuction?.auctionIndex, isChatClosed, setIsChatClosed);
+    const webSocketProps = useAuctionWebSocket(selectedAuction?.auctionIndex, isChatClosed, setIsChatClosed);
     const {disconnectWebSocket} = webSocketProps;
 
     const [popupState, setPopupState] = useState({
@@ -56,7 +56,8 @@
       const auctionType = activeTab === 'realtime' ? '실시간 경매' : '블라인드 경매';
 
       return auctionList.length > 0 ? (
-        <div className="SAauctionList">
+        <div className={`SAauctionList ${liveAuctionList.length >= 4 ? 'overflow' : ''}`}>
+
           {auctionList.map((auction, index) => {
             const thumbnailImage = auction.auctionImageDtoList.find((image) => image.thumbnail === true);
             const imageSrc = thumbnailImage
@@ -67,10 +68,12 @@
               <SAitem
                 key={index}
                 imageSrc={imageSrc}
+                price={auction.startingPrice}
                 title={auction.productName}
-                linkText={auction.auctionStatus}
                 auctionDate={formatDateTime(auction.startingLocalDateTime)}
                 auctionTime={formatAuctionTimeRange(auction.startingLocalDateTime, auction.endingLocalDateTime)}
+                linkText="바로가기"
+                alertText="* 알림은 경매 시작 30분 전에 발송됩니다."
                 handleGoButtonClick={() => handleGoButtonClick(auction)}
                 handleAlertButtonClick={() => { togglePopup('showAlertPopup', true); handleAlertButtonClick(auction); }}
               />
@@ -143,37 +146,20 @@
       if (selectedAuction) {
         const interval = setInterval(() => {
           const now = new Date();
-          const auctionStartTime = new Date(selectedAuction.startingLocalDateTime);
           const auctionEndTime = new Date(selectedAuction.endingLocalDateTime);
+          const timeDifference = auctionEndTime - now;
     
-          let timeDifference;
-
-          if (now < auctionStartTime) {
-            // 경매 시작 전
-            timeDifference = auctionStartTime - now;
+          if (timeDifference > 0) {
             setRemainingTime(timeDifference);
-          } else if (now >= auctionStartTime && now < auctionEndTime) {
-            // 경매 진행 중
-            timeDifference = auctionEndTime - now;
-            setRemainingTime(timeDifference);
-
-             // 경매가 시작되면 BuyerWaitPopup을 닫고 BuyerAuctionScreen으로 전환
-              if (!popupState.showBuyerAuctionScreen && popupState.showBuyerPopup) {
-                togglePopup('showBuyerPopup', false); // BuyerWaitPopup 닫기
-                togglePopup('showBuyerAuctionScreen', true); // BuyerAuctionScreen 열기
-              }
           } else {
-            // 경매 종료 후
-            timeDifference = -1;
-            setRemainingTime(timeDifference);
             setHasAuctionEnded(true);
-            clearInterval(interval); // 경매 종료 후 타이머 정리
+            clearInterval(interval);
           }
         }, 1000);
     
         return () => clearInterval(interval); // 컴포넌트 언마운트 시 타이머 정리
       }
-    }, [selectedAuction]);
+    }, [selectedAuction, hasAuctionEnded]);
   
 
     // 구매자 팝업 닫기 + 웹 소켓 연결 해제

@@ -8,6 +8,7 @@ import rightArrowIcon from '../../images/right_arrow_icon.svg';
 import hamburgerIcon from '../../images/hamburger_icon.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import HeaderSearchBar from '../Search/HeaderSearchBar'
 import {getAccessToken, getTokenAndType, getType, logout} from "../../apis/etc2_memberapis/memberApis"
 
 const Header = () => {
@@ -169,6 +170,7 @@ const Header = () => {
                     <div className="HDnavbarSearchbar">
                         <input type="text"></input>
                     </div>
+                    <HeaderSearchBar />
                     {
                         token ?
                             <>

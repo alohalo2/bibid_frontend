@@ -30,6 +30,10 @@ const BestProduct_Clothing = ({category}) => {
     fetchBestProductsByCategory();
   }, [category]);
 
+  const handleItemClick = (auctionIndex) => {
+    window.location.href = `/category-itemdetail/${auctionIndex}`;
+  };
+
   return (
     <div className='CTG_container3'>
     <div className='CTG_grid-container-clothing'>
@@ -45,7 +49,9 @@ const BestProduct_Clothing = ({category}) => {
           
             <img 
             className='CTG_grid-img-clothing'
-            src={imageSrc} alt={auction.productName} />
+            src={imageSrc} alt={auction.productName} 
+            onClick={() => handleItemClick(auction.auctionIndex)}
+            />
         </div>
         )
       }

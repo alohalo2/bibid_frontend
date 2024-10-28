@@ -46,6 +46,10 @@ const Slide = styled.ul`
     }
 `;
 
+const handleItemClick = (auctionIndex) => {
+    window.location.href = `/category-itemdetail/${auctionIndex}`;
+  };
+
 function Conveyor() {
     const [bestProducts, setBestProducts] = useState([]);
     const [isPaused, setIsPaused] = useState(false);
@@ -82,7 +86,12 @@ function Conveyor() {
 
                     return (
                         <li key={index}>
-                            <img className='CV_conveyor-img' src={imageSrc} alt={auction.productName} style={{ width: '100%', height: '100%', borderRadius: '5px' }} />
+                            <img className='CV_conveyor-img' 
+                                 src={imageSrc} 
+                                 alt={auction.productName} 
+                                 style={{ width: '100%', height: '100%', borderRadius: '5px' }} 
+                                 onClick={() => handleItemClick(auction.auctionIndex)}
+                                 />
                         </li>
                     );
                 })}
