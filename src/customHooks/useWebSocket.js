@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import SockJS from 'sockjs-client';
 import { Client } from '@stomp/stompjs';
 import { useSelector } from 'react-redux';
-import Cookies from "js-cookie";
 
 const useWebSocket = (auctionIndex, isChatClosed) => {
 
@@ -50,15 +49,11 @@ const useWebSocket = (auctionIndex, isChatClosed) => {
     if (!auctionIndex || isChatClosed) return;
 
     const connectWebSocket = () => {
-      const token = Cookies.get('ACCESS_TOKEN');
 
-      const socket = new SockJS('http://localhost:8080/ws');
-
+      const socket = new SockJS('http://localhost:8080/ws', null, { withCredentials: true });
       const client = new Client({
         webSocketFactory: () => socket,
-        connectHeaders: {
-          Authorization: `Bearer ${token}`,
-        },
+        connectHeaders: {}, // Authorization 헤더를 삭제합니다
 
         onConnect: () => {
           setConnected(true);

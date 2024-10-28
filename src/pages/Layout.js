@@ -5,15 +5,15 @@ import Header from '../components/Layout/Header';
 import '../css/Layout/Layout.css';
 
 const Layout = () => {
-  return (
-    <>
-      <Header/>
-        <main>
-            <Outlet/>
-        </main>
-      <Footer/>
-    </>
-  );
+    return (
+        <>
+            <Header/>
+            <main>
+                <Outlet/>
+            </main>
+            <Footer/>
+        </>
+    );
 };
 
 export default Layout;

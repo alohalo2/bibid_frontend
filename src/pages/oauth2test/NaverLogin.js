@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
-import {useRecoilState} from "recoil";
-import {userInfoState} from './userInfoState';
+// import axios from "axios";
+// import {useRecoilState} from "recoil";
+// import {userInfoState} from './userInfoState';
 import "./KakaoLogin.css"
 import {useDispatch, useSelector} from "react-redux";
-import {kakaoJwtToken} from "../../apis/etc2_memberapis/memberApis";
+import {naverJwtToken} from "../../apis/etc2_memberapis/memberApis";
 import styled from "styled-components";
 
 const CenteredContainer = styled.div`
@@ -15,28 +15,24 @@ const CenteredContainer = styled.div`
     height: 100vh;
 `
 
-function KakaoLogin() {
+function NaverLogin() {
 
     const dispatch = useDispatch();
     const navi = useNavigate();
+    const jwtToken = useSelector(state => state.memberSlice.token);
 
     // Access Token 받아오기
     useEffect(() => {
         // URL에서 'code' 파라미터를 추출
         const params = new URLSearchParams(window.location.search);
         const code = params.get('code');
-
-        const fetchData = async() => {
-            if (code) {
-                // 백엔드로 인가 코드 전송
-                await dispatch(kakaoJwtToken(code));
-                navi("/");
-            }
+        console.log(code);
+        if (code) {
+            // 백엔드로 인가 코드 전송
+            dispatch(naverJwtToken(code));
         }
 
-        fetchData();
-
-    }, [dispatch, navi]);
+    }, [dispatch]);
 
     return (
         <CenteredContainer>
@@ -45,4 +41,4 @@ function KakaoLogin() {
     )
 }
 
-export default KakaoLogin;
+export default NaverLogin;
