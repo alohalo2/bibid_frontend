@@ -2,7 +2,6 @@
   import { useSelector, useDispatch } from 'react-redux';
   import { getAuctionData } from '../../apis/SpecialAuction/SAapis';
   import {   formatDateTime , formatAuctionTimeRange  } from '../../util/utils';
-  import useWebSocket from '../../customHooks/useAuctionWebSocket';
   import '../../css/SpecialAuction/SAlist.css';
 
   // 팝업 및 화면 컴포넌트
@@ -14,7 +13,7 @@
   import BidConfirmationPopup from './BidConfirmationPopup';
   import AuctionEndPopup from './AuctionEndPopup';
   import SAitem from './SAitem';
-import useAuctionWebSocket from '../../customHooks/useAuctionWebSocket';
+  import useAuctionWebSocket from '../../customHooks/useAuctionWebSocket';
 
   function SAlist({ activeTab }) {
 
