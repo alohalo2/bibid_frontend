@@ -176,6 +176,11 @@ color: black;
 background-color: #D9D9D9;
 font-size: 14px;
 font-weight: 900;
+border: none;
+padding: 5px 10px;
+margin-bottom: 10px;
+border-radius: 5px;
+cursor: pointer;
 transition: all 0.3s ease-in-out;
 }
 
@@ -198,5 +203,10 @@ margin-top: 0.9rem;
 margin-top: 0.9rem;
 }
 
-
+.SAstreamingBttnBox {
+}
+  
+.SAstreamingBttnBox button {
+    margin-right: 1rem;
+}
   
