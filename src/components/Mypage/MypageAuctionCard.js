@@ -1,12 +1,13 @@
 import React from 'react'
 import '../../css/Mypage/Mypage.css';
+import MypageAuctionProcessLine from './MypageAuctionProcessLine';
 
 const MypageAuctionCard = () => {
   return (
     <div className='Mypage_AuctionCard'>
       <div className='Mypage_AuctionProcess'>
         <div className='Mypage_AuctionCardType'>경매 타입</div>
-        <p className='Mypage_AuctionProcessLine'> 진행상황 막대 들어감 </p>
+        <MypageAuctionProcessLine/>
         <div className='Mypage_AuctionCardBtnCategory'>
             <div className='Mypage_AuctionCardBtn'>배송 조회</div>
         </div>
