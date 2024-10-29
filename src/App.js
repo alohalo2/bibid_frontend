@@ -32,6 +32,7 @@ import Mypage_UserInfo from "./pages/mypage/Mypage_UserInfo";
 import Mypage_AuctionInfo from "./pages/mypage/Mypage_AuctionInfo";
 import Mypage_Wallet from "./pages/mypage/Mypage_Wallet";
 import Mypage_UserInfoModify from "./pages/mypage/Mypage_UserInfoModify";
+import Mypage_AuctionManagement from "./pages/mypage/Mypage_AuctionManagement";
 import NaverLogin from "./pages/oauth2test/NaverLogin";
 import KakaoLogout from "./pages/oauth2test/KakaoLogout";
 import GoogleLogin from "./pages/oauth2test/GoogleLogin";
@@ -83,6 +84,7 @@ function App() {
                             <Route path="/mypage/userInfo/modify" element={<Mypage_UserInfoModify />} />
                             <Route path="/mypage/auctioninfo/" element={<Mypage_AuctionInfo />} />
                             <Route path="/mypage/wallet/" element={<Mypage_Wallet />} />
+                            <Route path="mypage/auctionmanagement/" element={<Mypage_AuctionManagement/>}/>
                         </Route>
 
                         {/* Widget Routes */}
