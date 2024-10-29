@@ -187,3 +187,22 @@ export const checkLogin = createAsyncThunk(
             return thunkApi.rejectWithValue(e);
         }
     });
+
+    // 프로필 이미지 업로드 액션
+export const uploadProfileImage = createAsyncThunk(
+    'members/uploadProfileImage',
+    async (formData, thunkApi) => {
+        try {
+            const response = await axios.post('http://localhost:8080/mypage/profile-image', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+                withCredentials: true
+            });
+
+            return response.data.item; // 업로드된 프로필 이미지 정보를 반환
+        } catch (e) {
+            console.error("프로필 이미지 업로드 오류 발생:", e);
+            return thunkApi.rejectWithValue(e.response.data); // 에러 발생 시 반환
+        }
+    }
+);
+
