@@ -1,11 +1,11 @@
 import React from "react";
-import { Provider } from "react-redux";
-import { persistStore } from "redux-persist";
-import { PersistGate } from "redux-persist/integration/react";
-import { store } from "./store/store";
-import { NotificationProvider } from "./context/NotificationContext";
+import {Provider} from "react-redux";
+import {persistStore} from "redux-persist";
+import {PersistGate} from "redux-persist/integration/react";
+import {store} from "./store/store";
+import {NotificationProvider} from "./context/NotificationContext";
 import NotificationInitializer from "./context/NotificationInitializer";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 
 import Mainpage from "./pages/Mainpage";
 import Search from "./pages/search/Search";
@@ -35,13 +35,8 @@ import Mypage_UserInfoModify from "./pages/mypage/Mypage_UserInfoModify";
 import NaverLogin from "./pages/oauth2test/NaverLogin";
 import KakaoLogout from "./pages/oauth2test/KakaoLogout";
 import GoogleLogin from "./pages/oauth2test/GoogleLogin";
-import WidgetCheckoutPage from "./pages/widget/WidgetCheckout";
-import WidgetSuccessPage from "./pages/widget/WidgetSuccess";
-import BrandpayCheckoutPage from "./pages/brandpay/BrandpayCheckout";
-import BrandpaySuccessPage from "./pages/brandpay/BrandpaySuccess";
-import PaymentCheckoutPage from "./pages/payment/PaymentCheckout";
-import PaymentBillingPage from "./pages/payment/PaymentBilling";
-import PaymentSuccessPage from "./pages/payment/PaymentSuccess";
+import WidgetCheckoutPage from "./pages/payment/WidgetCheckout";
+import WidgetSuccessPage from "./pages/payment/WidgetSuccess";
 import FailPage from "./pages/Fail";
 
 function App() {
@@ -94,14 +89,14 @@ function App() {
                         <Route path="/widget/checkout" element={<WidgetCheckoutPage />} />
                         <Route path="/widget/success" element={<WidgetSuccessPage />} />
 
-                        {/* Brandpay Routes */}
-                        <Route path="/brandpay/checkout" element={<BrandpayCheckoutPage />} />
-                        <Route path="/brandpay/success" element={<BrandpaySuccessPage />} />
+                        {/*/!* Brandpay Routes *!/*/}
+                        {/*<Route path="/brandpay/checkout" element={<BrandpayCheckoutPage />} />*/}
+                        {/*<Route path="/brandpay/success" element={<BrandpaySuccessPage />} />*/}
 
-                        {/* Payment Routes */}
-                        <Route path="/payment/checkout" element={<PaymentCheckoutPage />} />
-                        <Route path="/payment/billing" element={<PaymentBillingPage />} />
-                        <Route path="/payment/success" element={<PaymentSuccessPage />} />
+                        {/*/!* Payment Routes *!/*/}
+                        {/*<Route path="/payment/checkout" element={<PaymentCheckoutPage />} />*/}
+                        {/*<Route path="/payment/billing" element={<PaymentBillingPage />} />*/}
+                        {/*<Route path="/payment/success" element={<PaymentSuccessPage />} />*/}
 
                         {/* Fail Page */}
                         <Route path="/fail" element={<FailPage />} />

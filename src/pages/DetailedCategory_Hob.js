@@ -15,7 +15,7 @@ const DetailedCategory_Hob = () => {
 
   const fetchBestProducts = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/auction/category/취미, 수집`, {
+      const response = await axios.get(`http://223.130.162.136:8080/auction/category/취미, 수집`, {
         params: { page: page }
       });
 

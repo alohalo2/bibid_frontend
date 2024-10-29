@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import "../../css/toss.css"
 
-function BrandpaySuccessPage() {
+
+function WidgetSuccessPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [responseData, setResponseData] = useState(null);
@@ -12,10 +14,9 @@ function BrandpaySuccessPage() {
         orderId: searchParams.get("orderId"),
         amount: searchParams.get("amount"),
         paymentKey: searchParams.get("paymentKey"),
-        customerKey: searchParams.get("customerKey"),
       };
 
-      const response = await fetch("/api/confirm/brandpay", {
+      const response = await fetch("/api/confirm/widget", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -91,4 +92,4 @@ function BrandpaySuccessPage() {
   );
 }
 
-export default BrandpaySuccessPage;
+export default WidgetSuccessPage;

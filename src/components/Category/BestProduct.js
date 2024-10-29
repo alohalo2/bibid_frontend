@@ -15,7 +15,7 @@ export const BestProduct = () => {
   useEffect(() => {
     const fetchBestProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/auction/top'); // URL을 필요에 따라 조정하세요
+        const response = await axios.get('http://223.130.162.136:8080/auction/top'); // URL을 필요에 따라 조정하세요
         console.log(response);
         if (!response.statusMessage === 'ok') {
           throw new Error('데이터를 가져오는 데 실패했습니다.');

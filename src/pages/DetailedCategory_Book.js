@@ -15,7 +15,7 @@ const DetailedCategory_Book = () => {
 
   const fetchBestProducts = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/auction/category/도서`, {
+      const response = await axios.get(`http://223.130.162.136:8080/auction/category/도서`, {
         params: { page: page }
       });
 

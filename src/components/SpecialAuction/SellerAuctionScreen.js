@@ -136,7 +136,7 @@ function SellerAuctionScreen({
     const fetchChannelInfo = async () => {
       try {
         // API 호출로 streaming 정보 가져오기
-        const response = await axios.get(`http://localhost:8080/specialAuction/channelInfo/${auction.auctionIndex}`, { withCredentials: true });
+        const response = await axios.get(`http://223.130.162.136:8080/specialAuction/channelInfo/${auction.auctionIndex}`, { withCredentials: true });
         const channelInfoDto = response.data.item;
 
         // 서버와 스트림 키 업데이트
@@ -357,7 +357,7 @@ function SellerAuctionScreen({
 
   // 백엔드에 경매 상태 및 채널 상태 갱신 요청 함수
   const updateBackendStatusToLive  = () => {
-    axios.post(`http://localhost:8080/specialAuction/startLive/${auction.auctionIndex}`, {}, { withCredentials: true })
+    axios.post(`http://223.130.162.136:8080/specialAuction/startLive/${auction.auctionIndex}`, {}, { withCredentials: true })
       .then(response => {
         console.log('백엔드 경매 및 채널 상태 갱신 성공:', response.data);
       })
@@ -406,7 +406,7 @@ function SellerAuctionScreen({
 
   // 백엔드에 경매 및 채널 상태 종료로 갱신 요청 함수
   const updateBackendStatusToEnd = () => {
-    axios.post(`http://localhost:8080/specialAuction/endLive/${auction.auctionIndex}`, {}, { withCredentials: true })
+    axios.post(`http://223.130.162.136:8080/specialAuction/endLive/${auction.auctionIndex}`, {}, { withCredentials: true })
       .then(response => {
         console.log('백엔드 경매 및 채널 상태 종료로 갱신 성공:', response.data);
       })

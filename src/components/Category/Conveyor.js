@@ -57,7 +57,7 @@ function Conveyor() {
     useEffect(() => {
         const fetchBestProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auction/conveyor');
+                const response = await axios.get('http://223.130.162.136:8080/auction/conveyor');
                 if (response.data.statusCode !== 200) {
                     throw new Error('데이터를 가져오는 데 실패했습니다.');
                 }

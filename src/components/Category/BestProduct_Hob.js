@@ -12,7 +12,7 @@ const BestProduct_Hob = ({category}) => {
   useEffect(() => {
     const fetchBestProductsByCategory = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/auction/best/취미, 수집`); 
+        const response = await axios.get(`http://223.130.162.136:8080/auction/best/취미, 수집`);
         console.log(response.data);
 
 

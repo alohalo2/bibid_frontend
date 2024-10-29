@@ -91,18 +91,18 @@ const Login = () => {
 
 
     const kakao_api_key = '29e81fa9fda262c573f312af9934fa5c' //REST API KEY
-    const kakao_redirect_uri = 'http://localhost:3000/auth/kakao/callback' //Redirect URI
+    const kakao_redirect_uri = 'http://223.130.162.136:3000/auth/kakao/callback' //Redirect URI
     // oauth 요청 URL
     const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao_api_key}&redirect_uri=${kakao_redirect_uri}&response_type=code`
 
 
     const naver_api_key = 'wa3QkzrBALL4WACeB12Z' //REST API KEY
-    const naver_redirect_uri = 'http://localhost:3000/auth/naver/callback' //Redirect URI
+    const naver_redirect_uri = 'http://223.130.162.136:3000/auth/naver/callback' //Redirect URI
     const state = 1234;
     const naverURL = `https://nid.naver.com/oauth2.0/authorize?client_id=${naver_api_key}&response_type=code&redirect_uri=${naver_redirect_uri}&state=${state}`
 
     const google_api_key = '255369569867-roag3v486bjk47771oeu1o9js0dbgdvh.apps.googleusercontent.com' //REST API KEY
-    const google_redirect_uri = 'http://localhost:3000/auth/google/callback' //Redirect URI
+    const google_redirect_uri = 'http://223.130.162.136:3000/auth/google/callback' //Redirect URI
     // const state = 1234;
     const googleURL = `https://accounts.google.com/o/oauth2/v2/auth?` +
         `client_id=${google_api_key}&` +
