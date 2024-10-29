@@ -8,6 +8,9 @@ export const Mainpage = () => {
   return (
     <div className='mp'>
       <div className='blank'/>
+        <div className='mp_container_title'>
+          <h2>실시간경매</h2>
+        </div>
         <div className='mp_container'>
             <div className='mp_banner'>
               <CarouselBanner/>
