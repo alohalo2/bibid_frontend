@@ -76,17 +76,11 @@ const Header = () => {
     const [token, setToken] = useState(null);
 
     const oauthType = useSelector(state => state.memberSlice.oauthType);
-    const checkLoginState = useSelector(state => state.memberSlice.checkLogin);
+    const checkLoginState = useSelector(state => state.memberSlice.checkLoginState);
 
     useEffect(() => {
 
         dispatch(checkLogin());
-
-    }, [dispatch]);
-
-    useEffect(() => {
-
-        console.log("현재상태:" + checkLoginState);
 
         if (checkLoginState === "ROLE_USER") {
             setToken(true);
@@ -94,7 +88,9 @@ const Header = () => {
             setToken(false);
         }
 
-    }, [checkLoginState]);
+    }, [dispatch, checkLoginState]);
+
+
 
 
     const handleLogout = useCallback(async () => {

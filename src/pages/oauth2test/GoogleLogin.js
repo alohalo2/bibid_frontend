@@ -30,19 +30,22 @@ function GoogleLogin() {
 
     useEffect(() => {
         const hash = window.location.hash;
-        if (hash) {
-            const accessToken = new URLSearchParams(hash.slice(1)).get('access_token');
-            if (accessToken) {
-                // 여기에 토큰을 처리하는 로직을 추가하세요
-                console.log('Access Token:', accessToken);
-                // 예: API 요청이나 상태 관리에 토큰 저장
-                dispatch(googleJwtToken(accessToken));
+        const login = async () => {
+            if (hash) {
+                const accessToken = new URLSearchParams(hash.slice(1)).get('access_token');
+                if (accessToken) {
+                    // 여기에 토큰을 처리하는 로직을 추가하세요
+                    console.log('Access Token:', accessToken);
+                    // 예: API 요청이나 상태 관리에 토큰 저장
+                    await dispatch(googleJwtToken(accessToken));
+                }
+                navi("/");
             }
-        }
-        navi("/");
-    }, [dispatch]);
+        };
 
+        login();
 
+    }, [dispatch, navi]);
 
     return (
         <CenteredContainer>

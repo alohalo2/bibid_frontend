@@ -30,7 +30,6 @@ import DetailedCategory_Elec from './pages/DetailedCategory_Elec';
 import DetailedCategory_Pic from './pages/DetailedCategory_Pic';
 import DetailedCategory_Antique from './pages/DetailedCategory_Antique';
 import ModifyPasswd from "./pages/etc2_find/ModifyPasswd";
-import Loginpage from "./pages/oauth2test/Loginpage";
 import KakaoLogin from "./pages/oauth2test/KakaoLogin";
 import Mypage_UserInfo from './pages/mypage/Mypage_UserInfo';
 import Mypage_AuctionInfo from './pages/mypage/Mypage_AuctionInfo';
@@ -51,7 +50,6 @@ function App() {
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persiststore}>
                     <Routes>
-                        <Route path="/loginpage" element={<Loginpage/>} />
                         <Route path="/auth/kakao/callback" element={<KakaoLogin/>} />
                         <Route path="/auth/kakao/logout" element={<KakaoLogout/>} />
                         <Route path="/auth/naver/callback" element={<NaverLogin/>}/>

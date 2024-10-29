@@ -2,10 +2,14 @@ import {createSlice} from '@reduxjs/toolkit';
 import {
     checkLogin,
     findIdByEmail,
-    findMember, getType, googleJwtToken,
-    join, kakaoJwtToken,
+    findMember,
+    googleJwtToken,
+    join,
+    kakaoJwtToken,
     login,
-    logout, modifyPasswd, naverJwtToken,
+    logout,
+    modifyPasswd,
+    naverJwtToken,
     verificationCodeCheck
 } from '../../apis/etc2_memberapis/memberApis';
 
@@ -69,7 +73,8 @@ const memberSlice = createSlice({
                 memberIndex: 0,
                 nickname: '',
                 token: '',
-                isLogin: false
+                isLogin: false,
+                checkLoginState: "notLogin"
             }
         });
         builder.addCase(logout.rejected, (state, action) => {
@@ -145,8 +150,6 @@ const memberSlice = createSlice({
         });
         builder.addCase(naverJwtToken.fulfilled, (state, action) => {
 
-            console.log(action.payload);
-
             return {
                 ...state,
                 isLogin: true,
@@ -166,8 +169,6 @@ const memberSlice = createSlice({
             return state;
         });
         builder.addCase(googleJwtToken.fulfilled, (state, action) => {
-
-            console.log(action.payload);
 
             return {
                 ...state,
@@ -189,8 +190,6 @@ const memberSlice = createSlice({
         });
         builder.addCase(checkLogin.fulfilled, (state, action) => {
 
-            console.log(action.payload);
-            console.log(action.payload.item);
             return {
                 ...state,
                 checkLoginState: action.payload.item

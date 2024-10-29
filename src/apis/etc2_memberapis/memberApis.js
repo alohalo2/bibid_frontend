@@ -13,7 +13,10 @@ export const join = createAsyncThunk('members/join', async (member, thunkApi) =>
 
 export const login = createAsyncThunk('members/login', async (member, thunkApi) => {
     try {
-        const response = await axios.post('http://localhost:8080/members/login', member);
+        const response = await axios.post('http://localhost:8080/members/login', member,
+            {
+                withCredentials: true
+            });
 
         return response.data.item;
     } catch (e) {
