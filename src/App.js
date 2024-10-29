@@ -37,11 +37,6 @@ import KakaoLogout from "./pages/oauth2test/KakaoLogout";
 import GoogleLogin from "./pages/oauth2test/GoogleLogin";
 import WidgetCheckoutPage from "./pages/widget/WidgetCheckout";
 import WidgetSuccessPage from "./pages/widget/WidgetSuccess";
-import BrandpayCheckoutPage from "./pages/brandpay/BrandpayCheckout";
-import BrandpaySuccessPage from "./pages/brandpay/BrandpaySuccess";
-import PaymentCheckoutPage from "./pages/payment/PaymentCheckout";
-import PaymentBillingPage from "./pages/payment/PaymentBilling";
-import PaymentSuccessPage from "./pages/payment/PaymentSuccess";
 import FailPage from "./pages/Fail";
 
 function App() {
@@ -93,15 +88,6 @@ function App() {
                         {/* Widget Routes */}
                         <Route path="/widget/checkout" element={<WidgetCheckoutPage />} />
                         <Route path="/widget/success" element={<WidgetSuccessPage />} />
-
-                        {/* Brandpay Routes */}
-                        <Route path="/brandpay/checkout" element={<BrandpayCheckoutPage />} />
-                        <Route path="/brandpay/success" element={<BrandpaySuccessPage />} />
-
-                        {/* Payment Routes */}
-                        <Route path="/payment/checkout" element={<PaymentCheckoutPage />} />
-                        <Route path="/payment/billing" element={<PaymentBillingPage />} />
-                        <Route path="/payment/success" element={<PaymentSuccessPage />} />
 
                         {/* Fail Page */}
                         <Route path="/fail" element={<FailPage />} />
