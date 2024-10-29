@@ -35,9 +35,11 @@ function WidgetSuccessPage() {
       .then((data) => {
         setResponseData(data);
       })
-      .catch((error) => {
-        navigate(`/fail?code=${error.code}&message=${error.message}`);
-      });
+
+
+      // .catch((error) => {
+      //   navigate(`/fail?code=${error.code}&message=${error.message}`);
+      // });
   }, [searchParams]);
 
   return (
