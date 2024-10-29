@@ -5,7 +5,7 @@ import MypageAuctionCard from './MypageAuctionCard';
 const MypageProfileBox = () => {
   return (
     <div className='Mypage_AuctionBoxContainer'>
-      <div className='Mypage_UserInfoTitle'>낙찰받은 경매 목록</div>
+      <div className='Mypage_UserInfoTitle'>경매 진행 현황</div>
       <div className='Mypage_AuctionMainContainer'>
           <div className='Mypage_AuctionInfoContainer'>
             <div className='Mypage_AuctionCategory'>
