@@ -1,11 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import axios from "axios";
-import {useRecoilState} from "recoil";
-import {userInfoState} from './userInfoState';
+import React from "react";
 import "./KakaoLogin.css"
-import {useDispatch, useSelector} from "react-redux";
-import {kakaoJwtToken} from "../../apis/etc2_memberapis/memberApis";
 import styled from "styled-components";
 
 const CenteredContainer = styled.div`

@@ -1,10 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {
+    checkLogin,
     findIdByEmail,
-    findMember, getType, googleJwtToken,
-    join, kakaoJwtToken,
+    findMember,
+    googleJwtToken,
+    join,
+    kakaoJwtToken,
     login,
-    logout, modifyPasswd, naverJwtToken,
+    logout,
+    modifyPasswd,
+    naverJwtToken,
     verificationCodeCheck
 } from '../../apis/etc2_memberapis/memberApis';
 
@@ -24,11 +29,10 @@ const memberSlice = createSlice({
         address: '',
         addressDetail: '',
         name: '',
-        memberPnum:''
+        memberPnum: '',
+        checkLoginState: '',
     },
-    reducers: {
-
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(join.fulfilled, (state, action) => {
             alert(`${action.payload.memberId}님 가입 축하드립니다.`);
@@ -69,7 +73,8 @@ const memberSlice = createSlice({
                 memberIndex: 0,
                 nickname: '',
                 token: '',
-                isLogin:false
+                isLogin: false,
+                checkLoginState: "notLogin"
             }
         });
         builder.addCase(logout.rejected, (state, action) => {
@@ -145,8 +150,6 @@ const memberSlice = createSlice({
         });
         builder.addCase(naverJwtToken.fulfilled, (state, action) => {
 
-            console.log(action.payload);
-
             return {
                 ...state,
                 isLogin: true,
@@ -170,6 +173,7 @@ const memberSlice = createSlice({
             return {
                 ...state,
                 isLogin: true,
+                memberIndex: action.payload.memberIndex,
                 type: action.payload.type,
                 addressDetail: action.payload.addressDetail,
                 email: action.payload.email,
@@ -184,15 +188,15 @@ const memberSlice = createSlice({
             alert("에러가 발생했습니다.");
             return state;
         });
-        builder.addCase(getType.fulfilled, (state, action) => {
+        builder.addCase(checkLogin.fulfilled, (state, action) => {
 
-            return{
+            return {
                 ...state,
-                oauthType: action.payload.type
+                checkLoginState: action.payload.item
             }
 
         })
-        builder.addCase(getType.rejected, (state,action) => {
+        builder.addCase(checkLogin.rejected, (state, action) => {
             alert("에러가 발생했습니다.");
             return state;
         })

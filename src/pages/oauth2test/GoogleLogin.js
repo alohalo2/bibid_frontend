@@ -25,17 +25,25 @@ function GoogleLogin() {
         // URL에서 'code' 파라미터를 추출
         const params = new URLSearchParams(window.location.search);
         const code = params.get('code');
-        console.log("code:" + code);
 
-        const fetchData = async() => {
-            if (code) {
-                // 백엔드로 인가 코드 전송
-                await dispatch(googleJwtToken(code));
+    }, [dispatch, navi]);
+
+    useEffect(() => {
+        const hash = window.location.hash;
+        const login = async () => {
+            if (hash) {
+                const accessToken = new URLSearchParams(hash.slice(1)).get('access_token');
+                if (accessToken) {
+                    // 여기에 토큰을 처리하는 로직을 추가하세요
+                    console.log('Access Token:', accessToken);
+                    // 예: API 요청이나 상태 관리에 토큰 저장
+                    await dispatch(googleJwtToken(accessToken));
+                }
                 navi("/");
             }
-        }
+        };
 
-        fetchData();
+        login();
 
     }, [dispatch, navi]);
 

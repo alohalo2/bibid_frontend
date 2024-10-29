@@ -13,7 +13,10 @@ export const join = createAsyncThunk('members/join', async (member, thunkApi) =>
 
 export const login = createAsyncThunk('members/login', async (member, thunkApi) => {
     try {
-        const response = await axios.post('http://localhost:8080/members/login', member);
+        const response = await axios.post('http://localhost:8080/members/login', member,
+            {
+                withCredentials: true
+            });
 
         return response.data.item;
     } catch (e) {
@@ -152,28 +155,28 @@ export const naverJwtToken = createAsyncThunk(
 
 export const googleJwtToken = createAsyncThunk(
     'auth/googleJwtToken',
-    async (code, thunkApi) => {
+    async (accessToken, thunkApi) => {
         try {
-            const response = await axios.get(`http://localhost:8080/auth/google/callback`, {
-                params: {
-                    code: code // 쿼리 파라미터로 코드 전달
-                },
+            const response = await axios.post(`http://localhost:8080/auth/google/callback`, {
+                access_token: accessToken // 액세스 토큰을 JSON 바디로 전송
+            }, {
                 withCredentials: true
             });
 
-            return response.data.statusMessage; // 성공적으로 가져온 JWT 반환
+            return response.data.item; // 성공적으로 가져온 JWT 반환
 
         } catch (e) {
-            console.log("오류 발생");
-            return thunkApi.rejectWithValue(e);
+            console.log("오류 발생:", e);
+            return thunkApi.rejectWithValue(e.response.data); // 에러 메시지를 반환
         }
-    });
+    }
+);
 
-export const getType = createAsyncThunk(
-    'auth/getTokenAndType',
+export const checkLogin = createAsyncThunk(
+    'auth/checkLogin',
     async (_, thunkApi) => {
         try {
-            const response = await axios.get(`http://localhost:8080/auth/api/token/type`, {
+            const response = await axios.get(`http://localhost:8080/auth/checkLogin`, {
                 withCredentials: true
             });
 

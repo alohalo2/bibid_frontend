@@ -1,17 +1,16 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
     Button,
     Checkbox,
     Container,
     FormControlLabel,
     Grid,
-    Icon,
     InputAdornment,
     TextField,
     Typography
 } from '@mui/material';
 import {useDispatch, useSelector} from 'react-redux';
-import {googleJwtToken, login} from '../../apis/etc2_memberapis/memberApis';
+import {login} from '../../apis/etc2_memberapis/memberApis';
 import {useNavigate} from 'react-router-dom';
 import styled from "styled-components";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
@@ -47,7 +46,8 @@ const Login = () => {
 
     const [loginForm, setLoginForm] = useState({
         memberId: '',
-        memberPw: ''
+        memberPw: '',
+        rememberMe: false
     });
     const [showMemberPw, setShowMemberPw] = useState(false);
 
@@ -55,41 +55,33 @@ const Login = () => {
     const dispatch = useDispatch();
     const navi = useNavigate();
 
-    const changeTextField = useCallback((e) => {
-        setLoginForm({
-            ...loginForm,
-            [e.target.name]: e.target.value
-        });
-    }, [loginForm]);
+    const checkLoginState = useSelector(state => state.memberSlice.checkLoginState);
 
-    const setCookie = (name, value, days) => {
-        let expires = '';
-        if (days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = `; expires=${date.toUTCString()}`;
+    useEffect(() => {
+        console.log(loginForm.rememberMe);
+
+        if(checkLoginState === "ROLE_USER"){
+            alert("이미 로그인 되어 있습니다.");
+            navi("/");
         }
-        document.cookie = `${name}=${value || ''}${expires}; path=/`;
-    };
 
-    const handleLogin = useCallback((e) => {
+    }, [checkLoginState, loginForm]);
+
+    const changeTextField = useCallback((e) => {
+        const { name, value } = e.target;
+
+        setLoginForm((prev) => ({
+            ...prev,
+            [name]: name === 'rememberMe' ? !prev.rememberMe : value, // 체크박스 반전
+        }));
+    }, []);
+
+    const handleLogin = useCallback(async(e) => {
         e.preventDefault();
 
-        dispatch(login(loginForm)).then((action) => {
-                if (login.fulfilled.match(action)) { // 액션 타입 확인을 위해 match 사용
-                    const token = action.payload.token;
+         await dispatch(login(loginForm));
 
-                    if (rememberMe) {
-                        setCookie('ACCESS_TOKEN', token, 7)
-                    } else {
-                        setCookie('ACCESS_TOKEN', token)
-                    }
-                    navi("/");
-                } else {
-                    console.error('로그인 실패');
-                }
-            }
-        );
+        navi("/");
 
     }, [loginForm, dispatch, navi]);
 
@@ -97,7 +89,6 @@ const Login = () => {
         setShowMemberPw((prev) => !prev);
     };
 
-    const [rememberMe, setRememberMe] = useState(false);
 
     const kakao_api_key = '29e81fa9fda262c573f312af9934fa5c' //REST API KEY
     const kakao_redirect_uri = 'http://localhost:3000/auth/kakao/callback' //Redirect URI
@@ -118,7 +109,6 @@ const Login = () => {
         `redirect_uri=${google_redirect_uri}&` +
         `response_type=token&` +
         `scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile`;
-
     const handleKakaoLogin = () => {
         window.location.href = kakaoURL
     }
@@ -130,6 +120,7 @@ const Login = () => {
     const handleGoogleLogin = () => {
         window.location.href = googleURL
     }
+
 
     return (
         <CenteredContainer>
@@ -176,8 +167,9 @@ const Login = () => {
                             <FormControlLabel
                                 control={
                                     <Checkbox
-                                        checked={rememberMe}
-                                        onChange={() => setRememberMe(!rememberMe)}
+                                        checked={loginForm.rememberMe}
+                                        onChange={changeTextField}
+                                        name='rememberMe'
                                     />
                                 }
                                 label="로그인 상태 유지"

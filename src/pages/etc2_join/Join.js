@@ -5,6 +5,7 @@ import CheckBoxComponent from "../../components/etc2_join/CheckBoxComponent";
 import ButtonComponent from "../../components/etc2_join/ButtonComponent";
 import {Box} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const JoinBlock = styled.div`
     display: flex;
@@ -41,6 +42,15 @@ const Join = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [checked, setChecked] = useState(Array(7).fill(false));
     const [checkedIndices, setCheckedIndices] = useState([]);
+    const checkLoginState = useSelector(state => state.memberSlice.checkLoginState);
+
+    useEffect(() => {
+        if(checkLoginState === "ROLE_USER"){
+            alert("로그아웃 후 이용하세요");
+            navi("/");
+        }
+
+    }, [checkLoginState]);
 
     const handleCheckedChange = (indices) => {
         setCheckedIndices(indices);
