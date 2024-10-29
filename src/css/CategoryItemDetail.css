@@ -29,9 +29,11 @@ div.CID-item-block{
 
 .CID-bid-item-container {
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
+    height: 600px;
 }
 
 /* 이미지 섹션 */
@@ -99,6 +101,7 @@ div.CID-item-block{
 .CID-bid-section {
     margin-top: 20px;
     width: 45%;
+    height: 600px;
 }
 
 .CID-bid-title {
@@ -249,6 +252,14 @@ div.CID-item-inquiry{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+}
+
+.CID-item-img-content {
+  width: 500px;
+  height: 350px;
+  object-fit: contain;
+  border: solid 1px #BFBFBF;
+  border-radius: 5px;
 }
 
 .CID-inquiry-button {

@@ -360,6 +360,10 @@ margin: 20px 0;
   background-color: #0A369D;
   padding: 8px 16px;
   border-radius: 10px;
+}
+
+.SAliveOnOffBox h3 {
+  margin: 0;
   font-size: 22px;
 }
 

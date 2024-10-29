@@ -181,7 +181,7 @@
         {renderAuctions()}
         {/* 팝업 컴포넌트들 */}
         {popupState.showAlertPopup && selectedAuction && <AlertPopup auction={selectedAuction} handleClosePopup={() => togglePopup('showAlertPopup', false)} />}
-        {popupState.showBuyerPopup && !popupState.showBuyerAuctionScreen && <BuyerWaitPopup handleClosePopup={() => togglePopup('showBuyerPopup', false)} />}
+        {popupState.showBuyerPopup && !popupState.showBuyerAuctionScreen && <BuyerWaitPopup handleClosePopup={() => togglePopup('showBuyerPopup', false)} formattedParticipantCount={webSocketProps.participantCount[selectedAuction?.auctionIndex] || 0} />}
         {popupState.showBuyerAuctionScreen && <BuyerAuctionScreen  webSocketProps = {webSocketProps} auction={selectedAuction} remainingTime={remainingTime} handleShowSellerInfo={() => togglePopup('showSellerInfoPopup', true) } openBidConfirmPopup={ () => togglePopup('showBidConfirmationPopup', true) } closeBuyerPopup={closeBuyerPopupAnddisconnectWebSocket} />}
         {popupState.showSellerAuctionScreen && <SellerAuctionScreen  webSocketProps = {webSocketProps} auction={selectedAuction} remainingTime={remainingTime} closeSellerPage={closeSellerPopupAnddisconnectWebSocket} />}
         {popupState.showSellerInfoPopup && <SellerInfoPopup auction={selectedAuction} handleClosePopup={() => togglePopup('showSellerInfoPopup', false)} />}

@@ -11,7 +11,8 @@ function SellerAuctionScreen({
 }) {
 
   // 대기 화면 이미지 경로 (React public 폴더의 이미지 URL)
-  const waitingImagePath = 'https://kr.object.ncloudstorage.com/bitcamp119/auction/SA_wait_image.jpg';
+  const waitingImagePath = 'http://localhost:3000/images/SA_wait_image.jpg';
+  const endingImagePath = 'http://localhost:3000/images/SA_auction_end_image.jpg';
 
   const obs = useRef(null);
 
@@ -76,17 +77,18 @@ function SellerAuctionScreen({
     }
   };
 
-  const imagePath = 'C:/Users/bitcamp/Desktop/bibid_front/public/images/bid.gif';
-
-  const displayBidWithImageOnOBS = (bidAmount, bidderNickname, imagePath) => {
+  const displayBidWithImageOnOBS = (bidAmount, bidderNickname) => {
     if (isObsConnected) {
+
+      const gifUrl = 'http://localhost:3000/images/bid_donation.gif';
+
       // 먼저 이미지 소스를 추가
       obs.current.call('CreateInput', {
-        sceneName: 'Scene',  // 방송에서 사용하는 장면 이름
-        inputName: 'Bid Image Overlay',  // 이미지 소스 이름
-        inputKind: 'image_source',  // 이미지 소스 종류
+        sceneName: 'Live Scene',  // 방송에서 사용하는 장면 이름
+        inputName: 'Bid Browser Overlay',  // 이미지 소스 이름
+        inputKind: 'browser_source',  // 이미지 소스 종류
         inputSettings: {
-          file: imagePath,  // 이미지 경로
+          url: gifUrl,  // GIF를 포함한 HTML 페이지 URL
           width: 500,  // 이미지 가로 크기 (적절히 조정)
           height: 200,  // 이미지 세로 크기 (적절히 조정)
           // border: none,
@@ -96,7 +98,7 @@ function SellerAuctionScreen({
 
         // 이미지 추가 후 텍스트 소스를 그 위에 추가
         return obs.current.call('CreateInput', {
-          sceneName: 'Scene',  // 방송에서 사용하는 장면 이름
+          sceneName: 'Live Scene',  // 방송에서 사용하는 장면 이름
           inputName: 'Bid Text Overlay',  // 텍스트 소스 이름
           inputKind: 'text_ft2_source_v2',  // 텍스트 소스 종류
           inputSettings: {
@@ -113,7 +115,7 @@ function SellerAuctionScreen({
         // 일정 시간 후 텍스트와 이미지 소스 모두 제거
         setTimeout(() => {
           obs.current.call('RemoveInput', { inputName: 'Bid Text Overlay' });
-          obs.current.call('RemoveInput', { inputName: 'Bid Image Overlay' });
+          obs.current.call('RemoveInput', { inputName: 'Bid Browser Overlay' });
           console.log('OBS에서 이미지 및 텍스트 제거 성공');
         }, 10000);  // 5초 후 제거
       }).catch(err => {
@@ -218,38 +220,53 @@ function SellerAuctionScreen({
                   },
                 });
               })
-              .then(() => {
-                console.log('Waiting Scene에 이미지 소스 추가 완료');
-                // 텍스트 소스 추가
-                return obs.current.call('CreateInput', {
-                  sceneName: 'Waiting Scene',
-                  inputName: 'Auction End Time',
-                  inputKind: 'text_gdiplus', // 텍스트 소스 종류
-                  inputSettings: {
-                    text: `경매 종료 시간: ${auctionEndTime}`, // 경매 종료 시간을 표시
-                    font: {
-                      face: 'Arial',     // 글꼴
-                      size: 48,          // 글자 크기
-                      style: 'Bold',     // 스타일
-                    },
-                    color: 0xFFFFFF,       // 글자 색상 (흰색)
-                    background_color: 0x000000, // 배경색 (검정색)
-                    vertical: 'center',    // 수직 정렬
-                    horizontal: 'center',  // 수평 정렬
-                  },
-                });
-              })
               .then(() => console.log('Waiting Scene에 이미지 소스 추가 완료'))
               .catch((err) => console.error('Waiting Scene 설정 실패:', err));
           } else {
             console.log('Waiting Scene 이미 존재');
+          }
+
+          // Ending Scene이 없을 때만 생성
+          if (!sceneNames.includes('Ending Scene')) {
+            obs.current.call('CreateScene', { sceneName: 'Ending Scene' })
+              .then(() => {
+                console.log('Ending Scene 생성 완료');
+                // Waiting Scene에 이미지 소스 추가
+                return obs.current.call('CreateInput', {
+                  sceneName: 'Ending Scene',
+                  inputName: 'Ending Image',
+                  inputKind: 'image_source',
+                  inputSettings: {
+                    file: endingImagePath, // public 폴더 이미지 경로
+                  },
+                });
+              })
+              .then(() => {
+                console.log('Ending Scene에 이미지 소스 추가 완료');
+                // 낙찰자 정보 텍스트 추가
+                return obs.current.call('CreateInput', {
+                  sceneName: 'Ending Scene',
+                  inputName: 'Winner Info Text',  // 텍스트 소스 이름
+                  inputKind: 'text_ft2_source_v2',  // 텍스트 소스 종류
+                  inputSettings: {
+                    text: `${winnerNickname}님이 ${winningBid}원에 낙찰되었습니다!`,  // 텍스트 내용
+                    font: { face: 'Malgun Gothic', size: 48 },
+                    color: 0xFFFFFFFF,  // 텍스트 색상 (흰색)
+                    backgroundColor: 0x000000FF,  // 배경 색상 (검은색)
+                    align: 'center',  // 텍스트 정렬
+                  },
+                });
+              })
+              .then(() => console.log('낙찰자 정보 텍스트 추가 완료'))
+              .catch((err) => console.error('Ending Scene 설정 실패:', err));
+          } else {
+            console.log('Ending Scene 이미 존재');
           }
         })
         .catch(err => console.error('장면 목록 가져오기 실패:', err));
     }
   };
 
-  const [isMikeOn, setIsMikeOn] = useState(true); // 마이크 상태 관리
   const [isLive, setIsLive] = useState(false); // 라이브 상태 관리
   const [remainingText, setRemainingText] = useState("경매 시작까지 남은 시간"); // 남은 시간 텍스트
   const [formattedTimeText, setFormattedTimeText] = useState(""); // 포맷된 시간 텍스트

@@ -1,6 +1,7 @@
 import React from 'react';
 
-function BuyerWaitPopup({ handleClosePopup }) {
+function BuyerWaitPopup({ handleClosePopup, formattedParticipantCount }) {
+
   return (
     <div className="SAoverlay">
       <div className="SAwaitPopup">
@@ -8,7 +9,7 @@ function BuyerWaitPopup({ handleClosePopup }) {
           <h3>Live Off</h3>
         </div>
         <div className='SAbuyerWaitCommnetBox'>
-          <h1>20,568명 대기중...</h1>
+          <h1>{formattedParticipantCount}명 대기중...</h1>
           <p>곧 실시간 경매가 시작될 예정입니다.</p>
           <p>잠시만 대기 해주시면 곧 경매가 시작됩니다.</p>
         </div>

@@ -165,10 +165,13 @@ const VideoSectionOriginal = ({
             <div style={{display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                        width: "540px",
-                        height: "330px",
+                        width: "1480px",
+                        height: "820px",
+                        
                       }}
-            >비디오를 불러오는 중...</div>
+            ><p style={{fontSize: "22px",
+                        fontWeight: "900",
+              }}>비디오를 불러오는 중...</p></div>
           </div>
         )}
       </VideoContainer>

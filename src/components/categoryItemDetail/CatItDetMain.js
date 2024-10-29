@@ -358,7 +358,7 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
           <div className="CID-expected-price">예상 구매가: {parseInt(totalPrice).toLocaleString()} 원</div>
           <p>(입찰 희망가 {nowBiddingInfo.bidPrice.toLocaleString()} 원 + 구매수수료 {parseInt(nowBiddingInfo.purchaseFee).toLocaleString()} 원)</p>
           {/* 백엔드 로직 : bidInfo테이블의 최신입찰가 */}
-          <div className="CID-divider"></div>
+          {/* <div className="CID-divider"></div> */}
 
           {/* 버튼 */}
           <div className="CID-bid-buttons">

@@ -156,7 +156,7 @@
 .Mypage_WalletInfoContainer {
     display: flex;
     width: 700px;
-    height: 100px;
+    height: 80px;
     justify-content: space-between;
 }
 
@@ -282,4 +282,29 @@
     width: 700px;
     height: 50px;
     align-items: center;
+}
+
+.Mypage_BttnBox {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.Mypage_Bttn {
+    background-color: #D9D9D9;
+    width: 100px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 900;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.Mypage_Bttn:hover {
+    background-color: #0A369D;
+    color: white;
 }
