@@ -102,6 +102,8 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
     })
     .catch((error) => {
       console.error('Error:', error); // 오류 발생 시 오류 메시지 출력
+      alert('이미 최고 입찰자입니다.');
+      closeBiddingNowModal();
     });
   };
   
