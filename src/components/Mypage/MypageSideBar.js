@@ -10,18 +10,18 @@ const MypageSideBar = ({ memberInfo }) => {
   const bucketName = process.env.REACT_APP_BUCKET_NAME;
   const member = useSelector((state) => state.memberSlice);
   const dispatch = useDispatch(); // dispatch 함수 추가
-  const [profileImage, setProfileImage] = useState(member.profileImage || { filepath: '/default_profile.png', filename: '' });
+  const [profileImageDto, setProfileImageDto] = useState(member.profileImageDto);
   const [loading, setLoading] = useState(false);
   const navi = useNavigate();
 
-  const imageSrc = profileImage.filepath && profileImage.filename
-  ? `https://kr.object.ncloudstorage.com/${bucketName}/${profileImage.filepath}${profileImage.filename}`
-  : '/images/defaultFileImg.png';
+  // 프로필 이미지가 없으면 기본 이미지를 사용하도록 조건 추가
+  const imageSrc = profileImageDto && profileImageDto.filepath && profileImageDto.newfilename
+    ? `https://kr.object.ncloudstorage.com/${bucketName}/${profileImageDto.filepath}${profileImageDto.newfilename}`
+    : '/default_profile.png'; // 기본 이미지 경로 설정
 
   useEffect(() => {
-    setProfileImage(member.profileImage || { filepath: '', filename: '/default_profile.png' });
-  }, [member.profileImage]);
-
+    setProfileImageDto(member.profileImageDto);
+  }, [member.profileImageDto]);
 
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
@@ -37,7 +37,8 @@ const MypageSideBar = ({ memberInfo }) => {
   
         // 성공적으로 업로드되었는지 확인
         if (uploadProfileImage.fulfilled.match(actionResult)) {
-          setProfileImage(actionResult.payload); // local state 업데이트
+          console.log("성공");
+          setProfileImageDto(actionResult.payload); // local state 업데이트
         } else {
           console.error('프로필 이미지 업로드 오류:', actionResult.payload);
         }

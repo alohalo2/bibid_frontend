@@ -32,7 +32,7 @@ const memberSlice = createSlice({
         name: '',
         memberPnum: '',
         checkLoginState: '',
-        profileImage: ''
+        profileImageDto: ''
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -53,7 +53,7 @@ const memberSlice = createSlice({
                 memberId: action.payload.memberId,
                 nickname: action.payload.nickname,
                 token: action.payload.token,
-                profileImage : action.payload.profileImage,
+                profileImageDto : action.payload.profileImageDto,
                 isLogin: true
             };
         });
@@ -203,17 +203,16 @@ const memberSlice = createSlice({
             alert("에러가 발생했습니다.");
             return state;
         })
-        builder
-            .addCase(uploadProfileImage.fulfilled, (state, action) => {
-                return{
-                  ...state,
-                  profileImage : action.payload.profileImage
-                }
-            })
-            .addCase(uploadProfileImage.rejected, (state, action) => {
-                alert("에러가 발생했습니다.");
-                return state;
-            });
+        builder.addCase(uploadProfileImage.fulfilled, (state, action) => {
+            return{
+                ...state,
+                profileImageDto : action.payload
+            }
+        })
+        builder.addCase(uploadProfileImage.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
+        });
     }
 });
 
