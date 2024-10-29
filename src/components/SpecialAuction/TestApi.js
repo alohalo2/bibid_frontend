@@ -9,7 +9,7 @@ import {
   confirmBillingPayment,
 } from '../../apis/toss/paymentApi'; // paymentApi.js 파일에서 함수들을 import하세요.
 
-const CheckNcloudApi = () => {
+const TestApi = () => {
   // 각 버튼에서 호출될 API 함수들
   const handleConfirmWidgetPayment = async () => {
     try {
@@ -144,4 +144,4 @@ const CheckNcloudApi = () => {
   );
 };
 
-export default CheckNcloudApi;
+export default TestApi;

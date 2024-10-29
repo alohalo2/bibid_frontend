@@ -189,20 +189,84 @@ export const checkLogin = createAsyncThunk(
     });
 
     // 프로필 이미지 업로드 액션
-export const uploadProfileImage = createAsyncThunk(
-    'members/uploadProfileImage',
-    async (formData, thunkApi) => {
-        try {
-            const response = await axios.post('http://localhost:8080/mypage/profile-image', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' },
-                withCredentials: true
-            });
+    export const uploadProfileImage = createAsyncThunk(
+        'members/uploadProfileImage',
+        async (formData, thunkApi) => {
+            try {
+                const response = await axios.post('http://localhost:8080/mypage/profile-image', formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                    withCredentials: true
+                });
 
-            return response.data.item; // 업로드된 프로필 이미지 정보를 반환
-        } catch (e) {
-            console.error("프로필 이미지 업로드 오류 발생:", e);
-            return thunkApi.rejectWithValue(e.response.data); // 에러 발생 시 반환
+                return response.data.item; // 업로드된 프로필 이미지 정보를 반환
+            } catch (e) {
+                console.error("프로필 이미지 업로드 오류 발생:", e);
+                return thunkApi.rejectWithValue(e.response.data); // 에러 발생 시 반환
+            }
         }
+    );
+
+    // 충전 요청 액션
+export const chargeAccount = createAsyncThunk(
+    'account/chargeAccount',
+    async (dummyData, thunkApi) => {
+      try {
+        const response = await axios.post('http://localhost:8080/account/charge', dummyData, {
+          withCredentials: true
+        });
+        return response.data.item; // 충전 결과 반환
+      } catch (e) {
+        console.error("충전 요청 오류 발생:", e);
+        return thunkApi.rejectWithValue(e.response ? e.response.data : e.message);
+      }
     }
-);
+  );
+  
+  // 환전 요청 액션
+  export const exchangeAccount = createAsyncThunk(
+    'account/exchangeAccount',
+    async (dummyData, thunkApi) => {
+      try {
+        const response = await axios.post('http://localhost:8080/account/exchange', dummyData, {
+          withCredentials: true
+        });
+        return response.data.item; // 환전 결과 반환
+      } catch (e) {
+        console.error("환전 요청 오류 발생:", e);
+        return thunkApi.rejectWithValue(e.response ? e.response.data : e.message);
+      }
+    }
+  );
+  
+  // 구매 요청 액션
+  export const buyAuction = createAsyncThunk(
+    'account/buyAuction',
+    async (dummyData, thunkApi) => {
+      try {
+        const response = await axios.post('http://localhost:8080/account/buy', dummyData, {
+          withCredentials: true
+        });
+        return response.data.item; // 구매 결과 반환
+      } catch (e) {
+        console.error("구매 요청 오류 발생:", e);
+        return thunkApi.rejectWithValue(e.response ? e.response.data : e.message);
+      }
+    }
+  );
+  
+  // 판매 요청 액션
+  export const sellAuction = createAsyncThunk(
+    'account/sellAuction',
+    async (dummyData, thunkApi) => {
+      try {
+        const response = await axios.post('http://localhost:8080/account/sell', dummyData, {
+          withCredentials: true
+        });
+        return response.data.item; // 판매 결과 반환
+      } catch (e) {
+        console.error("판매 요청 오류 발생:", e);
+        return thunkApi.rejectWithValue(e.response ? e.response.data : e.message);
+      }
+    }
+  );
 

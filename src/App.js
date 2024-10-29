@@ -17,7 +17,6 @@ import Login from "./pages/etc2_login/Login";
 import RegistrationForm from "./pages/RegistrationForm";
 import FindMember from "./pages/etc2_find/FindMember";
 import CategoryItemDetail from "./components/categoryItemDetail/CategoryItemDetail";
-import CheckNcloudApi from "./components/SpecialAuction/CheckNcloudApi";
 import DetailedCategory_All from "./pages/DetailedCategory_All";
 import DetailedCategory_Hob from "./pages/DetailedCategory_Hob";
 import DetailedCategory_Clothing from "./pages/DetailedCategory_Clothing";
@@ -38,6 +37,8 @@ import GoogleLogin from "./pages/oauth2test/GoogleLogin";
 import WidgetCheckoutPage from "./pages/widget/WidgetCheckout";
 import WidgetSuccessPage from "./pages/widget/WidgetSuccess";
 import FailPage from "./pages/Fail";
+import TestApi from "./components/SpecialAuction/TestApi";
+import TestApi2 from "./components/SpecialAuction/TestApi2";
 
 function App() {
     const persiststore = persistStore(store);
@@ -75,7 +76,7 @@ function App() {
                             <Route path="/category/pic" element={<DetailedCategory_Pic />} />
                             <Route path="/category/antique" element={<DetailedCategory_Antique />} />
                             <Route path="/category-itemdetail/:auctionNumber" element={<CategoryItemDetail />} />
-                            <Route path="/checkNcloudApi" element={<CheckNcloudApi />} />
+                            <Route path="/testApi" element={<TestApi2/>} />
                             <Route path="join/*" element={<JoinRoutes />} />
 
                             {/* Mypage Routes */}
