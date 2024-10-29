@@ -145,14 +145,6 @@
     justify-content: center;
 }
 
-.Mypage_AuctionInfoContainer {
-    display: flex;
-    width: 800px;
-    height: 800px;
-    background-color: gray;
-    flex-direction: column;
-}
-
 .Mypage_WalletInfoContainer {
     display: flex;
     width: 700px;
@@ -282,4 +274,209 @@
     width: 700px;
     height: 50px;
     align-items: center;
+}
+
+.Mypage_AuctionInfoContainer {
+    display: flex;
+    width: 800px;
+    height: 120px;
+    flex-direction: column;
+    border: 2px solid #BFBFBF;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.Mypage_AuctionCategory {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 650px;
+    height: 40px;
+}
+
+.Mypage_AuctionCategoryBtnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 650px;
+    height: 40px;
+}
+
+.Mypage_AuctionCategoryBtn {
+    display: flex;
+    width: 300px;
+    height: 40px;
+    border: solid 1px blue;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.Mypage_AuctionCardContinaer {
+    max-height: 550px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.Mypage_AuctionCardContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.Mypage_AuctionMainContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.Mypage_blank {
+    height: 20px;
+}
+
+.Mypage_AuctionCard {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: 280px;
+    border: solid 2px #BFBFBF;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.Mypage_AuctionProcess {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 80px;
+    border-bottom: solid 1px #BFBFBF;
+}
+
+.Mypage_AuctionBoxContainer {
+    display: flex;
+    width: 900px;
+    height: 800px;
+    display: flex;
+    border-radius: 10px;
+    border: 2px solid #BFBFBF;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Mypage_AuctionContentBox {
+    display: flex;
+    flex-direction: row;
+    height: 160px;
+    border-bottom: solid 1px #BFBFBF;
+}
+
+.Mypage_AuctionCardType {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+}
+
+.Mypage_AuctionProcessLine {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 420px;
+    background-color: black;
+    color: white;
+}
+
+.Mypage_AuctionCardBtnCategory {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+}
+
+.Mypage_AuctionCardBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 40px;
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+
+.Mypage_AuctionContentImgBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 160px;
+}
+
+.Mypage_AuctionContentImg {
+    width: 140px;
+    height: 140px;
+    background-color: black;
+}
+
+.Mypage_AuctionContentDetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 420px;
+
+}
+
+.Mypage_AuctionContentBtnBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.Mypage_AuctionContentBtnCategory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    
+}
+
+.Mypage_AuctionContentDetailTitle {
+    width: 420px;
+    height: 50px;
+    justify-content: start;
+    align-items: center;
+    align-content: center;
+}
+
+.Mypage_AuctionContentDetailContainer {
+    display: flex;
+    height: 110px;
+    flex-direction: row;
+}
+
+.Mypage_AuctionContentPrice, .Mypage_AuctionContentNumber, .Mypage_AuctionContentSeller {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px;
+    height: 110px;
+}
+
+.Mypage_AuctionContenttitle {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.Mypage_AuctionContenttext {
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
+
+.Mypage_AuctionAlert {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
 }
