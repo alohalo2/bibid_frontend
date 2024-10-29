@@ -2,12 +2,17 @@ import React from 'react'
 import '../../css/Mypage/Mypage.css';
 import MypageAuctionProcessLine from './MypageAuctionProcessLine';
 
-const MypageAuctionCard = () => {
+const MypageAuctionCard = ({auction}) => {
+
+  const lastBidAmount = auction.auctionInfoDtoList && auction.auctionInfoDtoList.length > 0
+    ? auction.auctionInfoDtoList[auction.auctionInfoDtoList.length - 1].bidAmount
+    : 0;
+
   return (
     <div className='Mypage_AuctionCard'>
       <div className='Mypage_AuctionProcess'>
-        <div className='Mypage_AuctionCardType'>경매 타입</div>
-        <MypageAuctionProcessLine/>
+        <div className='Mypage_AuctionCardType'>{auction.auctionType}</div>
+        <MypageAuctionProcessLine auctionStatus={auction.auctionStatus}/>
         <div className='Mypage_AuctionCardBtnCategory'>
             <div className='Mypage_AuctionCardBtn'>배송 조회</div>
         </div>
@@ -17,19 +22,19 @@ const MypageAuctionCard = () => {
             <div className='Mypage_AuctionContentImg'></div>
         </div>
         <div className='Mypage_AuctionContentDetail'>
-            <div className='Mypage_AuctionContentDetailTitle'>제목</div>
+            <div className='Mypage_AuctionContentDetailTitle'> 물품 이름 {auction.productName}</div>
             <div className='Mypage_AuctionContentDetailContainer'>
                 <div className='Mypage_AuctionContentPrice'>
                     <div className='Mypage_AuctionContenttitle'>구매금액</div>
-                    <div className='Mypage_AuctionContenttext'>1 원</div>
-                </div>
+                    <div className='Mypage_AuctionContenttext'>{lastBidAmount} 원</div>
+                </div>  
                 <div className='Mypage_AuctionContentNumber'>
                     <div className='Mypage_AuctionContenttitle'>경매번호</div>
-                    <div className='Mypage_AuctionContenttext'>2 번</div>
+                    <div className='Mypage_AuctionContenttext'>{auction.auctionIndex}</div>
                 </div>
                 <div className='Mypage_AuctionContentSeller'>
                     <div className='Mypage_AuctionContenttitle'>판매자명</div>
-                    <div className='Mypage_AuctionContenttext'>3 님</div>
+                    <div className='Mypage_AuctionContenttext'>{auction.memberNickname} 님</div>
                 </div>
             </div>
         </div>

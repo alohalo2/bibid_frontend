@@ -39,7 +39,7 @@ const MypageSideBar = ({ memberInfo }) => {
         </div>
         <div className='Mypage_SideBarCategory'>
             <div onClick={handleProfileClick} style={{ cursor: 'pointer' }} >내 프로필</div>
-            <div onClick={handleAuctionClick} style={{ cursor: 'pointer' }} >경매 내역</div>
+            <div onClick={handleAuctionClick} style={{ cursor: 'pointer' }} >경매 진행 현황</div>
             <div onClick={handleWalletClick} style={{ cursor: 'pointer' }} >지갑 관리</div>
             <div onClick={handleQnaClick} style={{ cursor: 'pointer' }} >문의 내역</div>
             <div onClick={handleSellerClick} style={{ cursor: 'pointer' }} >판매자 정보 등록</div>
