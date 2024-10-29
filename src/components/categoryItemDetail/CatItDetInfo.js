@@ -38,7 +38,7 @@ const CatItDetInfo = ({ auctionNumber, auctionItem, auctionImages }) => {
         </ul>
         <div className="CID-item-img-container">
           {auctionImages.map((imageUrl, index) => (
-                <img key={index} src={imageUrl} alt={`Item ${index}`}/>
+                <img className='CID-item-img-content' key={index} src={imageUrl} alt={`Item ${index}`}/>
                 ))}
         </div>
       </div>

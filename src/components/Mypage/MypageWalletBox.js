@@ -2,6 +2,11 @@ import React from 'react'
 import { MypageWalletRecordBox } from './MypageWalletRecordBox'
 
 const MypageWalletBox = () => {
+
+  const handleChargeBttn = () => {
+    
+  }
+
   return (
     <div className='Mypage_WalletBoxContainer'>
       <div className='Mypage_UserInfoTitle'>지갑 관리</div>
@@ -22,6 +27,10 @@ const MypageWalletBox = () => {
           <div className='Mypage_WalletUsed'>
             <MypageWalletRecordBox/>
           </div>
+        </div>
+        <div className='Mypage_BttnBox'>
+          <button className='Mypage_Bttn' onClick={handleChargeBttn}>충전</button>
+          <button className='Mypage_Bttn'>환전</button>
         </div>
     </div>
   )

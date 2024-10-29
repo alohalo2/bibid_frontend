@@ -276,6 +276,17 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
               <Select
                 value={formData.bidIncrement}
                 onChange={(e) => setFormData({ ...formData, bidIncrement: e.target.value })}
+                MenuProps={{
+                  disableScrollLock: true,
+                  anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "left"
+                  },
+                  transformOrigin: {
+                    vertical: "top",
+                    horizontal: "left"
+                  }
+                }}
                 displayEmpty
                 size="small"
                 sx={{ width: '10rem', fontWeight: 'bold' }}
