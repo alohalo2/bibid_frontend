@@ -10,7 +10,12 @@ import {
     logout,
     modifyPasswd,
     naverJwtToken,
-    verificationCodeCheck
+    verificationCodeCheck,
+    uploadProfileImage,
+    chargeAccount,
+    exchangeAccount,
+    buyAuction,
+    sellAuction
 } from '../../apis/etc2_memberapis/memberApis';
 
 const memberSlice = createSlice({
@@ -31,6 +36,8 @@ const memberSlice = createSlice({
         name: '',
         memberPnum: '',
         checkLoginState: '',
+        profileImageDto: '',
+        accountDto:''
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -45,12 +52,16 @@ const memberSlice = createSlice({
         builder.addCase(login.fulfilled, (state, action) => {
             alert(`${action.payload.memberId}님 환영합니다.`);
 
+            console.log(action.payload);
+
             return {
                 ...state,
                 memberIndex: action.payload.memberIndex,
                 memberId: action.payload.memberId,
                 nickname: action.payload.nickname,
                 token: action.payload.token,
+                profileImageDto : action.payload.profileImageDto,
+                accountDto : action.payload.accountDto,
                 isLogin: true
             };
         });
@@ -200,6 +211,64 @@ const memberSlice = createSlice({
             alert("에러가 발생했습니다.");
             return state;
         })
+        builder.addCase(uploadProfileImage.fulfilled, (state, action) => {
+            return{
+                ...state,
+                profileImageDto : action.payload
+            }
+        })
+        builder.addCase(uploadProfileImage.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
+        });
+
+        builder.addCase(chargeAccount.fulfilled, (state, action) => {
+
+            console.log(action.payload);
+
+            return{
+                ...state,
+                accountDto : action.payload
+            }
+        })
+        builder.addCase(chargeAccount.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
+        });
+
+        builder.addCase(exchangeAccount.fulfilled, (state, action) => {
+            return{
+                ...state,
+                accountDto : action.payload
+            }
+        })
+        builder.addCase(exchangeAccount.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
+        });
+
+        builder.addCase(buyAuction.fulfilled, (state, action) => {
+            return{
+                ...state,
+                accountDto : action.payload
+            }
+        })
+        builder.addCase(buyAuction.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
+        });
+
+        builder.addCase(sellAuction.fulfilled, (state, action) => {
+            return{
+                ...state,
+                accountDto : action.payload
+            }
+        })
+        builder.addCase(sellAuction.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
+        });
+
     }
 });
 

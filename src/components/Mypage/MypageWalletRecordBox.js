@@ -2,10 +2,12 @@ import React from 'react';
 import '../../css/Mypage/Mypage.css';
 import { MypageWalletRecord } from './MypageWalletRecord';
 
-export const MypageWalletRecordBox = () => {
+export const MypageWalletRecordBox = ({ records }) => {
   return (
     <>
-        <MypageWalletRecord/>
+        {records.map((record, index) => (
+          <MypageWalletRecord key={index} record={record} />
+      ))}
     </>
   )
 }
