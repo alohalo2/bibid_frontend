@@ -20,7 +20,7 @@ export const Mainpage = () => {
             <div className='blank'/>
           <div className='BestItems'>
             <h2 className='title'>베스트</h2>
-            <p>입찰횟수가 많은 인기 아이템들입니다.</p>
+            <p>입찰횟수가 많은 가장 인기 아이템들입니다.</p>
           </div>
           <BestProduct/>
           </div>

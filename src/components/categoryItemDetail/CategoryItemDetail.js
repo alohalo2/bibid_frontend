@@ -27,10 +27,10 @@ const CategoryItemDetail = () => {
                 setAuctionImages={setAuctionImages}
             />
 
-            <CategoryItemDetailMain auctionItem = {auctionItem} auctionBidInfo = {auctionBidInfo} seller = {seller} biddingMember = {biddingMember} infoExtension = {infoExtension} sellerDetailInfo = {sellerDetailInfo} auctionImages = {auctionImages}/>
-            <CategoryItemDetailInfo auctionItem = {auctionItem} auctionBidInfo = {auctionBidInfo} seller = {seller} biddingMember = {biddingMember} auctionImages = {auctionImages}/>
-            <CategoryItemDetailInquiry auctionItem = {auctionItem} auctionBidInfo = {auctionBidInfo} seller = {seller} biddingMember = {biddingMember}/>
-            <CategoryItemDetailReturn/>
+            <CategoryItemDetailMain auctionItem = {auctionItem} auctionBidInfo = {auctionBidInfo} seller = {seller} biddingMember = {biddingMember} infoExtension = {infoExtension} sellerDetailInfo = {sellerDetailInfo} auctionImages = {auctionImages} />
+            <CategoryItemDetailInfo auctionItem = {auctionItem} auctionBidInfo = {auctionBidInfo} seller = {seller} biddingMember = {biddingMember} auctionImages = {auctionImages} />
+            <CategoryItemDetailInquiry auctionItem = {auctionItem} auctionBidInfo = {auctionBidInfo} seller = {seller} biddingMember = {biddingMember} />
+            <CategoryItemDetailReturn />
         </div>
     );
 };

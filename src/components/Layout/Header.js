@@ -50,7 +50,7 @@ const Header = () => {
     const handleMouseClick = (e) => {
         if (clickCate) {
             document.querySelector(".HDnavbarMenuDetailCategory").style.display = 'flex'
-            setBoxHeight('390px')
+            setBoxHeight('380px')
             clickCate = false;
         } else {
             document.querySelector(".HDnavbarMenuDetailCategory").style.display = 'none'

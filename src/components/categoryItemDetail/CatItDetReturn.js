@@ -3,10 +3,11 @@ import '../../css/CategoryItemDetail.css';
 import CatItDetTab from './CatItDetTab';
 
 const CatItDetReturn = () => {
+  const [activeTab, setActiveTab] = useState('return'); // 독립적인 activeTab 상태
 
   return (
     <div className="CID-item-return-info" id='CID-item-return-info'>
-      <CatItDetTab/>
+      <CatItDetTab activeTab={activeTab} setActiveTab={() => setActiveTab('return')} />
       <div className="CID-info-box">
         <h3>● 반품시 주의사항</h3>
         <ul style={{ paddingLeft: '30px' }}>

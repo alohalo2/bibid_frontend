@@ -231,7 +231,7 @@
     border: 1px solid #BFBFBF;
     border-radius: 5px;
     margin: 5px 5px 5px 5px;
-    justify-content: space-between;
+    justify-content: space-around;
     align-content: center;
 }
 
@@ -256,6 +256,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.Mypage_WalletCardLine1 div h3 {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: 900;
 }
 
 .Mypage_WalletCardLine2 {

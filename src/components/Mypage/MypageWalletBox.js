@@ -1,13 +1,48 @@
 import React, { useEffect, useState } from 'react'
 import { MypageWalletRecordBox } from './MypageWalletRecordBox'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { chargeAccount, exchangeAccount, buyAuction, sellAuction } from '../../apis/etc2_memberapis/memberApis'
+
 
 const MypageWalletBox = () => {
 
+  const dispatch = useDispatch();
+  const [response, setResponse] = useState(null);
+
   const accountDto = useSelector((state) => state.memberSlice.accountDto);
 
-  const handleChargeBttn = () => {
-    // 충전 버튼 로직
+
+  // 충전 
+  const handleChargeAccount = async () => {
+    const dummyData = {
+      changeAccount: '5000', // 충전 금액
+      useType: '충전'
+    };
+
+    // dispatch로 chargeAccount 액션 호출
+    const resultAction = await dispatch(chargeAccount(dummyData));
+    if (chargeAccount.fulfilled.match(resultAction)) {
+      setResponse(resultAction.payload);
+      console.log('Charge Account 성공:', resultAction.payload);
+    } else {
+      setResponse(`Error: ${resultAction.error.message}`);
+    }
+  };
+
+  // 환전
+  const handleExchangeAccount = async () => {
+    const dummyData = {
+      changeAccount: '2000', // 환전 금액
+      useType: '환전'
+    };
+
+    const resultAction = await dispatch(exchangeAccount(dummyData));
+    if (exchangeAccount.fulfilled.match(resultAction)) {
+      setResponse(resultAction.payload);
+      console.log('Exchange Account 성공:', resultAction.payload);
+    } else {
+      setResponse(`Error: ${resultAction.error.message}`);
+    }
   };
 
   return (  
@@ -32,8 +67,8 @@ const MypageWalletBox = () => {
           </div>
         </div>
         <div className='Mypage_BttnBox'>
-          <button className='Mypage_Bttn' onClick={handleChargeBttn}>충전</button>
-          <button className='Mypage_Bttn'>환전</button>
+          <button className='Mypage_Bttn' onClick={handleChargeAccount}>충전</button>
+          <button className='Mypage_Bttn' onClick={handleExchangeAccount}>환전</button>
         </div>
     </div>
   )

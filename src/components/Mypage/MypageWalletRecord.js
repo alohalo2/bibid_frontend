@@ -58,7 +58,9 @@ export const MypageWalletRecord = ({ record }) => {
       <div className='Mypage_WalletCardRight'>
         <div className='Mypage_WalletLine'>
           <div className='Mypage_WalletCardLine1'>
-            <div>{record.useType}</div>
+            <div>
+              <h3>{record.useType}</h3>
+            </div>
             <div>{formatDate(record.createdTime)}</div>
           </div>
           <div className='Mypage_WalletCardLine2'>
