@@ -17,7 +17,14 @@ const MypageAuctionManagement = () => {
             </div>
           </div>
           <div className='Mypage_blank'/>
-          <div className='Mypage_AuctionCardContinaer'>
+          <div className='Mypage_AuctionManagementContinaer'>
+            <div className='Mypage_AuctionManagementBar'>
+              
+            </div>
+            <MypageMyAuctionCard/>
+            <MypageMyAuctionCard/>
+            <MypageMyAuctionCard/>
+            <MypageMyAuctionCard/>
             <MypageMyAuctionCard/>
           </div>
         </div>

@@ -529,3 +529,24 @@
     height: 20px;
     justify-content: space-between;
 }
+
+.Mypage_AuctionManagementContinaer {
+    max-height: 550px;
+    overflow-y: auto;
+    scrollbar-width: none;   
+}
+
+.Mypage_AuctionManagementBar {
+    
+}
+
+.Mypage_AuctionManagementCard {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: 140px;
+    border: solid 2px #BFBFBF;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

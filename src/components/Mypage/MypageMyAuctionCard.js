@@ -4,10 +4,7 @@ import MypageAuctionProcessLine from './MypageAuctionProcessLine';
 
 const MypageMyAuctionCard = () => {
   return (
-    <div className='Mypage_AuctionCard'>
-      <div className='Mypage_AuctionProcess'>
-        
-      </div>
+    <div className='Mypage_AuctionManagementCard'>
     </div>
   )
 }
