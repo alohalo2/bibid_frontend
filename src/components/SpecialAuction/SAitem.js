@@ -13,9 +13,9 @@ function SAitem({ imageSrc, title, auctionDate, price , auctionTime, linkText, h
           <div className='SAauctionDetailsTitle'>
             <h3>{title}</h3>
           </div>
-          <dic className='SAauctionPrice'>
-            <p>경매 시작가 : {price.toLocaleString()} 원</p>
-          </dic>
+          <div className='SAauctionPrice'>
+            경매 시작가 : {price.toLocaleString()} 원
+          </div>
           <div className='SAauctionDetailsDate'>
             <p>경매 날짜: {auctionDate}</p>
             <p>경매 시간: {auctionTime}</p>
