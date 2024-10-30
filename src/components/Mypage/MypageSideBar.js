@@ -72,6 +72,10 @@ const MypageSideBar = ({ memberInfo }) => {
     navi('/mypage/sellerInfo');
   }
 
+  const handleManagement = () => {
+    window.location.href = '/mypage/auctionmanagement';
+  }
+
   return (
     <div className='Mypage_SideBarContainer'>
         <div className='Mypage_SideBarProfile'>
@@ -91,7 +95,7 @@ const MypageSideBar = ({ memberInfo }) => {
         </div>
         <div className='Mypage_SideBarCategory'>
             <div onClick={handleProfileClick} style={{ cursor: 'pointer' }} >내 프로필</div>
-            <div onClick={handleQnaClick} style={{ cursor: 'pointer' }} >내가 등록한 경매</div>
+            <div onClick={handleManagement} style={{ cursor: 'pointer' }} >내가 등록한 경매</div>
             <div onClick={handleAuctionClick} style={{ cursor: 'pointer' }} >참여중인 경매</div>
             <div onClick={handleWalletClick} style={{ cursor: 'pointer' }} >지갑 관리</div>
             <div onClick={handleSellerClick} style={{ cursor: 'pointer' }} >판매자 정보 등록</div>

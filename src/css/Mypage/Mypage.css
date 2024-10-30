@@ -537,16 +537,122 @@
 }
 
 .Mypage_AuctionManagementBar {
-    
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    border: solid 2px #BFBFBF;
+    border-radius: 5px;
+    align-items: center;
 }
 
 .Mypage_AuctionManagementCard {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 800px;
     height: 140px;
     border: solid 2px #BFBFBF;
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.Mypage_AuctionManagementCardImgBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+}
+
+.Mypage_AuctionManagementCardImg {
+    width: 120px;
+    height: 120px;
+    background-color: black;
+}
+
+.Mypage_AuctionManagementCardTitleBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+}
+
+.Mypage_AuctionManagementCardTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+}
+
+.Mypage_AuctionManagementCardPrice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+}
+
+.Mypage_AuctionManagementCardBid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+}
+
+.Mypage_AuctionManagementCardPeriod {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+}
+
+.Mypage_AuctionManagementCardDeleteBtnBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+}
+
+.Mypage_AuctionManagementCardDeleteBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 25px;
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+
+.Mypage_AuctionManagementImg {
+    display: flex;
+    justify-content: center;
+    width: 140px;
+}
+
+.Mypage_AuctionManagementTitle {
+    display: flex;
+    justify-content: center;
+    width: 160px;
+}
+
+.Mypage_AuctionManagementPrice {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+}
+
+.Mypage_AuctionManagementBid {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+}
+
+.Mypage_AuctionManagementPeriod {
+    display: flex;
+    justify-content: center;
+    width: 240px;
+}
+
+.Mypage_AuctionManagementDeleteBtn {
+    display: flex;
+    justify-content: center;
+    width: 60px;
 }

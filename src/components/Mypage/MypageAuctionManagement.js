@@ -5,7 +5,7 @@ import MypageMyAuctionCard from './MypageMyAuctionCard';
 const MypageAuctionManagement = () => {
   return (
     <div className='Mypage_AuctionBoxContainer'>
-      <div className='Mypage_UserInfoTitle'>경매 진행 현황</div>
+      <div className='Mypage_UserInfoTitle'>내가 등록한 경매</div>
       <div className='Mypage_AuctionMainContainer'>
           <div className='Mypage_AuctionInfoContainer'>
             <div className='Mypage_AuctionCategory'>
@@ -17,14 +17,15 @@ const MypageAuctionManagement = () => {
             </div>
           </div>
           <div className='Mypage_blank'/>
-          <div className='Mypage_AuctionManagementContinaer'>
             <div className='Mypage_AuctionManagementBar'>
-              
+              <div className='Mypage_AuctionManagementImg'>대표사진</div>
+              <div className='Mypage_AuctionManagementTitle'>제목</div>
+              <div className='Mypage_AuctionManagementPrice'>현재가</div>
+              <div className='Mypage_AuctionManagementBid'>입찰 단위</div>
+              <div className='Mypage_AuctionManagementPeriod'>경매 기간</div>
+              <div className='Mypage_AuctionManagementDeleteBtn'></div>
             </div>
-            <MypageMyAuctionCard/>
-            <MypageMyAuctionCard/>
-            <MypageMyAuctionCard/>
-            <MypageMyAuctionCard/>
+          <div className='Mypage_AuctionManagementContinaer'>
             <MypageMyAuctionCard/>
           </div>
         </div>
