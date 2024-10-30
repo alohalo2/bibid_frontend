@@ -38,8 +38,8 @@ import GoogleLogin from "./pages/oauth2test/GoogleLogin";
 import WidgetCheckoutPage from "./pages/widget/WidgetCheckout";
 import WidgetSuccessPage from "./pages/widget/WidgetSuccess";
 import FailPage from "./pages/Fail";
-import TestApi from "./components/SpecialAuction/TestApi";
 import TestApi2 from "./components/SpecialAuction/TestApi2";
+import MemberInitializer from "./context/MemberInitializer";
 
 function App() {
     const persiststore = persistStore(store);
@@ -49,6 +49,7 @@ function App() {
             <PersistGate loading={null} persistor={persiststore}>
                 <NotificationProvider>
                     <NotificationInitializer />
+                    <MemberInitializer />
                     <Routes>
                         {/* OAuth Routes */}
                         <Route path="/auth/kakao/callback" element={<KakaoLogin />} />
