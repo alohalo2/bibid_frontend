@@ -229,7 +229,8 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
                     <DateTimePicker
                       value={formData.endingLocalDateTime ? dayjs(formData.endingLocalDateTime) : null}
                       onChange={handleEndDateChange}
-                      minDateTime={dayjs(formData.startingLocalDateTime).add(1, 'hour')}
+                      // minDateTime={dayjs(formData.startingLocalDateTime).add(1, 'hour')}
+                      minDateTime={dayjs(formData.startingLocalDateTime)}
                       renderInput={(params) => (
                         <TextField
                           {...params}
@@ -247,7 +248,8 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
                     />
                     </> :
                     <p className='dateTimePickerAlert'>
-                      ** 실시간 경매일 시, 종료시간이 시작시간으로 부터 30분 이후로 설정됩니다.
+                      {/* ** 실시간 경매일 시, 종료시간이 시작시간으로 부터 30분 이후로 설정됩니다. */}
+                      ** 실시간 경매일 시, 종료시간이 시작시간으로 부터 5분 이후로 설정됩니다.
                     </p>
                   }
               </Box>

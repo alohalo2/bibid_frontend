@@ -22,7 +22,7 @@ const NotificationInitializer = () => {
 
                 if (response.status === 200 && response.data.item === "ROLE_USER") { 
                     try {
-                        const response = await axios.get(`http://localhost:8080/api/notifications/2`, {
+                        const response = await axios.get(`http://localhost:8080/api/notifications/${memberIndex}`, {
                             withCredentials: true,
                         });
                         dispatch(setNotifications(response.data));
