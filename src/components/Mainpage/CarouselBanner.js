@@ -98,7 +98,7 @@ const CarouselBanner = () => {
           >
             { carouselData &&
               carouselData.map((carousel, index) => {
-                console.log(`Loading image: ${carousel.url}`); // URL 로그
+                // console.log(`Loading image: ${carousel.url}`); // URL 로그
                 return (
                   <div key={index} className="CB_carousel-item">
                     <img src={carousel.url} alt={`Carousel ${index}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
