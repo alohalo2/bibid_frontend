@@ -185,7 +185,7 @@ function SellerAuctionScreen({
     if (webSocketProps.bidAmounts[auction.auctionIndex]) {
       const bidAmount = webSocketProps.bidAmounts[auction.auctionIndex];
       const bidderNickname = webSocketProps.bidderNicknames[auction.auctionIndex];
-      displayBidWithImageOnOBS(bidAmount, bidderNickname, imagePath);
+      displayBidWithImageOnOBS(bidAmount, bidderNickname);
     }
   }, [webSocketProps.bidAmounts, webSocketProps.bidderNicknames, auction.auctionIndex]);
 

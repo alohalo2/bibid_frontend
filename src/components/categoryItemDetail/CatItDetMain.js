@@ -276,6 +276,54 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
           <div className="CID-bid-title">{auctionItem.productName}</div>
           <div className="CID-price"><span>현재가: {parseInt(infoExtension[1]).toLocaleString()} 원</span></div>
 
+          <div className='CID-bid-container'>
+            <div className='CID-bid-cotents-title'>
+              <h2>현재가: </h2>
+              <p>남은시간: </p>
+              <p>경매번호: </p>
+              <p>시작가: </p>
+              <p>입찰기록: </p>
+              <p>입찰단위: </p>
+              <p>입찰 희망가: </p>
+              <p>예상 구매가: </p>
+            </div>
+            <div className='CID-bid-cotents'>
+              <h2>{parseInt(infoExtension[1]).toLocaleString()} 원</h2>
+              <p>{days}일 {hours}시간 {minutes}분 {seconds} 초</p>
+              <p>No.{auctionItem.auctionIndex}</p>
+              <p>{parseInt(auctionItem.startingPrice).toLocaleString()} 원</p>
+              <p>{parseInt(infoExtension[0]).toLocaleString()}회
+                  <span className="CID-hover-link" onClick={openBiddingRecordModal}>    [기록보기]</span>
+              </p>
+              <p>{parseInt(auctionItem.bidIncrement).toLocaleString()}원</p>
+              <div className="CID-bid-input-wrapper">
+
+                <div className="CID-bid-input">
+                  <input 
+                    type="text"
+                    id="bid-amount"
+                    value={parseInt(bidAmount).toLocaleString()}
+                    readOnly/>
+                </div>
+                원 
+                {/* 백엔드 로직 : bidInfo테이블의 최신입찰가 */}
+                <div className="CID-bid-buttons-vertical">
+                  <IconButton className="CID-bid-button"  onClick={() => increaseBid(Number(auctionItem.bidIncrement))}>
+                    <AddBoxIcon/>
+                  </IconButton>
+                  <IconButton className="CID-bid-button" onClick={() => decreaseBid(auctionItem.bidIncrement)}>
+                    <IndeterminateCheckBoxIcon/>
+                  </IconButton>
+                </div>
+
+              </div>
+              <div>
+                <p>{parseInt(totalPrice).toLocaleString()} 원</p>
+                <p>(입찰 희망가 {nowBiddingInfo.bidPrice.toLocaleString()} 원 + 구매수수료 {parseInt(nowBiddingInfo.purchaseFee).toLocaleString()} 원)</p>
+              </div>
+            </div>
+          </div>
+
           <div className="CID-bid-details">
             <p>남은시간: {days}일 {hours}시간 {minutes}분 {seconds} 초</p>
             <p>경매번호: No.{auctionItem.auctionIndex}</p>

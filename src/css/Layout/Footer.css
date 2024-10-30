@@ -30,6 +30,11 @@ footer p {
     align-items: center;
 }
 
+.FTcontentsBody_logo img {
+    width: 120px;
+    height: 120px;
+}
+
 #FTlogo {
     margin-right: 4rem;
 }
