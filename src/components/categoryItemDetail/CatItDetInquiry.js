@@ -57,6 +57,10 @@ const CatItDetInquiry = () => {
     }
   };
 
+  const handleCancel = () => {
+    setInquiringModalOpen(false); // 모달 닫기
+  };
+
   return (
     <div className="CID-item-inquiry" id="CID-item-inquiry">
       <CatItDetTab activeTab={activeTab} setActiveTab={() => setActiveTab('inquiry')}/>      
@@ -131,12 +135,14 @@ const CatItDetInquiry = () => {
             </div>
 
             <div className="CID-inquiring-modal-footer">
-              <button
-                className="CID-inquiring-modal-submit-button"
-                onClick={handleSubmit}
-              >
-                문의하기
-              </button>
+              <div>
+                <button
+                  className="CID-inquiring-modal-submit-button"
+                  onClick={handleSubmit}
+                >
+                  문의하기
+                </button>
+              </div>
             </div>
           </div>
         </div>
