@@ -453,7 +453,6 @@
 .Mypage_AuctionContentImg {
     width: 140px;
     height: 140px;
-    background-color: black;
 }
 
 .Mypage_AuctionContentDetail {
@@ -535,7 +534,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 420px;
 }
 
@@ -583,7 +582,6 @@
 .Mypage_AuctionManagementCardImg {
     width: 120px;
     height: 120px;
-    background-color: black;
 }
 
 .Mypage_AuctionManagementCardTitleBox {
@@ -673,3 +671,45 @@
     justify-content: center;
     width: 60px;
 }
+
+.Mypage_AuctionProcessLinePoint {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 50px;
+}
+
+.Mypage_AuctionProcessLinePoint {
+    position: relative;
+  }
+  
+  .progress-container {
+    width: 330px;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #76c7c0, blue);
+    border-radius: 5px 0 0 5px;
+    position: relative;
+  }
+  
+  .progress-circle {
+    width: 20px;
+    height: 20px;
+    background: blue;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    transform: translate(-50%, 0);
+  }
+
+  .headerSearchBox {
+    padding: 0 !important;
+  }

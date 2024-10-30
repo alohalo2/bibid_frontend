@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import RegisterProgress from '../components/registration/RegisterProgress';
 import RegistrationStep1 from '../components/registration/RegistrationStep1';
@@ -7,13 +9,31 @@ import RegistrationStep3 from '../components/registration/RegistrationStep3';
 import RegistrationStep4 from '../components/registration/RegistrationStep4';
 
 const RegistrationForm = () => {
-
   const navigate = useNavigate();
   const location = useLocation();
 
-  // 전체 폼 데이터를 하나의 state로 관리
+  const [memberInfo, setMemberInfo] = useState(null);
+  const memberIndex = useSelector((state) => state.memberSlice.memberIndex); 
+
+  useEffect(() => {
+    const fetchMemberInfo = async () => {
+      try {
+        console.log(memberIndex);
+        const response = await axios.get(`http://localhost:8080/mypage/userInfo/${memberIndex}`);
+        console.log("Fetched member info:", response.data.item);
+        setMemberInfo(response.data.item);
+      } catch (error) {
+        console.error("Error fetching member info:", error);
+      }
+    };
+
+    if (memberIndex) {
+      fetchMemberInfo();
+    }
+  }, [memberIndex]);
+
   const [formData, setFormData] = useState({
-    auctionType: '', // 경매타입('실시간 경매')
+    auctionType: '',
     category: '',
     subcategory: '',
     productName: '',
@@ -22,17 +42,16 @@ const RegistrationForm = () => {
     startingLocalDateTime: '',
     endingLocalDateTime: '',
     bidIncrement: '',
-    shippingMethod: '택배', // 배송방법 ('택배', '우편', '직거래')
-    costResponsibility: '선불', // 비용부담 ('선불', '착불')
-    instantPurchaseEnabled: false, // 즉시구매 가능 여부
-    instantPurchasePrice: '', // 즉시구매 가격
-    autoReauctionEnabled: false, // 자동재경매 여부
-    reauctionStartingPrice: '', // 재경매 시작가
+    shippingMethod: '택배',
+    costResponsibility: '선불',
+    instantPurchaseEnabled: false,
+    instantPurchasePrice: '',
+    autoReauctionEnabled: false,
+    reauctionStartingPrice: '',
     thumbnail: '',
-    additionalImages: []
+    additionalImages: [],
   });
 
-  // 스텝을 URL에 맞춰서 업데이트
   const stepMap = {
     '/registration/step1': 1,
     '/registration/step2': 2,
@@ -44,8 +63,8 @@ const RegistrationForm = () => {
 
   useEffect(() => {
     setCurrentStep(stepMap[location.pathname] || 1);
+    window.scrollTo(0, 0);
   }, [location.pathname]);
-
 
   const nextStep = () => {
     const nextStepNum = currentStep + 1;
@@ -66,9 +85,9 @@ const RegistrationForm = () => {
       case 2:
         return <RegistrationStep2 formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} />;
       case 3:
-        return <RegistrationStep3 formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} />;
+        return <RegistrationStep3 formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} memberInfo={memberInfo} />;
       case 4:
-        return <RegistrationStep4 />;
+        return <RegistrationStep4 memberInfo={memberInfo}/>;
       default:
         return null;
     }

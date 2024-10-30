@@ -38,8 +38,8 @@ const HeaderSearchBar = () => {
     }, [dispatch, searchCondition, searchKeyword, navigate]);
 
     return (
-        <div className='headerSearchContainer' style={{ border: '2px solid #BFBFBF', borderRadius: '10px', width: '22rem', height: '45px' }}>
-            <Container component='div' maxWidth='md'>
+        <div className='headerSearchContainer' style={{ border: '2px solid #BFBFBF', borderRadius: '10px', width: '360px', height: '45px' }}>
+            <Container className='headerSearchBox' component='div' maxWidth='md'>
                 <form onSubmit={handleSearch}>
                     <Grid container spacing={1}>
                         <Grid item xs={10}>
@@ -51,11 +51,32 @@ const HeaderSearchBar = () => {
                                 value={searchKeyword}
                                 onChange={handleChangeSearchKeyword}
                                 InputProps={{ disableUnderline: true }}
-                                style={{ marginTop: '5px' }}
+                                style={{ marginTop: '7px', marginLeft: '15px' }}
                             />
                         </Grid>
                         <Grid item xs={2}>
-                            <Button
+                            <div style={{ display: 'flex',
+                                          justifyContent: 'center',
+                                          alignItems: 'center'
+                             }}>
+                                <div style={{
+                                        display: 'felx',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        width: '30px',
+                                        height: '30px',
+                                        backgroundColor: 'transparent', 
+                                        backgroundImage: `url(${logo})`, 
+                                        backgroundSize: 'contain', 
+                                        backgroundRepeat: 'no-repeat',
+                                        cursor: 'pointer',
+                                        marginTop: '7px'
+                                        }}
+                                        onClick={handleSearch}
+                                        > 
+                                </div>
+                            </div>
+                            {/* <Button
                                 type='submit'
                                 style={{
                                     width: '30px', 
@@ -70,7 +91,7 @@ const HeaderSearchBar = () => {
                                     marginLeft: '20px'
                                 }}
                             >
-                            </Button>
+                            </Button> */}
                         </Grid>
                     </Grid>
                 </form>

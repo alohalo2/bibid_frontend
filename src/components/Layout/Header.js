@@ -67,7 +67,7 @@ const Header = () => {
 
     // 충전, 환전 클릭 시 마이 페이지로 이동
     const handleChargeBttnClick = () => {
-        navi('/mypage/wallet_management');  // mainpage로 페이지 이동
+        window.location.href = '/mypage/wallet_management';  // mainpage로 페이지 이동
     };
 
     const handleChargeCategory = () => {
