@@ -72,11 +72,27 @@ const Alarm = () => {
             </div>
             <div className="ALnotificationList">
               {notifications.map((notification, index) => (
-                <div className="ALnotificationItem" key={index} onClick={() => handleItemClick(notification.link)}>
-                  <p className="ALnotificationTitle">{notification.alertTitle}</p>
-                  <p>{notification.alertContent}</p>
-                  <p>{notification.alertDate}</p>
-                </div>
+                  <div
+                    className="ALnotificationItem"
+                    key={index}
+                    onClick={() => handleItemClick(notification.link)}
+                  >
+                    {notification.notificationType === 'HIGHER_BID' ? (
+                      <div>
+                        <p className="ALnotificationTitle" style={{ color: 'red' }}>{notification.title}</p>
+                        <p>{notification.content}</p>
+                        <p>상위 입찰 금액: {notification.higherBid} 원</p>
+                        <p>내 입찰 금액: {notification.myBid} 원</p>
+                        <p>{notification.timestamp}</p>
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="ALnotificationTitle">{notification.title}</p>
+                        <p>{notification.content}</p>
+                        <p>{notification.timestamp}</p>
+                      </div>
+                    )}
+                  </div>
                 ))}
             </div>
           </div>
