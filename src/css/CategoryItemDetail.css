@@ -692,3 +692,30 @@ p {
   .CID-inquiring-modal-submit-button:hover {
     background-color: #002299;
   }
+
+  .CID-bid-container {
+    display: flex;
+    gap: 50px;
+  }
+
+  .CID-bid-cotents-title {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .CID-bid-cotents-title p {
+    font-size: 18px;
+    font-weight: 900;
+  }
+
+  .CID-bid-cotents {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .CID-bid-cotents p {
+    font-size: 18px;
+    font-weight: 900;
+  }

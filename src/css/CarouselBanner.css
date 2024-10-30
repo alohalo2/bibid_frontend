@@ -65,11 +65,13 @@
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 }
 
 .CB_carousel_contents h2 {
     margin-bottom: 0;
+    font-size: 28px;
+    font-weight: 900;
 }
 
 .CB_carousel_contents p {

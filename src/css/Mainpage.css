@@ -31,3 +31,10 @@
 .mp_container_title {
     width: 1200px;
 }
+
+.mp_container_title p {
+    color: #555555;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}

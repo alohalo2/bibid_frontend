@@ -227,6 +227,12 @@
     margin-bottom: 5px;
 }
 
+.CV_header p {
+    color: #555555;
+    font-size: 16px;
+    font-weight: 600;
+}
+
 .CV_conveyor-img {
     object-fit: contain;
 }

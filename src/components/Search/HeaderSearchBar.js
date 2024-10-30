@@ -33,7 +33,7 @@ const HeaderSearchBar = () => {
     }, [dispatch, searchCondition, searchKeyword, navigate]);
 
     return (
-        <div className='headerSearchContainer' style={{ border: '2px solid #BFBFBF', borderRadius: '10px', width: '20rem', height: '45px' }}>
+        <div className='headerSearchContainer' style={{ border: '2px solid #BFBFBF', borderRadius: '10px', width: '22rem', height: '45px' }}>
             <Container component='div' maxWidth='md'>
                 <form onSubmit={handleSearch}>
                     <Grid container spacing={1}>
