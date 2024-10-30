@@ -10,7 +10,7 @@ const useNotificationWebSocket = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const notificationSocket = new SockJS('http://223.130.162.136:8080/ws-notifications');
+    const notificationSocket = new SockJS(`${process.env.REACT_APP_BACK_SERVER}:8080/ws-notifications`);
     const notificationClient  = new Client({
       webSocketFactory: () => notificationSocket,
       onConnect: () => {

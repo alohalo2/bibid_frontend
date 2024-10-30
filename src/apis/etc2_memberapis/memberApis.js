@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const join = createAsyncThunk('members/join', async (member, thunkApi) => {
     try {
-        const response = await axios.post('http://223.130.162.136:8080/members/join', member);
+        const response = await axios.post(`${process.env.REACT_APP_BACK_SERVER}:8080/members/join`, member);
 
         return response.data.item;
     } catch (e) {
@@ -13,7 +13,7 @@ export const join = createAsyncThunk('members/join', async (member, thunkApi) =>
 
 export const login = createAsyncThunk('members/login', async (member, thunkApi) => {
     try {
-        const response = await axios.post('http://223.130.162.136:8080/members/login', member,
+        const response = await axios.post(`${process.env.REACT_APP_BACK_SERVER}:8080/members/login`, member,
             {
                 withCredentials: true
             });
@@ -26,7 +26,7 @@ export const login = createAsyncThunk('members/login', async (member, thunkApi) 
 
 export const logout = createAsyncThunk('members/logout', async (_, thunkApi) => {
     try {
-        const response = await axios.get(`http://223.130.162.136:8080/members/logout`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}:8080/members/logout`, {
             withCredentials: true
         });
 
@@ -42,7 +42,7 @@ export const findMember = createAsyncThunk(
     async (formData, thunkApi) => {
 
         try {
-            const response = await axios.post(`http://223.130.162.136:8080/members/mailSend`, formData)
+            const response = await axios.post(`${process.env.REACT_APP_BACK_SERVER}:8080/members/mailSend`, formData)
 
             return formData.email;
         } catch (e) {
@@ -57,7 +57,7 @@ export const verificationCodeCheck = createAsyncThunk(
     async (formData, thunkApi) => {
 
         try {
-            const response = await axios.post(`http://223.130.162.136:8080/members/mailCheck`, {
+            const response = await axios.post(`${process.env.REACT_APP_BACK_SERVER}:8080/members/mailCheck`, {
                 verificationCode: formData.verificationCode
             });
 
@@ -78,7 +78,7 @@ export const findIdByEmail = createAsyncThunk(
     async (formData, thunkApi) => {
 
         try {
-            const response = await axios.post(`http://223.130.162.136:8080/members/findByEmail`, {
+            const response = await axios.post(`${process.env.REACT_APP_BACK_SERVER}:8080/members/findByEmail`, {
                 email: formData.email
             });
 
@@ -97,7 +97,7 @@ export const modifyPasswd = createAsyncThunk(
     async (formData, thunkApi) => {
 
         try {
-            const response = await axios.post(`http://223.130.162.136:8080/members/modifyPasswd`,
+            const response = await axios.post(`${process.env.REACT_APP_BACK_SERVER}:8080/members/modifyPasswd`,
                 null,
                 {
                     params: {
@@ -119,7 +119,7 @@ export const kakaoJwtToken = createAsyncThunk(
     'auth/kakaoJwtToken',
     async (code, thunkApi) => {
         try {
-            const response = await axios.get(`http://223.130.162.136:8080/auth/kakao/callback`, {
+            const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}:8080/auth/kakao/callback`, {
                 params: {
                     code: code // 쿼리 파라미터로 코드 전달
                 },
@@ -138,7 +138,7 @@ export const naverJwtToken = createAsyncThunk(
     'auth/naverJwtToken',
     async (code, thunkApi) => {
         try {
-            const response = await axios.get(`http://223.130.162.136:8080/auth/naver/callback`, {
+            const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}:8080/auth/naver/callback`, {
                 params: {
                     code: code // 쿼리 파라미터로 코드 전달
                 },
@@ -157,7 +157,7 @@ export const googleJwtToken = createAsyncThunk(
     'auth/googleJwtToken',
     async (accessToken, thunkApi) => {
         try {
-            const response = await axios.post(`http://223.130.162.136:8080/auth/google/callback`, {
+            const response = await axios.post(`${process.env.REACT_APP_BACK_SERVER}:8080/auth/google/callback`, {
                 access_token: accessToken // 액세스 토큰을 JSON 바디로 전송
             }, {
                 withCredentials: true
@@ -176,7 +176,7 @@ export const checkLogin = createAsyncThunk(
     'auth/checkLogin',
     async (_, thunkApi) => {
         try {
-            const response = await axios.get(`http://223.130.162.136:8080/auth/checkLogin`, {
+            const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}:8080/auth/checkLogin`, {
                 withCredentials: true
             });
 

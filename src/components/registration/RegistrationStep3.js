@@ -32,7 +32,7 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep }) => {
       });
       
       // 서버로 FormData 전송 (예: axios 사용)
-      axios.post('http://223.130.162.136:8080/auction/post', formDataToSend, {
+      axios.post(`${process.env.REACT_APP_BACK_SERVER}:8080/auction/post`, formDataToSend, {
         withCredentials: true
       })
       .then(response => {

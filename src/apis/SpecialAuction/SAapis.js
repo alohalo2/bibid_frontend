@@ -6,7 +6,7 @@ export const getAuctionData = createAsyncThunk(
   async (auctionType, thunkApi) => {
     try {
 
-      const response = await axios.get('http://223.130.162.136:8080/specialAuction/list', {
+      const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}:8080/specialAuction/list`, {
         params: {
           auctionType: auctionType,
         }

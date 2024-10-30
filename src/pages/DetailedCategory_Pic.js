@@ -15,7 +15,7 @@ const DetailedCategory_Pic = () => {
 
   const fetchBestProducts = useCallback(async () => {
     try {
-      const response = await axios.get(`http://223.130.162.136:8080/auction/category/사진`, {
+      const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}:8080/auction/category/사진`, {
         params: { page: page }
       });
 

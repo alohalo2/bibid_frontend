@@ -12,7 +12,7 @@ const BestProduct_Clothing = ({category}) => {
   useEffect(() => {
     const fetchBestProductsByCategory = async () => {
       try {
-        const response = await axios.get(`http://223.130.162.136:8080/auction/best/의류, 잡화`);
+        const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}:8080/auction/best/의류, 잡화`);
         console.log(response.data);
 
 

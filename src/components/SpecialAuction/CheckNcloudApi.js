@@ -16,7 +16,7 @@ const CheckNcloudApi = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://223.130.162.136:8080/api/ncloud/check', {
+      const response = await axios.post(`${process.env.REACT_APP_BACK_SERVER}:8080/api/ncloud/check`, {
         secretKey: formData.secretKey,
         accessKey: formData.accessKey,
         apiUrl: formData.apiUrl,

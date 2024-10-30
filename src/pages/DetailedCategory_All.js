@@ -15,7 +15,7 @@ const DetailedCategory_All = () => {
   const fetchBestProducts = useCallback(async () => {
     try {
       setIsLoading(true); // 로딩 시작
-      const response = await axios.get("http://223.130.162.136:8080/auction/all", {
+      const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}:8080/auction/all`, {
         params: { page: page, size: itemsPerPage }
       });
 
