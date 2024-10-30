@@ -73,6 +73,14 @@ const Header = () => {
         window.location.href = '/category';  // /category로 이동
     };
 
+    const handleMypage = () => {
+        window.location.href = '/mypage/userInfo'; 
+    }
+
+    const handleWallet = () => {
+        window.location.href = '/mypage/wallet';
+    }
+
     const [token, setToken] = useState(null);
 
     const oauthType = useSelector(state => state.memberSlice.oauthType);
@@ -171,7 +179,8 @@ const Header = () => {
                                 </ul>
                                 <div className="HDnavbarAlarm" style={{marginRight: '40px', position: 'relative'}}
                                      onMouseOver={handleMouseOverWallet}
-                                     onMouseLeave={handleMouseLeaveWallet}>
+                                     onMouseLeave={handleMouseLeaveWallet}
+                                     onClick={handleWallet}>
                                     <img
                                         src="/images/Ellipse%202.png"
                                         alt="My Page"/>

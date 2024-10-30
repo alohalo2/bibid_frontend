@@ -135,4 +135,5 @@ const CarouselBanner = () => {
         </div>
     );
 };
+
 export default CarouselBanner;

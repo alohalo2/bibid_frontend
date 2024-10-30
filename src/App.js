@@ -17,7 +17,6 @@ import Login from "./pages/etc2_login/Login";
 import RegistrationForm from "./pages/RegistrationForm";
 import FindMember from "./pages/etc2_find/FindMember";
 import CategoryItemDetail from "./components/categoryItemDetail/CategoryItemDetail";
-import CheckNcloudApi from "./components/SpecialAuction/CheckNcloudApi";
 import DetailedCategory_All from "./pages/DetailedCategory_All";
 import DetailedCategory_Hob from "./pages/DetailedCategory_Hob";
 import DetailedCategory_Clothing from "./pages/DetailedCategory_Clothing";
@@ -32,17 +31,15 @@ import Mypage_UserInfo from "./pages/mypage/Mypage_UserInfo";
 import Mypage_AuctionInfo from "./pages/mypage/Mypage_AuctionInfo";
 import Mypage_Wallet from "./pages/mypage/Mypage_Wallet";
 import Mypage_UserInfoModify from "./pages/mypage/Mypage_UserInfoModify";
+import Mypage_AuctionManagement from "./pages/mypage/Mypage_AuctionManagement";
 import NaverLogin from "./pages/oauth2test/NaverLogin";
 import KakaoLogout from "./pages/oauth2test/KakaoLogout";
 import GoogleLogin from "./pages/oauth2test/GoogleLogin";
 import WidgetCheckoutPage from "./pages/widget/WidgetCheckout";
 import WidgetSuccessPage from "./pages/widget/WidgetSuccess";
-import BrandpayCheckoutPage from "./pages/brandpay/BrandpayCheckout";
-import BrandpaySuccessPage from "./pages/brandpay/BrandpaySuccess";
-import PaymentCheckoutPage from "./pages/payment/PaymentCheckout";
-import PaymentBillingPage from "./pages/payment/PaymentBilling";
-import PaymentSuccessPage from "./pages/payment/PaymentSuccess";
 import FailPage from "./pages/Fail";
+import TestApi2 from "./components/SpecialAuction/TestApi2";
+import MemberInitializer from "./context/MemberInitializer";
 
 function App() {
     const persiststore = persistStore(store);
@@ -52,6 +49,7 @@ function App() {
             <PersistGate loading={null} persistor={persiststore}>
                 <NotificationProvider>
                     <NotificationInitializer />
+                    <MemberInitializer />
                     <Routes>
                         {/* OAuth Routes */}
                         <Route path="/auth/kakao/callback" element={<KakaoLogin />} />
@@ -80,7 +78,7 @@ function App() {
                             <Route path="/category/pic" element={<DetailedCategory_Pic />} />
                             <Route path="/category/antique" element={<DetailedCategory_Antique />} />
                             <Route path="/category-itemdetail/:auctionNumber" element={<CategoryItemDetail />} />
-                            <Route path="/checkNcloudApi" element={<CheckNcloudApi />} />
+                            <Route path="/testApi" element={<TestApi2/>} />
                             <Route path="join/*" element={<JoinRoutes />} />
 
                             {/* Mypage Routes */}
@@ -88,20 +86,12 @@ function App() {
                             <Route path="/mypage/userInfo/modify" element={<Mypage_UserInfoModify />} />
                             <Route path="/mypage/auctioninfo/" element={<Mypage_AuctionInfo />} />
                             <Route path="/mypage/wallet/" element={<Mypage_Wallet />} />
+                            <Route path="mypage/auctionmanagement/" element={<Mypage_AuctionManagement/>}/>
                         </Route>
 
                         {/* Widget Routes */}
                         <Route path="/widget/checkout" element={<WidgetCheckoutPage />} />
                         <Route path="/widget/success" element={<WidgetSuccessPage />} />
-
-                        {/* Brandpay Routes */}
-                        <Route path="/brandpay/checkout" element={<BrandpayCheckoutPage />} />
-                        <Route path="/brandpay/success" element={<BrandpaySuccessPage />} />
-
-                        {/* Payment Routes */}
-                        <Route path="/payment/checkout" element={<PaymentCheckoutPage />} />
-                        <Route path="/payment/billing" element={<PaymentBillingPage />} />
-                        <Route path="/payment/success" element={<PaymentSuccessPage />} />
 
                         {/* Fail Page */}
                         <Route path="/fail" element={<FailPage />} />
