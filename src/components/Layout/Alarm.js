@@ -6,7 +6,9 @@ import alarmActiveIcon from '../../images/alarm_active_Icon.svg';
 import '../../css/Layout/Alarm.css';
 
 const Alarm = () => {
-  const notifications = useSelector((state) => state.notificationSlice.notifications); // Redux의 notifications 가져오기
+  const notifications = useSelector((state) => state.notificationSlice.notifications);
+
+  console.log(notifications);
   const [showNotifications, setShowNotifications] = useState(false);
   const [selectedTab, setSelectedTab] = useState('전체');
   const navigate = useNavigate();

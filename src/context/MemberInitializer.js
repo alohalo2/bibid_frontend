@@ -5,6 +5,8 @@ import axios from "axios";
 
 function MemberInitializer() {
 
+    const memberIndex = useSelector(state => state.memberSlice.memberIndex);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,7 +25,7 @@ function MemberInitializer() {
         };
 
         initializeMember();
-    }, [dispatch]);
+    }, [dispatch, memberIndex]);
 
     return null;
 }
