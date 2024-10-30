@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, TextField, Button, Typography, Grid2, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import axios from 'axios';
 
-const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep }) => {
+const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep, memberInfo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -123,7 +123,7 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep }) => {
               }}
             />
             <span>원</span>
-            <span style={{marginLeft : '2rem', color:'red', fontWeight: 'bold'}}>*시작가 보다 30% 이상으로 등록 가능</span>
+            <span style={{marginLeft : '2rem', color:'red', fontWeight: 'bold'}}>*시작가보다 30% 높은 가격부터 등록 가능</span>
           </Grid2>
         </Grid2>
 
@@ -168,11 +168,11 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep }) => {
           </Grid2>
 
           <Grid2 size={12} sx={{ fontWeight: 'bold', my: '5px' }}>
-            • 판매자는 ______ 의 이용약관과 주의사항을 준수해야 하며, 등록된 물품과 관련된 모든 법적 책임이 있습니다.
+            • 판매자 {memberInfo.nickname}은(는) 이용약관을 준수해야 하며, 등록된 경매에 대한 모든 법적 책임은 {memberInfo.nickname}에게 있습니다.
           </Grid2>
 
           <Grid2 size={12} sx={{ fontWeight: 'bold', my: '5px' }}>
-            • 부정확한 정보로 인한 경매사고 발생시 신용도에 반영될 수 있으며 법적 제재를 받을 수 있습니다.
+            • 의도적으로 타 이용자를 속이거나 사이트 이용약관을 준수하지 않은 경우, 사이트 이용을 제한당할 수 있습니다.
           </Grid2>
         </Grid2>
 

@@ -275,7 +275,7 @@ export const chargeAccount = createAsyncThunk(
     'member/fetchMember',
     async (_, thunkApi) => {
         try {
-          const response = await axios.get('http://localhost:8080/members/fetch', {
+          const response = await axios.get('http://localhost:8080/members/fetchMember', {
             withCredentials: true
           });
           return response.data.item; // 판매 결과 반환

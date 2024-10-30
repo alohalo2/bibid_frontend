@@ -33,7 +33,7 @@ const MypageProfileBox = () => {
 
   return (
     <div className='Mypage_AuctionBoxContainer'>
-      <div className='Mypage_UserInfoTitle'>경매 진행 현황</div>
+      <div className='Mypage_UserInfoTitle'>참여중인 경매</div>
       <div className='Mypage_AuctionMainContainer'>
           <div className='Mypage_AuctionInfoContainer'>
             <div className='Mypage_AuctionCategory'>

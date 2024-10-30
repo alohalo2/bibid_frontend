@@ -2,7 +2,7 @@ import React from 'react';
 import {Container, Button, Typography, Grid2} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-const RegistrationStep4 = () => {
+const RegistrationStep4 = ({ memberInfo }) => {
 
     const navi = useNavigate();
 
@@ -28,13 +28,13 @@ const RegistrationStep4 = () => {
 
               {/* Subtext */}
               <Grid2 item size={12} sx={{textAlign:'center', fontWeight: 'bold', my: 2, fontSize:'1.2rem'}}>
-                  홍길동님의 물품이<br />
-                  성공적으로 완료되었습니다.
+                  {memberInfo.nickname}님의 물품이<br />
+                  성공적으로 등록되었습니다.
               </Grid2>
 
               {/* Information and Links */}
               <Grid2 item size={12} sx={{textAlign:'center', fontWeight: 'bold', my: 2, fontSize:'1.2rem'}}>
-                  * 물품등록 내역확인 및 수정은 <span style={{ color: 'orange' }}>마이페이지</span> &gt; <span style={{ color: 'orange' }}>물품등록내역</span> 에서 가능합니다.
+                  * 물품등록 내역확인 및 삭제는 <span style={{ color: 'orange' }}>마이페이지</span> &gt; <span style={{ color: 'orange' }}>내가 등록한 경매</span> 에서 가능합니다.
               </Grid2>
             </Grid2>
 
@@ -44,7 +44,7 @@ const RegistrationStep4 = () => {
                   <Button
                   variant="contained"
                   sx={{ width: '12rem', backgroundColor: '#D9D9D9', fontFamily: 'Inter', color: 'black', fontWeight: 'bold', fontSize: '1rem', textAlign: 'center', transition: 'all 0.3s ease-in-out','&:hover': {backgroundColor: '#0A369D', color: 'white'}}}
-                  onClick={() => (navi("/mypage"))}
+                  onClick={() => (window.location.href = ("/mypage/auctionmanagement"))}
                   >
                   물품 등록 내역 보기
                   </Button>
@@ -55,7 +55,7 @@ const RegistrationStep4 = () => {
                   <Button
                   variant="contained"
                   sx={{ width: '8rem', backgroundColor: '#D9D9D9', color: 'black', fontWeight: 'bold', fontSize: '1rem', textAlign: 'center', transition: 'all 0.3s ease-in-out','&:hover': {backgroundColor: '#0A369D', color: 'white'} }}
-                  onClick={() => (navi("/mainpage"))}
+                  onClick={() => (window.location.href = ("/"))}
                   >
                   메인 페이지
                   </Button>

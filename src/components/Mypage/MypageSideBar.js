@@ -53,23 +53,23 @@ const MypageSideBar = ({ memberInfo }) => {
   const handleProfileImageClick = () => document.getElementById('profileImageInput').click();
 
   const handleProfileClick =() => {
-    navi('/mypage/userInfo');
+    window.location.href = '/mypage/userInfo';
   }
 
   const handleAuctionClick =() => {
-    navi('/mypage/auctionInfo');
+    window.location.href = '/mypage/auctionInfo';
   }
 
   const handleWalletClick =() => {
-    navi('/mypage/wallet');
+    window.location.href = '/mypage/wallet';
   }
 
   const handleQnaClick =() => {
-    navi('/mypage/qna');
+    window.location.href = '/mypage/qna';
   }
 
   const handleSellerClick =() => {
-    navi('/mypage/sellerInfo');
+    window.location.href = '/mypage/sellerInfo';
   }
 
   const handleManagement = () => {

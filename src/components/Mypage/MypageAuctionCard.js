@@ -39,7 +39,7 @@ const MypageAuctionCard = ({auction}) => {
             <div className='Mypage_AuctionContentDetailContainer'>
                 <div className='Mypage_AuctionContentPrice'>
                     <div className='Mypage_AuctionContenttitle'>구매금액</div>
-                    <div className='Mypage_AuctionContenttext'>{lastBidAmount} 원</div>
+                    <div className='Mypage_AuctionContenttext'>{lastBidAmount.toLocaleString()} 원</div>
                 </div>  
                 <div className='Mypage_AuctionContentNumber'>
                     <div className='Mypage_AuctionContenttitle'>경매번호</div>
@@ -53,7 +53,7 @@ const MypageAuctionCard = ({auction}) => {
         </div>
         <div className='Mypage_AuctionContentBtnCategory'>
             <div className='Mypage_AuctionContentBtnBox'>
-                <div className='Mypage_AuctionCardBtn'>수취 완료</div>
+                <div className='Mypage_AuctionCardBtn'>구매 확정</div>
                 <div className='Mypage_AuctionCardBtn'>거래 취소</div>
             </div>
         </div>

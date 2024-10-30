@@ -1,33 +1,45 @@
-// NotificationInitializer.js
-import { useContext, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {setNotifications} from '../slices/notification/notificationSlice'
 import axios from 'axios';
-import { NotificationContext } from './NotificationContext';
+import useNotificationWebSocket from '../customHooks/useNotificationWebSocket';
 
 // 알림 초기화 컴포넌트
 const NotificationInitializer = () => {
-    const memberIndex = useSelector((state) => state.memberSlice.memberIndex);
-    const { setNotifications } = useContext(NotificationContext); // Context에서 setNotifications 가져오기
+
+    const memberIndex = useSelector(state => state.memberSlice.memberIndex);
+
+    const dispatch = useDispatch();
+
+    useNotificationWebSocket();
 
     useEffect(() => {
         const fetchInitialNotifications = async () => {
-            if (memberIndex !== 0) {
-                try {
-                    const response = await axios.get(`http://localhost:8080/api/notifications/${memberIndex}`, {
-                        withCredentials: true,
-                    });
-                    const notifications = response.data;
-                    setNotifications(notifications); // 초기 알림 데이터를 설정
-                } catch (error) {
-                    console.error("Failed to fetch notifications:", error);
+            try {
+                const response = await axios.get("http://localhost:8080/auth/checkLogin", {
+                    withCredentials: true,
+                });
+
+                if (response.status === 200 && response.data.item === "ROLE_USER") { 
+                    try {
+                        const response = await axios.get(`http://localhost:8080/api/notifications/2`, {
+                            withCredentials: true,
+                        });
+                        dispatch(setNotifications(response.data));
+                    } catch (error) {
+                        console.error("Failed to fetch notifications:", error);
+                    }
                 }
+            } catch (error) {
+                console.warn("로그인되지 않은 상태입니다.", error);
             }
         };
 
         fetchInitialNotifications();
-    }, [memberIndex, setNotifications]);
+    }, [dispatch, memberIndex]);
 
-    return null; // UI 요소를 렌더링하지 않음
+    return null;
+
 };
 
 export default NotificationInitializer;
