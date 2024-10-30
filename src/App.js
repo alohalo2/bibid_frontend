@@ -40,6 +40,7 @@ import WidgetSuccessPage from "./pages/widget/WidgetSuccess";
 import FailPage from "./pages/Fail";
 import TestApi2 from "./components/SpecialAuction/TestApi2";
 import MemberInitializer from "./context/MemberInitializer";
+import TestApi3 from "./components/SpecialAuction/TestApi3";
 
 function App() {
     const persiststore = persistStore(store);
@@ -78,7 +79,7 @@ function App() {
                             <Route path="/category/pic" element={<DetailedCategory_Pic />} />
                             <Route path="/category/antique" element={<DetailedCategory_Antique />} />
                             <Route path="/category-itemdetail/:auctionNumber" element={<CategoryItemDetail />} />
-                            <Route path="/testApi" element={<TestApi2/>} />
+                            <Route path="/testApi" element={<TestApi3/>} />
                             <Route path="join/*" element={<JoinRoutes />} />
 
                             {/* Mypage Routes */}
