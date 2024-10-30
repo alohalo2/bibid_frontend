@@ -7,7 +7,7 @@ import useNotificationWebSocket from '../customHooks/useNotificationWebSocket';
 // 알림 초기화 컴포넌트
 const NotificationInitializer = () => {
 
-    const memberIndex = useSelector((state) => state.memberSlice.memberIndex);
+    const memberIndex = useSelector(state => state.memberSlice.memberIndex);
     const dispatch = useDispatch();
 
     useNotificationWebSocket();
