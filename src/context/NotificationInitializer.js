@@ -1,13 +1,16 @@
-// NotificationInitializer.js
-import { useContext, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {setNotifications} from '../slices/notification/notificationSlice'
 import axios from 'axios';
-import { NotificationContext } from './NotificationContext';
+import useNotificationWebSocket from '../customHooks/useNotificationWebSocket';
 
 // 알림 초기화 컴포넌트
 const NotificationInitializer = () => {
+
     const memberIndex = useSelector((state) => state.memberSlice.memberIndex);
-    const { setNotifications } = useContext(NotificationContext); // Context에서 setNotifications 가져오기
+    const dispatch = useDispatch();
+
+    useNotificationWebSocket();
 
     useEffect(() => {
         const fetchInitialNotifications = async () => {
@@ -16,8 +19,7 @@ const NotificationInitializer = () => {
                     const response = await axios.get(`http://localhost:8080/api/notifications/${memberIndex}`, {
                         withCredentials: true,
                     });
-                    const notifications = response.data;
-                    setNotifications(notifications); // 초기 알림 데이터를 설정
+                    dispatch(setNotifications(response.data));
                 } catch (error) {
                     console.error("Failed to fetch notifications:", error);
                 }
@@ -25,9 +27,9 @@ const NotificationInitializer = () => {
         };
 
         fetchInitialNotifications();
-    }, [memberIndex, setNotifications]);
+    }, [memberIndex, dispatch]);
 
-    return null; // UI 요소를 렌더링하지 않음
+    return null;
 };
 
 export default NotificationInitializer;
