@@ -24,10 +24,13 @@ export const Search = () => {
         }));
     }, [dispatch]);
 
+    const searchKeyword = localStorage.getItem('searchKeyword') || '';
+
     return (
         <div className='CTG_category'>
             <div className='blank' />
-            <SearchBar />
+            {/* <SearchBar /> */}
+            <div> '{searchKeyword}' 의 검색결과 입니다. </div>
             <div className='blank' />
             <div className='DC_productContainer'>
                 {products.length > 0 ? (

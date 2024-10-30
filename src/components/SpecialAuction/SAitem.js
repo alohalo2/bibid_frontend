@@ -3,7 +3,7 @@ import '../../css/SpecialAuction/SAitem.css';
 
 function SAitem({ imageSrc, title, auctionDate, price , auctionTime, linkText, handleGoButtonClick, handleAlertButtonClick}) {
 
-  console.log("SAitem: {}", imageSrc);
+  // console.log("SAitem: {}", imageSrc);
 
   return (
     <div className="SAauctionItem">
