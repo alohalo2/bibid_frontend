@@ -2,7 +2,11 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 
 const MypageProfileBox = ({ memberInfo }) => {
-  const memberIndex = useSelector((state) => state.memberSlice.memberIndex); 
+  const memberIndex = useSelector((state) => state.memberSlice.memberIndex);
+
+  const handleModify = () => {
+    window.location.href = '/mypage/userInfo/modify'
+  }
   
   return (
     <div className='Mypage_ProfileBoxContainer'>
@@ -43,7 +47,7 @@ const MypageProfileBox = ({ memberInfo }) => {
           </div>
         </div>
         <div className='Mypage_ModifyBtnContainer'>
-          <div className='Mypage_UserInfoModifyBtn'> 수정 </div>
+          <div className='Mypage_UserInfoModifyBtn' onClick={handleModify} style={{cursor:'pointer'}}> 수정 </div>
         </div>
     </div>
   )
