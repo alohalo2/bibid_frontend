@@ -177,7 +177,7 @@ const Header = () => {
                                 <ul className="HDnavbarMember">
                                     <li><a onClick={handleLogout}>로그아웃</a></li>
                                 </ul>
-                                <div className="HDnavbarAlarm" style={{marginRight: '40px', position: 'relative'}}
+                                <div className="HDnavbarAlarm" style={{marginRight: '40px', position: 'relative', cursor: 'pointer'}}
                                      onMouseOver={handleMouseOverWallet}
                                      onMouseLeave={handleMouseLeaveWallet}
                                      onClick={handleWallet}>
