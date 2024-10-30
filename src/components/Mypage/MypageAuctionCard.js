@@ -4,6 +4,15 @@ import MypageAuctionProcessLine from './MypageAuctionProcessLine';
 
 const MypageAuctionCard = ({auction}) => {
 
+  const bucketName = process.env.REACT_APP_BUCKET_NAME;
+
+  const thumbnailImage = auction.auctionImageDtoList.find((image) => image.thumbnail === true);
+
+  const imageSrc = thumbnailImage
+    ? `https://kr.object.ncloudstorage.com/${bucketName}/${thumbnailImage.filepath}${thumbnailImage.filename}`
+    : '/images/defaultFileImg.png';
+
+
   const lastBidAmount = auction.auctionInfoDtoList && auction.auctionInfoDtoList.length > 0
     ? auction.auctionInfoDtoList[auction.auctionInfoDtoList.length - 1].bidAmount
     : 0;
@@ -19,7 +28,11 @@ const MypageAuctionCard = ({auction}) => {
       </div>
       <div className='Mypage_AuctionContentBox'>
         <div className='Mypage_AuctionContentImgBox'>
-            <div className='Mypage_AuctionContentImg'></div>
+          <img
+              src={imageSrc}
+              alt="Auction Thumbnail"
+              className="Mypage_AuctionManagementCardImg"
+            />
         </div>
         <div className='Mypage_AuctionContentDetail'>
             <div className='Mypage_AuctionContentDetailTitle'> 물품 이름 {auction.productName}</div>

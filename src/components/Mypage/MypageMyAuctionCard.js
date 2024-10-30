@@ -1,19 +1,44 @@
 import React from 'react'
 import '../../css/Mypage/Mypage.css';
 import MypageAuctionProcessLine from './MypageAuctionProcessLine';
+import { format } from 'date-fns';
 
-const MypageMyAuctionCard = () => {
+const MypageMyAuctionCard = ({auction}) => {
+
+  const bucketName = process.env.REACT_APP_BUCKET_NAME;
+
+  const thumbnailImage = auction.auctionImageDtoList.find((image) => image.thumbnail === true);
+
+  const imageSrc = thumbnailImage
+    ? `https://kr.object.ncloudstorage.com/${bucketName}/${thumbnailImage.filepath}${thumbnailImage.filename}`
+    : '/images/defaultFileImg.png';
+
+  const formatAuctionDate = (startLocalDateTime, endLocalDateTime) => {
+    const startDate = format(new Date(startLocalDateTime), 'yyyy.MM.dd');
+    const endDate = format(new Date(endLocalDateTime), 'yyyy.MM.dd');
+    return `${startDate} ~ ${endDate}`;
+  };
+
+  const lastBidAmount = auction.auctionInfoDtoList && auction.auctionInfoDtoList.length > 0
+    ? auction.auctionInfoDtoList[auction.auctionInfoDtoList.length - 1].bidAmount
+    : auction.startingPrice;
+
+  
   return (
     <div className='Mypage_AuctionManagementCard'>
       <div className='Mypage_AuctionManagementCardImgBox'>
-        <div className='Mypage_AuctionManagementCardImg'></div>
+        <img
+          src={imageSrc}
+          alt="Auction Thumbnail"
+          className="Mypage_AuctionManagementCardImg"
+        />
       </div>
       <div className='Mypage_AuctionManagementCardTitleBox'>
-        <div className='MypageAuctionManagementCardTitle'>제목입니다.</div>
+        <div className='MypageAuctionManagementCardTitle'>{auction.productName}</div>
       </div>
-      <div className='Mypage_AuctionManagementCardPrice'>50000 원</div>
-      <div className='Mypage_AuctionManagementCardBid'> 5000 원</div>
-      <div className='Mypage_AuctionManagementCardPeriod'>xxxx.xx.xx ~ yyyy.yy.yy </div>
+      <div className='Mypage_AuctionManagementCardPrice'>{lastBidAmount} 원</div>
+      <div className='Mypage_AuctionManagementCardBid'> {auction.bidIncrement} 원</div>
+      <div className='Mypage_AuctionManagementCardPeriod'>{formatAuctionDate(auction.startingLocalDateTime, auction.endingLocalDateTime)} </div>
       <div className='Mypage_AuctionManagementCardDeleteBtnBox'>
         <div className='Mypage_AuctionManagementCardDeleteBtn'>삭제</div>
       </div>
