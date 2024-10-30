@@ -14,22 +14,31 @@ const NotificationInitializer = () => {
 
     useEffect(() => {
         const fetchInitialNotifications = async () => {
-            if (memberIndex !== 0) {
-                try {
-                    const response = await axios.get(`http://localhost:8080/api/notifications/${memberIndex}`, {
-                        withCredentials: true,
-                    });
-                    dispatch(setNotifications(response.data));
-                } catch (error) {
-                    console.error("Failed to fetch notifications:", error);
+            try {
+                const response = await axios.get("http://localhost:8080/auth/checkLogin", {
+                    withCredentials: true,
+                });
+
+                if (response.status === 200 && response.data.item === "ROLE_USER") { 
+                    try {
+                        const response = await axios.get(`http://localhost:8080/api/notifications/${memberIndex}`, {
+                            withCredentials: true,
+                        });
+                        dispatch(setNotifications(response.data));
+                    } catch (error) {
+                        console.error("Failed to fetch notifications:", error);
+                    }
                 }
+            } catch (error) {
+                console.warn("로그인되지 않은 상태입니다.", error);
             }
         };
 
         fetchInitialNotifications();
-    }, [memberIndex, dispatch]);
+    }, [dispatch]);
 
     return null;
+
 };
 
 export default NotificationInitializer;
