@@ -3,6 +3,7 @@
   import { getAuctionData } from '../../apis/SpecialAuction/SAapis';
   import {   formatDateTime , formatAuctionTimeRange  } from '../../util/utils';
   import '../../css/SpecialAuction/SAlist.css';
+  import axios from 'axios';
 
   // 팝업 및 화면 컴포넌트
   import AlertPopup from './AlertPopup';
@@ -137,9 +138,28 @@
       }
     };
 
-    const handleAlertButtonClick = (auction) => {
-      setSelectedAuction(auction);
+    const handleAlertButtonClick = async (auction) => {
+      try {
+          const response = await axios.post(
+              `http://localhost:8080/specialAuction/registerAlarm/${auction.auctionIndex}`, 
+              {}, // 요청 본문이 없으므로 빈 객체 전달
+              { withCredentials: true } // 옵션을 세 번째 매개변수로
+          );
+  
+          if (response.status === 200) {
+              alert("알림 신청이 완료되었습니다.");
+          }
+      } catch (error) {
+          if (error.response && error.response.status === 409) {
+              // 중복 알림 신청일 경우
+              alert("이미 알림이 등록되어 있습니다.");
+          } else {
+              console.error("알림 신청 중 오류 발생:", error);
+              alert("알림 신청에 실패했습니다.");
+          }
+      }
     };
+  
 
     useEffect(() => {
       if (selectedAuction) {
