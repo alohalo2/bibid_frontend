@@ -15,7 +15,8 @@ import {
     chargeAccount,
     exchangeAccount,
     buyAuction,
-    sellAuction
+    sellAuction,
+    fetchMember
 } from '../../apis/etc2_memberapis/memberApis';
 
 const memberSlice = createSlice({
@@ -268,6 +269,27 @@ const memberSlice = createSlice({
             alert("에러가 발생했습니다.");
             return state;
         });
+
+        builder.addCase(fetchMember.fulfilled, (state, action) => {
+
+            console.log(action.payload);
+
+            return {
+                ...state,
+                memberIndex: action.payload.memberIndex,
+                memberId: action.payload.memberId,
+                nickname: action.payload.nickname,
+                token: action.payload.token,
+                profileImageDto : action.payload.profileImageDto,
+                accountDto : action.payload.accountDto,
+                isLogin: true, 
+            };
+        });
+        builder.addCase(fetchMember.rejected, (state, action) => {
+            alert("에러가 발생했습니다.");
+            return state;
+        });
+        
 
     }
 });

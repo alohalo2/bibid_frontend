@@ -270,3 +270,20 @@ export const chargeAccount = createAsyncThunk(
     }
   );
 
+  // app.js 초기화시 멤버 상태변수 초기화
+  export const fetchMember = createAsyncThunk(
+    'member/fetchMember',
+    async (_, thunkApi) => {
+        try {
+          const response = await axios.get('http://localhost:8080/members/fetch', {
+            withCredentials: true
+          });
+          return response.data.item; // 판매 결과 반환
+        } catch (e) {
+          console.error("멤버 초기화 요청 오류 발생:", e);
+          return thunkApi.rejectWithValue(e.response ? e.response.data : e.message);
+        }
+      }
+  );
+
+

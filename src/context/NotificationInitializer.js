@@ -1,7 +1,6 @@
 // NotificationInitializer.js
-import React, { useContext, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setNotifications } from '../slices/notification/notificationSlice';
+import { useContext, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { NotificationContext } from './NotificationContext';
 
