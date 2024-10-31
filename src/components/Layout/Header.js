@@ -116,7 +116,7 @@ const Header = () => {
         if (oauthType === "Kakao") {
             const kakaoLogoutParams = {
                 client_id: "29e81fa9fda262c573f312af9934fa5c",
-                logout_redirect_uri: process.env.REACT_APP_FRONT_SERVER + `:3000/`
+                logout_redirect_uri: process.env.REACT_APP_FRONT_SERVER
             }
 
             const url = 'https://kauth.kakao.com/oauth/logout';
