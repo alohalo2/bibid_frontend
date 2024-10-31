@@ -93,6 +93,8 @@ const Header = () => {
 
     useEffect(() => {
 
+        console.log(checkLoginState);
+
         dispatch(checkLogin());
 
         if (checkLoginState === "ROLE_USER") {
