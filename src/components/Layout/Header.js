@@ -67,7 +67,7 @@ const Header = () => {
 
     // 충전, 환전 클릭 시 마이 페이지로 이동
     const handleChargeBttnClick = () => {
-        window.location.href = '/mypage/wallet_management';  // mainpage로 페이지 이동
+        window.location.href = '/mypage/wallet';  // mainpage로 페이지 이동
     };
 
     const handleChargeCategory = () => {
@@ -203,13 +203,16 @@ const Header = () => {
                                 <ul className="HDnavbarMember">
                                     <li><a onClick={handleLogout}>로그아웃</a></li>
                                 </ul>
-                                <div className="HDnavbarAlarm" style={{marginRight: '40px', position: 'relative', cursor: 'pointer'}}
+                                <div className="HDnavbarAlarm" style={{marginRight: '40px', position: 'relative'}}
                                      onMouseOver={handleMouseOverWallet}
                                      onMouseLeave={handleMouseLeaveWallet}
-                                     onClick={handleWallet}>
+                                     >
                                     <img
                                         src="/images/Ellipse%202.png"
-                                        alt="My Page"/>
+                                        alt="My Page"
+                                        style={{ cursor: 'pointer' }}
+                                        onClick={handleMypage}
+                                        />
 
                                     {showWalletPopup && (
                                         <div className="HDwalletPopup">
@@ -219,8 +222,7 @@ const Header = () => {
                                                 <p>1,586,500 원</p>
                                             </div>
                                             <div className="HDwalletButtons">
-                                                <button onClick={handleChargeBttnClick}>충전</button>
-                                                <button onClick={handleChargeBttnClick}>환전</button>
+                                                <button onClick={handleChargeBttnClick}>지갑 관리</button>
                                             </div>
                                         </div>
                                     )}
