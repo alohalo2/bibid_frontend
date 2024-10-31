@@ -50,7 +50,7 @@ const useAuctionWebSocket = (auctionIndex, isChatClosed) => {
 
     const connectAuctionWebSocket = () => {
 
-      const auctionSocket = new SockJS(`${process.env.REACT_APP_BACK_SERVER}:8080/ws-auctions`, null, { withCredentials: true });
+      const auctionSocket = new SockJS(`${process.env.REACT_APP_BACK_SERVER}/ws-auctions`, null, { withCredentials: true });
       const auctionClient = new Client({
         webSocketFactory: () => auctionSocket,
         connectHeaders: {}, // Authorization 헤더를 삭제합니다

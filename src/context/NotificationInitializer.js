@@ -14,7 +14,7 @@ const NotificationInitializer = () => {
         const fetchInitialNotifications = async () => {
             if (memberIndex !== 0) {
                 try {
-                    const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}:8080/api/notifications/${memberIndex}`, {
+                    const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/api/notifications/${memberIndex}`, {
                         withCredentials: true,
                     });
                     const notifications = response.data;
