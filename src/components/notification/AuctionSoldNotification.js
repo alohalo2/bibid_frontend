@@ -1,13 +1,25 @@
 import React from 'react';
 
 const AuctionSoldNotification = ({ notification }) => (
-  <div>
-    <p className="ALnotificationTitle">{notification.title}</p>
-    <p>{notification.auctionType} {notification.productName} 이/(가) 낙찰되었습니다.</p>
-    <p>낙찰자 : {notification.winnerNickname}</p>
-    <p>낙찰 금액 : {notification.winningBid}</p>
-    <p>{notification.timestamp}</p>
-  </div>
+
+  const handleClick = () => {
+    window.location.href = `http://localhost:3000/category-itemdetail/${notification.referenceIndex}` ;
+  };
+
+  return (
+    <div onClick={handleClick} style={{ cursor: 'pointer' }}>
+      <p className="ALnotificationTitle" style={{ color: 'red' }}>
+        {notification.title}
+      </p>
+      <p>{notification.content}</p>
+      <p>
+        {notification.auctionType} {notification.productName}에 입찰한 금액보다 상위 입찰자가 있습니다.
+      </p>
+      <p>상위 입찰 금액: {notification.higherBid} 원</p>
+      <p>내 입찰 금액: {notification.myBid} 원</p>
+      <p>{notification.timestamp}</p>
+    </div>
+  );
 );
 
 export default AuctionSoldNotification;
