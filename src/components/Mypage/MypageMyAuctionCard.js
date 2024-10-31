@@ -15,6 +15,7 @@ const MypageMyAuctionCard = ({ auction, onDelete }) => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [imageUrl, setImageUrl] = useState(defaultFileImg);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     const img = new Image();
@@ -49,6 +50,19 @@ const MypageMyAuctionCard = ({ auction, onDelete }) => {
     }
   };
 
+  const handleDeleteAlert = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    setIsDialogOpen(false);
+    await handleDelete();
+  };
+
+  const handleCancelDelete = () => {
+    setIsDialogOpen(false);
+  };
+
   return (
     <div className='Mypage_AuctionManagementCard'>
       <div className='Mypage_AuctionManagementCardImgBox'>
@@ -65,10 +79,23 @@ const MypageMyAuctionCard = ({ auction, onDelete }) => {
       <div className='Mypage_AuctionManagementCardBid'>{auction.bidIncrement.toLocaleString()} 원</div>
       <div className='Mypage_AuctionManagementCardPeriod'>{formatAuctionDate(auction.startingLocalDateTime, auction.endingLocalDateTime)}</div>
       <div className='Mypage_AuctionManagementCardDeleteBtnBox'>
-        <div className='Mypage_AuctionManagementCardDeleteBtn' onClick={handleDelete}>
+        <div className='Mypage_AuctionManagementCardDeleteBtn' onClick={handleDeleteAlert}>
           삭제
         </div>
       </div>
+      {isDialogOpen && (
+        <div className="AuctionCardModal-overlay">
+          <div className="AuctionCardModal-content">
+            <div className="AuctionCardModal-head">경고</div>
+            <div>삭제한 경매는 복구할 수 없습니다.</div>
+            <div>정말 삭제하시겠습니까?</div>
+            <div className="AuctionCardModal-buttons">
+              <button onClick={handleConfirmDelete}>예</button>
+              <button onClick={handleCancelDelete}>아니오</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

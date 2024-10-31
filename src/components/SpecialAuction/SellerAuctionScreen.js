@@ -271,7 +271,7 @@ function SellerAuctionScreen({
   const [remainingText, setRemainingText] = useState("경매 시작까지 남은 시간"); // 남은 시간 텍스트
   const [formattedTimeText, setFormattedTimeText] = useState(""); // 포맷된 시간 텍스트
 
-  const { messages, inputMessage, setInputMessage, sendMessage, currentPrices, participantCount, bidderNicknames, auctionDetails} = webSocketProps;
+  const { messages, inputMessage, setInputMessage, sendMessage, currentPrices, participantCounts, bidderNicknames, auctionDetails} = webSocketProps;
   const winnerInfo = auctionDetails[auction.auctionIndex];
 
   const messagesEndRef = useRef(null);
@@ -284,7 +284,7 @@ function SellerAuctionScreen({
   const formattedStartingPrice = auction.startingPrice?.toLocaleString() || '0';
   const formattedCurrentPrice = (currentPrices[auction.auctionIndex] || auction.startingPrice)?.toLocaleString() || '0';
 
-  const formattedParticipantCount = participantCount[auction.auctionIndex] || 0; // 경매 ID에 해당하는 참여자 수를 가져옴, 없으면 0
+  const formattedParticipantCount = participantCounts[auction.auctionIndex] || 0; // 경매 ID에 해당하는 참여자 수를 가져옴, 없으면 0
 
   // 메시지 스크롤을 맨 아래로 이동
   useEffect(() => {

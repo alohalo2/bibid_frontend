@@ -21,7 +21,7 @@ function BidConfirmationPopup({ auction, webSocketProps, handleClosePopup }) {
         <div className="SAbidConfirmationButtons">
           <button
             onClick={() => {
-              handleBidSubmit(auction.auctionIndex, webSocketProps.bidAmounts[auction.auctionIndex]);
+              handleBidSubmit(webSocketProps.bidAmounts[auction.auctionIndex]);
               handleClosePopup(); // 입찰 후 팝업 닫기
             }}
           >

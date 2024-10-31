@@ -5,8 +5,6 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 const ChatMessageType = {
-  ENTER: "ENTER",
-  LEAVE: "LEAVE",
   MESSAGE: "MESSAGE",
 };
 
@@ -21,7 +19,7 @@ const useAuctionWebSocket = (auctionIndex, isChatClosed) => {
   const [currentPrices, setCurrentPrices] = useState({});
   const [bidAmounts, setBidAmounts] = useState({});
   const [bidderNicknames, setBidderNicknames] = useState({});
-  const [participantCount, setParticipantCount] = useState({});
+  const [participantCounts, setParticipantCounts] = useState({});
   const [auctionDetails, setAuctionDetails] = useState({});
 
   const colors = [
@@ -90,13 +88,14 @@ const useAuctionWebSocket = (auctionIndex, isChatClosed) => {
           // 참가자 수 구독
           auctionClient.subscribe(`/topic/participants/count/${auctionIndex}`, (message) => {
             const count = JSON.parse(message.body);
-            setParticipantCount((prevCounts) => ({
+            setParticipantCounts((prevCounts) => ({
               ...prevCounts,
-              [auctionIndex]: count
-            }));    
+              [auctionIndex]: count,
+            }));
           });
 
-          sendJoinMessage(auctionClient, auctionIndex);
+          // 입장 처리
+          handleUserJoin(auctionClient);
         },
         onStompError: (error) => console.error("WebSocket error:", error),
       });
@@ -107,8 +106,33 @@ const useAuctionWebSocket = (auctionIndex, isChatClosed) => {
 
     connectAuctionWebSocket();
 
-    return () => stompClient && stompClient.deactivate();
   }, [auctionIndex, isChatClosed]);
+
+  // 입장 처리 함수
+  const handleUserJoin = (client) => {
+    if (client) {
+      console.log('입장 처리');
+      client.publish({
+        destination: `/app/chatroom/${auctionIndex}/enter`,
+        body: loginMemberNickname, 
+      });
+    } else {
+      console.warn('WebSocket 클라이언트가 없습니다. 입장 메시지를 전송할 수 없습니다.');
+    }
+  };
+
+  // 퇴장 처리 함수
+  const handleUserLeave = async () => {
+    if (stompClient) {
+      console.log('퇴장 처리');
+      await stompClient.publish({
+        destination: `/app/chatroom/${auctionIndex}/leave`,
+        body: loginMemberNickname, 
+      });
+    } else {
+      console.warn('WebSocket이 연결되지 않았습니다. 퇴장 메시지를 전송하지 않습니다.');
+    }
+  };
 
   // 메시지 업데이트
   const updateMessages = (newMessage) => {
@@ -159,32 +183,6 @@ const useAuctionWebSocket = (auctionIndex, isChatClosed) => {
     }
   };
 
-  // 입장 메시지 전송
-  const sendJoinMessage = (client, auctionIndex) => {
-    client.publish({
-      destination: `/app/chat.enter/${auctionIndex}`,
-      body: JSON.stringify({
-        senderNickname: '시스템',
-        chatMessage: `${loginMemberNickname}님이 입장하셨습니다.`,
-        messageType: ChatMessageType.ENTER,
-      }),
-    });
-  };
-
-  // 퇴장 메시지 전송
-  const sendLeaveMessage = () => {
-    if (connected && stompClient) {
-      stompClient.publish({
-        destination: `/app/chat.leave/${auctionIndex}`,
-        body: JSON.stringify({
-          senderNickname: '시스템',
-          chatMessage: `${loginMemberNickname}님이 퇴장하셨습니다.`,
-          messageType: ChatMessageType.LEAVE,
-        }),
-      });
-    }
-  };
-
   // 입찰 처리 함수
   const handleBidSubmit = (bidAmount) => {
     if (bidAmount > currentPrices[auctionIndex]) {
@@ -203,16 +201,26 @@ const useAuctionWebSocket = (auctionIndex, isChatClosed) => {
     inputMessage,
     setInputMessage,
     sendMessage,
-    sendLeaveMessage,
     handleBidSubmit,
     currentPrices,
     bidAmounts,
-    participantCount,
-    disconnectWebSocket: () => stompClient && stompClient.deactivate(),
+    participantCounts,
+    disconnectWebSocket: async () => {
+      if (stompClient && connected) {
+        try {
+          await handleUserLeave(); // 퇴장 메시지 전송
+        } catch (error) {
+          console.error("Error during handleUserLeave:", error);
+        } finally {
+          stompClient.deactivate(); // WebSocket 연결 해제
+          setConnected(false); // 상태 초기화
+        }
+      }
+    },
     bidderNicknames,
     auctionDetails,
     setCurrentPrices,
-    setBidAmounts
+    setBidAmounts,
   };
 };
 

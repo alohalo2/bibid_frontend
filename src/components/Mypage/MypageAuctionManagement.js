@@ -15,7 +15,11 @@ const MypageAuctionManagement = () => {
           withCredentials: true
         });
         console.log(response.data.items);
-        setMyAuctions(response.data.items); // 서버에서 가져온 경매 리스트 설정
+        // 서버에서 가져온 경매 리스트를 startingLocalDateTime 기준으로 정렬
+        const sortedAuctions = response.data.items.sort((a, b) => {
+          return new Date(a.startingLocalDateTime) - new Date(b.startingLocalDateTime);
+        });
+        setMyAuctions(sortedAuctions); // 정렬된 경매 리스트 설정
       } catch (error) {
         console.error("Failed to fetch my auctions:", error);
       }

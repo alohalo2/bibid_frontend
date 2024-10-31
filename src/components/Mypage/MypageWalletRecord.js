@@ -28,7 +28,9 @@ export const MypageWalletRecord = ({ record }) => {
     : isExchange
     ? `요청하신 ${formatNumber(record.changeAccount)}원 환전 처리가 완료되었습니다.`
     : isSale
-    ? `등록하신 "${record.productName} ${record.auctionType}" 상품이 판매 및 배송 처리가 완료되었습니다.`
+    // ? `등록하신 "${record.productName} ${record.auctionType}" 상품이 판매 및 배송 처리가 완료되었습니다.`
+    // : `"${record.productName}" 상품을 "${record.auctionType}"로 구매 및 배송 처리가 완료되었습니다.`;
+    ? `등록하신 "${record.auctionType} ${record.auctionType}" 상품이 판매 및 배송 처리가 완료되었습니다.`
     : `"${record.productName}" 상품을 "${record.auctionType}"로 구매 및 배송 처리가 완료되었습니다.`;
 
     const changeAmountColor = isCharge
