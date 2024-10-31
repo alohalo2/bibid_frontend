@@ -589,6 +589,8 @@
 .Mypage_AuctionManagementCardImg {
     width: 120px;
     height: 120px;
+    border: 1px solid #BFBFBF;
+    object-fit: contain;
 }
 
 .Mypage_AuctionManagementCardTitleBox {
@@ -719,4 +721,50 @@
 
   .headerSearchBox {
     padding: 0 !important;
+  }
+
+  .AuctionCardModal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+  }
+  
+  .AuctionCardModal-content {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    height: 200px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .AuctionCardModal-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .AuctionCardModal-buttons button {
+    margin: 0 10px;
+  }
+
+  .AuctionCardModal-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 360px;
+    height: 60px;
+    border-bottom: 1px solid #BFBFBF; 
   }
