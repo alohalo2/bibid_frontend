@@ -122,6 +122,7 @@ const Header = () => {
             const url = 'https://kauth.kakao.com/oauth/logout';
             window.location.href = `${url}?client_id=${kakaoLogoutParams.client_id}&logout_redirect_uri=${kakaoLogoutParams.logout_redirect_uri}`;
         }
+        window.location.href = '/';
 
     }, [dispatch, oauthType]);
 
