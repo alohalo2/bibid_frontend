@@ -63,7 +63,8 @@ const memberSlice = createSlice({
                 token: action.payload.token,
                 profileImageDto : action.payload.profileImageDto,
                 accountDto : action.payload.accountDto,
-                isLogin: true
+                isLogin: true,
+                role: action.payload.role
             };
         });
         builder.addCase(login.rejected, (state, action) => {

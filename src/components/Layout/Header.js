@@ -90,6 +90,7 @@ const Header = () => {
 
     const oauthType = useSelector(state => state.memberSlice.oauthType);
     const checkLoginState = useSelector(state => state.memberSlice.checkLoginState);
+    const role = useSelector(state => state.memberSlice.role);
 
     useEffect(() => {
 
@@ -97,9 +98,9 @@ const Header = () => {
 
         dispatch(checkLogin());
 
-        if (checkLoginState === "ROLE_USER") {
+        if (role === "ROLE_USER") {
             setToken(true);
-        } else if (checkLoginState === "notLogin") {
+        } else if (role === "notLogin") {
             setToken(false);
         }
 
