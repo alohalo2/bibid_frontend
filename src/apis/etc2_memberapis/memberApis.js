@@ -193,7 +193,7 @@ export const checkLogin = createAsyncThunk(
         'members/uploadProfileImage',
         async (formData, thunkApi) => {
             try {
-                const response = await axios.post('http://localhost:8080/mypage/profile-image', formData, {
+                const response = await axios.post(`http://localhost:8080/mypage/profile-image`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                     withCredentials: true
                 });
@@ -211,7 +211,7 @@ export const chargeAccount = createAsyncThunk(
     'account/chargeAccount',
     async (dummyData, thunkApi) => {
       try {
-        const response = await axios.post('http://localhost:8080/account/charge', dummyData, {
+        const response = await axios.post(`http://localhost:8080/account/charge`, dummyData, {
           withCredentials: true
         });
         return response.data.item; // 충전 결과 반환
@@ -227,7 +227,7 @@ export const chargeAccount = createAsyncThunk(
     'account/exchangeAccount',
     async (dummyData, thunkApi) => {
       try {
-        const response = await axios.post('http://localhost:8080/account/exchange', dummyData, {
+        const response = await axios.post(`http://localhost:8080/account/exchange`, dummyData, {
           withCredentials: true
         });
         return response.data.item; // 환전 결과 반환
@@ -243,7 +243,7 @@ export const chargeAccount = createAsyncThunk(
     'account/buyAuction',
     async (dummyData, thunkApi) => {
       try {
-        const response = await axios.post('http://localhost:8080/account/buy', dummyData, {
+        const response = await axios.post(`http://localhost:8080/account/buy`, dummyData, {
           withCredentials: true
         });
         return response.data.item; // 구매 결과 반환
@@ -259,7 +259,7 @@ export const chargeAccount = createAsyncThunk(
     'account/sellAuction',
     async (dummyData, thunkApi) => {
       try {
-        const response = await axios.post('http://localhost:8080/account/sell', dummyData, {
+        const response = await axios.post(`http://localhost:8080/account/sell`, dummyData, {
           withCredentials: true
         });
         return response.data.item; // 판매 결과 반환
@@ -275,7 +275,7 @@ export const chargeAccount = createAsyncThunk(
     'member/fetchMember',
     async (_, thunkApi) => {
         try {
-          const response = await axios.get('http://localhost:8080/members/fetchMember', {
+          const response = await axios.get(`http://localhost:8080/members/fetchMember`, {
             withCredentials: true
           });
           return response.data.item; // 판매 결과 반환
