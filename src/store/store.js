@@ -21,12 +21,13 @@ const reducers = combineReducers({
     specialAuctionSlice ,
     paymentSlice,
     auction: searchSlice,
-    notifications: notificationSlice,
+    notificationSlice,
 });
 
 const persistConfig = {
     key: 'root',
-    storage: storageSession
+    storage: storageSession,
+    whitelist: ['memberSlice', 'notification'],
 };
 
 const persistreducer = persistReducer(persistConfig, reducers);

@@ -6,11 +6,45 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import { IconButton } from '@mui/material';
 import axios from 'axios';
+import PlusIcon from '../../images/+_icon.svg';
+import MinusIcon from '../../images/-_icon.svg';
 
 const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, infoExtension, sellerDetailInfo, auctionImages }) => {
-
+  
   console.log("== CatItDetMain 실행 ==");
   console.log("입찰하기와 즉시구매 데이터 넘기는 api 만들어라 기본적으로 auctionInfo에 데이터 넣되, 즉시구매는 + 옥션테이블상태변경");
+
+  const [mainImage, setMainImage] = useState(null);
+  const [thumbnails, setThumbnails] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // auctionImages가 업데이트될 때 mainImage를 설정
+  useEffect(() => {
+    if (auctionImages && auctionImages.length > 0) {
+      setMainImage(auctionImages[0]);
+      setThumbnails(auctionImages.slice(1));
+    }
+  }, [auctionImages]);
+
+  const handlePrevClick = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (currentIndex < thumbnails.length - 4) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const handleThumbnailClick = (clickedImage) => {
+    setThumbnails((prevThumbnails) => {
+      const updatedThumbnails = prevThumbnails.filter((img) => img !== clickedImage);
+      return [mainImage, ...updatedThumbnails];
+    });
+    setMainImage(clickedImage);
+  };
 
   // 판매자 정보 더 보기 모달창
   const [sellerModalOpen, setSellerModalOpen] = useState(false);
@@ -20,7 +54,6 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
   const closeSellerModal = () => {
     setSellerModalOpen(false);
   };
-
 
   // 입찰 기록 보기 모달창
   const [biddingRecordModalOpen, setBiddingRecordModalOpen] = useState(false);
@@ -191,16 +224,39 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
   return (
     <div className="CID-item-block">
       <div className="CID-bid-item-container">
-        {/* 이미지 섹션 */}
 
-        <div className="CID-image-section">
-
-        <img src={auctionImages[0]} alt="Main Image" className="CID-main-image" />
-        <div className="CID-thumbnail-container">
-          {auctionImages.slice(1).map((imageUrl, index) => (
-            <img key={index} src={imageUrl} alt={`Image ${index + 1}`} className="CID-thumbnail" />
-            ))}
-        </div>
+        <div className='CID-bid-item-container-left'>
+          {/* 이미지 섹션 */}
+          <div className="CID-image-section">
+            <img src={mainImage} alt="Main Image" className="CID-main-image" />
+          </div>
+          <div className="CID-thumbnail-container">
+            <button
+                  className="prev-button"
+                  onClick={handlePrevClick}
+                  disabled={currentIndex === 0}
+                >
+                  &lt;
+                </button>
+                
+                {thumbnails.slice(currentIndex, currentIndex + 4).map((imageUrl, index) => (
+                  <img
+                    key={index}
+                    src={imageUrl}
+                    alt={`Image ${index + 1}`}
+                    className="CID-thumbnail"
+                    onClick={() => handleThumbnailClick(imageUrl)}
+                  />
+                ))}
+                
+                <button
+                  className="next-button"
+                  onClick={handleNextClick}
+                  disabled={currentIndex >= thumbnails.length - 4}
+                >
+                  &gt;
+            </button>
+          </div>
 
           {/* 판매자 섹션 */}
           <div className="CID-merchant-section">
@@ -274,18 +330,27 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
         {/* 입찰 섹션 */}
         <div className="CID-bid-section">
           <div className="CID-bid-title">{auctionItem.productName}</div>
-          <div className="CID-price"><span>현재가: {parseInt(infoExtension[1]).toLocaleString()} 원</span></div>
 
-          <div className="CID-bid-details">
-            <p>남은시간: {days}일 {hours}시간 {minutes}분 {seconds} 초</p>
-            <p>경매번호: No.{auctionItem.auctionIndex}</p>
-            <p>시작가: {parseInt(auctionItem.startingPrice).toLocaleString()} 원</p>
-            <div>
-              <p>
-                <span>입찰기록: {parseInt(infoExtension[0]).toLocaleString()}회    </span>  
-                <span className="CID-hover-link" onClick={openBiddingRecordModal}>    [기록보기]</span>
+          <div className='CID-bid-container'>
+            <div className='CID-bid-cotents-title'>
+              <h2>현재가: </h2>
+              <p>남은시간: </p>
+              <p>경매번호: </p>
+              <p>시작가: </p>
+              <p>입찰기록: </p>
+              <p>입찰단위: </p>
+              <p>입찰 희망가: </p>
+              <p>예상 구매가: </p>
+            </div>
+            <div className='CID-bid-cotents'>
+              <h2>{parseInt(infoExtension[1]).toLocaleString()} 원</h2>
+              <h3>{days}일 {hours}시간 {minutes}분 {seconds} 초</h3>
+              <p>No.{auctionItem.auctionIndex}</p>
+              <p>{parseInt(auctionItem.startingPrice).toLocaleString()} 원</p>
+              <p>{parseInt(infoExtension[0]).toLocaleString()}회 
+                  <span className="CID-hover-link" onClick={openBiddingRecordModal}>    [기록보기]</span>
               </p>
-              <div>
+
                 {/* 두 번째 모달 - bidding-record-modal : 입찰 기록 보기 */}
                 <Modal
                   isOpen={biddingRecordModalOpen}
@@ -325,40 +390,36 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
                   </div>
                   <button className="CID-bidding-record-confirm-button" onClick={closeBiddingRecordModal}>확인</button>
                 </Modal>
+
+              <p>{parseInt(auctionItem.bidIncrement).toLocaleString()}원</p>
+              <div className="CID-bid-input-wrapper">
+
+                <div className="CID-bid-input">
+                  <input 
+                    type="text"
+                    id="bid-amount"
+                    value={parseInt(bidAmount).toLocaleString()}
+                    readOnly/>
+                </div>
+                원 
+                {/* 백엔드 로직 : bidInfo테이블의 최신입찰가 */}
+                <div className="CID-bid-buttons-vertical">
+                  <button className="CID-bid-plus-button" sx={{width: "10px"}} onClick={() => increaseBid(Number(auctionItem.bidIncrement))}>
+                    <img src={PlusIcon}></img>
+                  </button>
+                  <button className="CID-bid-minus-button" onClick={() => decreaseBid(auctionItem.bidIncrement)}>
+                    <img src={MinusIcon}></img>
+                  </button>
+                </div>
+
+              </div>
+              <div className='CID-bid-expected-price'>
+                <h3>{parseInt(totalPrice).toLocaleString()} 원</h3>
+                <p>(입찰 희망가 {nowBiddingInfo.bidPrice.toLocaleString()} 원 + 구매수수료 {parseInt(nowBiddingInfo.purchaseFee).toLocaleString()} 원)</p>
               </div>
             </div>
-            <p>입찰단위: {parseInt(auctionItem.bidIncrement).toLocaleString()}원</p>
           </div>
 
-          <div className="CID-bid-controls">
-            <label htmlFor="bid-amount" style={{ marginRight: '10px' }}>
-              입찰 희망가:
-            </label>
-            <div className="CID-bid-input-wrapper">
-
-              <div className="CID-bid-input">
-                <input 
-                  type="text"
-                  id="bid-amount"
-                  value={parseInt(bidAmount).toLocaleString()}
-                  readOnly/>
-              </div>
-              원 
-              {/* 백엔드 로직 : bidInfo테이블의 최신입찰가 */}
-              <div className="CID-bid-buttons-vertical">
-                <IconButton className="CID-bid-button"  onClick={() => increaseBid(Number(auctionItem.bidIncrement))}>
-                  <AddBoxIcon/>
-                </IconButton>
-                <IconButton className="CID-bid-button" onClick={() => decreaseBid(auctionItem.bidIncrement)}>
-                  <IndeterminateCheckBoxIcon/>
-                </IconButton>
-              </div>
-
-            </div>
-          </div>
-
-          <div className="CID-expected-price">예상 구매가: {parseInt(totalPrice).toLocaleString()} 원</div>
-          <p>(입찰 희망가 {nowBiddingInfo.bidPrice.toLocaleString()} 원 + 구매수수료 {parseInt(nowBiddingInfo.purchaseFee).toLocaleString()} 원)</p>
           {/* 백엔드 로직 : bidInfo테이블의 최신입찰가 */}
           {/* <div className="CID-divider"></div> */}
 
@@ -390,7 +451,7 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
 
             {/* 네 번째 모달 buying-now-modal */}
             <button className="CID-bid-button buy-button" onClick={openBuyingNowModal}>
-               {nowBuyingInfo.buyNowPrice.toLocaleString()}  원으로 즉시 구매
+              {nowBuyingInfo.buyNowPrice.toLocaleString()}  원으로 즉시 구매
             </button>
             <Modal
               isOpen={buyingNowModalOpen}

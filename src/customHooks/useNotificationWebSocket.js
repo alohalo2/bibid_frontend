@@ -36,7 +36,7 @@ const useNotificationWebSocket = () => {
       notificationClient .deactivate();
       console.log("Notification WebSocket 연결 해제됨");
     };
-  }, []);
+  }, [notifications, dispatch]);
 
   return { notifications, setNotifications };
 };

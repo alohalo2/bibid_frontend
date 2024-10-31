@@ -19,6 +19,9 @@ const specialAuctionSlice = createSlice({
     setAuctionType: (state, action) => {
       state.auctionType = action.payload;
     },
+    setCarouselData: (state, action) => { // 새로운 액션 생성
+      state.carouselData = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -49,6 +52,6 @@ const specialAuctionSlice = createSlice({
   },
 });
 
-export const { setFormData, setAuctionType } = specialAuctionSlice.actions;
+export const { setFormData, setAuctionType, setCarouselData } = specialAuctionSlice.actions;
 
 export default specialAuctionSlice.reducer;

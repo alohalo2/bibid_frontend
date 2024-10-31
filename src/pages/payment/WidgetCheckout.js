@@ -15,7 +15,7 @@ function WidgetCheckoutPage() {
 
   const [amount, setAmount] = useState({
     currency: "KRW",
-    value: 50000,
+    value: 50,
   });
   const [ready, setReady] = useState(false);
   const [widgets, setWidgets] = useState(null);

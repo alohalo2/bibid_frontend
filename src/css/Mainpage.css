@@ -27,3 +27,21 @@
     background-color: black;
     opacity: 40%;
 }
+
+.mp_container_title {
+    margin-top: 30px;
+    width: 1200px;
+}
+
+.mp_container_title p {
+    color: #555555;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.BestItems p{
+    color: #555555;
+    font-size: 16px;
+    font-weight: 600;
+}

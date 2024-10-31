@@ -9,7 +9,8 @@ import hamburgerIcon from '../../images/hamburger_icon.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import HeaderSearchBar from '../Search/HeaderSearchBar'
-import {checkLogin, getAccessToken, getTokenAndType, getType, logout} from "../../apis/etc2_memberapis/memberApis"
+import {checkLogin, getAccessToken, getTokenAndType, getType, logout} from "../../apis/etc2_memberapis/memberApis";
+import searchLogo from '../../images/search_icon.svg';
 
 const Header = () => {
 
@@ -50,7 +51,7 @@ const Header = () => {
     const handleMouseClick = (e) => {
         if (clickCate) {
             document.querySelector(".HDnavbarMenuDetailCategory").style.display = 'flex'
-            setBoxHeight('390px')
+            setBoxHeight('380px')
             clickCate = false;
         } else {
             document.querySelector(".HDnavbarMenuDetailCategory").style.display = 'none'
@@ -61,17 +62,29 @@ const Header = () => {
 
     // 로고 클릭 시 메인 페이지로 이동
     const handleLogoClick = () => {
-        navi('/');  // mainpage로 페이지 이동
+        window.location.href = '/';  // mainpage로 페이지 이동
     };
 
     // 충전, 환전 클릭 시 마이 페이지로 이동
     const handleChargeBttnClick = () => {
-        navi('/mypage/wallet_management');  // mainpage로 페이지 이동
+        window.location.href = '/mypage/wallet_management';  // mainpage로 페이지 이동
     };
 
     const handleChargeCategory = () => {
         window.location.href = '/category';  // /category로 이동
     };
+
+    const handleMypage = () => {
+        window.location.href = '/mypage/userInfo'; 
+    }
+
+    const handleWallet = () => {
+        window.location.href = '/mypage/wallet';
+    }
+
+    const handleToSearch = () => {
+        window.location.href = '/search';
+    }
 
     const [token, setToken] = useState(null);
 
@@ -162,6 +175,27 @@ const Header = () => {
                     {/*<div className="HDnavbarSearchbar">*/}
                     {/*    <input type="text"></input>*/}
                     {/*</div>*/}
+                    {/* <img 
+                        onClick={handleToSearch}
+                        src={searchLogo} // 이미지 주소를 src로 설정
+                        alt="검색" // 대체 텍스트 추가
+                        style={{
+                            display: 'flex',
+                            width: '30px',
+                            height: '30px',
+                            justifyContent: 'center',
+                            alignContent: 'center',
+                            alignItems: 'center',
+                            backgroundRepeat: 'no-repeat',
+                        }}
+                    />
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                        검색
+                    </div> */}
                     <HeaderSearchBar />
                     {
                         token ?
@@ -169,9 +203,10 @@ const Header = () => {
                                 <ul className="HDnavbarMember">
                                     <li><a onClick={handleLogout}>로그아웃</a></li>
                                 </ul>
-                                <div className="HDnavbarAlarm" style={{marginRight: '40px', position: 'relative'}}
+                                <div className="HDnavbarAlarm" style={{marginRight: '40px', position: 'relative', cursor: 'pointer'}}
                                      onMouseOver={handleMouseOverWallet}
-                                     onMouseLeave={handleMouseLeaveWallet}>
+                                     onMouseLeave={handleMouseLeaveWallet}
+                                     onClick={handleWallet}>
                                     <img
                                         src="/images/Ellipse%202.png"
                                         alt="My Page"/>

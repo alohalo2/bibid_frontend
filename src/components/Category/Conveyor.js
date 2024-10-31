@@ -75,7 +75,10 @@ function Conveyor() {
     
     return (
         <View>
-            <p className='CV_title'>마감임박 경매</p>
+            <div className='CV_header'>
+            <h2>마감임박 경매</h2>
+            <p>경매 종료까지 시간이 얼마 남지 않은 경매입니다.</p>
+            </div>
             <Slide isPaused={isPaused}
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}>

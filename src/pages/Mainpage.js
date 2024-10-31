@@ -7,7 +7,10 @@ import CarouselBanner from '../components/Mainpage/CarouselBanner';
 export const Mainpage = () => {
   return (
     <div className='mp'>
-      <div className='blank'/>
+        <div className='mp_container_title'>
+          <h2>실시간경매</h2>
+          <p>현재 진행중인 실시간 경매입니다.</p>
+        </div>
         <div className='mp_container'>
             <div className='mp_banner'>
               <CarouselBanner/>
@@ -16,7 +19,8 @@ export const Mainpage = () => {
             <Conveyor/>
             <div className='blank'/>
           <div className='BestItems'>
-            <p className='title'>베스트</p>
+            <h2 className='title'>베스트</h2>
+            <p>입찰횟수가 많은 가장 인기 아이템들입니다.</p>
           </div>
           <BestProduct/>
           </div>

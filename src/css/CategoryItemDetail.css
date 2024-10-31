@@ -9,7 +9,6 @@
 .CID-hover-link {
     color: darkblue; /* 기본 텍스트 색상 */
     cursor: pointer; /* 커서를 포인터로 변경 */
-    text-decoration: underline; /* 텍스트에 밑줄 추가 */
 }
 
 .CID-hover-link:hover {
@@ -32,8 +31,9 @@ div.CID-item-block{
     flex-direction: row;
     justify-content: space-between;
     max-width: 1200px;
+    max-height: 800px;
+    height: 800px;
     margin: 0 auto;
-    height: 600px;
 }
 
 /* 이미지 섹션 */
@@ -45,10 +45,11 @@ div.CID-item-block{
 }
 
 .CID-main-image {
-    width: 100%;
-    height: auto;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
+  width: 500px;
+  height: 500px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  object-fit: contain;
 }
 
 .CID-thumbnail-container {
@@ -60,10 +61,11 @@ div.CID-item-block{
 }
 
 .CID-thumbnail {
-    width: 70px;
-    height: 70px;
-    border: 1px solid #ddd;
-    cursor: pointer;
+  width: 90px;
+  height: 90px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  object-fit: cover;
 }
 
 /* 판매자 섹션 */
@@ -83,6 +85,8 @@ div.CID-item-block{
 
 .CID-merchant-info p {
     margin: 0;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .CID-merchant-link {
@@ -94,7 +98,15 @@ div.CID-item-block{
     background-color: #ddd;
     border: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.CID-merchant-link button:hover {
+  background-color: #0A369D;
+  color: white;
 }
 
 /* 입찰 섹션 */
@@ -146,6 +158,8 @@ div.CID-item-block{
     display: flex;
     align-items: center;
     gap: 10px;
+    height: 50.38px;
+    margin-top: -12px;
 }
 
 .CID-bid-input {
@@ -159,7 +173,6 @@ div.CID-item-block{
 
 .CID-bid-input input {
     width: 100px;
-    height: 35px;
     text-align: right;
     padding-right: 10px;
     border: none;
@@ -168,6 +181,40 @@ div.CID-item-block{
 
 .CID-seller-more-info-hvr:hover{
   background-color: darkgrey;
+}
+
+.CID-bid-buttons-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.CID-bid-plus-button {
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CID-bid-plus-button img {
+  width: 18px;
+  height: 18px;
+}
+
+.CID-bid-minus-button {
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CID-bid-minus-button img {
+  width: 18px;
+  height: 18px;
 }
 
 /* .CID-bid-buttons-vertical:hover {
@@ -211,19 +258,22 @@ div.CID-item-block{
     width: 100%;
     font-size: 18px;
     font-weight: bold;
-    color: white;
-    background-color: #007bff;
+    color: black;
+    background-color: #D9D9D9;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    transition: all 0.3s ease-in-out;
 }
 
 .CID-bid-button:hover {
-   background-color: #0056b3;
+   background-color: #0A369D;
+   color: white;
 }
 
 .CID-buy-button {
-    background-color: #0d6efd;
+    background-color: #0A369D;
+    color: white;
 }
 
 /* ====item-block==== */
@@ -248,14 +298,14 @@ div.CID-item-inquiry{
 
 /* 아이템정보 - 아이템 이미지 */
 .CID-item-img-container{
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2열 설정 */
+  gap: 20px;
+  justify-content: center;
 }
 
 .CID-item-img-content {
-  width: 500px;
+  width: 550px;
   height: 350px;
   object-fit: contain;
   border: solid 1px #BFBFBF;
@@ -263,19 +313,23 @@ div.CID-item-inquiry{
 }
 
 .CID-inquiry-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 10px 0;
-    float: right;
+  margin: 10px 0;
+  float: right;
+  padding: 10px 0;
+  width: 100px;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  background-color: #D9D9D9;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
 }
 
 .CID-inquiry-button:hover {
-   background-color: #0056b3;
+   background-color: #0A369D;
+   color: white;
 }
 
 div.CID-item-return-info{
@@ -287,31 +341,54 @@ div.CID-item-return-info{
 
 /* 탭 스타일 */
 .CID-tab {
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    box-shadow: inset 0 -1px 0 0 #ccc; /* 내부 테두리 효과 */
-    z-index: 2;
+  width: 100%;
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: inset 0 -1px 0 0 #ccc; /* 내부 테두리 효과 */
+  z-index: 2;
 }
 
 .CID-tablinks {
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
-    padding: 10px 20px;
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-    display: block;
-    font-size: 16px;
+  background-color: #dfdfdf;
+  border: 1px solid #ccc;
+  border-radius: 5px 5px 0 0;
+  margin-right: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  display: block;
+  font-size: 16px;
+  width: 100px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  transition: background-color 0.3s;
 }
 
 .CID-tablinks:hover {
+  background-color: #727272;
+  color: black;
+}
+
+.CID-tablinks.active {
+  background-color: white;
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+
+
+
+/* .CID-tablinks:hover {
     background-color: white;
     border-bottom: none;
     font-weight: bold;
     border-bottom: 1px solid white;
-}
+} */
 
 /* 테이블 스타일 */
 table {
@@ -361,17 +438,27 @@ ul li {
     text-align: left; /* 왼쪽 정렬 */
 }
 
+.CID-info-box li {
+  margin-bottom: 10px;
+}
+
 .CID-info-box p {
     margin: 0; /* 불필요한 여백 제거 */
     line-height: 1.6; /* 가독성을 위한 줄 간격 */
     text-align: left; /* p 태그 왼쪽 정렬 */
+    font-size: 18px;
+    height: auto;
 }
 
 .CID-info-box h3 {
     margin-bottom: 10px; /* h3와 p 태그 간격 조정 */
+    font-size: 20px;
+    font-weight: 900;
 }
 
-
+.CID-info {
+  margin-bottom: 50px;
+}
 
 
 /* ====step-section==== */
@@ -381,6 +468,14 @@ ul li {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 20px;
+    border: 1px solid #BFBFBF;
+    padding: 30px 0;
+    margin-bottom: 50px;
+}
+
+.CID-steps-section p {
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .CID-step {
@@ -393,8 +488,8 @@ ul li {
 }
 
 .CID-circle {
-    width: 100px;
-    height: 100px;
+    width: 160px;
+    height: 160px;
     background-color: #ddd;
     border-radius: 50%;
     display: flex;
@@ -492,7 +587,8 @@ p {
   }
   
   .CID-seller-modal-confirm-button:hover {
-    background-color: #0056b3;
+    background-color: #0A369D;
+    color: white;
   }
   
   /**************************** 입찰 기록 보기 모달 ****************************/
@@ -665,12 +761,13 @@ p {
 
   /* 입력 필드 */
   .CID-inquiring-modal-input {
-    width: 100%;
+    width: 576px;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     resize: vertical;
+    resize: none;
   }
 
   .CID-inquiring-modal-footer {
@@ -681,14 +778,74 @@ p {
   .CID-inquiring-modal-submit-button {
     width: 100%;
     padding: 10px;
-    background-color: #0033cc;
-    color: white;
-    border: none;
-    border-radius: 5px;
     font-size: 16px;
+    font-weight: bold;
+    color: black;
+    background-color: #D9D9D9;
+    border: none;
     cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
   }
 
   .CID-inquiring-modal-submit-button:hover {
-    background-color: #002299;
+    background-color: #0A369D;
+    color: white;
+  }
+
+  .CID-bid-container {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 50px;
+  }
+
+  .CID-bid-container h3 {
+    font-size: 20px;
+    margin-top: -5px;
+    margin-bottom: 0;
+  }
+
+  .CID-bid-cotents-title {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 120px;
+  }
+
+  .CID-bid-cotents-title p {
+    font-size: 18px;
+    font-weight: 900;
+    color: #777777;
+  }
+
+  .CID-bid-cotents {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .CID-bid-cotents p {
+    font-size: 18px;
+    font-weight: 900;
+    color: #777777;
+  }
+
+  .CID-bid-expected-price {
+    margin-top: -35px;
+  }
+
+  .CID-bid-expected-price h3 {
+    font-size: 20px;
+    margin-top: 12px;
+    margin-bottom: 0;
+  }
+
+  .CID-bid-expected-price p {
+    font-size: 14px;
+    color: #777777;
+  }
+
+  .CID-bid-item-container-left {
+    display: flex;
+    flex-direction: column;
   }

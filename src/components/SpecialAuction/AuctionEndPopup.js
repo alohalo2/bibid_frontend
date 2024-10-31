@@ -5,7 +5,6 @@ function AuctionEndPopup({ auction, handleClosePopup }) {
   const WinnerIndex = auction.auctionDetailDto.WinnerIndex;
   const WinningBid= auction.auctionDetailDto.WinningBid;
 
-
   return (
     <div className="SAoverlay">
       <div className='SAtotalPopup'>

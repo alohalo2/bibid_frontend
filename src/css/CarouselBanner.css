@@ -21,19 +21,6 @@
     height: 350px;
 }
 
-.CB_carousel-pad1 {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    width: 300px;
-    height: 350px;
-    justify-content: center;
-    flex-direction: row;
-    background-color: black;
-    opacity: 30%;
-    gap: 5px; 
-}
-
 .CB_carousel-control {
     margin-top: 10px;
     width: 40px;
@@ -42,20 +29,79 @@
 }
 
 .CB_carousel-toggle {
+    padding: 0;
     margin-top: 10px;
     width: 40px;
     height: 30px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .CB_carousel-pad-container {
+    position: absolute;
     display: flex;
-    justify-content: right;
-    align-items: end;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    height: 350px;
+    background-color: black;
+    top: 0;
+    right: 0;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명한 검은색 배경 */
+    z-index: 1; /* 자식 요소보다 뒤에 오도록 설정 */
+}
+
+.CB_carousel-pad1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 5px; 
+}
+
+.CB_carousel_contents {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.CB_carousel_contents h2 {
+    margin-bottom: 0;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.CB_carousel_contents p {
+    font-size: 18px;
+    font-weight: 900;
 }
 
 .CB_carousel-num {
     margin-top: 10px;
     width: 80px;
     height: 30px;
+}
+
+.CB_enter_action-button {
+    width: 100px;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.CB_enter_action-button:hover {
+    background-color: #0A369D;
+    
 }

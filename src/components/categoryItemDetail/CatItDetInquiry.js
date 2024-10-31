@@ -4,6 +4,7 @@ import { Modal } from '@mui/material';
 import CatItDetTab from './CatItDetTab';
 
 const CatItDetInquiry = () => {
+  const [activeTab, setActiveTab] = useState('inquiry'); // 독립적인 activeTab 상태
   const [inquiringModalOpen, setInquiringModalOpen] = useState(false);
   
   // 입력값 상태 관리
@@ -56,9 +57,13 @@ const CatItDetInquiry = () => {
     }
   };
 
+  const handleCancel = () => {
+    setInquiringModalOpen(false); // 모달 닫기
+  };
+
   return (
     <div className="CID-item-inquiry" id="CID-item-inquiry">
-      <CatItDetTab/>      
+      <CatItDetTab activeTab={activeTab} setActiveTab={() => setActiveTab('inquiry')}/>      
       <table>
         <thead>
           <tr>
@@ -130,12 +135,14 @@ const CatItDetInquiry = () => {
             </div>
 
             <div className="CID-inquiring-modal-footer">
-              <button
-                className="CID-inquiring-modal-submit-button"
-                onClick={handleSubmit}
-              >
-                문의하기
-              </button>
+              <div>
+                <button
+                  className="CID-inquiring-modal-submit-button"
+                  onClick={handleSubmit}
+                >
+                  문의하기
+                </button>
+              </div>
             </div>
           </div>
         </div>

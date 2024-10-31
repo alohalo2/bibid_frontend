@@ -6,6 +6,9 @@ const CatItDetInfo = ({ auctionNumber, auctionItem, auctionImages }) => {
 
   console.log("== CatItDetInfo 실행 ==")
   
+  const [activeTab, setActiveTab] = useState('info'); // 독립적인 activeTab 상태
+
+
   if (!auctionItem) {
     return <div>Loading...</div>; // auctionItem + auctionImg 가 없을 때 로딩 메시지를 출력
   }
@@ -24,21 +27,18 @@ const CatItDetInfo = ({ auctionNumber, auctionItem, auctionImages }) => {
 
   return (
     <div className="CID-item-info" id='CID-item-info'>
-      <CatItDetTab/>
+      <CatItDetTab activeTab={activeTab} setActiveTab={() => setActiveTab('info')} />
       <div className="CID-info-box">
-        <h3>상품 설명</h3>
-        <p> {auctionItem.productDescription}</p>
-        <ul style={{ listStyle: 'disc', paddingLeft: '20px' }}>
-          <br/>
-          <li>경매 시작일 : {formatDate(startingLocalDateTime)} 시작</li>
-          <br/>
-          <li>경매 마감일 : {formatDate(endingLocalDateTime)} 종료</li>
-          <br/>
-          <li style={{ listStyle: 'square', color: '#007bff' }}>연령제한 주의</li>
-        </ul>
+        <div className='CID-info'>
+          <h3>상품 설명</h3>
+          <p> {auctionItem.productDescription}</p>
+        </div>
         <div className="CID-item-img-container">
           {auctionImages.map((imageUrl, index) => (
-                <img className='CID-item-img-content' key={index} src={imageUrl} alt={`Item ${index}`}/>
+                <img className='CID-item-img-content' 
+                      key={index} 
+                      src={imageUrl} 
+                      alt={`Item ${index}`}/>
                 ))}
         </div>
       </div>

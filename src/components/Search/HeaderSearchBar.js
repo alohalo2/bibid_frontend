@@ -1,5 +1,5 @@
 import { Button, Container, Grid, TextField } from '@mui/material';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSearchCondition, changeSearchKeyword } from '../../slices/search/searchSlice';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,11 @@ const HeaderSearchBar = () => {
     const navigate = useNavigate();
     const searchCondition = useSelector(state => state.auction.searchCondition);
     const searchKeyword = useSelector(state => state.auction.searchKeyword);
+
+    // 컴포넌트가 마운트될 때 searchKeyword를 빈 문자열로 초기화
+    useEffect(() => {
+        dispatch(changeSearchKeyword(''));
+    }, [dispatch]);
 
     const handleChangeSearchKeyword = useCallback((e) => {
         dispatch(changeSearchKeyword(e.target.value));
@@ -23,7 +28,7 @@ const HeaderSearchBar = () => {
             alert('검색어를 입력해주세요');
         } else {
             // 로컬 스토리지에 검색 조건과 키워드 저장
-            localStorage.setItem('all', searchCondition);
+            localStorage.setItem('searchCondition', searchCondition);
             localStorage.setItem('searchKeyword', searchKeyword);
             
             // /search로 이동
@@ -33,8 +38,8 @@ const HeaderSearchBar = () => {
     }, [dispatch, searchCondition, searchKeyword, navigate]);
 
     return (
-        <div className='headerSearchContainer' style={{ border: '2px solid #BFBFBF', borderRadius: '10px', width: '20rem', height: '45px' }}>
-            <Container component='div' maxWidth='md'>
+        <div className='headerSearchContainer' style={{ border: '2px solid #BFBFBF', borderRadius: '10px', width: '360px', height: '45px' }}>
+            <Container className='headerSearchBox' component='div' maxWidth='md'>
                 <form onSubmit={handleSearch}>
                     <Grid container spacing={1}>
                         <Grid item xs={10}>
@@ -46,11 +51,32 @@ const HeaderSearchBar = () => {
                                 value={searchKeyword}
                                 onChange={handleChangeSearchKeyword}
                                 InputProps={{ disableUnderline: true }}
-                                style={{ marginTop: '5px' }}
+                                style={{ marginTop: '7px', marginLeft: '15px' }}
                             />
                         </Grid>
                         <Grid item xs={2}>
-                            <Button
+                            <div style={{ display: 'flex',
+                                          justifyContent: 'center',
+                                          alignItems: 'center'
+                             }}>
+                                <div style={{
+                                        display: 'felx',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        width: '30px',
+                                        height: '30px',
+                                        backgroundColor: 'transparent', 
+                                        backgroundImage: `url(${logo})`, 
+                                        backgroundSize: 'contain', 
+                                        backgroundRepeat: 'no-repeat',
+                                        cursor: 'pointer',
+                                        marginTop: '7px'
+                                        }}
+                                        onClick={handleSearch}
+                                        > 
+                                </div>
+                            </div>
+                            {/* <Button
                                 type='submit'
                                 style={{
                                     width: '30px', 
@@ -65,7 +91,7 @@ const HeaderSearchBar = () => {
                                     marginLeft: '20px'
                                 }}
                             >
-                            </Button>
+                            </Button> */}
                         </Grid>
                     </Grid>
                 </form>

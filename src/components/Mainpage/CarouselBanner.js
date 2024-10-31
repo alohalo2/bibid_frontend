@@ -1,14 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import '../../css/CarouselBanner.css';
+import { getAuctionData } from '../../apis/SpecialAuction/SAapis';
+import { useSelector, useDispatch } from 'react-redux';
+import {   formatDateTime , formatAuctionTimeRange  } from '../../util/utils';
+import { useNavigate } from 'react-router-dom'; 
 
 const CarouselBanner = () => {
-  const originalImages = [
-    'https://static.coupangcdn.com/oa/cmg_paperboy/image/1727675434772/%5BPC%5DC1_crop.jpg',
-    'https://static.coupangcdn.com/sa/cmg_paperboy/image/1727685824246/1920_45014.jpg',
-    'https://static.coupangcdn.com/da/cmg_paperboy/image/1727682261113/C1-PC1.jpg',
-  ];
-  const images = [originalImages[originalImages.length - 1], ...originalImages, originalImages[0]];
 
+  const bucketName = process.env.REACT_APP_BUCKET_NAME;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { liveAuctionList } = useSelector((state) => state.specialAuctionSlice);
+  const [carouselData, setCarouselData] = useState([]);
+  const [images, setImages] = useState([]);
+
+  const fetchCarouselData = () =>
+    liveAuctionList.map((auction) => {
+      const thumbnailImage = auction.auctionImageDtoList
+        .filter((image) => image.thumbnail === true)
+        .map((image) => `https://kr.object.ncloudstorage.com/${bucketName}/${image.filepath}${image.filename}`)[0]; // 첫 번째 썸네일만 선택
+      return {
+        url: thumbnailImage,
+        title: auction.productName,
+        auctionDate: formatDateTime(auction.startingLocalDateTime),
+        auctionTime: formatAuctionTimeRange(auction.startingLocalDateTime, auction.endingLocalDateTime),
+      };
+    });
+
+  useEffect(() => {
+    dispatch(getAuctionData("realtime"));
+  }, [dispatch]);
+
+  useEffect(() => {
+    const data = fetchCarouselData();
+    setCarouselData(data);
+    console.log(data);
+    const imageUrls = data.map((item) => item.url);
+    setImages(imageUrls);
+  }, [liveAuctionList]);
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -24,15 +53,15 @@ const CarouselBanner = () => {
   }, [isPlaying]);
 
   useEffect(() => {
-    if (currentIndex === 0) {
+    if (currentIndex >= images.length) {
       setTimeout(() => {
         setIsTransitioning(false);
-        setCurrentIndex(images.length - 2);
+        setCurrentIndex(0);
       }, 500);
-    } else if (currentIndex === images.length - 1) {
+    } else if (currentIndex < 0) {
       setTimeout(() => {
         setIsTransitioning(false);
-        setCurrentIndex(1);
+        setCurrentIndex(images.length - 1);
       }, 500);
     }
   }, [currentIndex, images.length]);
@@ -51,37 +80,60 @@ const CarouselBanner = () => {
     setIsPlaying((prev) => !prev);
   };
 
-  const currentSlideNumber = currentIndex === 0 ? images.length - 2 : currentIndex === images.length - 1 ? 1 : currentIndex;
+  const currentSlideNumber = currentIndex >= images.length ? 0 : currentIndex;
+  const currentContent = carouselData[currentIndex];
+
+  const handleSAGoButtonClick = () => {
+    navigate('/SpecialAuction'); // SpecialAuction 페이지로 이동
+  };
 
   return (
-    <div className="CB_carousel">
-      <div
-        className="CB_carousel-inner"
-        style={{
-          transform: `translateX(-${currentIndex * 100}%)`,
-          transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
-        }}
-      >
-        {images.map((image, index) => (
+        <div className="CB_carousel">
           <div
-            key={index}
-            className="CB_carousel-item"
-            style={{ backgroundImage: `url(${image})` }}
-          />
-        ))}
-      </div>
-      <div className='CB_carousel-pad-container'>
-            <div className='CB_carousel-pad1'>
-                <button className='CB_carousel-num'>{currentSlideNumber} / 3</button>
-                <button className="CB_carousel-control prev" onClick={prevSlide}>❮</button>
-                <button className="CB_carousel-control next" onClick={nextSlide}>❯</button>
-                <button className="CB_carousel-toggle" onClick={togglePlayPause}>
-                    {isPlaying ? '||' : '▶'}
-                </button>
+            className="CB_carousel-inner"
+            style={{
+              transform: `translateX(-${currentIndex * 100}%)`,
+              transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
+            }}
+          >
+            { carouselData &&
+              carouselData.map((carousel, index) => {
+                // console.log(`Loading image: ${carousel.url}`); // URL 로그
+                return (
+                  <div key={index} className="CB_carousel-item">
+                    <img src={carousel.url} alt={`Carousel ${index}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </div>
+                )
+              })
+            }
+          </div>
+          <div className='CB_carousel-pad-container'>
+                <div className='CB_carousel-pad1'>
+                    <button className='CB_carousel-num'>{currentSlideNumber + 1} / {images.length}</button>
+                    <button className="CB_carousel-control prev" onClick={prevSlide}>❮</button>
+                    <button className="CB_carousel-control next" onClick={nextSlide}>❯</button>
+                    <button className="CB_carousel-toggle" onClick={togglePlayPause}>
+                      <img
+                          src={`/images/${isPlaying ? 'MP_stop_icon.svg' : 'MP_play_icon.svg'}`}
+                          alt={isPlaying ? 'Pause' : 'Play'}
+                          style={{ width: '15px', height: '15px' }}
+                        />
+                    </button>
+                </div>
+                { currentContent && (
+                  <div className="CB_carousel_contents" key={currentIndex}>
+                    <h2>{currentContent.title}</h2>
+                    <div>
+                      <p>{currentContent.auctionDate}</p>
+                      <p>{currentContent.auctionTime}</p>
+                    </div>
+                    <p>실시간 경매 진행 예정</p>
+                    <button className="CB_enter_action-button" onClick={handleSAGoButtonClick}>바로가기</button>
+                  </div>
+                )}
             </div>
         </div>
-    </div>
-  );
+    );
 };
 
 export default CarouselBanner;
