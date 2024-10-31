@@ -34,12 +34,11 @@ import Mypage_AuctionManagement from "./pages/mypage/Mypage_AuctionManagement";
 import NaverLogin from "./pages/oauth2test/NaverLogin";
 import KakaoLogout from "./pages/oauth2test/KakaoLogout";
 import GoogleLogin from "./pages/oauth2test/GoogleLogin";
-import WidgetCheckoutPage from "./pages/widget/WidgetCheckout";
-import WidgetSuccessPage from "./pages/widget/WidgetSuccess";
 import FailPage from "./pages/Fail";
 import TestApi2 from "./components/SpecialAuction/TestApi2";
 import MemberInitializer from "./context/MemberInitializer";
-import TestApi3 from "./components/SpecialAuction/TestApi3";
+import WidgetCheckoutPage from "./pages/payment/WidgetCheckout";
+import WidgetSuccessPage from "./pages/payment/WidgetSuccess";
 
 function App() {
     const persiststore = persistStore(store);
