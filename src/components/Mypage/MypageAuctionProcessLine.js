@@ -10,7 +10,7 @@ const MypageAuctionProcessLine = ({ auctionStatus }) => {
       progressValue = 0;
       circlePosition = 0; // 0px
       break;
-    case "경매 완료":
+    case "낙찰":
       progressValue = 0.3333333333333333;
       circlePosition = 110; // 110px
       break;
@@ -39,7 +39,7 @@ const MypageAuctionProcessLine = ({ auctionStatus }) => {
       </div>
       <div className='Mypage_AuctionProcessLineText'>
         <div style={{ color: auctionStatus === "경매 시작" ? 'blue' : 'darkgray' }}>경매 시작</div>
-        <div style={{ color: auctionStatus === "경매 완료" ? 'blue' : 'darkgray' }}>경매 완료</div>
+        <div style={{ color: auctionStatus === "낙찰" ? 'blue' : 'darkgray' }}>낙찰</div>
         <div style={{ color: auctionStatus === "배송중" ? 'blue' : 'darkgray' }}>배송중</div>
         <div style={{ color: auctionStatus === "배송 완료" ? 'blue' : 'darkgray' }}>배송 완료</div>
       </div>
