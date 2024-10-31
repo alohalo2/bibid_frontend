@@ -61,7 +61,6 @@ export const verificationCodeCheck = createAsyncThunk(
                 verificationCode: formData.verificationCode
             });
 
-            console.log(formData.verificationCode);
 
             return response.data;
 
@@ -86,7 +85,6 @@ export const findIdByEmail = createAsyncThunk(
 
         } catch (e) {
             console.log("오류 발생");
-            console.log(formData);
             return thunkApi.rejectWithValue(e);
         }
     });

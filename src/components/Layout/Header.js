@@ -106,12 +106,14 @@ const Header = () => {
 
     }, [dispatch, checkLoginState]);
 
-
-
-
     const handleLogout = useCallback(async () => {
 
-        await dispatch(logout());
+        try {
+            await dispatch(logout());
+            setToken(false);
+        } catch (e) {
+            alert("로그아웃 실패");
+        }
 
         if (oauthType === "Kakao") {
             const kakaoLogoutParams = {

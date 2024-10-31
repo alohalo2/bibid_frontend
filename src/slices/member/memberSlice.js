@@ -87,7 +87,8 @@ const memberSlice = createSlice({
                 nickname: '',
                 token: '',
                 isLogin: false,
-                checkLoginState: "notLogin"
+                checkLoginState: "notLogin",
+                role:''
             }
         });
         builder.addCase(logout.rejected, (state, action) => {
