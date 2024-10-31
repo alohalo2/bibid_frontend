@@ -77,7 +77,7 @@ function App() {
                         <Route path="/category/pic" element={<DetailedCategory_Pic />} />
                         <Route path="/category/antique" element={<DetailedCategory_Antique />} />
                         <Route path="/category-itemdetail/:auctionNumber" element={<CategoryItemDetail />} />
-                        <Route path="/testApi" element={<TestApi3/>} />
+                        <Route path="/testApi" element={<TestApi2/>} />
                         <Route path="join/*" element={<JoinRoutes />} />
 
                         {/* Mypage Routes */}
