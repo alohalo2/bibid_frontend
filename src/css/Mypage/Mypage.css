@@ -203,7 +203,6 @@
 }
 
 .Mypage_WalletUsedContainer {
-    display: flex;
     width: 700px;
     height: 500px;
     justify-content: center;
@@ -220,6 +219,15 @@
 
 .Mypage_WalletUsed::-webkit-scrollbar {
     display: none;
+}
+
+.Mypage_NoRecord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 490px;
+
 }
 
 .Mypage_TitleContainer {
