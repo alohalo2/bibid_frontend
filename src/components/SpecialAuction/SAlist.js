@@ -34,7 +34,7 @@ function SAlist({ activeTab }) {
 
   const webSocketProps = useAuctionWebSocket(selectedAuction?.auctionIndex, isChatClosed, setIsChatClosed);
 
-  const {setCurrentPrices, setBidAmounts, disconnectWebSocket, participantCount} = webSocketProps;
+  const {setCurrentPrices, setBidAmounts, disconnectWebSocket, participantCounts} = webSocketProps;
 
   const [popupState, setPopupState] = useState({
     showBuyerPopup: false,
@@ -175,7 +175,7 @@ function SAlist({ activeTab }) {
       {popupState.showBuyerPopup && !popupState.showBuyerAuctionScreen && (
         <BuyerWaitPopup
           handleClosePopup={() => togglePopup('showBuyerPopup', false)}
-          formattedParticipantCount={participantCount[selectedAuction?.auctionIndex] || 0}
+          formattedParticipantCount={participantCounts[selectedAuction?.auctionIndex] || 0}
         />
       )}
       {popupState.showBuyerAuctionScreen && (

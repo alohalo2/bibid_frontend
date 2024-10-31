@@ -44,7 +44,7 @@ function BuyerAuctionScreen({
   const [showSellerInfo, setShowSellerInfo] = useState(false);
   const [showChatContainer, setShowChatContainer] = useState(false);
 
-  const { messages, inputMessage, setInputMessage, sendMessage, currentPrices, bidAmounts, setBidAmounts, handleBidSubmits, participantCount } = webSocketProps;
+  const { messages, inputMessage, setInputMessage, sendMessage, currentPrices, bidAmounts, setBidAmounts, handleBidSubmits, participantCounts } = webSocketProps;
   
   const messagesEndRef = useRef(null);
 
@@ -67,7 +67,7 @@ function BuyerAuctionScreen({
   const formattedPurchaseFee = purchaseFee?.toLocaleString() || '0';
 
   // 특정 auctionIndex의 참여자 수 렌더링 예시
-  const formattedParticipantCount = participantCount[auction.auctionIndex] || 0; // 경매 ID에 해당하는 참여자 수를 가져옴, 없으면 0
+  const formattedParticipantCount = participantCounts[auction.auctionIndex] || 0; // 경매 ID에 해당하는 참여자 수를 가져옴, 없으면 0
 
   // 입찰가 증가 함수
   const handleBidIncrease = () => {
