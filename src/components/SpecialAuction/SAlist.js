@@ -139,13 +139,21 @@ function SAlist({ activeTab }) {
     if (selectedAuction) {
       const interval = setInterval(() => {
         const now = new Date();
+        const auctionStartTime = new Date(selectedAuction.startingLocalDateTime);
         const auctionEndTime = new Date(selectedAuction.endingLocalDateTime);
-        const timeDifference = auctionEndTime - now;
 
+        const timeDifference = auctionEndTime - now;
         setRemainingTime(timeDifference > 0 ? timeDifference : '');
+
         if (timeDifference <= 0) {
           setHasAuctionEnded(true);
           clearInterval(interval);
+        }
+
+        // 경매 시작 시간에 도달했을 때 대기 화면에서 경매 화면으로 전환
+        if (now >= auctionStartTime && popupState.showBuyerPopup) {
+          togglePopup('showBuyerPopup', false);
+          togglePopup('showBuyerAuctionScreen', true);
         }
       }, 1000);
 
