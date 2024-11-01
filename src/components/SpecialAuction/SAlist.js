@@ -142,10 +142,19 @@ function SAlist({ activeTab }) {
         const auctionStartTime = new Date(selectedAuction.startingLocalDateTime);
         const auctionEndTime = new Date(selectedAuction.endingLocalDateTime);
 
-        const timeDifference = auctionEndTime - now;
-        setRemainingTime(timeDifference > 0 ? timeDifference : '');
-
-        if (timeDifference <= 0) {
+        // 경매 시작 전: 경매 시작까지 남은 시간 계산
+        if (now < auctionStartTime) {
+          const timeUntilStart = auctionStartTime - now;
+          setRemainingTime(timeUntilStart > 0 ? timeUntilStart : '');
+        } 
+        // 경매 시작 후: 경매 종료까지 남은 시간 계산
+        else if (now >= auctionStartTime && now < auctionEndTime) {
+          const timeUntilEnd = auctionEndTime - now;
+          setRemainingTime(timeUntilEnd > 0 ? timeUntilEnd : '');
+        } 
+        // 경매 종료 후: '종료' 상태 설정
+        else {
+          setRemainingTime('');
           setHasAuctionEnded(true);
           clearInterval(interval);
         }
