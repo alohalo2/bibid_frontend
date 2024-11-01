@@ -1,9 +1,8 @@
 import React from 'react';
 
-const AuctionSoldNotification = ({ notification }) => (
-
+const AuctionSoldNotification = ({ notification }) => {
   const handleClick = () => {
-    window.location.href = `http://localhost:3000/category-itemdetail/${notification.referenceIndex}` ;
+    window.location.href = `http://localhost:3000/category-itemdetail/${notification.referenceIndex}`;
   };
 
   return (
@@ -20,6 +19,6 @@ const AuctionSoldNotification = ({ notification }) => (
       <p>{notification.timestamp}</p>
     </div>
   );
-);
+};
 
 export default AuctionSoldNotification;
