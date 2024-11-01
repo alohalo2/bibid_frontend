@@ -227,6 +227,13 @@
     margin-bottom: 5px;
 }
 
+.CTG_productName {
+    width: 220px; /* Set a fixed width */
+    overflow: hidden; /* Hide overflow text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Show ellipsis (...) when text is truncated */
+  }
+
 .CV_header p {
     color: #555555;
     font-size: 16px;

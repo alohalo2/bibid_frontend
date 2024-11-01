@@ -86,6 +86,42 @@ const Header = () => {
         window.location.href = '/search';
     }
 
+    const toCategory = () => {
+        window.location.href ='/category';
+    }
+  
+    const toAll = () => {
+      window.location.href ='/category/all';
+      };
+  
+    const toClothing = () => {
+      window.location.href ='/category/clothing';
+      };
+  
+    const toHob = () => {
+      window.location.href ='/category/hob';
+      };
+      
+    const toBook = () => {
+      window.location.href ='/category/book';
+      };
+    
+    const toArt = () => {
+      window.location.href ='/category/art';
+      };
+  
+    const toElec = () => {
+      window.location.href = '/category/elec';
+      };
+  
+    const toPic = () => {
+      window.location.href = '/category/pic';
+      };
+    
+    const toAntique = () => {
+      window.location.href = '/category/antique';
+      };
+
     const [token, setToken] = useState(null);
 
     const oauthType = useSelector(state => state.memberSlice.oauthType);
@@ -160,13 +196,13 @@ const Header = () => {
                                 </div>
                                 <div className="HDnavbarMenuDetailCategoryBox">
                                     <ul className="HDnavbarMenuDetailCategory">
-                                        <li><a href="#">의류/잡화</a></li>
-                                        <li><a href="#">취미/수집</a></li>
-                                        <li><a href="#">도서</a></li>
-                                        <li><a href="#">예술품</a></li>
-                                        <li><a href="#">전자제품</a></li>
-                                        <li><a href="#">사진</a></li>
-                                        <li><a href="#">골동품</a></li>
+                                        <li onClick={toClothing} style={{ cursor:'pointer'}}><a href="#">의류/잡화</a></li>
+                                        <li onClick={toHob}><a href="#">취미/수집</a></li>
+                                        <li onClick={toBook}><a href="#">도서</a></li>
+                                        <li onClick={toArt}><a href="#">예술품</a></li>
+                                        <li onClick={toElec}><a href="#">전자제품</a></li>
+                                        <li onClick={toPic}><a href="#">사진</a></li>
+                                        <li onClick={toAntique}><a href="#">골동품</a></li>
                                     </ul>
                                 </div>
                             </div>
