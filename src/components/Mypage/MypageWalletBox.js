@@ -49,10 +49,10 @@ const MypageWalletBox = () => {
     <div className='Mypage_WalletBoxContainer'>
       <div className='Mypage_UserInfoTitle'>지갑 관리</div>
         <div className='Mypage_WalletInfoContainer'>
-          <div className='Mypage_WalletCredit'>
+        <div className='Mypage_WalletCredit'>
             <div>금액</div>
-            <div>{accountDto.userMoney} 원</div>
-          </div>
+            <div>{Number(accountDto.userMoney).toLocaleString()} 원</div>
+        </div>
           <div className='Mypage_WalletBtn'>
             <div className=''>충전버튼(임시)</div>
             <div className=''>출금버튼(임시)</div>
