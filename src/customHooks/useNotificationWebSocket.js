@@ -10,7 +10,11 @@ const useNotificationWebSocket = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const notificationSocket = new SockJS('http://localhost:8080/ws-notifications');
+    const notificationSocket = new SockJS('http://localhost:8080/ws-notifications', null, {
+      transports: ['websocket', 'xhr-streaming', 'xhr-polling'],
+      withCredentials: true, // 쿠키를 전달할 수 있도록 설정
+    });
+
     const notificationClient  = new Client({
       webSocketFactory: () => notificationSocket,
       onConnect: () => {
