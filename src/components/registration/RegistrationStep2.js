@@ -49,7 +49,8 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
     ...prevFormData,
     startingLocalDateTime: formattedDate,
     endingLocalDateTime: formData.auctionType === '실시간 경매' 
-      ? dayjs(newValue).add(30, 'minute').format('YYYY-MM-DDTHH:mm:ss') 
+      // ? dayjs(newValue).add(30, 'minute').format('YYYY-MM-DDTHH:mm:ss') 
+      ? dayjs(newValue).add(5, 'minute').format('YYYY-MM-DDTHH:mm:ss') 
       : prevFormData.endingLocalDateTime // 실시간 경매가 아니면 기존 값 유지
   }));
     validateRequired('startingLocalDateTime', formattedDate);
