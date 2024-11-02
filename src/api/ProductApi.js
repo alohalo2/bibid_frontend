@@ -33,7 +33,7 @@ export const getBoards = createAsyncThunk(
                     page: searchObj.page
                 }
             });
-            console.log("받아온 데이터:", response.data);
+
             return response.data;
         } catch(e) {
             return thunkApi.rejectWithValue(e);

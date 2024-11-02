@@ -13,14 +13,14 @@ const BestProduct_Elec = ({category}) => {
     const fetchBestProductsByCategory = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/auction/best/전자제품`);
-        console.log(response.data);
+
 
 
         if (!response.statusMessage === 'ok') {
           throw new Error('데이터를 가져오는 데 실패했습니다.');
         }
         const data = response.data;
-        console.log(data.pageItems.content);
+
         setBestProducts(data.pageItems.content);
       } catch (error) {
         console.error('베스트 상품을 가져오는 중 오류 발생:', error);

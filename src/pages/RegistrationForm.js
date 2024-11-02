@@ -18,9 +18,9 @@ const RegistrationForm = () => {
   useEffect(() => {
     const fetchMemberInfo = async () => {
       try {
-        console.log(memberIndex);
+
         const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/mypage/userInfo/${memberIndex}`);
-        console.log("Fetched member info:", response.data.item);
+
         setMemberInfo(response.data.item);
       } catch (error) {
         console.error("Error fetching member info:", error);

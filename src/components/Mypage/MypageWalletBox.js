@@ -23,7 +23,6 @@ const MypageWalletBox = () => {
     const resultAction = await dispatch(chargeAccount(dummyData));
     if (chargeAccount.fulfilled.match(resultAction)) {
       setResponse(resultAction.payload);
-      console.log('Charge Account 성공:', resultAction.payload);
     } else {
       setResponse(`Error: ${resultAction.error.message}`);
     }
@@ -39,7 +38,6 @@ const MypageWalletBox = () => {
     const resultAction = await dispatch(exchangeAccount(dummyData));
     if (exchangeAccount.fulfilled.match(resultAction)) {
       setResponse(resultAction.payload);
-      console.log('Exchange Account 성공:', resultAction.payload);
     } else {
       setResponse(`Error: ${resultAction.error.message}`);
     }

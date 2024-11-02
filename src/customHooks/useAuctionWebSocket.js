@@ -44,7 +44,6 @@ const useAuctionWebSocket = (auctionIndex, isChatClosed) => {
   const loadLastMinuteMessages = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/api/chat/lastMinute/${auctionIndex}`, { withCredentials: true });
-      console.log("최근 1분 메시지 불러오기:", response.data);
       setMessages((prevMessages) => ({
         ...prevMessages,
         [auctionIndex]: response.data.map(msg => ({
@@ -71,8 +70,6 @@ const useAuctionWebSocket = (auctionIndex, isChatClosed) => {
         webSocketFactory: () => auctionSocket,
         onConnect: () => {
           setConnected(true);
-          console.log("웹소켓 연결되었습니다.");
-
           // 채팅 구독
           auctionClient.subscribe(`/topic/public/${auctionIndex}`, (message) => {
             const newMessage = JSON.parse(message.body);
@@ -111,7 +108,6 @@ const useAuctionWebSocket = (auctionIndex, isChatClosed) => {
   // 입장 처리 함수
   const handleUserJoin = (client) => {
     if (client) {
-      console.log('입장 처리');
       client.publish({
         destination: `/app/chatroom/${auctionIndex}/enter`,
         body: loginMemberNickname, 
@@ -124,7 +120,6 @@ const useAuctionWebSocket = (auctionIndex, isChatClosed) => {
   // 퇴장 처리 함수
   const handleUserLeave = async () => {
     if (stompClient) {
-      console.log('퇴장 처리');
       await stompClient.publish({
         destination: `/app/chatroom/${auctionIndex}/leave`,
         body: loginMemberNickname, 

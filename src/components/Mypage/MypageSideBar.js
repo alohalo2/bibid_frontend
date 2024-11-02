@@ -37,7 +37,6 @@ const MypageSideBar = ({ memberInfo }) => {
 
         // 성공적으로 업로드되었는지 확인
         if (uploadProfileImage.fulfilled.match(actionResult)) {
-          console.log("성공");
           setProfileImageDto(actionResult.payload); // local state 업데이트
         } else {
           console.error('프로필 이미지 업로드 오류:', actionResult.payload);

@@ -73,7 +73,7 @@
 //       customerKey,
 //       authKey,
 //     }, { withCredentials: true });
-//     console.log("빌링키 발급 성공:", response.data);
+//
 //     return response.data;
 //   } catch (error) {
 //     console.error("빌링키 발급 실패:", error.response?.data || error.message);

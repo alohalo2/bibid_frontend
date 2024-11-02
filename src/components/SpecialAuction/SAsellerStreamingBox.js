@@ -8,11 +8,7 @@ const SAsellerSteamingBox = ({channelInfo}) => {
     // Server URL 
     const serverURL = channelInfo.serverURL;
 
-    useEffect(() => {
-        console.log('channelInfo:', channelInfo);
-    }, [channelInfo]);
-
-    // Stream key 
+     // Stream key
     const streamKey = channelInfo.streamKey;
 
     // 눈모양 클릭하면 Stream key 보이게 or 안보이게

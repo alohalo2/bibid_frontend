@@ -12,7 +12,7 @@ export const getAuctionData = createAsyncThunk(
         }
       });
 
-      console.log("getAuctionData: ", response.data);
+
       return response.data;
     } catch (e) {
       return thunkApi.rejectWithValue(e);

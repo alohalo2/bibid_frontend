@@ -39,7 +39,7 @@ const Mypage_info_update = () => {
 		try {
 			const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/mypage`);
 
-			console.log(response.data.item);
+
 			if(response.data.item.email && response.data.item.email !== ''){
 				setEmailValidate(true);
 			}
@@ -99,7 +99,7 @@ const Mypage_info_update = () => {
 	};
 
 	const changeProfileImage = () => {
-		console.log('기존 프로필 URL : ' + profileImageUrl);
+
 		document.querySelector(`#uploadProfileImg`).click();
 	}
 
@@ -111,7 +111,7 @@ const Mypage_info_update = () => {
 			// 새 파일로 상태 업데이트
 			setUploadProfiles((prev) => [...prev, fileList[0]]);
 
-			console.log(uploadProfiles);
+
 			// 속성 추가 전
 			// console.log(fileList[0]);
 
@@ -272,9 +272,6 @@ const Mypage_info_update = () => {
 			const response = await axios.patch(`${process.env.REACT_APP_BACK_SERVER}/mypage/updateProfile`, formData);
 			joinForm.password = '';
 
-			if(response.data && response.statusCode === 200){
-				console.log(response.data);
-			}
 
 			window.location.reload();
 		} catch(e){

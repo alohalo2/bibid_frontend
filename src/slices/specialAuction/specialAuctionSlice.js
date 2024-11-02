@@ -31,16 +31,13 @@ const specialAuctionSlice = createSlice({
       })
       // 성공적으로 데이터 로드됨
       .addCase(getAuctionData.fulfilled, (state, action) => {
-        console.log('getAuctionData succeeded');
         state.status = 'succeeded';
 
         // 경매 타입에 따라 데이터를 분기 처리
         if (action.meta.arg === 'realtime') {
           state.liveAuctionList = action.payload.pageItems.content || []; // items 배열 할당
-          console.log('liveAuctionList: ', state.liveAuctionList);
         } else if (action.meta.arg === 'blind') {
           state.blindAuctionList = action.payload.pageItems.content || []; // items 배열 할당
-          console.log('blindAuctionList: ', state.blindAuctionList);
         }
       })
       // 데이터 로드 실패

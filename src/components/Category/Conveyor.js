@@ -63,7 +63,7 @@ function Conveyor() {
                     throw new Error('데이터를 가져오는 데 실패했습니다.');
                 }
                 const data = response.data;
-                console.log(data.pageItems.content);
+
                 setBestProducts(response.data.pageItems.content);
             } catch (error) {
                 console.error('상품을 가져오는 중 오류 발생:', error);

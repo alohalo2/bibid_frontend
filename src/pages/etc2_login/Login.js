@@ -58,7 +58,6 @@ const Login = () => {
     const checkLoginState = useSelector(state => state.memberSlice.checkLoginState);
 
     useEffect(() => {
-        console.log(loginForm.rememberMe);
 
         if(checkLoginState === "ROLE_USER"){
             alert("이미 로그인 되어 있습니다.");

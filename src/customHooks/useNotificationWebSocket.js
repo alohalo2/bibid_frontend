@@ -16,13 +16,11 @@ const useNotificationWebSocket = () => {
     const notificationClient  = new Client({
       webSocketFactory: () => notificationSocket,
       onConnect: () => {
-        console.log("Notification WebSocket 연결됨");
 
         // 유저별 구독 경로 설정
         const subscriptionPath = `/topic/notifications/${memberIndex}`;
         notificationClient.subscribe(subscriptionPath, (message) => {
           const newNotification = JSON.parse(message.body);
-          console.log("알림 수신:", newNotification);
           setNotifications((prev) => [...prev, newNotification]); // 새로운 알림 추가
           dispatch(addNotification(newNotification)); // Redux 상태에 추가
         });
@@ -36,7 +34,6 @@ const useNotificationWebSocket = () => {
 
     return () => {
       notificationClient .deactivate();
-      console.log("Notification WebSocket 연결 해제됨");
     };
   }, [notifications, dispatch]);
 

@@ -13,7 +13,7 @@ const BestProduct_Hob = ({category}) => {
     const fetchBestProductsByCategory = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/auction/best/취미, 수집`);
-        console.log(response.data);
+
 
 
         if (!response.statusMessage === 'ok') {

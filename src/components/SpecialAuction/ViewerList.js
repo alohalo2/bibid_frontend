@@ -37,7 +37,6 @@ const ViewerListItem = styled.div`
   margin: 15px;
 `;
 const ViewerList = ({ chatLog, userList }) => {
-  console.log(`chatLog  어떤거 오냐? ${JSON.stringify(chatLog)}`);
 
   return (
     <Wrapper>

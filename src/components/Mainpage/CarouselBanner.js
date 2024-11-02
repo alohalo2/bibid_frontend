@@ -34,7 +34,7 @@ const CarouselBanner = () => {
   useEffect(() => {
     const data = fetchCarouselData();
     setCarouselData(data);
-    console.log(data);
+
     const imageUrls = data.map((item) => item.url);
     setImages(imageUrls);
   }, [liveAuctionList]);

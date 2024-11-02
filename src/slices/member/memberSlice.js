@@ -53,7 +53,6 @@ const memberSlice = createSlice({
         builder.addCase(login.fulfilled, (state, action) => {
             alert(`${action.payload.memberId}님 환영합니다.`);
 
-            console.log(action.payload);
 
             return {
                 ...state,
@@ -141,7 +140,7 @@ const memberSlice = createSlice({
         });
         builder.addCase(kakaoJwtToken.fulfilled, (state, action) => {
 
-            console.log(action.payload);
+
 
 
             return {
@@ -227,7 +226,7 @@ const memberSlice = createSlice({
 
         builder.addCase(chargeAccount.fulfilled, (state, action) => {
 
-            console.log(action.payload);
+
 
             return{
                 ...state,
@@ -274,7 +273,6 @@ const memberSlice = createSlice({
 
         builder.addCase(fetchMember.fulfilled, (state, action) => {
 
-            console.log(action.payload);
 
             return {
                 ...state,
