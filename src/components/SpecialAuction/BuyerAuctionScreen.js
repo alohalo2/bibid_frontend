@@ -202,7 +202,9 @@ function BuyerAuctionScreen({
                     </div>
                     <div className='SAbidSubmitButtonBox'>
                       {/* <button className="SAbidSubmitButton" onClick={openBidConfirmPopup} disabled={isBidDisabled}>입찰하기</button> */}
-                      <button className="SAbidSubmitButton" onClick={openBidConfirmPopup}>입찰하기</button>
+                      <button className="SAbidSubmitButton" onClick={openBidConfirmPopup}>
+                        <p>입찰하기</p>
+                      </button>
                     </div>
                   </div>
                 </Draggable>

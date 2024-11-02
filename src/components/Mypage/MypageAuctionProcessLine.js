@@ -38,10 +38,18 @@ const MypageAuctionProcessLine = ({ auctionStatus }) => {
         </div>
       </div>
       <div className='Mypage_AuctionProcessLineText'>
-        <div style={{ color: auctionStatus === "경매 시작" ? 'blue' : 'darkgray' }}>경매 시작</div>
-        <div style={{ color: auctionStatus === "낙찰" ? 'blue' : 'darkgray' }}>낙찰</div>
-        <div style={{ color: auctionStatus === "배송중" ? 'blue' : 'darkgray' }}>배송중</div>
-        <div style={{ color: auctionStatus === "배송 완료" ? 'blue' : 'darkgray' }}>배송 완료</div>
+        <div style={{ color: auctionStatus === "경매 시작" ? 'blue' : 'darkgray' }}>
+            <p>경매 시작</p>
+        </div>
+        <div style={{ color: auctionStatus === "낙찰" ? 'blue' : 'darkgray' }}>
+            <p>낙찰</p>
+        </div>
+        <div style={{ color: auctionStatus === "배송중" ? 'blue' : 'darkgray' }}>
+            <p>배송중</p>
+        </div>
+        <div style={{ color: auctionStatus === "배송 완료" ? 'blue' : 'darkgray' }}>
+            <p>배송 완료</p>
+        </div>
       </div>
     </div>
   );

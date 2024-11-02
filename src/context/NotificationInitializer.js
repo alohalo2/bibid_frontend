@@ -23,7 +23,6 @@ const NotificationInitializer = () => {
             } catch (error) {
                 console.error("Failed to fetch notifications:", error);
             }
-
         };
 
         fetchInitialNotifications();
