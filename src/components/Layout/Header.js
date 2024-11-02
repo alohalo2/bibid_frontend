@@ -12,7 +12,7 @@ import {useNavigate} from "react-router-dom";
 import HeaderSearchBar from '../Search/HeaderSearchBar'
 import {checkLogin, getAccessToken, getTokenAndType, getType, logout} from "../../apis/etc2_memberapis/memberApis";
 import searchLogo from '../../images/search_icon.svg';
-import profileDefault from '../../images/profile_default.jpg';
+
 const Header = () => {
 
     const dispatch = useDispatch();
@@ -167,9 +167,9 @@ const Header = () => {
 
         dispatch(checkLogin());
 
-        if (checkLoginState) {
+        if (checkLoginState === "ROLE_USER") {
             setToken(true);
-        } else {
+        } else if (checkLoginState === "notLogin") {
             setToken(false);
         }
 
@@ -283,7 +283,7 @@ const Header = () => {
                                     <img
                                         src={imageSrc}
                                         alt="My Page"
-                                        style={{ cursor: 'pointer', border: '1px solid #ccc', borderRadius: '50%' }}
+                                        style={{ cursor: 'pointer', border: '1px solid #cdcdcd', borderRadius: '50%' }}
                                         onClick={handleMypage}
                                         />
 
