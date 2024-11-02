@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {setNotifications} from '../slices/notification/notificationSlice'
 import axios from 'axios';
 import useNotificationWebSocket from '../customHooks/useNotificationWebSocket';
@@ -16,23 +16,14 @@ const NotificationInitializer = () => {
     useEffect(() => {
         const fetchInitialNotifications = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/auth/checkLogin", {
+                const response = await axios.get(`http://localhost:8080/api/notifications/${memberIndex}`, {
                     withCredentials: true,
                 });
-
-                if (response.status === 200 && response.data.item === "ROLE_USER") { 
-                    try {
-                        const response = await axios.get(`http://localhost:8080/api/notifications/${memberIndex}`, {
-                            withCredentials: true,
-                        });
-                        dispatch(setNotifications(response.data));
-                    } catch (error) {
-                        console.error("Failed to fetch notifications:", error);
-                    }
-                }
+                dispatch(setNotifications(response.data));
             } catch (error) {
-                console.warn("로그인되지 않은 상태입니다.", error);
+                console.error("Failed to fetch notifications:", error);
             }
+
         };
 
         fetchInitialNotifications();

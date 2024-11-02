@@ -38,8 +38,6 @@ import WidgetCheckoutPage from "./pages/widget/WidgetCheckout";
 import WidgetSuccessPage from "./pages/widget/WidgetSuccess";
 import FailPage from "./pages/Fail";
 import TestApi2 from "./components/SpecialAuction/TestApi2";
-import MemberInitializer from "./context/MemberInitializer";
-import TestApi3 from "./components/SpecialAuction/TestApi3";
 
 function App() {
     const persiststore = persistStore(store);
@@ -48,7 +46,6 @@ function App() {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persiststore}>
                 <NotificationInitializer />
-                <MemberInitializer />
                 <Routes>
                     {/* OAuth Routes */}
                     <Route path="/auth/kakao/callback" element={<KakaoLogin />} />
