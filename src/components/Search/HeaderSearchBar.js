@@ -50,7 +50,7 @@ const HeaderSearchBar = () => {
                                 value={searchKeyword}
                                 onChange={handleChangeSearchKeyword}
                                 InputProps={{ disableUnderline: true }}
-                                style={{ marginTop: '7px', marginLeft: '15px' }}
+                                style={{ marginTop: '2px', marginLeft: '15px' }}
                             />
                         </Grid>
                         <Grid item xs={2}>
@@ -69,7 +69,7 @@ const HeaderSearchBar = () => {
                                         backgroundSize: 'contain', 
                                         backgroundRepeat: 'no-repeat',
                                         cursor: 'pointer',
-                                        marginTop: '3px'
+                                        marginTop: '5px'
                                         }}
                                         onClick={handleSearch}
                                         > 

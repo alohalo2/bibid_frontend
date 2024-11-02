@@ -12,7 +12,7 @@ import {useNavigate} from "react-router-dom";
 import HeaderSearchBar from '../Search/HeaderSearchBar'
 import {checkLogin, getAccessToken, getTokenAndType, getType, logout} from "../../apis/etc2_memberapis/memberApis";
 import searchLogo from '../../images/search_icon.svg';
-
+import profileDefault from '../../images/profile_default.jpg';
 const Header = () => {
 
     const dispatch = useDispatch();
@@ -192,6 +192,7 @@ const Header = () => {
             window.location.href = `${url}?client_id=${kakaoLogoutParams.client_id}&logout_redirect_uri=${kakaoLogoutParams.logout_redirect_uri}`;
         }
         window.location.href = '/';
+        console.log("token 상태:", token);
 
     }, [dispatch, oauthType]);
 
