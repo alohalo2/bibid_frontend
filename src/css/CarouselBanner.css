@@ -100,12 +100,12 @@
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
 }
 
 .CB_carousel_contents h2 {
-    margin-bottom: 0;
-    font-size: 28px;
+    margin: 0;
+    font-size: 24px;
     font-weight: 900;
 }
 
