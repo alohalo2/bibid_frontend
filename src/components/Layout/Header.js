@@ -12,6 +12,7 @@ import {useNavigate} from "react-router-dom";
 import HeaderSearchBar from '../Search/HeaderSearchBar'
 import {checkLogin, getAccessToken, getTokenAndType, getType, logout} from "../../apis/etc2_memberapis/memberApis";
 import searchLogo from '../../images/search_icon.svg';
+import profileDefault from '../../images/profile_default.jpg';
 
 const Header = () => {
 
@@ -277,15 +278,15 @@ const Header = () => {
                                     <li><a onClick={handleLogout}>로그아웃</a></li>
                                 </ul>
                                 <div className="HDnavbarAlarm" style={{marginRight: '40px', position: 'relative'}}
-                                     onMouseOver={handleMouseOverWallet}
-                                     onMouseLeave={handleMouseLeaveWallet}
-                                     >
+                                    onMouseOver={handleMouseOverWallet}
+                                    onMouseLeave={handleMouseLeaveWallet}
+                                    >
                                     <img
-                                        src={imageSrc}
+                                        src={profileImageDto ? imageSrc : profileDefault}
                                         alt="My Page"
                                         style={{ cursor: 'pointer', border: '1px solid #cdcdcd', borderRadius: '50%' }}
                                         onClick={handleMypage}
-                                        />
+                                    />
 
                                     {showWalletPopup && (
                                         <div className="HDwalletPopup">

@@ -9,6 +9,7 @@ import memberInfoModify from '../../images/MP_member_info_modify_icon.svg';
 import myAuctionList from '../../images/MP_my_auction_list_icon.svg';
 import myAuctionProcess from '../../images/MP_my_auction_process_icon.svg';
 import myWallet from '../../images/MP_my_wallet_icon.svg';
+import profileDefault from '../../images/profile_default.jpg';
 
 const MypageSideBar = ({ memberInfo }) => {
 
@@ -82,49 +83,54 @@ const MypageSideBar = ({ memberInfo }) => {
   }
 
   return (
-    <div className='Mypage_SideBarContainer'>
-        <div className='Mypage_SideBarProfile'>
-            <div className='Mypage_ProfileImgContainer' onClick={handleProfileImageClick}>
-              <img className='Mypage_ProfileImg' src={imageSrc} alt="Profile" />
-              <div className='Mypage_ProfileImgModifyBtn'><img></img></div>
-              <input
-                type="file"
-                id="profileImageInput"
-                style={{ display: 'none' }}
-                accept="image/*"
-                onChange={handleImageChange}
-              />
-            </div>
-            <div className='Mypage_ProfileUserName'>
-        </div>
-        </div>
-        <div className='Mypage_SideBarCategory'>
-          <div className='Mypage_SideBarCategory_List_Box'>
-            <div>
-              <h2>마이페이지 목록</h2>
-            </div>
-            <div className='Mypage_SideBarCategory_List'>
-              <div onClick={handleProfileClick} style={{ cursor: 'pointer' }} >
-                <img src={memberInfoModify}></img>
-                <p>내 프로필</p>
+      <div className='Mypage_SideBarContainer'>
+          <div className='Mypage_SideBarProfile'>
+              <div className='Mypage_ProfileImgContainer' onClick={handleProfileImageClick}>
+                  <img
+                      className='Mypage_ProfileImg'
+                      src={profileImageDto ? imageSrc : profileDefault}
+                      alt="Profile"
+                  />
+                  <div className='Mypage_ProfileImgModifyBtn'><img></img></div>
+                  <input
+                      type="file"
+                      id="profileImageInput"
+                      style={{ display: 'none' }}
+                      accept="image/*"
+                      onChange={handleImageChange}
+                  />
               </div>
-              <div onClick={handleManagement} style={{ cursor: 'pointer' }} >
-                <img src={myAuctionList}></img>
-                <p>내가 등록한 경매</p>
+              <div className='Mypage_ProfileUserName'>
+                  {/* 여기에 사용자 이름을 표시할 수 있습니다 */}
               </div>
-              <div onClick={handleAuctionClick} style={{ cursor: 'pointer' }} >
-                <img src={myAuctionProcess}></img>
-                <p>참여중인 경매</p>
-              </div>
-              <div id='remove_wallet_margin' onClick={handleWalletClick} style={{ cursor: 'pointer' }} >
-                <img src={myWallet}></img>
-                <p>지갑 관리</p>
-              </div>
-            </div>
           </div>
-        </div>
-    </div>
-  )
+          <div className='Mypage_SideBarCategory'>
+              <div className='Mypage_SideBarCategory_List_Box'>
+                  <div>
+                      <h2>마이페이지 목록</h2>
+                  </div>
+                  <div className='Mypage_SideBarCategory_List'>
+                      <div onClick={handleProfileClick} style={{ cursor: 'pointer' }}>
+                          <img src={memberInfoModify} alt="내 프로필" />
+                          <p>내 프로필</p>
+                      </div>
+                      <div onClick={handleManagement} style={{ cursor: 'pointer' }}>
+                          <img src={myAuctionList} alt="내가 등록한 경매" />
+                          <p>내가 등록한 경매</p>
+                      </div>
+                      <div onClick={handleAuctionClick} style={{ cursor: 'pointer' }}>
+                          <img src={myAuctionProcess} alt="참여중인 경매" />
+                          <p>참여중인 경매</p>
+                      </div>
+                      <div id='remove_wallet_margin' onClick={handleWalletClick} style={{ cursor: 'pointer' }}>
+                          <img src={myWallet} alt="지갑 관리" />
+                          <p>지갑 관리</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  );
 }
 
 export default MypageSideBar
