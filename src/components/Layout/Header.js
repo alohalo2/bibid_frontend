@@ -4,6 +4,7 @@ import '../../css/Layout/MediaQuery.css';
 import '../../css/Layout/Wallet.css';
 import Alarm from '../Layout/Alarm';
 import logo from '../../images/logo.svg';
+import axios from 'axios';
 import rightArrowIcon from '../../images/right_arrow_icon.svg';
 import hamburgerIcon from '../../images/hamburger_icon.svg';
 import {useDispatch, useSelector} from "react-redux";
@@ -16,6 +17,41 @@ const Header = () => {
 
     const dispatch = useDispatch();
     const navi = useNavigate();
+
+    const [memberInfo, setMemberInfo] = useState(null);
+    const memberIndex = useSelector((state) => state.memberSlice.memberIndex); 
+
+    useEffect(() => {
+        // API 호출 함수
+        const fetchMemberInfo = async () => {
+          try {
+            console.log(memberIndex);
+            const response = await axios.get(`http://localhost:8080/mypage/userInfo/${memberIndex}`);
+            console.log("Fetched member info:", response.data.item);
+            setMemberInfo(response.data.item); // 응답에서 멤버 정보 저장
+          } catch (error) {
+            console.error("Error fetching member info:", error); // 오류 처리
+          }
+        };
+    
+        if (memberIndex) {
+          fetchMemberInfo(); // memberIndex가 있을 때만 호출
+        }
+      }, [memberIndex]);
+
+    const bucketName = process.env.REACT_APP_BUCKET_NAME;
+    const member = useSelector((state) => state.memberSlice);
+    const accountDto = useSelector((state) => state.memberSlice.accountDto);
+
+    const [profileImageDto, setProfileImageDto] = useState(member.profileImageDto);
+
+    const imageSrc = profileImageDto && profileImageDto.filepath && profileImageDto.newfilename
+    ? `https://kr.object.ncloudstorage.com/${bucketName}/${profileImageDto.filepath}${profileImageDto.newfilename}`
+    : '/default_profile.png'; // 기본 이미지 경로 설정
+
+    useEffect(() => {
+        setProfileImageDto(member.profileImageDto);
+    }, [member.profileImageDto]);
 
     const [boxHeight, setBoxHeight] = useState('auto'); // 초기 높이 설정
     const [showWalletPopup, setShowWalletPopup] = useState(false); // 지갑 팝업 상태
@@ -245,9 +281,9 @@ const Header = () => {
                                      onMouseLeave={handleMouseLeaveWallet}
                                      >
                                     <img
-                                        src="/images/Ellipse%202.png"
+                                        src={imageSrc}
                                         alt="My Page"
-                                        style={{ cursor: 'pointer' }}
+                                        style={{ cursor: 'pointer', border: '1px solid #ccc', borderRadius: '50%' }}
                                         onClick={handleMypage}
                                         />
 
@@ -256,7 +292,7 @@ const Header = () => {
                                             <h3>지갑</h3>
                                             <div className="HDwalletAmount">
                                                 <p>금액</p>
-                                                <p>1,586,500 원</p>
+                                                <p>{Number(accountDto.userMoney).toLocaleString()} 원</p>
                                             </div>
                                             <div className="HDwalletButtons">
                                                 <button onClick={handleChargeBttnClick}>지갑 관리</button>

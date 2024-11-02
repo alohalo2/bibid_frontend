@@ -100,7 +100,7 @@ const MypageAuctionCard = ({auction}) => {
       </div>
       <div className='Mypage_AuctionAlert'>
         <div>
-          <p>*물품수령 후 의도적으로 수취완료를 누르지 않으면 형사처벌의 대상이 될 수 있습니다.</p>
+          <p>*물품수령 후 의도적으로 구매확정 버튼을 누르지 않으면 형사처벌의 대상이 될 수 있습니다.</p>
         </div>
       </div>
     </div>

@@ -19,14 +19,10 @@ const CarouselBanner = () => {
       const thumbnailImage = auction.auctionImageDtoList
         .filter((image) => image.thumbnail === true)
         .map((image) => `https://kr.object.ncloudstorage.com/${bucketName}/${image.filepath}${image.filename}`)[0]; // 첫 번째 썸네일만 선택
-
-      const auctionDate = formatDateTime(auction.startingLocalDateTime);
-      const formattedAuctionDate = auctionDate.endsWith('.') ? auctionDate.slice(0, -1) : auctionDate;
-
       return {
         url: thumbnailImage,
         title: auction.productName,
-        auctionDate: formattedAuctionDate,
+        auctionDate: formatDateTime(auction.startingLocalDateTime),
         auctionTime: formatAuctionTimeRange(auction.startingLocalDateTime, auction.endingLocalDateTime),
       };
     });
@@ -114,15 +110,11 @@ const CarouselBanner = () => {
           <div className='CB_carousel-pad-container'>
                 <div className='CB_carousel-pad1'>
                     <button className='CB_carousel-num'>{currentSlideNumber + 1} / {images.length}</button>
-                    <button className="CB_carousel-control prev" onClick={prevSlide}>
-                      <img src='/images/white_left_arrow_icon.svg'></img>
-                    </button>
-                    <button className="CB_carousel-control next" onClick={nextSlide}>
-                      <img src='/images/white_right_arrow_icon.svg'></img>
-                    </button>
+                    <button className="CB_carousel-control prev" onClick={prevSlide}>❮</button>
+                    <button className="CB_carousel-control next" onClick={nextSlide}>❯</button>
                     <button className="CB_carousel-toggle" onClick={togglePlayPause}>
                       <img
-                          src={`/images/${isPlaying ? 'stop_icon.svg' : 'play_icon.svg'}`}
+                          src={`/images/${isPlaying ? 'MP_stop_icon.svg' : 'MP_play_icon.svg'}`}
                           alt={isPlaying ? 'Pause' : 'Play'}
                           style={{ width: '15px', height: '15px' }}
                         />
@@ -130,7 +122,7 @@ const CarouselBanner = () => {
                 </div>
                 { currentContent && (
                   <div className="CB_carousel_contents" key={currentIndex}>
-                    <h2>{currentContent.title}</h2>
+                    <div className='CB_carousel_h'>{currentContent.title}</div>
                     <div>
                       <p>{currentContent.auctionDate}</p>
                       <p>{currentContent.auctionTime}</p>

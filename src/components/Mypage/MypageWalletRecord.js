@@ -31,7 +31,7 @@ export const MypageWalletRecord = ({ record }) => {
     // ? `등록하신 "${record.productName} ${record.auctionType}" 상품이 판매 및 배송 처리가 완료되었습니다.`
     // : `"${record.productName}" 상품을 "${record.auctionType}"로 구매 및 배송 처리가 완료되었습니다.`;
     ? `등록하신 "${record.auctionType} ${record.auctionType}" 상품이 판매 및 배송 처리가 완료되었습니다.`
-    : `"${record.productName}" 상품을 "${record.auctionType}"로 구매 및 배송 처리가 완료되었습니다.`;
+    : `${record.auctionType} - '${record.productName}'상품의 입찰이 완료되었습니다.`;
 
     const changeAmountColor = isCharge
     ? 'blue'
@@ -66,7 +66,7 @@ export const MypageWalletRecord = ({ record }) => {
             <div>{formatDate(record.createdTime)}</div>
           </div>
           <div className='Mypage_WalletCardLine2'>
-            <div>{message}</div>
+            <div className='Mypage_WalletCardText'>{message}</div>
           </div>
           <div className='Mypage_WalletCardLine3'>
             <div>
