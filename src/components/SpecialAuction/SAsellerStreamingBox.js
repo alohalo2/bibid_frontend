@@ -91,7 +91,9 @@ const SAsellerSteamingBox = ({channelInfo}) => {
                                     <div className='SAstreamingServerURL'>
                                         <p id='SAstreamingServerURLId'>{serverURL}</p>
                                     </div>
-                                    <button onClick={() => copyToClipboard(serverURL)}>복사</button>
+                                    <button onClick={() => copyToClipboard(serverURL)}>
+                                        <p>복사</p>
+                                    </button>
                                 </div>
                             </div>
                         </li>
@@ -110,7 +112,9 @@ const SAsellerSteamingBox = ({channelInfo}) => {
                                         />
                                     </div>
                                 </div>
-                                <button onClick={() => copyToClipboard(streamKey)}>복사</button>
+                                <button onClick={() => copyToClipboard(streamKey)}>
+                                    <p>복사</p>
+                                </button>
                             </div>
                         </div>
                         </li>

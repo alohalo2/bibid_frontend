@@ -173,7 +173,19 @@ const RegistrationStep1 = ({ formData, setFormData, nextStep}) => {
           <Grid2 container justifyContent="center" sx={{ mt: 2 }}>
             <Button
               variant="contained"
-              sx={{ width: '8rem', backgroundColor: '#D9D9D9', color: 'black', fontWeight: 'bold', fontSize: '1rem' , marginBottom: '2rem'}}
+              sx={{ 
+                width: '8rem', 
+                backgroundColor: '#D9D9D9', 
+                color: 'black', 
+                fontWeight: 'bold', 
+                fontSize: '1rem' , 
+                marginBottom: '2rem',
+                transition: 'all 0.3s ease-in-out',
+                  '&:hover': {
+                    backgroundColor: '#0A369D', // hover 시 배경색
+                    color: 'white' // hover 시 텍스트 색상
+                  }
+              }}
               type="submit"
             >
               다음단계

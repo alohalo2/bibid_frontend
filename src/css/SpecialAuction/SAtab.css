@@ -25,6 +25,12 @@
     color: black;
 }
 
+.SAliveAuctionBox p,
+.SAblindAuctionBox p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .SAliveAuctionBox:hover,
 .SAblindAuctionBox:hover {
     background-color: #727272;

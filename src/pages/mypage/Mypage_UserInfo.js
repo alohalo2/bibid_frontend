@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../../css/Mypage/Mypage.css';
 import MypageSideBar from '../../components/Mypage/MypageSideBar';
 import MypageProfileBox from '../../components/Mypage/MypageProfileBox';
+import loadingImage from '../../images/로딩화면.gif'
 
 const Mypage_UserInfo = () => {
 
@@ -36,7 +37,7 @@ const Mypage_UserInfo = () => {
                 <MypageProfileBox memberInfo={memberInfo} />
             </>
             ) : (
-            <p>로딩 중...</p> // 데이터가 로딩 중일 때 표시할 메시지
+            <img src={loadingImage}></img> // 데이터가 로딩 중일 때 표시할 메시지
             )}
         </div>
 	);

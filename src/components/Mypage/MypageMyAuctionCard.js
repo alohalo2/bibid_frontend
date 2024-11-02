@@ -73,25 +73,43 @@ const MypageMyAuctionCard = ({ auction, onDelete }) => {
         />
       </div>
       <div className='Mypage_AuctionManagementCardTitleBox'>
-        <div className='MypageAuctionManagementCardTitle'>{auction.productName}</div>
-      </div>
-      <div className='Mypage_AuctionManagementCardPrice'>{lastBidAmount.toLocaleString()} 원</div>
-      <div className='Mypage_AuctionManagementCardBid'>{auction.bidIncrement.toLocaleString()} 원</div>
-      <div className='Mypage_AuctionManagementCardPeriod'>{formatAuctionDate(auction.startingLocalDateTime, auction.endingLocalDateTime)}</div>
-      <div className='Mypage_AuctionManagementCardDeleteBtnBox'>
-        <div className='Mypage_AuctionManagementCardDeleteBtn' onClick={handleDeleteAlert}>
-          삭제
+        <div className='MypageAuctionManagementCardTitle'>
+          <p>{auction.productName}</p>
         </div>
+      </div>
+      <div className='Mypage_AuctionManagementCardPrice'>
+        <p>{lastBidAmount.toLocaleString()} 원</p>
+      </div>
+      <div className='Mypage_AuctionManagementCardBid'>
+        <p>{auction.bidIncrement.toLocaleString()} 원</p>
+      </div>
+      <div className='Mypage_AuctionManagementCardPeriod'>
+        <p>{formatAuctionDate(auction.startingLocalDateTime, auction.endingLocalDateTime)}</p>
+      </div>
+      <div className='Mypage_AuctionManagementCardDeleteBtnBox'>
+        <button className='Mypage_AuctionManagementCardDeleteBtn' onClick={handleDeleteAlert}>
+          <p>삭제</p>
+        </button>
       </div>
       {isDialogOpen && (
         <div className="AuctionCardModal-overlay">
           <div className="AuctionCardModal-content">
-            <div className="AuctionCardModal-head">경고</div>
-            <div>삭제한 경매는 복구할 수 없습니다.</div>
-            <div>정말 삭제하시겠습니까?</div>
+            <div className="AuctionCardModal-head">
+              <h3>경고</h3>
+            </div>
+            <div>
+              <p>삭제한 경매는 복구할 수 없습니다.</p>
+            </div>
+            <div>
+              <p>정말 삭제하시겠습니까?</p>
+            </div>
             <div className="AuctionCardModal-buttons">
-              <button onClick={handleConfirmDelete}>예</button>
-              <button onClick={handleCancelDelete}>아니오</button>
+              <button onClick={handleConfirmDelete}>
+                <p>삭제</p>
+              </button>
+              <button onClick={handleCancelDelete}>
+                <p>취소</p>
+              </button>
             </div>
           </div>
         </div>

@@ -38,10 +38,14 @@ const MypageAuctionCard = ({auction}) => {
   return (
     <div className='Mypage_AuctionCard'>
       <div className='Mypage_AuctionProcess'>
-        <div className='Mypage_AuctionCardType'>{auction.auctionType}</div>
+        <div className='Mypage_AuctionCardType'>
+          <p>{auction.auctionType}</p>
+        </div>
         <MypageAuctionProcessLine auctionStatus={auction.auctionStatus}/>
         <div className='Mypage_AuctionCardBtnCategory'>
-            <div className='Mypage_AuctionCardBtn'>배송 조회</div>
+            <button className='Mypage_AuctionCardBtn'>
+              <p>배송 조회</p>
+            </button>
         </div>
       </div>
       <div className='Mypage_AuctionContentBox'>
@@ -53,31 +57,51 @@ const MypageAuctionCard = ({auction}) => {
             />
         </div>
         <div className='Mypage_AuctionContentDetail'>
-            <div className='Mypage_AuctionContentDetailTitle'> 물품 이름 {auction.productName}</div>
+            <div className='Mypage_AuctionContentDetailTitle'>
+              <h3>경매 제목 : {auction.productName}</h3>
+            </div>
             <div className='Mypage_AuctionContentDetailContainer'>
-                <div className='Mypage_AuctionContentPrice'>
-                    <div className='Mypage_AuctionContenttitle'>구매금액</div>
-                    <div className='Mypage_AuctionContenttext'>{lastBidAmount.toLocaleString()} 원</div>
-                </div>  
-                <div className='Mypage_AuctionContentNumber'>
-                    <div className='Mypage_AuctionContenttitle'>경매번호</div>
-                    <div className='Mypage_AuctionContenttext'>{auction.auctionIndex}</div>
-                </div>
-                <div className='Mypage_AuctionContentSeller'>
-                    <div className='Mypage_AuctionContenttitle'>판매자명</div>
-                    <div className='Mypage_AuctionContenttext'>{auction.memberNickname} 님</div>
-                </div>
+              <div className='Mypage_AuctionContentPrice'>
+                  <div className='Mypage_AuctionContenttitle'>
+                    <p>구매금액</p>
+                  </div>
+                  <div className='Mypage_AuctionContenttext'>
+                    <p>{lastBidAmount.toLocaleString()} 원</p>
+                  </div>
+              </div>
+              <div className='Mypage_AuctionContentNumber'>
+                  <div className='Mypage_AuctionContenttitle'>
+                    <p>경매번호</p>
+                  </div>
+                  <div className='Mypage_AuctionContenttext'>
+                    <p>{auction.auctionIndex}</p>
+                  </div>
+              </div>
+              <div className='Mypage_AuctionContentSeller'>
+                  <div className='Mypage_AuctionContenttitle'>
+                    <p>판매자명</p>
+                  </div>
+                  <div className='Mypage_AuctionContenttext'>
+                    <p>{auction.memberNickname} 님</p>
+                  </div>
+              </div>
             </div>
         </div>
         <div className='Mypage_AuctionContentBtnCategory'>
             <div className='Mypage_AuctionContentBtnBox'>
-                <div className='Mypage_AuctionCardBtn' onClick = {handleConfirmPurchase}>구매 확정</div>
-                <div className='Mypage_AuctionCardBtn'>거래 취소</div>
+                <button className='Mypage_AuctionCardBtn' onClick = {handleConfirmPurchase}>
+                    <p>구매 확정</p>
+                </button>
+                <button className='Mypage_AuctionCardBtn'>
+                    <p>거래 취소</p>
+                </button>
             </div>
         </div>
       </div>
       <div className='Mypage_AuctionAlert'>
-        <div>*물품수령 후 의도적으로 수취완료를 누르지 않으면 형사처벌의 대상이 될 수 있습니다.*</div>
+        <div>
+          <p>*물품수령 후 의도적으로 수취완료를 누르지 않으면 형사처벌의 대상이 될 수 있습니다.</p>
+        </div>
       </div>
     </div>
   )

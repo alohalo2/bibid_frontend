@@ -19,6 +19,8 @@
 
 .ALnotificationHeader h2 {
   margin-left: 1rem;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .ALnotificationContents {

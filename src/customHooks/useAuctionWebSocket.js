@@ -91,6 +91,26 @@ const useAuctionWebSocket = (auctionIndex, isChatClosed) => {
             }));
           });
 
+           // 입장 메시지 구독
+          auctionClient.subscribe(`/topic/participants/enter/${auctionIndex}`, (message) => {
+            const enterMessage = JSON.parse(message.body);
+            updateMessages(enterMessage);
+            setParticipantCounts((prevCounts) => ({
+              ...prevCounts,
+              [auctionIndex]: enterMessage.participantCount,
+            }));
+          });
+
+          // 퇴장 메시지 구독
+          auctionClient.subscribe(`/topic/participants/leave/${auctionIndex}`, (message) => {
+            const leaveMessage = JSON.parse(message.body);
+            updateMessages(leaveMessage);
+            setParticipantCounts((prevCounts) => ({
+              ...prevCounts,
+              [auctionIndex]: leaveMessage.participantCount,
+            }));
+          });
+
           // 입장 처리
           handleUserJoin(auctionClient);
         },

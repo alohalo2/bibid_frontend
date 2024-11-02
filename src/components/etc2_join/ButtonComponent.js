@@ -17,24 +17,26 @@ const Button = styled.button`
     border: none;
     border-radius: 0.313rem;
     font-size: 0.938rem;
-    color: white; /* 기본 텍스트 색상 */
+    font-weight: 900;
+    color: black; /* 기본 텍스트 색상 */
     cursor: pointer;
-    
-    &.blue2 {
-        background-color: #007bff; /* 파란색 배경 */
-    }
+    background-color: #ccc;
+    transition: all 0.3s ease-in-out;
 
-    &.grey2 {
-        background-color: #DDD; /* 회색 배경 */
-        color: #000000;
+    &:hover {
+        background-color: #0A369D; 
+        color: white; 
     }
 `;
 
 const ButtonComponent = ({ onSubmit, onPrev, prev, next }) => {
     return (
         <ButtonBlock>
-            <Button className="blue2" type="submit" onClick={onSubmit}>{prev}</Button>
-            <Button className="grey2" type="button" onClick={onPrev}>{next}</Button>
+            <Button type="submit" onClick={onSubmit} >
+                <p style={{fontSize: '16px', fontWeight: '600'}}>{prev}</p></Button>
+            <Button  type="button" onClick={onPrev}>
+                <p style={{fontSize: '16px', fontWeight: '600'}}>{next}</p>
+            </Button>
         </ButtonBlock>
     );
 };

@@ -36,7 +36,7 @@ const HeaderSearchBar = () => {
     }, [dispatch, searchCondition, searchKeyword, navigate]);
 
     return (
-        <div className='headerSearchContainer' style={{ border: '2px solid #BFBFBF', borderRadius: '10px', width: '360px', height: '45px' }}>
+        <div className='headerSearchContainer' style={{ border: '2px solid #BFBFBF', borderRadius: '10px', width: '360px', height: '35px' }}>
             <Container className='headerSearchBox' component='div' maxWidth='md'>
                 <form onSubmit={handleSearch}>
                     <Grid container spacing={1}>
@@ -61,14 +61,14 @@ const HeaderSearchBar = () => {
                                         display: 'felx',
                                         justifyContent: 'center',
                                         alignItems: 'center',
-                                        width: '30px',
-                                        height: '30px',
+                                        width: '25px',
+                                        height: '25px',
                                         backgroundColor: 'transparent', 
                                         backgroundImage: `url(${logo})`, 
                                         backgroundSize: 'contain', 
                                         backgroundRepeat: 'no-repeat',
                                         cursor: 'pointer',
-                                        marginTop: '7px'
+                                        marginTop: '3px'
                                         }}
                                         onClick={handleSearch}
                                         > 

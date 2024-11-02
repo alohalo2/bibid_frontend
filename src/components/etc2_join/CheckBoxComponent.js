@@ -71,8 +71,16 @@ const CheckBoxComponent = ({checked, setChecked, onCheckedChange}) => {
         <CheckBoxBlock>
             <DemoPaper variant="outlined" sx={{ width: '50%' }}>
                 <FormControlLabel
-                    sx={{ marginLeft: '0.625rem', marginTop: '1rem' }}
-                    label="모두 확인하였으며 동의합니다."
+                    sx={{ marginLeft: '0.625rem', marginTop: '1rem', }}
+                    label={
+                        <Typography
+                          sx={{
+                            fontFamily: 'IBM Plex Sans KR, sans-serif', // 폰트 설정
+                          }}
+                        >
+                          모두 확인하였으며 동의합니다.
+                        </Typography>
+                      }
                     control={
                         <Checkbox
                             checked={checked.every((item) => item)}
@@ -93,7 +101,7 @@ const CheckBoxComponent = ({checked, setChecked, onCheckedChange}) => {
                     {boxes.map((box, index) => (
                         <Box key={index} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                             <FormControlLabel
-                                sx={{ marginLeft: '0.625rem' }}
+                                sx={{ marginLeft: '0.625rem', '& .MuiFormControlLabel-label': { fontFamily: 'IBM Plex Sans KR, sans-serif' }  }}
                                 label={box.label}
                                 control={<Checkbox checked={checked[index + 1]} onChange={() => handleChange(index + 1)} />} // +1 for boxes
                             />
@@ -113,7 +121,7 @@ const CheckBoxComponent = ({checked, setChecked, onCheckedChange}) => {
                             onClose={() => handleClose(index)} // 모달 닫기
                         >
                             <Box sx={modalStyle}>
-                                <ModalContent title={box.label} index={index} /> {/* index를 전달 */}
+                                <ModalContent title={box.label} index={index} sx={{'& .MuiFormControlLabel-label': { fontFamily: 'IBM Plex Sans KR, sans-serif'}}} /> {/* index를 전달 */}
                             </Box>
                         </Modal>
                     ))}

@@ -4,6 +4,11 @@ import { uploadProfileImage } from '../../apis/etc2_memberapis/memberApis';
 import '../../css/Mypage/Mypage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import changeIcon from '../../images/change_icon.svg';
+import memberInfoModify from '../../images/MP_member_info_modify_icon.svg';
+import myAuctionList from '../../images/MP_my_auction_list_icon.svg';
+import myAuctionProcess from '../../images/MP_my_auction_process_icon.svg';
+import myWallet from '../../images/MP_my_wallet_icon.svg';
 
 const MypageSideBar = ({ memberInfo }) => {
 
@@ -80,7 +85,7 @@ const MypageSideBar = ({ memberInfo }) => {
         <div className='Mypage_SideBarProfile'>
             <div className='Mypage_ProfileImgContainer' onClick={handleProfileImageClick}>
               <img className='Mypage_ProfileImg' src={imageSrc} alt="Profile" />
-              <div className='Mypage_ProfileImgModifyBtn'>{loading ? "수정 중..." : "수정"}</div>
+              <div className='Mypage_ProfileImgModifyBtn'><img></img></div>
               <input
                 type="file"
                 id="profileImageInput"
@@ -93,11 +98,29 @@ const MypageSideBar = ({ memberInfo }) => {
         </div>
         </div>
         <div className='Mypage_SideBarCategory'>
-            <div onClick={handleProfileClick} style={{ cursor: 'pointer' }} >내 프로필</div>
-            <div onClick={handleManagement} style={{ cursor: 'pointer' }} >내가 등록한 경매</div>
-            <div onClick={handleAuctionClick} style={{ cursor: 'pointer' }} >참여중인 경매</div>
-            <div onClick={handleWalletClick} style={{ cursor: 'pointer' }} >지갑 관리</div>
-            <div onClick={handleSellerClick} style={{ cursor: 'pointer' }} >판매자 정보 등록</div>
+          <div className='Mypage_SideBarCategory_List_Box'>
+            <div>
+              <h2>마이페이지 목록</h2>
+            </div>
+            <div className='Mypage_SideBarCategory_List'>
+              <div onClick={handleProfileClick} style={{ cursor: 'pointer' }} >
+                <img src={memberInfoModify}></img>
+                <p>내 프로필</p>
+              </div>
+              <div onClick={handleManagement} style={{ cursor: 'pointer' }} >
+                <img src={myAuctionList}></img>
+                <p>내가 등록한 경매</p>
+              </div>
+              <div onClick={handleAuctionClick} style={{ cursor: 'pointer' }} >
+                <img src={myAuctionProcess}></img>
+                <p>참여중인 경매</p>
+              </div>
+              <div id='remove_wallet_margin' onClick={handleWalletClick} style={{ cursor: 'pointer' }} >
+                <img src={myWallet}></img>
+                <p>지갑 관리</p>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
   )

@@ -84,7 +84,7 @@ const DetailedCategory_All = () => {
         {products.length > 0 ? (
           <ProductLine products={products} />
         ) : (
-          <p>상품이 없습니다.</p>
+          <p id='DC_productContainer_cate_result'>상품이 없습니다.</p>
         )}
       </div>
       <div className='blank'/>
