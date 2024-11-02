@@ -174,7 +174,6 @@ export const checkLogin = createAsyncThunk(
     'auth/checkLogin',
     async (_, thunkApi) => {
 
-
         try {
             const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/auth/checkLogin`, {
                 withCredentials: true

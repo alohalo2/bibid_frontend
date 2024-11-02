@@ -202,6 +202,7 @@ const memberSlice = createSlice({
         });
         builder.addCase(checkLogin.fulfilled, (state, action) => {
 
+            console.log(action.payload);
             return {
                 ...state,
                 checkLoginState: action.payload
