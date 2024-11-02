@@ -12,6 +12,7 @@ import {useNavigate} from "react-router-dom";
 import HeaderSearchBar from '../Search/HeaderSearchBar'
 import {checkLogin, getAccessToken, getTokenAndType, getType, logout} from "../../apis/etc2_memberapis/memberApis";
 import searchLogo from '../../images/search_icon.svg';
+import profileDefault from '../../images/profile_default.jpg';
 
 const Header = () => {
 
