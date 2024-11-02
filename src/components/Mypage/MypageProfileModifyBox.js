@@ -29,14 +29,14 @@ const MypageProfileModifyBox = ({ memberInfo }) => {
 
     try {
       // 회원정보 수정 요청
-      const response = await axios.patch(`http://localhost:8080/mypage/updateProfile/${memberIndex}`, updatedData);
+      const response = await axios.patch(`${process.env.REACT_APP_BACK_SERVER}/mypage/updateProfile/${memberIndex}`, updatedData);
       alert("회원정보가 수정되었습니다."); // 성공 메시지
       window.location.href = '/mypage/userinfo';
 
       // 비밀번호 변경 요청 (옵션)
       if (newPassword) {
         try {
-            const passwdResponse = await axios.post(`http://localhost:8080/mypage/modifyPasswd`, { newPasswd: newPassword });
+            const passwdResponse = await axios.post(`${process.env.REACT_APP_BACK_SERVER}/mypage/modifyPasswd`, { newPasswd: newPassword });
             alert(passwdResponse.data.statusMessage); // 비밀번호 변경 성공 메시지
         } catch (error) {
             if (error.response) {
