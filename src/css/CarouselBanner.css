@@ -99,14 +99,33 @@
 .CB_carousel_contents {
     color: white;
     display: flex;
+    align-items: center;
+
+    justify-content: center;
     flex-direction: column;
     gap: 30px;
 }
 
-.CB_carousel_contents h2 {
+.CB_carousel_h {
     margin-bottom: 0;
     font-size: 28px;
     font-weight: 900;
+    width: 250px; /* Set a fixed width */
+    overflow: hidden; /* Hide overflow text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Show ellipsis (...) when text is truncated */
+}
+
+.CB_carousel_contents h2 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+    font-size: 28px;
+    font-weight: 900;
+    width: 200px; /* Set a fixed width */
+    overflow: hidden; /* Hide overflow text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Show ellipsis (...) when text is truncated */
 }
 
 .CB_carousel_contents p {
