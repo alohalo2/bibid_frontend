@@ -26,7 +26,7 @@ const Circle = ({activeStep}) => {
                                 color: '#fff',
                                 fontWeight: 400,
                                 fontSize: '1.3rem',
-                                lineHeight: '1.5' // 줄 간격 조정
+                                lineHeight: '1.5', // 줄 간격 조정
                             }}>
                                 <div dangerouslySetInnerHTML={{ __html: step.text }} /> {/* <br /> 태그로 줄바꿈 처리 */}
                             </div>

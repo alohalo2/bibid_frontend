@@ -5,6 +5,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store } from "./store/store";
 import NotificationInitializer from "./context/NotificationInitializer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import '../src/css/App/Main.css';
 
 import Mainpage from "./pages/Mainpage";
 import Search from "./pages/search/Search";
@@ -48,7 +49,6 @@ function App() {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persiststore}>
                 <NotificationInitializer />
-                <MemberInitializer />
                 <Routes>
                     {/* OAuth Routes */}
                     <Route path="/auth/kakao/callback" element={<KakaoLogin />} />

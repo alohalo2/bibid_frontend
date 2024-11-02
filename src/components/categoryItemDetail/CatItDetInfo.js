@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../css/CategoryItemDetail.css';
 import CatItDetTab from './CatItDetTab';
+import loadingImage from '../../images/로딩화면.gif'
 
 const CatItDetInfo = ({ auctionNumber, auctionItem, auctionImages }) => {
 
@@ -10,7 +11,7 @@ const CatItDetInfo = ({ auctionNumber, auctionItem, auctionImages }) => {
 
 
   if (!auctionItem) {
-    return <div>Loading...</div>; // auctionItem + auctionImg 가 없을 때 로딩 메시지를 출력
+    return <div className='loading_image'><img src={loadingImage}></img></div>; // auctionItem + auctionImg 가 없을 때 로딩 메시지를 출력
   }
 
   const startingLocalDateTime = (auctionItem.startingLocalDateTime);

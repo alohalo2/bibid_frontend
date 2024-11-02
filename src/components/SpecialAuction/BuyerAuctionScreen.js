@@ -36,8 +36,7 @@ function BuyerAuctionScreen({
    
     fetchChannelInfo();
   }, [auction.auctionIndex]);
-
-
+  
 
   const [isSoundOn, setIsSoundOn] = useState(true); // 사운드 상태 관리
   const [showAuctionInfo, setShowAuctionInfo] = useState(false);
@@ -203,7 +202,9 @@ function BuyerAuctionScreen({
                     </div>
                     <div className='SAbidSubmitButtonBox'>
                       {/* <button className="SAbidSubmitButton" onClick={openBidConfirmPopup} disabled={isBidDisabled}>입찰하기</button> */}
-                      <button className="SAbidSubmitButton" onClick={openBidConfirmPopup}>입찰하기</button>
+                      <button className="SAbidSubmitButton" onClick={openBidConfirmPopup}>
+                        <p>입찰하기</p>
+                      </button>
                     </div>
                   </div>
                 </Draggable>

@@ -39,34 +39,48 @@ const MypageAuctionManagement = () => {
 
   return (
     <div className='Mypage_AuctionBoxContainer'>
-      <div className='Mypage_UserInfoTitle'>내가 등록한 경매</div>
+      <div className='Mypage_UserInfoTitle'>
+        <h2>내가 등록한 경매</h2>
+      </div>
       <div className='Mypage_AuctionMainContainer'>
         <div className='Mypage_AuctionInfoContainer'>
           <div className='Mypage_AuctionCategory'>
-            <div>카테고리 선택</div>
+            <div className='Mypage_AuctionCategory_Title'>
+              <h3>카테고리 선택</h3>
+            </div>
           </div>
           <div className='Mypage_AuctionCategoryBtnContainer'>
-            <div
+            <button
               className={`Mypage_AuctionCategoryBtn ${selectedAuctionType === "일반 경매" ? 'active' : ''}`}
               onClick={() => setSelectedAuctionType("일반 경매")}
             >
-              일반 경매
-            </div>
-            <div
+              <p>일반 경매</p>
+            </button>
+            <button
               className={`Mypage_AuctionCategoryBtn ${selectedAuctionType === "실시간 경매" ? 'active' : ''}`}
               onClick={() => setSelectedAuctionType("실시간 경매")}
             >
-              실시간 경매
-            </div>
+              <p>실시간 경매</p>
+            </button>
           </div>
         </div>
         <div className='Mypage_blank' />
         <div className='Mypage_AuctionManagementBar'>
-          <div className='Mypage_AuctionManagementImg'>대표사진</div>
-          <div className='Mypage_AuctionManagementTitle'>제목</div>
-          <div className='Mypage_AuctionManagementPrice'>현재가</div>
-          <div className='Mypage_AuctionManagementBid'>입찰 단위</div>
-          <div className='Mypage_AuctionManagementPeriod'>경매 기간</div>
+          <div className='Mypage_AuctionManagementImg'>
+            <p>대표사진</p>
+          </div>
+          <div className='Mypage_AuctionManagementTitle'>
+            <p>제목</p>
+          </div>
+          <div className='Mypage_AuctionManagementPrice'>
+            <p>현재가</p>
+          </div>
+          <div className='Mypage_AuctionManagementBid'>
+            <p>입찰 단위</p>
+          </div>
+          <div className='Mypage_AuctionManagementPeriod'>
+            <p>경매 기간</p>
+          </div>
           <div className='Mypage_AuctionManagementDeleteBtn'></div>
         </div>
         <div className='Mypage_AuctionManagementContinaer'>
@@ -79,7 +93,9 @@ const MypageAuctionManagement = () => {
               />
             ))
           ) : (
-            <div className='Mypage_NoAuctionsMessage'>등록된 {selectedAuctionType}가 없습니다</div>
+            <div className='Mypage_NoAuctionsMessage'>
+              <p>등록된 {selectedAuctionType}가 없습니다.</p>
+            </div>
           )}
         </div>
       </div>

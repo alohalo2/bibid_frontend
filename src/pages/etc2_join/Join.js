@@ -26,6 +26,7 @@ const StyledText = styled.div`
     margin-top: 30px; 
     border-bottom: 2px solid #444; 
     padding-bottom: 5px;
+    font-family: "IBM Plex Sans KR", sans-serif;
 `;
 
 const JoinText = () => {
@@ -76,7 +77,7 @@ const Join = () => {
 
     return (
         <JoinBlock>
-            <Circle activeStep={activeStep} style={{ position: 'absolute', top: '20px', left: '50%', transform: 'translateX(-50%)' }} />
+            <Circle activeStep={activeStep} style={{ position: 'absolute', top: '20px', left: '50%', transform: 'translateX(-50%)'}} />
             <Box sx={{display: 'flex', justifyContent: 'flex-start', width: '65%'}}>
                 <JoinText/>
             </Box>

@@ -25,7 +25,28 @@
     margin-top: 10px;
     width: 40px;
     height: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 900;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CB_carousel-control:hover {
+    background-color: #0A369D;
+}
+
+.CB_carousel-control img {
+    width: 15px;
+    height: 15px;
 }
 
 .CB_carousel-toggle {
@@ -33,10 +54,24 @@
     margin-top: 10px;
     width: 40px;
     height: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.CB_carousel-toggle:hover {
+    background-color: #0A369D;
 }
 
 .CB_carousel-pad-container {
@@ -81,8 +116,19 @@
 
 .CB_carousel-num {
     margin-top: 10px;
-    width: 80px;
+    width: 100px;
     height: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 900;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .CB_enter_action-button {
@@ -103,5 +149,4 @@
 
 .CB_enter_action-button:hover {
     background-color: #0A369D;
-    
 }

@@ -38,6 +38,17 @@
   flex-direction: column;
   width: 250px;
 }
+
+.SAauctionDetailsContentsBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.SAauctionDetailsResultBox {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
 /* 
 .SAauctionDetails h3 {
   font-size: 1.7rem;
@@ -65,11 +76,24 @@
   height: 40px;
 }
 
+.SAauctionPrice p {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
 .SAauctionDetailsDate {
   display: flex;
   height: 50px;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 15px;
+}
+
+.SAauctionDetailsDate p {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
 .SAsellerAuctionDetails {
@@ -751,10 +775,14 @@ padding: 10px 15px;
 border-radius: 5px;
 border: none;
 cursor: pointer;
-font-size: 16px;
-font-weight: bold;
 color: white;
 transition: all 0.3s ease-in-out;
+}
+
+.SAbidSubmitButton p {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
 }
 
 .SAbidSubmitButton:hover {
@@ -922,6 +950,12 @@ background-size: 20px; /* 이미지 크기 조정 */
 padding-right: 10px; /* 텍스트와 이미지 사이 간격 조절 */
 }
 
+.SAsellerChatInput::placeholder {
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-size: 14px; /* 원하는 폰트 크기로 설정 */
+  color: #444; /* 원하는 색상 */
+}
+
 /*---------------endPopup---------------*/
 
 .SAendPopup {
@@ -1053,17 +1087,24 @@ margin-bottom: 20px;
 background-color: #9F9F9F;
 border: none;
 border-radius: 5px;
-font-size: 18px;
-font-weight: bold;
-color: #000000;
 padding: 8px 18px;
 transition: all 0.3s ease-in-out;
 }
 
+.SAbidConfirmationButtons button p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0;
+  }
+
 .SAbidConfirmationButtons button:hover {
 background-color: #0A369D;
-color: white;
 }
+
+.SAbidConfirmationButtons button:hover p {
+  color: white;
+  }
 
 .SAbidConfirmationHeader {
 display: flex;
@@ -1118,7 +1159,7 @@ font-size: 22px;
 }
 
 .SAalertContents p {
-  margin: 0;
+  margin-bottom: 10px;
   font-size: 18px;
 }
 
@@ -1137,7 +1178,7 @@ font-weight: bold;
 }
 
 .SAalertPopup button{
-background-color: #7c7c7c;
+background-color: #ccc;
 margin: 0.5rem auto;
 border: none;
 border-radius: 5px;

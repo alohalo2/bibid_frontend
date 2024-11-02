@@ -51,7 +51,7 @@ const ProductLineForSearch = () => {
                             />
                             <div className='CTG_grid-item-text'>
                                 <div className='CTG_productText'>
-                                    <p className="CTG_productName">{product.productName}</p>
+                                    <h3 className="CTG_productName">{product.productName}</h3>
                                     <p className="CTG_startingPrice">
                                         {product.startingPrice !== null && 
                                         (product.auctionInfoDtoList.length === 0 || 

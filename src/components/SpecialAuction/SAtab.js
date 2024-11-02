@@ -20,13 +20,13 @@ const SAtab = () => {
                     className={`${"SAliveAuctionBox"} ${activeTab === 'realtime' ? 'active' : ''}`}
                     onClick={() => handleTabClick('realtime')}
                 >
-                    실시간 경매
+                    <p>실시간 경매</p>
                 </button>
                 <button
                     className={`${"SAblindAuctionBox"} ${activeTab === 'blind' ? 'active' : ''}`}
                     onClick={() => handleTabClick('blind')}
                 >
-                    블라인드 경매
+                    <p>블라인드 경매</p>
                 </button>
             </div>
             {/* 추가 알림 텍스트 */}
