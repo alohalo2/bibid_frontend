@@ -123,7 +123,7 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep, memberIn
               }}
             />
             <span>원</span>
-            <span style={{marginLeft : '2rem', color:'red', fontWeight: 'bold'}}>*시작가보다 30% 높은 가격부터 등록 가능</span>
+            <span style={{marginLeft : '2rem', color:'red', fontWeight: 'bold'}}>*시작가보다 30% 높은 가격부터 등록 가능합니다.</span>
           </Grid2>
         </Grid2>
 
@@ -181,7 +181,18 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep, memberIn
           <Grid2>
             <Button
               variant="contained"
-              sx={{ width: '8rem', backgroundColor: '#D9D9D9', color: 'black', fontWeight: 'bold', fontSize: '1rem' }}
+              sx={{ 
+                width: '8rem', 
+                backgroundColor: '#D9D9D9', 
+                color: 'black', 
+                fontWeight: 'bold', 
+                fontSize: '1rem',
+                transition: 'all 0.3s ease-in-out',
+                  '&:hover': {
+                    backgroundColor: '#0A369D', // hover 시 배경색
+                    color: 'white' // hover 시 텍스트 색상
+                  }
+              }}
               onClick={prevStep}
             >
               이전 단계
@@ -192,7 +203,18 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep, memberIn
           <Grid2>
             <Button
               variant="contained"
-              sx={{ width: '8rem', backgroundColor: '#D9D9D9', color: 'black', fontWeight: 'bold', fontSize: '1rem' }}
+              sx={{ 
+                width: '8rem', 
+                backgroundColor: '#D9D9D9', 
+                color: 'black', 
+                fontWeight: 'bold', 
+                fontSize: '1rem',
+                transition: 'all 0.3s ease-in-out',
+                  '&:hover': {
+                    backgroundColor: '#0A369D', // hover 시 배경색
+                    color: 'white' // hover 시 텍스트 색상
+                  }
+              }}
               type="submit"
             >
               물품 등록

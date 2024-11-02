@@ -249,7 +249,7 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
                     </> :
                     <p className='dateTimePickerAlert'>
                       {/* ** 실시간 경매일 시, 종료시간이 시작시간으로 부터 30분 이후로 설정됩니다. */}
-                      ** 실시간 경매일 시, 종료시간이 시작시간으로 부터 5분 이후로 설정됩니다.
+                      ** 실시간 경매 종료 시간은 시작 시간으로부터 5분 이후로 자동 설정됩니다.
                     </p>
                   }
               </Box>
@@ -307,7 +307,17 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
             <Grid2>
               <Button
                 variant="contained"
-                sx={{ width: '8rem', backgroundColor: '#D9D9D9', color: 'black', fontWeight: 'bold', fontSize: '1rem' }}
+                sx={{ width: '8rem', 
+                  backgroundColor: '#D9D9D9', 
+                  color: 'black', 
+                  fontWeight: 'bold', 
+                  fontSize: '1rem',
+                  transition: 'all 0.3s ease-in-out',
+                  '&:hover': {
+                    backgroundColor: '#0A369D', // hover 시 배경색
+                    color: 'white' // hover 시 텍스트 색상
+                  }
+                }}
                 onClick={prevStep} // 이전 단계로 돌아가기
               >
                 이전 단계
@@ -317,7 +327,18 @@ const RegistrationStep2 = ({ formData, setFormData, nextStep, prevStep }) => {
             <Grid2>
               <Button
                 variant="contained"
-                sx={{ width: '8rem', backgroundColor: '#D9D9D9', color: 'black', fontWeight: 'bold', fontSize: '1rem' }}
+                sx={{ 
+                  width: '8rem', 
+                  backgroundColor: '#D9D9D9', 
+                  color: 'black', 
+                  fontWeight: 'bold', 
+                  fontSize: '1rem',
+                  transition: 'all 0.3s ease-in-out',
+                  '&:hover': {
+                    backgroundColor: '#0A369D', // hover 시 배경색
+                    color: 'white' // hover 시 텍스트 색상
+                  }
+                }}
                 type="submit"
               >
                 다음단계

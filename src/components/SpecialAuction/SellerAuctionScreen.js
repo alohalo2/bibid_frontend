@@ -423,10 +423,18 @@ function SellerAuctionScreen({
             <h3>{isLive ? "Live On" : "Live Off"}</h3>
             <h1>판매자</h1>
             <div className='SAstreamingBttnBox'>
-              <button onClick={startStreaming}>경매 시작</button>
-              <button onClick={pauseStreaming}>경매 일시 정지</button>
-              <button onClick={resumeStreaming}>경매 재개</button>
-              <button onClick={stopStreaming}>경매 종료</button>
+              <button onClick={startStreaming}>
+                <p>경매 시작</p>
+              </button>
+              <button onClick={pauseStreaming}>
+                <p>경매 일시 정지</p>
+              </button>
+              <button onClick={resumeStreaming}>
+                <p>경매 재개</p>
+              </button>
+              <button onClick={stopStreaming}>
+                <p>경매 종료</p>
+              </button>
             </div>
             {winnerInfo && (
               <div>
@@ -514,7 +522,7 @@ function SellerAuctionScreen({
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     onKeyDown={handleKeyPress}
-                    placeholder="메시지를 입력하세요..."
+                    placeholder="메시지를 입력하세요."
                   />
                 </div>
               </div>

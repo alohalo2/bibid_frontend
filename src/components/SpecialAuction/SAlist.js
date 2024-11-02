@@ -62,13 +62,17 @@ function SAlist({ activeTab }) {
             ? `https://kr.object.ncloudstorage.com/${bucketName}/${thumbnailImage.filepath}${thumbnailImage.filename}`
             : '/images/defaultFileImg.png';
 
+          const auctionDate = formatDateTime(auction.startingLocalDateTime);
+          const formattedAuctionDate = auctionDate.trim().endsWith('.') ? auctionDate.slice(0, -1) : auctionDate;
+      
+
           return (
             <SAitem
               key={index}
               imageSrc={imageSrc}
               price={auction.startingPrice}
               title={auction.productName}
-              auctionDate={formatDateTime(auction.startingLocalDateTime)}
+              auctionDate={formattedAuctionDate}
               auctionTime={formatAuctionTimeRange(auction.startingLocalDateTime, auction.endingLocalDateTime)}
               linkText="바로가기"
               alertText="* 알림은 경매 시작 30분 전에 발송됩니다."

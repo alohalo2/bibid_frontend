@@ -5,6 +5,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store } from "./store/store";
 import NotificationInitializer from "./context/NotificationInitializer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import '../src/css/App/Main.css';
 
 import Mainpage from "./pages/Mainpage";
 import Search from "./pages/search/Search";

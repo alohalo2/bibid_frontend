@@ -21,11 +21,12 @@ const LoginBlock = styled.div`
     display: flex;
     width: 25rem;
     border-radius: 10px;
-    background-color: #bfbfbf;
+    background-color: #f1f1f1;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    border: 1px solid #cdcdcd;
 `;
 
 const CenteredContainer = styled.div`
@@ -127,7 +128,7 @@ const Login = () => {
             <LoginBlock>
                 <form onSubmit={handleLogin}>
                     <Container maxWidth="sm" sx={{mt: 5}}>
-                        <HeaderTitle>로그인</HeaderTitle>
+                        <HeaderTitle sx={{ fontFamily: 'IBM Plex Sans KR, sans-serif' }}>로그인</HeaderTitle>
                         <Grid item xs={12} textAlign='right' style={{marginBottom: "15px"}}>
                             <TextField
                                 name='memberId'
@@ -139,6 +140,12 @@ const Login = () => {
                                 fullWidth
                                 value={loginForm.memberId}
                                 onChange={changeTextField}
+                                InputLabelProps={{
+                                    sx: { fontFamily: 'IBM Plex Sans KR, sans-serif' } // 라벨에 폰트 적용
+                                  }}
+                                  InputProps={{
+                                    sx: { fontFamily: 'IBM Plex Sans KR, sans-serif' } // 입력 텍스트에 폰트 적용
+                                  }}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -152,6 +159,12 @@ const Login = () => {
                                 type={showMemberPw ? "text" : "password"} // 비밀번호 가시성 토글
                                 value={loginForm.memberPw}
                                 onChange={changeTextField}
+                                InputLabelProps={{
+                                    sx: { fontFamily: 'IBM Plex Sans KR, sans-serif' } // 라벨에 폰트 적용
+                                  }}
+                                  InputProps={{
+                                    sx: { fontFamily: 'IBM Plex Sans KR, sans-serif' }, // 입력 텍스트에 폰트 적용
+                                  }}
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">
@@ -173,17 +186,32 @@ const Login = () => {
                                     />
                                 }
                                 label="로그인 상태 유지"
+                                sx={{
+                                    '& .MuiFormControlLabel-label': {
+                                      fontFamily: 'IBM Plex Sans KR, sans-serif', // 폰트 설정
+                                      fontSize: '14px', // 폰트 크기 설정
+                                      color: 'black', // 텍스트 색상 설정
+                                    }
+                                  }}
                             />
                         </Grid>
                         <Grid item>
                             <Button
                                 variant="contained"
                                 type="submit" // type을 submit으로 설정
-                                style={{
+                                sx={{
                                     margin: '10px 0',
-                                    backgroundColor: "#2196F3",
+                                    backgroundColor: "#DDDDDD",
                                     height: "43px",
-                                    fontSize: "18px"
+                                    fontSize: "18px",
+                                    fontWeight: '900',
+                                    color: '#444',
+                                    fontFamily: 'IBM Plex Sans KR, sans-serif', // 폰트 설정
+                                    transition: 'all 0.3s ease-in-out',
+                                    '&:hover': {
+                                        backgroundColor: "#0A369D", // hover 시 배경색 변경
+                                        color: 'white'
+                                    }
                                 }}
                                 fullWidth
                             >
@@ -191,24 +219,28 @@ const Login = () => {
                             </Button>
                         </Grid>
                         <Grid className="joinFindContainer">
-                            <a href={"/join"} className="joinFindButton">회원가입</a>
+                            <a href={"/join"} className="joinFindButton">
+                                <p style={{fontSize: '16px', fontWeight: '600'}}>회원가입</p>
+                            </a>
                             <div className="vertical-line"></div>
-                            <a href={"/find"} className="joinFindButton">계정찾기</a>
+                            <a href={"/find"} className="joinFindButton">
+                                <p style={{fontSize: '16px', fontWeight: '600'}}>계정찾기</p>
+                            </a>
                         </Grid>
                         <Grid container justifyContent="center" alignItems="center"
-                              style={{marginTop: '40px', borderTop: '1px solid #FFFFFF'}}>
-                            <Typography style={{margin: '20px 0', color: '#FFF'}}>
-                                소셜로 로그인
+                              style={{marginTop: '40px', borderTop: '1px solid #777'}}>
+                            <Typography style={{margin: '20px 0', color: '#777', fontWeight: '900'}}>
+                                <p style={{fontSize: '16px', fontWeight: '600'}}>소셜로 로그인</p>
                             </Typography>
                         </Grid>
                         <Grid container justifyContent="center" alignItems="center">
-                            <div className="circle">
+                            <div className="circle" style={{cursor: 'pointer'}}>
                                 <img src="/images/logo/kakao.png" alt="샘플 이미지" onClick={handleKakaoLogin}/>
                             </div>
-                            <div className="circle">
+                            <div className="circle" style={{cursor: 'pointer'}}>
                                 <img src="/images/logo/naver.png" alt="샘플 이미지" onClick={handleNaverLogin}/>
                             </div>
-                            <div className="circle">
+                            <div className="circle" style={{cursor: 'pointer'}}>
                                 <img src="/images/logo/google.png" alt="샘플 이미지" onClick={handleGoogleLogin}/>
                             </div>
                         </Grid>

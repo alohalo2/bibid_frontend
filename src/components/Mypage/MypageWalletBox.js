@@ -47,19 +47,27 @@ const MypageWalletBox = () => {
 
   return (  
     <div className='Mypage_WalletBoxContainer'>
-      <div className='Mypage_UserInfoTitle'>지갑 관리</div>
+      <div className='Mypage_UserInfoTitle'>
+        <h2>지갑 관리</h2>
+        </div>
         <div className='Mypage_WalletInfoContainer'>
           <div className='Mypage_WalletCredit'>
-            <div>금액</div>
-            <div>{accountDto.userMoney} 원</div>
+            <div>
+              <p>금액</p>
+            </div>
+            <div>
+              <p>{accountDto.userMoney} 원</p>
+            </div>
           </div>
-          <div className='Mypage_WalletBtn'>
+          {/* <div className='Mypage_WalletBtn'>
             <div className=''>충전버튼(임시)</div>
             <div className=''>출금버튼(임시)</div>
-          </div>
+          </div> */}
         </div>
         <div className='Mypage_WalletRecordLine'>
-          <div>결제 및 충전 내역</div>
+          <div>
+            <h3>결제 및 충전 내역</h3>
+          </div>
         </div>
         <div className='Mypage_WalletUsedContainer'>
           <div className='Mypage_WalletUsed'>

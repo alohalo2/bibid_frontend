@@ -8,6 +8,8 @@ import { IconButton } from '@mui/material';
 import axios from 'axios';
 import PlusIcon from '../../images/+_icon.svg';
 import MinusIcon from '../../images/-_icon.svg';
+import loadingImage from '../../images/로딩화면.gif'
+
 
 const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, infoExtension, sellerDetailInfo, auctionImages }) => {
   
@@ -202,7 +204,7 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
   };
 
   if (!auctionItem || !auctionBidInfo || !seller) {
-    return <div>Loading...</div>; // 데이터를 받기 전에 로딩 처리
+    return <div className='loading_image'><img src={loadingImage}></img></div>; // 데이터를 받기 전에 로딩 처리
   }
 
   // 남은시간 에서 사용할 남은 시간을 계산하는 함수
@@ -265,7 +267,7 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
               <p>{seller.nickname}의 등록된 경매: {parseInt(infoExtension[2])}건</p>
             </div>
             <div className="CID-merchant-link">
-              <button className='CID-seller-more-info-hvr' onClick={openSellerModal}>판매자 {seller.nickname} 의 정보 더보기</button>
+              <button className='CID-seller-more-info-hvr' onClick={openSellerModal}><p>판매자 {seller.nickname} 의 정보 더보기</p></button>
               {/* 첫 번째 모달 - open-seller-modal : 판매자 정보 더 보기 */}
               <Modal
                 isOpen={sellerModalOpen}
@@ -321,7 +323,9 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
                 </table>
 
                 {/* 확인 버튼 */}
-                <button className="CID-seller-modal-confirm-button" onClick={closeSellerModal}>확인</button>
+                <div className='CID-seller-modal-confirm-button-box'>
+                  <button className="CID-seller-modal-confirm-button" onClick={closeSellerModal}>확인</button>
+                </div>
               </Modal>
             </div>
           </div>
@@ -426,7 +430,7 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
           {/* 버튼 */}
           <div className="CID-bid-buttons">
             {/* 세 번째 모달 bidding-now-modal */}
-            <button className="CID-bid-button" onClick={openBiddingNowModal}>입찰하기</button>
+            <button className="CID-bid-button" onClick={openBiddingNowModal}><p>입찰하기</p></button>
             <Modal
               isOpen={biddingNowModalOpen}
               onRequestClose={closeBiddingNowModal}
@@ -440,18 +444,22 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
                 </div>
                 <div className="CID-bidding-now-modal-details">
                   <h3>{auctionItem.productName} 경매</h3>
-                  <p><strong className='bidding-now-modal-details-p'>경매 분류</strong> {auctionItem.category}</p>
-                  <p><strong className='bidding-now-modal-details-p'>입찰 희망가</strong> <span className="CID-highlight-red">{nowBiddingInfo.bidPrice.toLocaleString()} 원</span></p>
-                  <p><strong className='bidding-now-modal-details-p'>구매 예상가</strong> {parseInt(totalPrice).toLocaleString()} 원</p>
+                  <p><strong className='bidding-now-modal-details-p'>경매 분류 : </strong> {auctionItem.category}</p>
+                  <p><strong className='bidding-now-modal-details-p'>입찰 희망가 : </strong> <span className="CID-highlight-red">{nowBiddingInfo.bidPrice.toLocaleString()} 원</span></p>
+                  <p><strong className='bidding-now-modal-details-p'>구매 예상가 : </strong> {parseInt(totalPrice).toLocaleString()} 원</p>
                   <p className='bidding-now-modal-price-info'>(입찰 희망가 {nowBiddingInfo.bidPrice.toLocaleString()} 원 + 구매수수료 {parseInt(nowBiddingInfo.purchaseFee).toLocaleString()} 원)</p>
                 </div>
               </div>
-              <button className="CID-bidding-now-modal-bid-button" onClick={handleBidNow}>입찰하기</button>
+              <div className='CID-bidding-now-modal-bid-button-box'>
+                <button className="CID-bidding-now-modal-bid-button" onClick={handleBidNow}>
+                  입찰하기
+                </button>
+              </div>
             </Modal>
 
             {/* 네 번째 모달 buying-now-modal */}
             <button className="CID-bid-button buy-button" onClick={openBuyingNowModal}>
-              {nowBuyingInfo.buyNowPrice.toLocaleString()}  원으로 즉시 구매
+              <p>{nowBuyingInfo.buyNowPrice.toLocaleString()}  원으로 즉시 구매</p>
             </button>
             <Modal
               isOpen={buyingNowModalOpen}
@@ -466,13 +474,15 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
                   </div>
                   <div className="CID-bidding-now-modal-details">
                     <h3>{auctionItem.productName} 경매</h3>
-                    <p><strong className='bidding-now-modal-details-p'>경매 분류</strong> {auctionItem.category}</p>
-                    <p><strong className='bidding-now-modal-details-p'>즉시 구매가</strong> {nowBuyingInfo.buyNowPrice.toLocaleString()} 원</p>
-                    <p><strong className='bidding-now-modal-details-p'>총 결재금액</strong><span className="CID-highlight-red"> {paymentAccount.toLocaleString()}</span> 원</p>
+                    <p><strong className='bidding-now-modal-details-p'>경매 분류 : </strong> {auctionItem.category}</p>
+                    <p><strong className='bidding-now-modal-details-p'>즉시 구매가 : </strong> {nowBuyingInfo.buyNowPrice.toLocaleString()} 원</p>
+                    <p><strong className='bidding-now-modal-details-p'>총 결재금액 : </strong><span className="CID-highlight-red"> {paymentAccount.toLocaleString()}</span> 원</p>
                     <p className='biddng-now-modal-price-info'>(즉시 구매가 {nowBuyingInfo.buyNowPrice.toLocaleString()} 원 + 구매 수수료 {nowBuyingInfo.buyNowpurchaseFee.toLocaleString()} 원)</p>
                 </div>
                 </div>
-              <button className="CID-bidding-now-modal-bid-button" onClick={handleBuyNow}>즉시 구매</button>
+              <div className='CID-bidding-now-modal-bid-button-box'>
+                <button className="CID-bidding-now-modal-bid-button" onClick={handleBuyNow}>즉시 구매</button>
+              </div> 
             </Modal>
           </div>
         </div>

@@ -29,43 +29,63 @@ const MypageProfileModifyBox = ({ memberInfo }) => {
   return (
     <div className='Mypage_ProfileBoxContainer'>
       <div className='Mypage_TitleContainer'>
-        <div className='Mypage_UserInfoTitle'>회원정보 수정</div>
+        <div className='Mypage_UserInfoTitle'>
+          <h2>회원정보 수정</h2>
+        </div>
       </div>
       <div className='Mypage_UserInfoContainer'>
         <div className='Mypage_UserInfoDetail3'>
-          <div>이름</div>
+          <div className='Mypage_UserInfoDetail_title'>
+            <p>이름</p>
+          </div>
           <input type='text' className='rightOne2' value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className='Mypage_UserInfoDetail'>
-          <div>아이디</div>
+          <div className='Mypage_UserInfoDetail_title'>
+            <p>아이디</p>
+          </div>
           <input type='text' className='rightOne2' value={memberInfo.memberId} readOnly />
         </div>
         <div className='Mypage_UserInfoDetail'>
-          <div>비밀번호</div>
+          <div className='Mypage_UserInfoDetail_title'>
+            <p>비밀번호</p>
+          </div>
           <input type='password' className='rightOne2' placeholder='비밀번호를 입력하세요' value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <div className='Mypage_UserInfoDetail'>
-          <div>닉네임</div>
+          <div className='Mypage_UserInfoDetail_title'>
+            <p>닉네임</p>
+          </div>
           <input type='text' className='rightOne2' value={nickname} onChange={(e) => setNickname(e.target.value)} />
         </div>
         <div className='Mypage_UserInfoDetail'>
-          <div>휴대폰</div>
+          <div className='Mypage_UserInfoDetail_title'>
+            <p>휴대폰</p>
+          </div>
           <input type='text' className='rightOne2' value={memberPnum} onChange={(e) => setMemberPnum(e.target.value)} />
         </div>
         <div className='Mypage_UserInfoDetail'>
-          <div>이메일</div>
+          <div className='Mypage_UserInfoDetail_title'>
+            <p>이메일</p>
+          </div>
           <input type='email' className='rightOne2' value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className='Mypage_UserInfoDetail2'>
-          <div className='left-column'>주소</div>
+          <div className='left-column Mypage_UserInfoDetail_title'>
+            <p>주소</p>
+          </div>
           <div className='right-column'>
-            <input type='text' className='rightOne2' value={memberAddress} onChange={(e) => setMemberAddress(e.target.value)} />
-            <input type='text' className='rightTwo2' value={addressDetail} onChange={(e) => setAddressDetail(e.target.value)} />
+            <div className='right-column-top'>
+              <input type='text' className='rightOne2' value={memberAddress} onChange={(e) => setMemberAddress(e.target.value)} />
+            </div>
+            <div className='right-column-bottom'>
+              <input type='text' className='rightTwo2' value={addressDetail} onChange={(e) => setAddressDetail(e.target.value)} />
+            </div>
           </div>
         </div>
       </div>
       <div className='Mypage_ModifyBtnContainer'>
-        <div className='Mypage_UserInfoModifyBtn' onClick={handleModify}> 수정 완료 </div>
+        <button className='Mypage_UserInfoModifyBtn' onClick={handleModify}> 수정 완료 </button>
       </div>
     </div>
   )

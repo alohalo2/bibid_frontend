@@ -9,6 +9,8 @@
     gap: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .Mypage_SideBarContainer {
@@ -32,6 +34,13 @@
     flex-direction: column;
 }
 
+.Mypage_ProfileImgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
 .Mypage_ProfileImg {
     display: flex;
     width: 200px;
@@ -45,20 +54,79 @@
 }
 
 .Mypage_ProfileImgModifyBtn {
-    width: 40px;
-    height: 40px;
-    background-color: black;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    background-color: #e9e9e9;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    cursor: pointer;
+    bottom: 12px;
+    left: 150px;
+    transition: all 0.3s ease-in-out;
+}
+
+.Mypage_ProfileImgModifyBtn:hover {
+    background-color: #0A369D;
+    color: white;
+}
+
+.Mypage_ProfileImgModifyBtn img {
+    width: 18px;
+    height: 18px;
+    content: url('../../images/change_icon.svg');
+}
+
+.Mypage_ProfileImgModifyBtn:hover img {
+    content: url('../../images/white_change_icon.svg');
 }
 
 .Mypage_SideBarCategory {
     width: 300px;
     height: 500px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
 }
+
+.Mypage_SideBarCategory_List_Box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Mypage_SideBarCategory_List {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Mypage_SideBarCategory_List div {
+    transition: all 0.3s ease-in-out;
+}
+
+.Mypage_SideBarCategory_List div:hover {
+    transform: scale(1.2);
+}
+
+#remove_wallet_margin {
+    margin-bottom: 0;
+}
+
+.Mypage_SideBarCategory div {
+    height: auto;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.Mypage_SideBarCategory div p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
 
 .Mypage_ProfileBoxContainer {
     display: flex;
@@ -114,6 +182,21 @@
     align-items: center;
 }
 
+.right-column-top {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    width: 500px;
+}
+
+.right-column-bottom {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    width: 500px;
+    border-top: 1px solid #BFBFBF;
+}
+
 .rightOne {
     display: flex;
     width: 500px;
@@ -156,17 +239,30 @@
 .Mypage_UserInfoModifyBtn {
     display: flex;
     width: 100px;
-    height: 35px;
+    height: 40px;
     align-items: center;
     justify-content: center;
+    background-color: #D9D9D9;
+    color: black; 
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
 }
 
-.Mypage_AuctionInfoContainer {
+.Mypage_UserInfoModifyBtn:hover {
+    background-color: #0A369D;
+    color: white;
+}
+
+/* .Mypage_AuctionInfoContainer {
     display: flex;
     width: 800px;
     height: 800px;
     flex-direction: column;
-}
+} */
 
 .Mypage_WalletInfoContainer {
     display: flex;
@@ -181,6 +277,11 @@
     width: 300px;
     justify-content: space-between;
     align-items: center;
+}
+
+.Mypage_WalletCredit div p {
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .Mypage_WalletBtn {
@@ -251,6 +352,10 @@
     align-content: center;
 }
 
+.Mypage_WalletCard:hover {
+    background-color: #e2e2e2;
+}
+
 .Mypage_WalletCardLeft {
     display: flex;
     width: 100px;
@@ -319,11 +424,13 @@
     background-color: #D9D9D9;
     width: 100px;
     padding: 10px;
+    height: 40px;
     font-size: 16px;
     font-weight: 900;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
     transition: all 0.3s ease-in-out;
 }
 
@@ -339,7 +446,7 @@
     flex-direction: column;
     border: 2px solid #BFBFBF;
     border-radius: 5px;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -351,6 +458,18 @@
     height: 40px;
 }
 
+.Mypage_AuctionCategory_Title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Mypage_AuctionCategory_Title h3{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
 .Mypage_AuctionCategoryBtnContainer {
     display: flex;
     flex-direction: row;
@@ -359,14 +478,38 @@
     height: 40px;
 }
 
+.Mypage_AuctionCategoryBtnContainer button  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Mypage_AuctionCategoryBtnContainer button p {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
 .Mypage_AuctionCategoryBtn {
     display: flex;
     width: 300px;
     height: 40px;
-    border: solid 1px blue;
     border-radius: 5px;
     justify-content: center;
     align-items: center;
+    background-color: #D9D9D9; 
+    color: black;
+    font-weight: bold; 
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.Mypage_AuctionCategoryBtn:hover {
+    background-color: #0A369D;
+    color: white;
 }
 
 .Mypage_AuctionCardContinaer {
@@ -392,11 +535,15 @@
     display: flex;
     flex-direction: column;
     width: 800px;
-    height: 280px;
+    height: 300px;
     border: solid 2px #BFBFBF;
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.Mypage_AuctionCard:hover {
+    background-color: #e2e2e2;
 }
 
 .Mypage_AuctionProcess {
@@ -404,6 +551,8 @@
     flex-direction: row;
     justify-content: space-between;
     height: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-bottom: solid 1px #BFBFBF;
 }
 
@@ -421,7 +570,7 @@
 .Mypage_AuctionContentBox {
     display: flex;
     flex-direction: row;
-    height: 160px;
+    height: 170px;
     border-bottom: solid 1px #BFBFBF;
 }
 
@@ -432,6 +581,11 @@
     width: 180px;
 }
 
+.Mypage_AuctionCardType p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .Mypage_AuctionCardBtnCategory {
     display: flex;
     align-items: center;
@@ -440,13 +594,22 @@
 }
 
 .Mypage_AuctionCardBtn {
+    background-color: #D9D9D9;
+    color:black;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 160px;
-    height: 40px;
-    border: 1px solid blue;
-    border-radius: 5px;
+}
+
+.Mypage_AuctionCardBtn p {
+    font-weight: 600; 
+    font-size: 16px;   
 }
 
 .Mypage_AuctionContentImgBox {
@@ -492,12 +655,24 @@
     justify-content: start;
     align-items: center;
     align-content: center;
+    margin-bottom: 10px;
+}
+
+.Mypage_AuctionContentDetailTitle h3 {
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .Mypage_AuctionContentDetailContainer {
     display: flex;
     height: 110px;
     flex-direction: row;
+}
+
+.Mypage_AuctionContentDetailContainer p {
+    font-size: 16px;
+    font-weight: 600;
+
 }
 
 .Mypage_AuctionContentPrice, .Mypage_AuctionContentNumber {
@@ -537,6 +712,12 @@
     justify-content: center;
 }
 
+.Mypage_AuctionAlert div p {
+    font-size: 14px;
+    font-weight: 600;
+    color: red;
+}
+
 .Mypage_AuctionProcessLine {
     display: flex;
     flex-direction: column;
@@ -551,6 +732,11 @@
     width: 400px;
     height: 20px;
     justify-content: space-between;
+}
+
+.Mypage_AuctionProcessLineText p {
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .Mypage_AuctionManagementContinaer {
@@ -568,6 +754,11 @@
     align-items: center;
 }
 
+.Mypage_AuctionManagementBar div p {
+    font-size: 16px;
+    font-weight: 600;
+}
+
 .Mypage_AuctionManagementCard {
     display: flex;
     flex-direction: row;
@@ -577,6 +768,10 @@
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.Mypage_AuctionManagementCard:hover {
+    background-color: #e2e2e2;
 }
 
 .Mypage_AuctionManagementCardImgBox {
@@ -640,9 +835,20 @@
     justify-content: center;
     align-items: center;
     width: 50px;
-    height: 25px;
-    border: 1px solid blue;
+    height: 36px;
     border-radius: 5px;
+    background-color: #D9D9D9;
+    color: black;
+    font-weight: bold; 
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.Mypage_AuctionManagementCardDeleteBtn:hover {
+    background-color: #0A369D;
+    color: white;
 }
 
 .Mypage_AuctionManagementImg {
@@ -697,7 +903,7 @@
   .progress-container {
     width: 330px;
     height: 10px;
-    background: #e0e0e0;
+    background: #ccc;
     border-radius: 5px;
     position: relative;
   }
@@ -749,6 +955,16 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   }
   
+  .AuctionCardModal-content div h3 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .AuctionCardModal-content div p {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
   .AuctionCardModal-buttons {
     display: flex;
     justify-content: center;
@@ -756,6 +972,24 @@
     height: 60px;
   }
   
+.AuctionCardModal-buttons button {
+    width: 60px;
+    height: 36px;
+    background-color: #D9D9D9;
+    color: black; 
+    font-weight: bold; 
+    font-size: 1rem; 
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.AuctionCardModal-buttons button:hover {
+    background-color: #0A369D;
+    color: white;
+}
+
   .AuctionCardModal-buttons button {
     margin: 0 10px;
   }
@@ -767,4 +1001,47 @@
     width: 360px;
     height: 60px;
     border-bottom: 1px solid #BFBFBF; 
+  }
+
+  .Mypage_UserInfoDetail_title p {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .Mypage_UserInfoDetail_content p {
+    font-size: 18px;
+    display: block;
+  }
+
+  .MypageAuctionManagementCardTitle p {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .Mypage_AuctionManagementCardPrice p {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .Mypage_AuctionManagementCardBid p {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .Mypage_AuctionManagementCardPeriod p {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .Mypage_NoAuctionsMessage {
+    width: 100%;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Mypage_NoAuctionsMessage p {
+    font-size: 18px;
+    font-weight: 600;
   }

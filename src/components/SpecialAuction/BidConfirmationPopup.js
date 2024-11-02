@@ -25,9 +25,11 @@ function BidConfirmationPopup({ auction, webSocketProps, handleClosePopup }) {
               handleClosePopup(); // 입찰 후 팝업 닫기
             }}
           >
-            입찰하기
+            <p>입찰하기</p>
           </button>
-          <button onClick={handleClosePopup}>취소</button>
+          <button onClick={handleClosePopup}>
+            <p>취소</p>
+          </button>
         </div>
       </div>
     </div>

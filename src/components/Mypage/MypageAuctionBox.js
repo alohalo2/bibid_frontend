@@ -33,11 +33,15 @@ const MypageProfileBox = () => {
 
   return (
     <div className='Mypage_AuctionBoxContainer'>
-      <div className='Mypage_UserInfoTitle'>참여중인 경매</div>
+      <div className='Mypage_UserInfoTitle'>
+        <h2>참여중인 경매</h2>
+      </div>
       <div className='Mypage_AuctionMainContainer'>
           <div className='Mypage_AuctionInfoContainer'>
             <div className='Mypage_AuctionCategory'>
-              <div>카테고리 선택</div>
+              <div className='Mypage_AuctionCategory_Title'>
+                <h3>카테고리 선택</h3>
+              </div>
             </div>
             <div className='Mypage_AuctionCategoryBtnContainer'>
               <div
@@ -64,7 +68,9 @@ const MypageProfileBox = () => {
                 />
               ))
             ) : (
-              <div className='Mypage_NoAuctionsMessage'>입찰 중인 {selectedAuctionType}가 없습니다</div>
+              <div className='Mypage_NoAuctionsMessage'>
+                <p>입찰 중인 {selectedAuctionType}가 없습니다.</p>
+              </div>
             )}
             </div>
         </div>
