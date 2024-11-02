@@ -90,18 +90,14 @@ const Header = () => {
 
     const oauthType = useSelector(state => state.memberSlice.oauthType);
     const checkLoginState = useSelector(state => state.memberSlice.checkLoginState);
-    const role = useSelector(state => state.memberSlice.role);
 
     useEffect(() => {
 
-        console.log("로그인 상태 유지 선택 여부: " + checkLoginState);
-        console.log("현재 로그인 한 user role:" + role);
         dispatch(checkLogin());
 
-        if (role === "ROLE_USER") {
-
+        if (checkLoginState) {
             setToken(true);
-        } else if (role === "notLogin") {
+        } else {
             setToken(false);
         }
 
