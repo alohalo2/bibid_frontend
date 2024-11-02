@@ -9,7 +9,6 @@ export const Mainpage = () => {
 
     const nickname = useSelector(state => state.memberSlice.nickname);
 
-    console.log("nickname:" + nickname);
     return (
     <div className='mp'>
         <div className='mp_container_title'>

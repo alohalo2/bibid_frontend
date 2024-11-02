@@ -26,11 +26,9 @@ const Header = () => {
         // API 호출 함수
         const fetchMemberInfo = async () => {
             try {
-                console.log(memberIndex);
                 const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/mypage/userInfo/${memberIndex}`,
                     {withCredentials : true}
                 );
-                console.log("Fetched member info:", response.data.item);
                 setMemberInfo(response.data.item); // 응답에서 멤버 정보 저장
             } catch (error) {
                 console.error("Error fetching member info:", error); // 오류 처리

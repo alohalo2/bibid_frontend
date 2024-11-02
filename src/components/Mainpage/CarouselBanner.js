@@ -41,7 +41,7 @@ const CarouselBanner = () => {
 
   useEffect(() => {
     dispatch(getAuctionData("realtime"));
-    console.log("Fetching auction data...");
+    
   }, [dispatch]);
 
   // useEffect(() => {
