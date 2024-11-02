@@ -91,18 +91,18 @@ const Login = () => {
 
 
     const kakao_api_key = process.env.REACT_APP_KAKAO_API_KEY //REST API KEY
-    const kakao_redirect_uri = process.env.REACT_APP_KAKAO_REDIRECT_URI + `:3000/auth/kakao/callback` //Redirect URI
+    const kakao_redirect_uri = process.env.REACT_APP_KAKAO_REDIRECT_URI + `/auth/kakao/callback` //Redirect URI
     // oauth 요청 URL
     const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=` + kakao_api_key + `&redirect_uri=` + kakao_redirect_uri + `&response_type=code`
 
 
     const naver_api_key = process.env.REACT_APP_NAVER_API_KEY //REST API KEY
-    const naver_redirect_uri = process.env.REACT_APP_NAVER_REDIRECT_URI + ':3000/auth/naver/callback' //Redirect URI
+    const naver_redirect_uri = process.env.REACT_APP_NAVER_REDIRECT_URI + '/auth/naver/callback' //Redirect URI
     const state = 1234;
     const naverURL = `https://nid.naver.com/oauth2.0/authorize?client_id=` + naver_api_key + `&response_type=code&redirect_uri=` + naver_redirect_uri + `&state=${state}`
 
     const google_api_key = process.env.REACT_APP_GOOGLE_API_KEY
-    const google_redirect_uri = process.env.REACT_APP_GOOGLE_REDIRECT_URI + ':3000/auth/google/callback' //Redirect URI
+    const google_redirect_uri = process.env.REACT_APP_GOOGLE_REDIRECT_URI + '/auth/google/callback' //Redirect URI
     // const state = 1234;
     const googleURL = `https://accounts.google.com/o/oauth2/v2/auth?` +
         `client_id=` + google_api_key +

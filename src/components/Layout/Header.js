@@ -94,11 +94,12 @@ const Header = () => {
 
     useEffect(() => {
 
-        console.log(checkLoginState);
-
+        console.log("로그인 상태 유지 선택 여부: " + checkLoginState);
+        console.log("현재 로그인 한 user role:" + role);
         dispatch(checkLogin());
 
         if (role === "ROLE_USER") {
+
             setToken(true);
         } else if (role === "notLogin") {
             setToken(false);
