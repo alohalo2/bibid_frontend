@@ -126,17 +126,20 @@ const Header = () => {
 
     const oauthType = useSelector(state => state.memberSlice.oauthType);
     const checkLoginState = useSelector(state => state.memberSlice.checkLoginState);
+    const nickname = useSelector(state => state.memberSlice.nickname);
 
     useEffect(() => {
+        const fetchLoginStatus = async () => {
+            await dispatch(checkLogin());
 
-        dispatch(checkLogin());
+            if (checkLoginState) {
+                setToken(true);
+            } else {
+                setToken(false);
+            }
+        };
 
-        if (checkLoginState) {
-            setToken(true);
-        } else {
-            setToken(false);
-        }
-
+        fetchLoginStatus();
     }, [dispatch, checkLoginState]);
 
     const handleLogout = useCallback(async () => {

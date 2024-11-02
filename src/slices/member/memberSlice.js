@@ -36,7 +36,7 @@ const memberSlice = createSlice({
         addressDetail: '',
         name: '',
         memberPnum: '',
-        checkLoginState: '',
+        checkLoginState: false,
         profileImageDto: '',
         accountDto:''
     },
@@ -53,7 +53,6 @@ const memberSlice = createSlice({
         builder.addCase(login.fulfilled, (state, action) => {
             alert(`${action.payload.memberId}님 환영합니다.`);
 
-
             return {
                 ...state,
                 memberIndex: action.payload.memberIndex,
@@ -63,7 +62,7 @@ const memberSlice = createSlice({
                 profileImageDto : action.payload.profileImageDto,
                 accountDto : action.payload.accountDto,
                 isLogin: true,
-                role: action.payload.role
+                role: action.payload.role,
             };
         });
         builder.addCase(login.rejected, (state, action) => {
@@ -143,9 +142,6 @@ const memberSlice = createSlice({
         });
         builder.addCase(kakaoJwtToken.fulfilled, (state, action) => {
 
-
-
-
             return {
                 ...state,
                 isLogin: true,
@@ -208,7 +204,7 @@ const memberSlice = createSlice({
 
             return {
                 ...state,
-                checkLoginState: action.payload.item
+                checkLoginState: action.payload
             }
 
         })

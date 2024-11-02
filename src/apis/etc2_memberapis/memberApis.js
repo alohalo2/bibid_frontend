@@ -173,17 +173,21 @@ export const googleJwtToken = createAsyncThunk(
 export const checkLogin = createAsyncThunk(
     'auth/checkLogin',
     async (_, thunkApi) => {
+
+
         try {
             const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/auth/checkLogin`, {
                 withCredentials: true
             });
+            return response.data.item;
 
-            return response.data;
 
         } catch (e) {
             console.log("오류 발생");
             return thunkApi.rejectWithValue(e);
         }
+
+
     });
 
     // 프로필 이미지 업로드 액션
