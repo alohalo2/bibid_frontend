@@ -76,14 +76,20 @@ const Login = () => {
         }));
     }, []);
 
-    const handleLogin = useCallback(async(e) => {
+    const handleLogin = useCallback(async (e) => {
         e.preventDefault();
 
-         await dispatch(login(loginForm));
+        const resultAction = await dispatch(login(loginForm));
 
-        navi("/");
+        if (login.fulfilled.match(resultAction)) {
+            navi("/");
+        } else {
+            // 로그인 실패 처리 (예: 에러 메시지 표시 등)
+            console.error("로그인 실패:", resultAction.error.message);
+        }
 
     }, [loginForm, dispatch, navi]);
+
 
     const toggleShowMemberPw = () => {
         setShowMemberPw((prev) => !prev);
