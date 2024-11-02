@@ -4,6 +4,8 @@ import { getAuctionData } from '../../apis/SpecialAuction/SAapis';
 import { useSelector, useDispatch } from 'react-redux';
 import {   formatDateTime , formatAuctionTimeRange  } from '../../util/utils';
 import { useNavigate } from 'react-router-dom'; 
+import leftArrow from '../../images/white_left_arrow_icon.svg'
+import rightArrow from '../../images/white_right_arrow_icon.svg'
 import ad1 from '../../images/mainpage_ad_image1.png'
 import ad2 from '../../images/mainpage_ad_image2.gif'
 import ad3 from '../../images/mainpage_ad_image3.png'
@@ -51,30 +53,28 @@ const CarouselBanner = () => {
   // }, [liveAuctionList]);
 
   useEffect(() => {
-    console.log("liveAuctionList:", liveAuctionList);
-  
-    if (liveAuctionList && liveAuctionList.length > 0 && carouselData.length === 0) { 
-      // liveAuctionList가 비어있지 않고, carouselData가 아직 설정되지 않은 경우에만 실행
+    if (liveAuctionList && liveAuctionList.length > 0) {
+      // liveAuctionList와 images 배열을 합쳐 carouselData 생성
       const data = liveAuctionList.map((auction, index) => ({
-        url: images[index % images.length], // 로컬 이미지 사용
+        url: images[index % images.length], // 로컬 이미지와 매핑
         title: auction.productName,
         auctionDate: formatDateTime(auction.startingLocalDateTime),
         auctionTime: formatAuctionTimeRange(auction.startingLocalDateTime, auction.endingLocalDateTime),
       }));
       setCarouselData(data);
-      console.log("carouselData:", data); // carouselData 확인
+      console.log("carouselData:", data);
     }
-  }, [liveAuctionList, images]);
+  }, [liveAuctionList]);
 
   useEffect(() => {
     let interval;
-    if (isPlaying) {
+    if (isPlaying && carouselData.length > 0) {
       interval = setInterval(() => {
         nextSlide();
       }, 3000);
     }
     return () => clearInterval(interval);
-  }, [isPlaying]);
+  }, [isPlaying, carouselData.length]);
 
   // useEffect(() => {
   //   if (currentIndex >= images.length) {
@@ -114,7 +114,7 @@ const CarouselBanner = () => {
     setIsPlaying((prev) => !prev);
   };
 
-  const currentSlideNumber = currentIndex >= images.length ? 0 : currentIndex;
+  const currentSlideNumber = carouselData.length > 0 ? currentIndex : 0; 
   const currentContent = carouselData[currentIndex];
 
   const handleSAGoButtonClick = () => {
@@ -123,6 +123,8 @@ const CarouselBanner = () => {
 
   return (
         <div className="CB_carousel">
+        {carouselData.length > 0 && (
+          <>
           <div
             className="CB_carousel-inner"
             style={{
@@ -150,11 +152,15 @@ const CarouselBanner = () => {
           <div className='CB_carousel-pad-container'>
                 <div className='CB_carousel-pad1'>
                     <button className='CB_carousel-num'>{currentSlideNumber + 1} / {images.length}</button>
-                    <button className="CB_carousel-control prev" onClick={prevSlide}>❮</button>
-                    <button className="CB_carousel-control next" onClick={nextSlide}>❯</button>
+                    <button className="CB_carousel-control prev" onClick={prevSlide}>
+                      <img src={leftArrow}></img>
+                    </button>
+                    <button className="CB_carousel-control next" onClick={nextSlide}>
+                      <img src={rightArrow}></img>
+                    </button>
                     <button className="CB_carousel-toggle" onClick={togglePlayPause}>
                       <img
-                          src={`/images/${isPlaying ? 'MP_stop_icon.svg' : 'MP_play_icon.svg'}`}
+                          src={`/images/${isPlaying ? 'stop_icon.svg' : 'play_icon.svg'}`}
                           alt={isPlaying ? 'Pause' : 'Play'}
                           style={{ width: '15px', height: '15px' }}
                         />
@@ -172,6 +178,8 @@ const CarouselBanner = () => {
                   </div>
                 )}
             </div>
+            </>
+          )}
         </div>
     );
 };

@@ -21,11 +21,12 @@ const FindBlock = styled.div`
     display: flex;
     width: 25rem;
     border-radius: 10px;
-    background-color: #bfbfbf;
+    background-color: #f1f1f1;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    border: 1px solid #cdcdcd;
 `;
 
 const CenteredContainer = styled.div`
@@ -200,10 +201,18 @@ const FindMember = () => {
                                     name="transport-button"
                                     variant="contained"
                                     type="submit"
-                                    style={{
+                                    sx={{
                                         backgroundColor: "#2196F3",
                                         height: "43px",
-                                        fontSize: "18px"
+                                        fontSize: "18px",
+                                        backgroundColor: '#D9D9D9', 
+                                        color: 'black', 
+                                        fontWeight: 'bold', 
+                                        transition: 'all 0.3s ease-in-out',
+                                        '&:hover': {
+                                        backgroundColor: "#0A369D", // hover 시 배경색 변경
+                                        color: 'white'
+                                        }
                                     }}
                                     fullWidth
                                     id='emailButton'
@@ -235,11 +244,18 @@ const FindMember = () => {
                                     name="transport-button"
                                     variant="contained"
                                     type="submit"
-                                    style={{
+                                    sx={{
                                         margin: '10px 0',
-                                        backgroundColor: "#2196F3",
                                         height: "43px",
-                                        fontSize: "18px"
+                                        fontSize: "18px",
+                                        backgroundColor: '#D9D9D9', 
+                                        color: 'black', 
+                                        fontWeight: 'bold', 
+                                        transition: 'all 0.3s ease-in-out',
+                                        '&:hover': {
+                                        backgroundColor: "#0A369D", // hover 시 배경색 변경
+                                        color: 'white'
+                                        }
                                     }}
                                     fullWidth
                                 >
