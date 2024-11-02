@@ -1,12 +1,16 @@
 import React from 'react';
 import {Container, Button, Typography, Grid2} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import {useSelector} from "react-redux";
 
 const RegistrationStep4 = ({ memberInfo }) => {
 
     const navi = useNavigate();
 
-  return (
+    const nickname = useSelector(state => state.memberSlice.nickname);
+
+
+    return (
 
     <Container maxWidth="lg">
 
@@ -28,7 +32,7 @@ const RegistrationStep4 = ({ memberInfo }) => {
 
               {/* Subtext */}
               <Grid2 item size={12} sx={{textAlign:'center', fontWeight: 'bold', my: 2, fontSize:'1.2rem'}}>
-                  {memberInfo.nickname}님의 물품이<br />
+                  {nickname}님의 물품이<br />
                   성공적으로 등록되었습니다.
               </Grid2>
 

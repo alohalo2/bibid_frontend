@@ -18,17 +18,9 @@ const useFCM = () => {
     const messaging = getMessaging(app);
 
     getToken(messaging, { vapidKey: 'BEf_MikZXgP_iPv4KalJC2ED6HB70_ybhMQ3PyLqCh6SwHy76fNzsb1ucQZSmlHD0xA6foYKoIhdTTnj-IbEu7k' }).then((currentToken) => {
-      if (currentToken) {
-        console.log('FCM Token:', currentToken);
-      } else {
-        console.log('FCM 토큰을 가져올 수 없습니다.');
-      }
+
     }).catch((err) => {
       console.log('FCM 토큰 가져오기 중 오류 발생:', err);
-    });
-
-    onMessage(messaging, (payload) => {
-      console.log('메시지 수신:', payload);
     });
   }, []);
 };

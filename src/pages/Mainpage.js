@@ -3,9 +3,14 @@ import '../css/Mainpage.css';
 import { BestProduct } from '../components/Category/BestProduct';
 import Conveyor from '../components/Category/Conveyor';
 import CarouselBanner from '../components/Mainpage/CarouselBanner';
+import {useSelector} from "react-redux";
 
 export const Mainpage = () => {
-  return (
+
+    const nickname = useSelector(state => state.memberSlice.nickname);
+
+    console.log("nickname:" + nickname);
+    return (
     <div className='mp'>
         <div className='mp_container_title'>
           <h2>실시간경매</h2>

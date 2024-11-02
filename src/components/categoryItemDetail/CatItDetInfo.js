@@ -5,8 +5,7 @@ import loadingImage from '../../images/로딩화면.gif'
 
 const CatItDetInfo = ({ auctionNumber, auctionItem, auctionImages }) => {
 
-  console.log("== CatItDetInfo 실행 ==")
-  
+
   const [activeTab, setActiveTab] = useState('info'); // 독립적인 activeTab 상태
 
 

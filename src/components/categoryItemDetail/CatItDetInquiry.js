@@ -32,12 +32,9 @@ const CatItDetInquiry = () => {
       content: inquiryContent,
     };
 
-    console.log('inquiryType: '+ data.type);
-    console.log('inquiryTitle: '+ inquiryTitle);
-    console.log('inquiryContent: '+ inquiryContent);
 
     try {
-      const response = await fetch('https://localhost:3000/CategoryItemDetail/', {
+      const response = await fetch(process.env.REACT_APP_FRONT_SERVER + `:3000/CategoryItemDetail/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

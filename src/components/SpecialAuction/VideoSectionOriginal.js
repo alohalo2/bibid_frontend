@@ -59,7 +59,6 @@ const VideoSectionOriginal = ({
   const videoRef = useRef(null);
   // const navigate = useNavigate();
 
-  console.log(`streamingUrl 배열 ${JSON.stringify(streamingUrl)}`);
 
   useEffect(() => {
     if (streamingUrl && streamingUrl.length > 0) {
@@ -84,7 +83,6 @@ const VideoSectionOriginal = ({
     // 컴포넌트가 언마운트될 때 실행되는 로직
     return () => {
       if (stompClient && stompClient.connected) {
-        console.log(stompClient);
         const token = Cookies.get('ACCESS_TOKEN');
         stompClient.send(`/app/sendMsg/${lectureId}/leave`, {
           Authorization: "Bearer " + token,
@@ -118,7 +116,6 @@ const VideoSectionOriginal = ({
           },
         }
       );
-      console.log(response.data.item);
       sessionStorage.removeItem("channelInfo");
       alert("방송이 정상적으로 종료되었습니다.");
       setTimeout(() => {

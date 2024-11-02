@@ -9,7 +9,6 @@ import NotificationRenderer from '../notification/NotificationRenderer';
 const Alarm = () => {
   const notifications = useSelector((state) => state.notificationSlice.notifications);
 
-  console.log(notifications);
   const [showNotifications, setShowNotifications] = useState(false);
   const [selectedTab, setSelectedTab] = useState('전체');
   const navigate = useNavigate();

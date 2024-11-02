@@ -13,10 +13,7 @@ import loadingImage from '../../images/로딩화면.gif'
 
 const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, infoExtension, sellerDetailInfo, auctionImages }) => {
   
-  console.log("== CatItDetMain 실행 ==");
-  console.log("입찰하기와 즉시구매 데이터 넘기는 api 만들어라 기본적으로 auctionInfo에 데이터 넣되, 즉시구매는 + 옥션테이블상태변경");
-
-  const [mainImage, setMainImage] = useState(null);
+   const [mainImage, setMainImage] = useState(null);
   const [thumbnails, setThumbnails] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -116,21 +113,16 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
       userBiddingPrice: bidAmount,
       userBiddingTotalPrice: totalPrice
     };
-    
-    console.log('카테고리: ' + biddingData.userBiddingCategory);
-    console.log('입찰 아이템: ' + biddingData.userBiddingItemName);
-    console.log('희망 입찰가: ' + biddingData.userBiddingPrice);
-    console.log('구매 예상가: ' + biddingData.userBiddingTotalPrice);
+
 
     // 백엔드로 데이터 전송
-    axios.post(`http://localhost:8080/auctionDetail/category-item-detail/${auctionItem.auctionIndex}`, biddingData, {
+    axios.post(`${process.env.REACT_APP_BACK_SERVER}/auctionDetail/category-item-detail/${auctionItem.auctionIndex}`, biddingData, {
       headers: {
         'Content-Type': 'application/json', // 요청의 콘텐츠 타입을 JSON으로 지정
       },
       withCredentials : true
     })
     .then((response) => {
-      console.log('Success:', response.data); // 성공 시 서버로부터 응답 데이터 출력
       alert('입찰이 성공적으로 전송되었습니다.');
       closeBiddingNowModal();
       window.location.href = `/category-itemdetail/${auctionItem.auctionIndex}`;
@@ -182,19 +174,14 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
       userBiddingTotalPrice: paymentAccount,
     };
 
-    console.log('카테고리: ' + buyingData.userBiddingCategory);
-    console.log('즉시구매아이템: ' + buyingData.userBiddingItemName);
-    console.log('즉시구매가: ' + buyingData.userBiddingPrice);
-    console.log('즉시구매 결재금액: ' + buyingData.userBiddingTotalPrice);
 
     // 백엔드로 데이터 전송
-    axios.post(`http://localhost:8080/auctionDetail/category-item-detail/${auctionItem.auctionIndex}`, buyingData, {
+    axios.post(`${process.env.REACT_APP_BACK_SERVER}/auctionDetail/category-item-detail/${auctionItem.auctionIndex}`, buyingData, {
       headers: {
         'Content-Type': 'application/json', // 요청의 콘텐츠 타입을 JSON으로 지정
       }
     })
     .then((response) => {
-      console.log('Success:', response.data); // 성공 시 서버로부터 응답 데이터 출력
       alert('즉시 구매가 성공적으로 전송되었습니다.');
       closeBuyingNowModal();
     })

@@ -6,7 +6,7 @@ export const getProductsByCategory = createAsyncThunk(
     'products/getByCategory',
     async (category, thunkApi) => {
         try {
-            const response = await axios.get(`http://localhost:8080/category/${category}`, {
+            const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/category/${category}`, {
                 headers: {
                     Authorization: `Bearer ${sessionStorage.getItem('ACCESS_TOKEN')}`
                 }
@@ -23,7 +23,7 @@ export const getBoards = createAsyncThunk(
     'products/getBoards',
     async (searchObj, thunkApi) => {
         try {
-            const response = await axios.get('http://localhost:8080/auction', {
+            const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/auction`, {
                 // headers: {
                 //     Authorization: `Bearer ${sessionStorage.getItem('ACCESS_TOKEN')}`
                 // },
@@ -33,7 +33,7 @@ export const getBoards = createAsyncThunk(
                     page: searchObj.page
                 }
             });
-            console.log("받아온 데이터:", response.data);
+
             return response.data;
         } catch(e) {
             return thunkApi.rejectWithValue(e);

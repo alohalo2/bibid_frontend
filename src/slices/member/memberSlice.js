@@ -36,7 +36,7 @@ const memberSlice = createSlice({
         addressDetail: '',
         name: '',
         memberPnum: '',
-        checkLoginState: '',
+        checkLoginState: false,
         profileImageDto: '',
         accountDto:''
     },
@@ -53,8 +53,6 @@ const memberSlice = createSlice({
         builder.addCase(login.fulfilled, (state, action) => {
             alert(`${action.payload.memberId}님 환영합니다.`);
 
-            console.log(action.payload);
-
             return {
                 ...state,
                 memberIndex: action.payload.memberIndex,
@@ -64,7 +62,7 @@ const memberSlice = createSlice({
                 profileImageDto : action.payload.profileImageDto,
                 accountDto : action.payload.accountDto,
                 isLogin: true,
-                role: action.payload.role
+                role: action.payload.role,
             };
         });
         builder.addCase(login.rejected, (state, action) => {
@@ -84,11 +82,14 @@ const memberSlice = createSlice({
             return {
                 ...state,
                 memberIndex: 0,
+                memberId: '',
                 nickname: '',
                 token: '',
+                profileImageDto : '',
+                accountDto : '',
                 isLogin: false,
-                checkLoginState: "notLogin",
-                role:''
+                role: '',
+                checkLoginState: ''
             }
         });
         builder.addCase(logout.rejected, (state, action) => {
@@ -140,9 +141,6 @@ const memberSlice = createSlice({
             return state;
         });
         builder.addCase(kakaoJwtToken.fulfilled, (state, action) => {
-
-            console.log(action.payload);
-
 
             return {
                 ...state,
@@ -204,9 +202,10 @@ const memberSlice = createSlice({
         });
         builder.addCase(checkLogin.fulfilled, (state, action) => {
 
+            console.log(action.payload);
             return {
                 ...state,
-                checkLoginState: action.payload.item
+                checkLoginState: action.payload
             }
 
         })
@@ -226,8 +225,6 @@ const memberSlice = createSlice({
         });
 
         builder.addCase(chargeAccount.fulfilled, (state, action) => {
-
-            console.log(action.payload);
 
             return{
                 ...state,
@@ -274,7 +271,6 @@ const memberSlice = createSlice({
 
         builder.addCase(fetchMember.fulfilled, (state, action) => {
 
-            console.log(action.payload);
 
             return {
                 ...state,

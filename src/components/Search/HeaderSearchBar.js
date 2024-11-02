@@ -18,7 +18,6 @@ const HeaderSearchBar = () => {
 
     const handleChangeSearchKeyword = useCallback((e) => {
         dispatch(changeSearchKeyword(e.target.value));
-        console.log(e.target.value);
     }, [dispatch]);
 
     const handleSearch = useCallback((e) => {

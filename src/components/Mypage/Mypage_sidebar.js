@@ -13,7 +13,6 @@ const Mypage_sidebar = () => {
 	const location = useLocation();
 
 	useEffect(() => {
-		// console.log(location.pathname);
 		switch(location.pathname){
 			case '/mypage/info':
 			case '/mypage/update':

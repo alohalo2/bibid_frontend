@@ -19,7 +19,6 @@ const participants = {};
 
 // 서버가 사용자로부터 연결을 받았을 때
 io.on('connection', (socket) => {
-  console.log('사용자가 연결되었습니다:', socket.id);
 
   // 클라이언트로부터 메시지 수신
   socket.on('sendMessage', (messageData) => {
@@ -41,7 +40,6 @@ io.on('connection', (socket) => {
     // 해당 경매 방의 모든 클라이언트에게 현재 참여자 수를 브로드캐스트
     io.to(auctionIndex).emit('participantCount', { count: participants[auctionIndex].size });
 
-    console.log(`경매 ${auctionIndex}에 참여자 추가: ${socket.id}. 현재 참여자 수: ${participants[auctionIndex].size}`);
   });
   
   // 사용자가 특정 경매에서 떠날 때
@@ -57,13 +55,11 @@ io.on('connection', (socket) => {
         delete participants[auctionIndex]; // 더 이상 참여자가 없으면 경매 삭제
       }
 
-      console.log(`경매 ${auctionIndex}에서 참여자 제거: ${socket.id}. 현재 참여자 수: ${participants[auctionIndex].size || 0}`);
     }
   });
   
   // 연결 해제될 때
   socket.on('disconnect', () => {
-    console.log('사용자가 연결 해제되었습니다:', socket.id);
     // 모든 경매에 대해 해당 사용자를 제거
     for (const auctionIndex in participants) {
       if (participants[auctionIndex].has(socket.id)) {
@@ -76,7 +72,6 @@ io.on('connection', (socket) => {
           delete participants[auctionIndex];
         }
 
-        console.log(`경매 ${auctionIndex}에서 사용자가 퇴장했습니다: ${socket.id}`);
       }
     }
   });
@@ -85,7 +80,6 @@ io.on('connection', (socket) => {
 
 const PORT = 3000;
 server.listen(PORT, () => {
-  console.log(`서버가 포트 ${PORT}에서 실행 중입니다.`);
 });
 
 app.get('/api/user-type', (req, res) => {

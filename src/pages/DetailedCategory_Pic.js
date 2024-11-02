@@ -15,7 +15,7 @@ const DetailedCategory_Pic = () => {
 
   const fetchBestProducts = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/auction/category/사진`, {
+      const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/auction/category/사진`, {
         params: { page: page }
       });
 
@@ -27,7 +27,7 @@ const DetailedCategory_Pic = () => {
         
         // 남은 데이터가 5개 미만이면 더 이상 불러오지 않도록 설정
         setHasMore(data.length === itemsPerPage);
-        console.log(data)
+
       } else {
         console.error('상품 가져오기 실패');
         setHasMore(false);

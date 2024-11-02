@@ -19,41 +19,6 @@ const Header = () => {
     const dispatch = useDispatch();
     const navi = useNavigate();
 
-    const [memberInfo, setMemberInfo] = useState(null);
-    const memberIndex = useSelector((state) => state.memberSlice.memberIndex); 
-
-    useEffect(() => {
-        // API 호출 함수
-        const fetchMemberInfo = async () => {
-          try {
-            console.log(memberIndex);
-            const response = await axios.get(`http://localhost:8080/mypage/userInfo/${memberIndex}`);
-            console.log("Fetched member info:", response.data.item);
-            setMemberInfo(response.data.item); // 응답에서 멤버 정보 저장
-          } catch (error) {
-            console.error("Error fetching member info:", error); // 오류 처리
-          }
-        };
-    
-        if (memberIndex) {
-          fetchMemberInfo(); // memberIndex가 있을 때만 호출
-        }
-      }, [memberIndex]);
-
-    const bucketName = process.env.REACT_APP_BUCKET_NAME;
-    const member = useSelector((state) => state.memberSlice);
-    const accountDto = useSelector((state) => state.memberSlice.accountDto);
-
-    const [profileImageDto, setProfileImageDto] = useState(member.profileImageDto);
-
-    const imageSrc = profileImageDto && profileImageDto.filepath && profileImageDto.newfilename
-    ? `https://kr.object.ncloudstorage.com/${bucketName}/${profileImageDto.filepath}${profileImageDto.newfilename}`
-    : '/default_profile.png'; // 기본 이미지 경로 설정
-
-    useEffect(() => {
-        setProfileImageDto(member.profileImageDto);
-    }, [member.profileImageDto]);
-
     const [boxHeight, setBoxHeight] = useState('auto'); // 초기 높이 설정
     const [showWalletPopup, setShowWalletPopup] = useState(false); // 지갑 팝업 상태
 
@@ -163,30 +128,35 @@ const Header = () => {
 
     const oauthType = useSelector(state => state.memberSlice.oauthType);
     const checkLoginState = useSelector(state => state.memberSlice.checkLoginState);
+    const nickname = useSelector(state => state.memberSlice.nickname);
 
     useEffect(() => {
+        const fetchLoginStatus = async () => {
+            await dispatch(checkLogin());
 
-        dispatch(checkLogin());
+            if (checkLoginState) {
+                setToken(true);
+            } else {
+                setToken(false);
+            }
+        };
 
-        if (checkLoginState === "ROLE_USER") {
-            setToken(true);
-        } else if (checkLoginState === "notLogin") {
-            setToken(false);
-        }
-
+        fetchLoginStatus();
     }, [dispatch, checkLoginState]);
-
-
-
 
     const handleLogout = useCallback(async () => {
 
-        await dispatch(logout());
+        try {
+            await dispatch(logout());
+            setToken(false);
+        } catch (e) {
+            alert("로그아웃 실패");
+        }
 
         if (oauthType === "Kakao") {
             const kakaoLogoutParams = {
                 client_id: "29e81fa9fda262c573f312af9934fa5c",
-                logout_redirect_uri: "http://localhost:3000/"
+                logout_redirect_uri: process.env.REACT_APP_FRONT_SERVER
             }
 
             const url = 'https://kauth.kakao.com/oauth/logout';

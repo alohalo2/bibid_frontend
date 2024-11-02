@@ -60,7 +60,6 @@ const JoinToken = () => {
 
             if (userConfirmed) {
                 // dispatch(oauthLogin());
-                console.log(oauthToken);
                 navi('/'); // 조건이 충족되면 네비게이션
             } else {
                 return;
