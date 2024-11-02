@@ -131,9 +131,9 @@ const Header = () => {
 
         dispatch(checkLogin());
 
-        if (checkLoginState === "ROLE_USER") {
+        if (checkLoginState) {
             setToken(true);
-        } else if (checkLoginState === "notLogin") {
+        } else {
             setToken(false);
         }
 
