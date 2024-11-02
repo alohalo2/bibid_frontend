@@ -27,7 +27,9 @@ const Header = () => {
         const fetchMemberInfo = async () => {
             try {
                 console.log(memberIndex);
-                const response = await axios.get(`http://localhost:8080/mypage/userInfo/${memberIndex}`);
+                const response = await axios.get(`http://localhost:8080/mypage/userInfo/${memberIndex}`,
+                    {withCredentials : true}
+                );
                 console.log("Fetched member info:", response.data.item);
                 setMemberInfo(response.data.item); // 응답에서 멤버 정보 저장
             } catch (error) {
