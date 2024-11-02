@@ -1,11 +1,16 @@
 import React from 'react';
 import { Container, TextField, Button, Typography, Grid2, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import axios from 'axios';
+import {useSelector} from "react-redux";
 
 const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep, memberInfo }) => {
+  const nickname = useSelector(state => state.memberSlice.nickname);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+
+    console.log("nickname RegistrationStep3:" + nickname);
 
     // 확인 메시지 표시
     const userConfirmed = window.confirm("현재까지의 정보로 물품이 등록됩니다. 괜찮으시겠습니까?");
@@ -168,7 +173,7 @@ const RegistrationStep3 = ({ formData, setFormData, nextStep, prevStep, memberIn
           </Grid2>
 
           <Grid2 size={12} sx={{ fontWeight: 'bold', my: '5px' }}>
-            • 판매자 {memberInfo.nickname}은(는) 이용약관을 준수해야 하며, 등록된 경매에 대한 모든 법적 책임은 {memberInfo.nickname}에게 있습니다.
+            • 판매자 {nickname}은(는) 이용약관을 준수해야 하며, 등록된 경매에 대한 모든 법적 책임은 {nickname}에게 있습니다.
           </Grid2>
 
           <Grid2 size={12} sx={{ fontWeight: 'bold', my: '5px' }}>

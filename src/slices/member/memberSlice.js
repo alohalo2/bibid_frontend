@@ -226,8 +226,6 @@ const memberSlice = createSlice({
 
         builder.addCase(chargeAccount.fulfilled, (state, action) => {
 
-
-
             return{
                 ...state,
                 accountDto : action.payload
