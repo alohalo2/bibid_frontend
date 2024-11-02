@@ -192,6 +192,7 @@ const Header = () => {
             window.location.href = `${url}?client_id=${kakaoLogoutParams.client_id}&logout_redirect_uri=${kakaoLogoutParams.logout_redirect_uri}`;
         }
         window.location.href = '/';
+        console.log(" 토큰상태:" + token);
 
     }, [dispatch, oauthType]);
 
