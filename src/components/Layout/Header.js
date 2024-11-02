@@ -278,15 +278,15 @@ const Header = () => {
                                     <li><a onClick={handleLogout}>로그아웃</a></li>
                                 </ul>
                                 <div className="HDnavbarAlarm" style={{marginRight: '40px', position: 'relative'}}
-                                     onMouseOver={handleMouseOverWallet}
-                                     onMouseLeave={handleMouseLeaveWallet}
-                                     >
+                                    onMouseOver={handleMouseOverWallet}
+                                    onMouseLeave={handleMouseLeaveWallet}
+                                    >
                                     <img
-                                        src={imageSrc}
+                                        src={profileImageDto ? imageSrc : profileDefault}
                                         alt="My Page"
                                         style={{ cursor: 'pointer', border: '1px solid #cdcdcd', borderRadius: '50%' }}
                                         onClick={handleMypage}
-                                        />
+                                    />
 
                                     {showWalletPopup && (
                                         <div className="HDwalletPopup">
