@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../css/Mypage/Mypage.css';
 import MypageAuctionProcessLine from './MypageAuctionProcessLine';
+import axios from 'axios';
 
 const MypageAuctionCard = ({auction}) => {
 
@@ -16,6 +17,23 @@ const MypageAuctionCard = ({auction}) => {
   const lastBidAmount = auction.auctionInfoDtoList && auction.auctionInfoDtoList.length > 0
     ? auction.auctionInfoDtoList[auction.auctionInfoDtoList.length - 1].bidAmount
     : 0;
+
+     // 구매 확정 처리 함수
+  const handleConfirmPurchase = async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:8080/account/confirm', // API 경로
+        auction, // auction 객체 전송
+        { withCredentials: true } // 인증 정보 포함
+      );
+      if (response.status === 200) {
+        alert('구매가 성공적으로 확정되었습니다.');
+      }
+    } catch (error) {
+      console.error('구매 확정 중 오류가 발생했습니다:', error);
+      alert('구매 확정 중 오류가 발생했습니다. 다시 시도해 주세요.');
+    }
+  };
 
   return (
     <div className='Mypage_AuctionCard'>
@@ -50,7 +68,7 @@ const MypageAuctionCard = ({auction}) => {
                   <div className='Mypage_AuctionContenttext'>
                     <p>{lastBidAmount.toLocaleString()} 원</p>
                   </div>
-              </div>  
+              </div>
               <div className='Mypage_AuctionContentNumber'>
                   <div className='Mypage_AuctionContenttitle'>
                     <p>경매번호</p>
@@ -70,14 +88,14 @@ const MypageAuctionCard = ({auction}) => {
             </div>
         </div>
         <div className='Mypage_AuctionContentBtnCategory'>
-          <div className='Mypage_AuctionContentBtnBox'>
-            <button className='Mypage_AuctionCardBtn'>
-              <p>구매 확정</p>
-            </button>
-            <button className='Mypage_AuctionCardBtn'>
-              <p>거래 취소</p>
-            </button>
-          </div>
+            <div className='Mypage_AuctionContentBtnBox'>
+                <button className='Mypage_AuctionCardBtn' onClick = {handleConfirmPurchase}>
+                    <p>구매 확정</p>
+                </button>
+                <button className='Mypage_AuctionCardBtn'>
+                    <p>거래 취소</p>
+                </button>
+            </div>
         </div>
       </div>
       <div className='Mypage_AuctionAlert'>

@@ -32,8 +32,7 @@ const HeaderSearchBar = () => {
             localStorage.setItem('searchKeyword', searchKeyword);
             
             // /search로 이동
-            navigate('/search');
-            window.location.reload();
+            window.location.href = '/search';
         }
     }, [dispatch, searchCondition, searchKeyword, navigate]);
 

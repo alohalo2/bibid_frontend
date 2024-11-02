@@ -36,8 +36,7 @@ function BuyerAuctionScreen({
    
     fetchChannelInfo();
   }, [auction.auctionIndex]);
-
-
+  
 
   const [isSoundOn, setIsSoundOn] = useState(true); // 사운드 상태 관리
   const [showAuctionInfo, setShowAuctionInfo] = useState(false);

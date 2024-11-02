@@ -70,9 +70,13 @@ const MypageWalletBox = () => {
           </div>
         </div>
         <div className='Mypage_WalletUsedContainer'>
-          <div className='Mypage_WalletUsed'>
+        <div className='Mypage_WalletUsed'>
+          {accountDto.accountUseHistoryDtoList && accountDto.accountUseHistoryDtoList.length > 0 ? (
             <MypageWalletRecordBox records={accountDto.accountUseHistoryDtoList} />
-          </div>
+          ) : (
+            <div className='Mypage_NoRecord'>이용 기록이 없습니다.</div>
+          )}
+        </div>
         </div>
         <div className='Mypage_BttnBox'>
           <button className='Mypage_Bttn' onClick={handleChargeAccount}>충전</button>

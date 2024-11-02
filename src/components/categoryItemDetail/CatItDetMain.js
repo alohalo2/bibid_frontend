@@ -145,7 +145,7 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
 
 
   // 즉시구매가 설정
-  const [buyNowPrice, setBuyNowPrice] = useState(999999999);
+  const [buyNowPrice, setBuyNowPrice] = useState(0);
 
   useEffect(() => {
     // auctionItem이 업데이트될 때마다 bidAmount를 설정
@@ -458,9 +458,11 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
             </Modal>
 
             {/* 네 번째 모달 buying-now-modal */}
-            <button className="CID-bid-button buy-button" onClick={openBuyingNowModal}>
-              <p>{nowBuyingInfo.buyNowPrice.toLocaleString()}  원으로 즉시 구매</p>
-            </button>
+            {auctionItem.instantPurchasePrice !== null && (
+              <button className="CID-bid-button buy-button" onClick={openBuyingNowModal}>
+                  <p>{nowBuyingInfo.buyNowPrice.toLocaleString()} 원으로 즉시 구매</p>
+              </button>
+            )}
             <Modal
               isOpen={buyingNowModalOpen}
               onRequestClose={closeBuyingNowModal}
@@ -482,7 +484,7 @@ const CatItDetMain = ({ auctionItem, auctionBidInfo, seller, biddingMember, info
                 </div>
               <div className='CID-bidding-now-modal-bid-button-box'>
                 <button className="CID-bidding-now-modal-bid-button" onClick={handleBuyNow}>즉시 구매</button>
-              </div> 
+              </div>
             </Modal>
           </div>
         </div>
