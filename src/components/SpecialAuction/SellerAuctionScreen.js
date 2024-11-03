@@ -90,29 +90,6 @@ function SellerAuctionScreen({
                     height: 200  // 이미지 세로 크기
                 }
             }).then(() => {
-                console.log('이미지 소스가 추가되었습니다.');
-
-                // 이미지 위치 설정
-                return obs.current.call('GetSceneItemId', {
-                    sceneName: 'Live Scene',
-                    sourceName: 'Bid Browser Overlay'
-                }).then(({ sceneItemId }) => {
-                    console.log('이미지 소스 ID:', sceneItemId);
-
-                    obs.current.call('SetSceneItemTransform', {
-                        sceneName: 'Live Scene',
-                        sceneItemId: sceneItemId,  // 이미지 소스 ID
-                        transform: {
-                            positionX: 100,  // X 좌표 위치
-                            positionY: 100,  // Y 좌표 위치
-                            scaleX: 2.0,  // 가로 확대/축소
-                            scaleY: 2.0   // 세로 확대/축소
-                        }
-                    });
-                }).then(() => {
-                    console.log('이미지 위치가 설정되었습니다.');
-                });
-            }).then(() => {
                 // 텍스트 소스 추가
                 return obs.current.call('CreateInput', {
                     sceneName: 'Live Scene',
@@ -125,42 +102,21 @@ function SellerAuctionScreen({
                         backgroundColor: 0x000000FF,
                         align: 'center'
                     }
+                })
                 }).then(() => {
-                    console.log('텍스트 소스가 추가되었습니다.');
-
-                    // 텍스트 위치 설정
-                    return obs.current.call('GetSceneItemId', {
-                        sceneName: 'Live Scene',
-                        sourceName: 'Bid Text Overlay'
-                    }).then(({ sceneItemId }) => {
-                        console.log('텍스트 소스 ID:', sceneItemId);
-
-                        return obs.current.call('SetSceneItemProperties', {
-                            sceneName: 'Live Scene',
-                            item: { id: sceneItemId },
-                            position: {
-                                x: 150,  // X 좌표 위치
-                                y: 300   // Y 좌표 위치
-                            }
-                        });
-                    }).then(() => {
-                        console.log('텍스트 위치가 설정되었습니다.');
-                    });
+                    // 일정 시간 후 텍스트와 이미지 소스 제거
+                    setTimeout(() => {
+                        console.log('텍스트 및 이미지 소스를 제거합니다.');
+                        obs.current.call('RemoveInput', { inputName: 'Bid Text Overlay' });
+                        obs.current.call('RemoveInput', { inputName: 'Bid Browser Overlay' });
+                    }, 10000);  // 10초 후 제거
+                }).catch(err => {
+                    console.error('OBS에 이미지 또는 텍스트 추가 실패:', err);
                 });
-            }).then(() => {
-                // 일정 시간 후 텍스트와 이미지 소스 제거
-                setTimeout(() => {
-                    console.log('텍스트 및 이미지 소스를 제거합니다.');
-                    obs.current.call('RemoveInput', { inputName: 'Bid Text Overlay' });
-                    obs.current.call('RemoveInput', { inputName: 'Bid Browser Overlay' });
-                }, 10000);  // 10초 후 제거
-            }).catch(err => {
-                console.error('OBS에 이미지 또는 텍스트 추가 실패:', err);
-            });
-        } else {
-            console.error('OBS에 연결되지 않았습니다.');
-        }
-    };
+            } else {
+                console.error('OBS에 연결되지 않았습니다.');
+            }
+        };
 
     // 채널 정보 상태 관리
     const [channelInfo, setChannelInfo] = useState({
