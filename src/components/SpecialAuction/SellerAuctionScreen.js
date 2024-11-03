@@ -13,6 +13,7 @@ function SellerAuctionScreen({
     // 대기 화면 이미지 경로 (React public 폴더의 이미지 URL)
     const waitingImagePath = 'http://localhost:3000/images/SA_wait_image.jpg';
     const endingImagePath = 'http://localhost:3000/images/SA_auction_end_image.jpg';
+    const gifUrl = 'http://localhost:3000/images/bid_donation.gif';
 
     const obs = useRef(null);
 
@@ -74,8 +75,6 @@ function SellerAuctionScreen({
 
     const displayBidWithImageOnOBS = (bidAmount, bidderNickname) => {
         if (isObsConnected) {
-
-            const gifUrl = 'http://localhost:3000/images/bid_donation.gif';
 
             // 먼저 이미지 소스를 추가
             obs.current.call('CreateInput', {
