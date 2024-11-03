@@ -22,7 +22,7 @@ const VideoSection = ({ streamingUrl }) => {
         // 새로운 hls 객체 생성 및 스트림 로드
         const hls = new Hls();
         hlsRef.current = hls; // hls 객체를 ref에 저장
-        hls.loadSource(streamingUrl[1]); // streamingUrl[0]에 HLS 스트리밍 URL이 있다고 가정
+        hls.loadSource(streamingUrl[0]); // streamingUrl[0]에 HLS 스트리밍 URL이 있다고 가정
         hls.attachMedia(video);
 
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
