@@ -49,6 +49,7 @@ function SAlist({activeTab}) {
 
     // 팝업 열기/닫기 함수
     const togglePopup = (popupName, value) => setPopupState((prev) => ({...prev, [popupName]: value}));
+    const [hasScreenOpened, setHasScreenOpened] = useState(false); 
 
     // 옥션 리스트 렌더링 함수
     const renderAuctions = () => {
@@ -187,12 +188,13 @@ function SAlist({activeTab}) {
                 if (now >= auctionStartTime && popupState.showBuyerPopup) {
                     togglePopup('showBuyerPopup', false);
                     togglePopup('showBuyerAuctionScreen', true);
+                    setHasScreenOpened(true); 
                 }
             }, 1000);
 
             return () => clearInterval(interval);
         }
-    }, [selectedAuction, hasAuctionEnded]);
+    }, [selectedAuction, hasAuctionEnded, hasScreenOpened]);
 
     // 구매자 팝업 닫기 + 웹 소켓 연결 해제
     const closeBuyerPopupAndDisconnectWebSocket = () => {

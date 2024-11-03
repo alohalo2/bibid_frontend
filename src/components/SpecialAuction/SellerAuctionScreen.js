@@ -422,7 +422,7 @@ function SellerAuctionScreen({
                         {winnerInfo && (
                             <div>
                                 <h3>낙찰자 정보</h3>
-                                <p>낙찰자 ID: {winnerInfo.winnerIndex}</p>
+                                <p>낙찰자: {winnerInfo.winnerNickname}</p>
                                 <p>낙찰 금액: {winnerInfo.winningBid}원</p>
                             </div>
                         )}

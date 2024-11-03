@@ -287,4 +287,17 @@ export const chargeAccount = createAsyncThunk(
       }
   );
 
+  // accountDto 업데이트 액션
+export const updateAccountDto = createAsyncThunk(
+    'account/updateAccountDto',
+    async (updatedAccountDto, thunkApi) => {
+        try {
+            // 여기서 서버로 업데이트된 데이터를 전송할 필요가 없다면, 단순히 데이터를 반환합니다
+            return updatedAccountDto;
+        } catch (e) {
+            console.error("accountDto 업데이트 오류 발생:", e);
+            return thunkApi.rejectWithValue(e);
+        }
+    }
+);
 
