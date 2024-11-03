@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useLayoutEffect, useState} from 'react';
 import '../../css/Layout/Header.css';
 import '../../css/Layout/MediaQuery.css';
 import '../../css/Layout/Wallet.css';
@@ -166,9 +166,9 @@ const Header = () => {
     const checkLoginState = useSelector(state => state.memberSlice.checkLoginState);
     const nickname = useSelector(state => state.memberSlice.nickname);
 
-    useEffect(() => {
-        const fetchLoginStatus = async () => {
-            await dispatch(checkLogin());
+    useLayoutEffect(() => {
+        const fetchLoginStatus =  () => {
+             dispatch(checkLogin());
 
             if (checkLoginState) {
                 setToken(true);
@@ -178,7 +178,7 @@ const Header = () => {
         };
 
         fetchLoginStatus();
-    }, [dispatch, checkLoginState]);
+    }, [checkLoginState]);
 
     const handleLogout = useCallback(async () => {
 
@@ -226,7 +226,7 @@ const Header = () => {
                             <div className='HDnavbarMenuDetailFlex'>
                                 <ul className="HDnavbarMenuDetail">
                                     <li><a href="/specialAuction">실시간</a></li>
-                                    <li><a href="#">블라인드</a></li>
+                                    <li><a href="/specialAuction">블라인드</a></li>
                                 </ul>
                                 <ul className="HDnavbarMenuDetail">
                                     <li><a href="#">전체보기</a></li>
