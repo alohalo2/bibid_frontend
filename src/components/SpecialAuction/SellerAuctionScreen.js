@@ -10,10 +10,19 @@ function SellerAuctionScreen({
                                  webSocketProps, auction, remainingTime, closeSellerPage
                              }) {
 
-    // 대기 화면 이미지 경로 (React public 폴더의 이미지 URL)
-    const waitingImagePath = 'http://localhost:3000/images/SA_wait_image.jpg';
-    const endingImagePath = 'http://localhost:3000/images/SA_auction_end_image.jpg';
-    const gifUrl = 'http://localhost:3000/images/bid_donation.gif';
+    const isDevelopment = process.env.NODE_ENV === 'development';
+
+    const waitingImagePath = isDevelopment
+        ? 'http://localhost:3000/images/SA_wait_image.jpg'  // 개발 환경
+        : 'https://bibid.shop/images/SA_wait_image.jpg';    // 배포 환경
+    
+    const endingImagePath = isDevelopment
+        ? 'http://localhost:3000/images/SA_auction_end_image.jpg'  // 개발 환경
+        : 'https://bibid.shop/images/SA_auction_end_image.jpg';    // 배포 환경
+    
+    const gifUrl = isDevelopment
+        ? 'http://localhost:3000/images/bid_donation.gif'  // 개발 환경
+        : 'https://bibid.shop/images/bid_donation.gif';    // 배포 환경
 
     const obs = useRef(null);
 
@@ -365,6 +374,14 @@ function SellerAuctionScreen({
         }
     };
 
+    // 경매 종료
+    const stopAuction = () => {
+        if (obs.current && isObsConnected && isStreaming) {
+            obs.current.call('SetCurrentProgramScene', {'sceneName': 'Ending Scene'})
+                .catch(err => console.error('OBS 대기 화면 전환 실패:', err));
+        }
+    };
+
     // 방송 종료
     const stopStreaming = () => {
         if (obs.current && isObsConnected && isStreaming) {
@@ -399,7 +416,8 @@ function SellerAuctionScreen({
                             <button onClick={startStreaming}>경매 시작</button>
                             <button onClick={pauseStreaming}>경매 일시 정지</button>
                             <button onClick={resumeStreaming}>경매 재개</button>
-                            <button onClick={stopStreaming}>경매 종료</button>
+                            <button onClick={stopAuction}>경매 종료</button>
+                            <button onClick={stopStreaming}>방송 종료</button>
                         </div>
                         {winnerInfo && (
                             <div>
