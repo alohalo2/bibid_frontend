@@ -46,7 +46,7 @@ function App() {
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persiststore}>
-                {/* <NotificationInitializer /> */}
+                <NotificationInitializer />
                 <Routes>
                     {/* OAuth Routes */}
                     <Route path="/auth/kakao/callback" element={<KakaoLogin />} />

@@ -2,7 +2,7 @@ import React from 'react';
 
 const AuctionSoldNotification = ({ notification }) => {
   const handleClick = () => {
-    window.location.href = `http://localhost:3000/category-itemdetail/${notification.referenceIndex}`;
+    window.location.href = `${process.env.REACT_APP_FRONT_SERVER}/category-itemdetail/${notification.referenceIndex}`;
   };
 
   return (
