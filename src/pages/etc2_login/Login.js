@@ -60,7 +60,7 @@ const Login = () => {
 
     useEffect(() => {
 
-        if(checkLoginState === "ROLE_USER"){
+        if(checkLoginState){
             alert("이미 로그인 되어 있습니다.");
             navi("/");
         }
@@ -126,6 +126,8 @@ const Login = () => {
     const handleGoogleLogin = () => {
         window.location.href = googleURL
     }
+
+
 
 
     return (

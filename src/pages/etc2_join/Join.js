@@ -46,7 +46,7 @@ const Join = () => {
     const checkLoginState = useSelector(state => state.memberSlice.checkLoginState);
 
     useEffect(() => {
-        if(checkLoginState === "ROLE_USER"){
+        if(checkLoginState){
             alert("로그아웃 후 이용하세요");
             navi("/");
         }
