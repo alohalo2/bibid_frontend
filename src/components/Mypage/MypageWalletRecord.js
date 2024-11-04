@@ -6,7 +6,10 @@ const iconMap = {
     '충전': '/images/chargeIcon.svg',
     '환전': '/images/exchangeIcon.svg',
     '판매': '/images/sellIcon.svg',
-    '구매': '/images/buyIcon.svg'
+    '구매': '/images/buyIcon.svg',
+    '입찰': '/images/bid_icon.svg',
+    '환불': '/images/refund_icon.svg',
+    '낙찰': '/images/bid_icon.svg'
   };
 
 export const MypageWalletRecord = ({ record }) => {
