@@ -9,7 +9,7 @@ const iconMap = {
     '구매': '/images/buyIcon.svg',
     '입찰': '/images/bid_icon.svg',
     '환불': '/images/refund_icon.svg',
-    '낙찰': '/images/bid_icon.svg'
+    '낙찰': '/images/success_auction_icon.svg'
   };
 
 export const MypageWalletRecord = ({ record }) => {
