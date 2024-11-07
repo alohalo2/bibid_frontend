@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getBoards } from '../../api/ProductApi';
+import { getBoards } from '../../apis/product/ProductApi';
 
 const searchSlice = createSlice({
     name: 'search', // 'boards'에서 'search'로 변경하여 슬라이스 이름 통일

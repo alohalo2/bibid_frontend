@@ -1,9 +1,9 @@
 // routes/JoinRoutes.js
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Join from "../../pages/etc2_join/Join";
-import JoinThree from "../../pages/etc2_join/JoinThree";
-import JoinTwo from "../../pages/etc2_join/JoinTwo";
+import Join from "./Join";
+import JoinThree from "./JoinThree";
+import JoinTwo from "./JoinTwo";
 
 const JoinRoutes = () => {
     return (

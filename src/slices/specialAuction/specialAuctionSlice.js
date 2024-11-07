@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAuctionData } from '../../apis/SpecialAuction/SAapis';
+import { getAuctionData } from '../../apis/specialAuction/SAapis';
 
 const specialAuctionSlice = createSlice({
   name: 'specialAuction',
