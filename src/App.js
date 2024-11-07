@@ -20,7 +20,6 @@ import DetailedCategory_All from "./pages/DetailedCategory_All";
 import DetailedCategory_Hob from "./pages/DetailedCategory_Hob";
 import DetailedCategory_Clothing from "./pages/DetailedCategory_Clothing";
 import DetailedCategory_Book from "./pages/DetailedCategory_Book";
-import DetailedCategory_Art from "./pages/DetailedCategory_Art";
 import DetailedCategory_Elec from "./pages/DetailedCategory_Elec";
 import DetailedCategory_Pic from "./pages/DetailedCategory_Pic";
 import DetailedCategory_Antique from "./pages/DetailedCategory_Antique";
@@ -39,6 +38,7 @@ import TestApi2 from "./components/SpecialAuction/TestApi2";
 import MemberInitializer from "./context/MemberInitializer";
 import WidgetCheckoutPage from "./pages/payment/WidgetCheckout";
 import WidgetSuccessPage from "./pages/payment/WidgetSuccess";
+import DetailedCategory_Art from "./pages/DetailedCategory_Art";
 
 function App() {
     const persiststore = persistStore(store);

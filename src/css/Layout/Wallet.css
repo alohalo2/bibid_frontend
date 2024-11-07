@@ -1,0 +1,62 @@
+/* 지갑 팝업 스타일 */
+.HDwalletPopup {
+    position: absolute;
+    top: 40px; /* 위치를 적절히 조정 */
+    right: -75px; /* 위치를 적절히 조정 */
+    width: 240px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1002;
+    padding: 16px;
+}
+
+.HDwalletPopup h3 {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.HDwalletPopup .HDwalletAmount {
+    background-color: #0A369D;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.HDwalletAmount {
+    display: flex;
+    justify-content: space-between;
+}
+
+.HDwalletAmount p {
+    color: white;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.HDwalletPopup .HDwalletButtons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.HDwalletPopup .HDwalletButtons button {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: black;
+    font-size: 14px;
+    font-weight: 900;
+    transition: all 0.3s ease-in-out;
+}
+
+.HDwalletPopup .HDwalletButtons button:hover {
+    background-color: #0A369D;
+    color: white;
+}
