@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {getAuctionData} from '../../apis/SpecialAuction/SAapis';
+import {getAuctionData} from '../../apis/specialAuction/SAapis';
 import {formatDateTime, formatAuctionTimeRange} from '../../util/utils';
 import '../../css/SpecialAuction/SAlist.css';
 import axios from 'axios';

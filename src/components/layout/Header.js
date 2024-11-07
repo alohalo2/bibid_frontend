@@ -2,15 +2,15 @@ import React, {useCallback, useEffect, useLayoutEffect, useState} from 'react';
 import '../../css/Layout/Header.css';
 import '../../css/Layout/MediaQuery.css';
 import '../../css/Layout/Wallet.css';
-import Alarm from '../Layout/Alarm';
+import Alarm from './/Alarm';
 import logo from '../../images/logo.svg';
 import axios from 'axios';
 import rightArrowIcon from '../../images/right_arrow_icon.svg';
 import hamburgerIcon from '../../images/hamburger_icon.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import HeaderSearchBar from '../Search/HeaderSearchBar'
-import {checkLogin, getAccessToken, getTokenAndType, getType, logout} from "../../apis/etc2_memberapis/memberApis";
+import HeaderSearchBar from '../search/HeaderSearchBar'
+import {checkLogin, getAccessToken, getTokenAndType, getType, logout} from "../../apis/memberapis/memberApis";
 import searchLogo from '../../images/search_icon.svg';
 import profileDefault from '../../images/profile_default.jpg';
 

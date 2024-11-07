@@ -10,7 +10,7 @@ import {
     Typography
 } from '@mui/material';
 import {useDispatch, useSelector} from 'react-redux';
-import {login} from '../../apis/etc2_memberapis/memberApis';
+import {login} from '../../apis/memberapis/memberApis';
 import {useNavigate} from 'react-router-dom';
 import styled from "styled-components";
 import {Visibility, VisibilityOff} from "@mui/icons-material";

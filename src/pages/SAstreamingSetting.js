@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import SAstreamingSettingContent from '../components/SpecialAuction/SAstreamingSettingContent';
+import SAstreamingSettingContent from '../components/specialAuction/SAstreamingSettingContent';
 import { useNavigate, useParams } from 'react-router-dom';
 const Container = styled.div`
   width: 90%;

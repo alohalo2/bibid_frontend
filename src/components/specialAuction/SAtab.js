@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import SAlist from '../SpecialAuction/SAlist';
+import SAlist from './/SAlist';
 import '../../css/SpecialAuction/SAtab.css';
 
 const SAtab = () => {

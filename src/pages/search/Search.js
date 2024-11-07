@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import '../../css/Category.css';
-import Conveyor from '../../components/Category/Conveyor';
-import SearchBar from '../../components/Search/SearchBar'; // 기존 SearchBar 사용
+import Conveyor from '../../components/category/Conveyor';
+import SearchBar from '../../components/search/SearchBar'; // 기존 SearchBar 사용
 import { useSelector, useDispatch } from 'react-redux';
-import ProductLineForSearch from '../../components/Category/ProductLineForSearch';
-import { getBoards } from '../../api/ProductApi';
-import SAtab from '../../components/SpecialAuction/SAtab';
+import ProductLineForSearch from '../../components/category/ProductLineForSearch';
+import { getBoards } from '../../apis/product/ProductApi';
+import SAtab from '../../components/specialAuction/SAtab';
 
 export const Search = () => {
     const dispatch = useDispatch();

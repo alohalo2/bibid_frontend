@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import '../../css/Mypage/Mypage.css';
-import MypageSideBar from '../../components/Mypage/MypageSideBar';
-import MypageProfileBox from '../../components/Mypage/MypageProfileBox';
+import MypageSideBar from '../../components/mypage/MypageSideBar';
+import MypageProfileBox from '../../components/mypage/MypageProfileBox';
 import loadingImage from '../../images/로딩화면.gif'
 
 const Mypage_UserInfo = () => {

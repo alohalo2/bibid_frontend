@@ -17,7 +17,7 @@ import {
     buyAuction,
     sellAuction,
     fetchMember
-} from '../../apis/etc2_memberapis/memberApis';
+} from '../../apis/memberapis/memberApis';
 
 const memberSlice = createSlice({
     name: 'members',

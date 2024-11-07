@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';  // useState를 import해야 합니다.
-import Circle from "../../components/etc2_join/Circle";
+import Circle from "../../components/join/Circle";
 import styled from "styled-components";
-import CheckBoxComponent from "../../components/etc2_join/CheckBoxComponent";
-import ButtonComponent from "../../components/etc2_join/ButtonComponent";
+import CheckBoxComponent from "../../components/join/CheckBoxComponent";
+import ButtonComponent from "../../components/join/ButtonComponent";
 import {Box} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";

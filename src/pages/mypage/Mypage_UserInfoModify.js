@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import '../../css/Mypage/Mypage.css';
-import MypageSideBar from '../../components/Mypage/MypageSideBar';
-import MypageProfileModifyBox from '../../components/Mypage/MypageProfileModifyBox';
+import MypageSideBar from '../../components/mypage/MypageSideBar';
+import MypageProfileModifyBox from '../../components/mypage/MypageProfileModifyBox';
 
 const Mypage_UserInfoModify = () => {
 

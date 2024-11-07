@@ -2,9 +2,9 @@ import React, {useCallback, useState} from 'react';
 import {Button, Container, Grid, InputAdornment, TextField, Typography} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import styled from "styled-components";
-import ButtonComponent from "../../components/etc2_join/ButtonComponent";
+import ButtonComponent from "../../components/join/ButtonComponent";
 import {useNavigate} from "react-router-dom";
-import {modifyPasswd} from "../../apis/etc2_memberapis/memberApis";
+import {modifyPasswd} from "../../apis/memberapis/memberApis";
 import {useDispatch} from "react-redux";
 
 const FindBlock = styled.div`

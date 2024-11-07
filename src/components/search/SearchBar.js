@@ -2,7 +2,7 @@ import { Button, Container, Grid, NativeSelect, TextField } from '@mui/material'
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSearchCondition, changeSearchKeyword } from '../../slices/search/searchSlice'; // 수정된 액션 이름 사용
-import { getBoards } from '../../api/ProductApi';
+import { getBoards } from '../../apis/product/ProductApi';
 import '../../css/Category.css';
 
 const SearchBar = () => {

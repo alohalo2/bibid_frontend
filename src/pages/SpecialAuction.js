@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/SpecialAuction/SpecialAuction.css';
-import SAtab from '../components/SpecialAuction/SAtab';
+import SAtab from '../components/specialAuction/SAtab';
 
 const SpecialAuction = () => {
   return (

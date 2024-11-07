@@ -3,7 +3,7 @@ import profileImageUrl from '../../images/profile_img.png';
 import axios from 'axios';
 import { Box, Button, InputAdornment, TextField } from '@mui/material';
 import {ChakraProvider, useDisclosure as CharkraUseDisclosure} from "@chakra-ui/react";
-import SearchAddressModal from "../../components/etc2_join/SearchAddressModal";
+import SearchAddressModal from "../join/SearchAddressModal";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import '../../css/Mypage/Mypage.css'
 

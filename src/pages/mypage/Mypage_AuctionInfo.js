@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../css/Mypage/Mypage.css';
-import MypageSideBar from '../../components/Mypage/MypageSideBar';
-import MypageAuctionBox from '../../components/Mypage/MypageAuctionBox';
+import MypageSideBar from '../../components/mypage/MypageSideBar';
+import MypageAuctionBox from '../../components/mypage/MypageAuctionBox';
 
 const Mypage_AuctionInfo = () => {
 	return (

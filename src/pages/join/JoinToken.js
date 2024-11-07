@@ -2,8 +2,8 @@ import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
 import React, {useCallback, useState} from "react";
 import {Button} from "@mui/material";
-import CheckBoxComponent from "../../components/etc2_join/CheckBoxComponent";
-import {oauthLogin} from "../../apis/etc2_memberapis/memberApis";
+import CheckBoxComponent from "../../components/join/CheckBoxComponent";
+import {oauthLogin} from "../../apis/memberapis/memberApis";
 import {useDispatch, useSelector} from "react-redux";
 
 const JoinBlock = styled.div`

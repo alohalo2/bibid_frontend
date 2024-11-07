@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { MypageWalletRecordBox } from './MypageWalletRecordBox'
 import { useDispatch, useSelector } from 'react-redux';
-import { chargeAccount, exchangeAccount, buyAuction, sellAuction } from '../../apis/etc2_memberapis/memberApis'
+import { chargeAccount, exchangeAccount, buyAuction, sellAuction } from '../../apis/memberapis/memberApis'
 
 
 const MypageWalletBox = () => {

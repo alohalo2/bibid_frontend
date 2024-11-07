@@ -1,12 +1,12 @@
 import React from 'react'
 import '../css/Category.css';
-import Conveyor from '../components/Category/Conveyor';
+import Conveyor from '../components/category/Conveyor';
 import { useNavigate } from 'react-router-dom';
-import CategoryMenu from '../components/Category/CategoryMenu';
-import BestProduct_Hob from '../components/Category/BestProduct_Hob';
-import { BestProduct } from '../components/Category/BestProduct';
-import BestProduct_Clothing from '../components/Category/BestProduct_Clothing';
-import BestProduct_Elec from '../components/Category/BestProduct_Elec';
+import CategoryMenu from '../components/category/CategoryMenu';
+import BestProduct_Hob from '../components/category/BestProduct_Hob';
+import { BestProduct } from '../components/category/BestProduct';
+import BestProduct_Clothing from '../components/category/BestProduct_Clothing';
+import BestProduct_Elec from '../components/category/BestProduct_Elec';
 
 
 

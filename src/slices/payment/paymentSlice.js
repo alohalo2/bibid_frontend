@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {join} from '../../apis/etc2_memberapis/memberApis';
+import {join} from '../../apis/memberapis/memberApis';
 
 const paymentSlice = createSlice({
     name: 'payment',

@@ -1,8 +1,8 @@
 import React from 'react'
 import '../css/Mainpage.css';
-import { BestProduct } from '../components/Category/BestProduct';
-import Conveyor from '../components/Category/Conveyor';
-import CarouselBanner from '../components/Mainpage/CarouselBanner';
+import { BestProduct } from '../components/category/BestProduct';
+import Conveyor from '../components/category/Conveyor';
+import CarouselBanner from '../components/mainpage/CarouselBanner';
 import {useSelector} from "react-redux";
 
 export const Mainpage = () => {

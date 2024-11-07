@@ -15,7 +15,7 @@ import '../../css/Login.css';
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchMemberId, findIdByEmail, findMember, verificationCodeCheck} from "../../apis/etc2_memberapis/memberApis";
+import {fetchMemberId, findIdByEmail, findMember, verificationCodeCheck} from "../../apis/memberapis/memberApis";
 
 const FindBlock = styled.div`
     display: flex;
@@ -202,7 +202,6 @@ const FindMember = () => {
                                     variant="contained"
                                     type="submit"
                                     sx={{
-                                        backgroundColor: "#2196F3",
                                         height: "43px",
                                         fontSize: "18px",
                                         backgroundColor: '#D9D9D9', 

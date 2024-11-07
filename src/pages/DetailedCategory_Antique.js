@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import '../css/Category.css';
-import Conveyor from '../components/Category/Conveyor';
+import Conveyor from '../components/category/Conveyor';
 import { useNavigate } from 'react-router-dom';
-import CategoryMenu from '../components/Category/CategoryMenu';
-import ProductLine from '../components/Category/ProductLine';
+import CategoryMenu from '../components/category/CategoryMenu';
+import ProductLine from '../components/category/ProductLine';
 import axios from 'axios';
 
 const DetailedCategory_Antique = () => {

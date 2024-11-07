@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../css/Mypage/Mypage.css';
-import MypageSideBar from '../../components/Mypage/MypageSideBar';
-import MypageWalletBox from '../../components/Mypage/MypageWalletBox';
+import MypageSideBar from '../../components/mypage/MypageSideBar';
+import MypageWalletBox from '../../components/mypage/MypageWalletBox';
 
 const Mypage_Wallet = () => {
 	return (

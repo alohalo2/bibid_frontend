@@ -1,8 +1,8 @@
 import {Container, Typography, Button} from '@mui/material';
 import styled from "styled-components";
-import Circle from "../../components/etc2_join/Circle";
+import Circle from "../../components/join/Circle";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchMemberId} from "../../apis/etc2_memberapis/memberApis";
+import {fetchMemberId} from "../../apis/memberapis/memberApis";
 import {useEffect, useState} from "react";
 import joinOkIcon from "../../images/join_ok_icon.svg"
 

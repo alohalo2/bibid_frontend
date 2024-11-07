@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../css/CarouselBanner.css';
-import { getAuctionData } from '../../apis/SpecialAuction/SAapis';
+import { getAuctionData } from '../../apis/specialAuction/SAapis';
 import { useSelector, useDispatch } from 'react-redux';
 import {   formatDateTime , formatAuctionTimeRange  } from '../../util/utils';
 import { useNavigate } from 'react-router-dom'; 

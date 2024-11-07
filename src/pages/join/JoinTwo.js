@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import React, {useCallback, useState} from "react";
-import Circle from "../../components/etc2_join/Circle";
-import ButtonComponent from "../../components/etc2_join/ButtonComponent";
+import Circle from "../../components/join/Circle";
+import ButtonComponent from "../../components/join/ButtonComponent";
 import {useNavigate} from "react-router-dom";
 import {Button, Container, Grid, InputAdornment, Menu, MenuItem, TextField, Typography} from "@mui/material";
 import {Visibility, VisibilityOff} from '@mui/icons-material';
 import {ChakraProvider, Button as ChakraButton, useDisclosure as CharkraUseDisclosure} from "@chakra-ui/react";
-import SearchAddressModal from "../../components/etc2_join/SearchAddressModal";
+import SearchAddressModal from "../../components/join/SearchAddressModal";
 import axios from "axios";
 import {useDispatch} from "react-redux";
-import {join} from "../../apis/etc2_memberapis/memberApis"
+import {join} from "../../apis/memberapis/memberApis"
 
 
 
