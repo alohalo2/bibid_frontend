@@ -5,6 +5,7 @@ import CheckBoxComponent from "../../components/etc2_join/CheckBoxComponent";
 import ButtonComponent from "../../components/etc2_join/ButtonComponent";
 import {Box} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const JoinBlock = styled.div`
     display: flex;
@@ -25,6 +26,7 @@ const StyledText = styled.div`
     margin-top: 30px; 
     border-bottom: 2px solid #444; 
     padding-bottom: 5px;
+    font-family: "IBM Plex Sans KR", sans-serif;
 `;
 
 const JoinText = () => {
@@ -41,6 +43,15 @@ const Join = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [checked, setChecked] = useState(Array(7).fill(false));
     const [checkedIndices, setCheckedIndices] = useState([]);
+    const checkLoginState = useSelector(state => state.memberSlice.checkLoginState);
+
+    useEffect(() => {
+        if(checkLoginState){
+            alert("로그아웃 후 이용하세요");
+            navi("/");
+        }
+
+    }, [checkLoginState]);
 
     const handleCheckedChange = (indices) => {
         setCheckedIndices(indices);
@@ -66,7 +77,7 @@ const Join = () => {
 
     return (
         <JoinBlock>
-            <Circle activeStep={activeStep} style={{ position: 'absolute', top: '20px', left: '50%', transform: 'translateX(-50%)' }} />
+            <Circle activeStep={activeStep} style={{ position: 'absolute', top: '20px', left: '50%', transform: 'translateX(-50%)'}} />
             <Box sx={{display: 'flex', justifyContent: 'flex-start', width: '65%'}}>
                 <JoinText/>
             </Box>

@@ -5,8 +5,12 @@ import { Box, Button, InputAdornment, TextField } from '@mui/material';
 import {ChakraProvider, useDisclosure as CharkraUseDisclosure} from "@chakra-ui/react";
 import SearchAddressModal from "../../components/etc2_join/SearchAddressModal";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import '../../css/Mypage/Mypage.css'
 
 const Mypage_info_update = () => {
+
+	const bucketName = process.env.REACT_APP_BUCKET_NAME;
+
 	const [joinForm, setJoinForm] = useState({
 		memberIndex: '',
 		profileImage: '',
@@ -34,9 +38,9 @@ const Mypage_info_update = () => {
 
 	const getMember = useCallback(async () => {
 		try {
-			const response = await axios.get(`http://localhost:8080/mypage`);
+			const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/mypage`);
 
-			console.log(response.data.item);
+
 			if(response.data.item.email && response.data.item.email !== ''){
 				setEmailValidate(true);
 			}
@@ -96,7 +100,7 @@ const Mypage_info_update = () => {
 	};
 
 	const changeProfileImage = () => {
-		console.log('기존 프로필 URL : ' + profileImageUrl);
+
 		document.querySelector(`#uploadProfileImg`).click();
 	}
 
@@ -108,7 +112,7 @@ const Mypage_info_update = () => {
 			// 새 파일로 상태 업데이트
 			setUploadProfiles((prev) => [...prev, fileList[0]]);
 
-			console.log(uploadProfiles);
+
 			// 속성 추가 전
 			// console.log(fileList[0]);
 
@@ -266,12 +270,9 @@ const Mypage_info_update = () => {
 
 	const modifyProfile = useCallback(async (formData) => {
 		try {
-			const response = await axios.patch(`http://localhost:8080/mypage/updateProfile`, formData);
+			const response = await axios.patch(`${process.env.REACT_APP_BACK_SERVER}/mypage/updateProfile`, formData);
 			joinForm.password = '';
 
-			if(response.data && response.statusCode === 200){
-				console.log(response.data);
-			}
 
 			window.location.reload();
 		} catch(e){
@@ -344,7 +345,7 @@ const Mypage_info_update = () => {
 			<form onSubmit={handleModify} >
 			<div className='etc1_profile-image'>
 				<img src={joinForm.profileImage && joinForm.profileImage.filetype === 'image'
-					? `https://kr.object.ncloudstorage.com/bitcamp-134/${joinForm.profileImage.filepath}${joinForm.profileImage.newfilename}`
+					? `https://kr.object.ncloudstorage.com/${bucketName}/${joinForm.profileImage.filepath}${joinForm.profileImage.newfilename}`
 					: profileImageUrl
 				 } 
 					 alt='Profile Image'

@@ -49,14 +49,14 @@ const AdditionalImagesUpload = ({ formData, setFormData }) => {
     };
 
     return (
-        <Box sx={{ width: '100%', padding: '10px', height: 'auto' }}>
+        <Box sx={{ width: '100%', padding: '15px', height: 'auto' }}>
             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                 <Typography sx={{ minWidth: '15%', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     기타 이미지
                 </Typography>
                 <Box
                     sx={{
-                        width: '85%',
+                        width: '75%',
                         display: 'grid',
                         gridTemplateColumns: 'repeat(3, 1fr)', // 3개의 열로 배치
                         gap: '10px', // 간격 조정
@@ -86,10 +86,10 @@ const AdditionalImagesUpload = ({ formData, setFormData }) => {
                                     position: 'absolute',
                                     top: 0,
                                     right: 0,
-                                    backgroundColor: 'red',
+                                    backgroundColor: '#2E2E2E',
                                     color: 'white',
                                     minWidth: '20px',
-                                    minHeight: '20px',
+                                    maxHeight: '20px',
                                     fontSize: '12px',
                                     cursor: 'pointer',
                                 }}

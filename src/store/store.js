@@ -9,18 +9,25 @@ import {
     REGISTER
 } from 'redux-persist';
 import storageSession from 'redux-persist/es/storage/session';
-import memberSlice from "../slices/etc2_memberslice/memberSlice";
 import specialAuctionSlice from "../slices/specialAuction/specialAuctionSlice";
+import searchSlice from '../slices/search/searchSlice';
+import memberSlice from "../slices/member/memberSlice";
+import notificationSlice from '../slices/notification/notificationSlice';
+import paymentSlice from "../slices/payment/paymentSlice";
 
 
 const reducers = combineReducers({
     memberSlice,
-    specialAuctionSlice 
+    specialAuctionSlice ,
+    paymentSlice,
+    auction: searchSlice,
+    notificationSlice,
 });
 
 const persistConfig = {
     key: 'root',
-    storage: storageSession
+    storage: storageSession,
+    whitelist: ['memberSlice', 'notification'],
 };
 
 const persistreducer = persistReducer(persistConfig, reducers);

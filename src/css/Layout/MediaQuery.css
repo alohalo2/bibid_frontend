@@ -6,7 +6,7 @@
         align-items: flex-start;
         padding: 8px 12px;
     }
-    .navbar_menu {
+    .HDnavbarMenu {
         display: none;
         flex-direction: column;
         align-items: center;
@@ -97,7 +97,7 @@
 
 @media screen and (max-width: 1200px) {
 
-    .navbar_menu li a {
+    .HDnavbarMenu li a {
         white-space: wrap;
         font-size: 14px;
     }

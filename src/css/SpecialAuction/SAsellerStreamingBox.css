@@ -1,0 +1,258 @@
+.SAsellerSteamingBox {
+width: 55vw;
+height: auto;
+border-radius: 8px;
+padding: 20px;
+background-color: #444444;
+}
+
+.SAsellerSteamingBox h2 {
+text-align: center;
+margin-bottom: 20px;
+color: #ffffff;
+}
+
+.SAsellerSteamingBox p {
+font-size: 16px;
+margin-bottom: 1rem;
+}
+
+.SAsellerSteamingBox h4 {
+font-size: 20px;
+margin-bottom: 1rem;
+}
+
+.SAstreamingStatus {
+background-color: #D9D9D9;
+border-radius: 5px;
+}
+
+.SAstreamingStatusHeader {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 3rem;
+background-color: #7E7E7E;
+border-radius: 5px 5px 0 0;
+}
+
+.SAstreamingStatusHeader h3 {
+color: black;
+font-size: 24px;
+font-weight: 900;
+}
+
+.SAstreamingStatusContents {
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+margin-bottom: 2rem;
+}
+
+.SAstreamingStatusContentsContour {
+border-left: 1px solid rgb(136, 136, 136);
+height: 4rem;
+}
+
+.SAstreamingStatusContents p {
+color: black;
+font-size: 20px;
+font-weight: 900;
+margin-bottom: 0;
+}
+
+.SAstreamingGuideList {
+padding: 0;
+padding-left: 20px;
+}
+
+.SAstreamingGuideList h4 {
+margin-top: 2rem;
+}
+
+.SAstreamingGuideList ul {
+list-style: none;
+padding: 0;
+}
+.SAstreamingGuideList strong {
+color: white;
+} 
+
+.SAstreamingGuideList p {
+color: #8F8F8F;
+font-weight: 900;
+} 
+
+.SAstreamingGuideList a {
+text-decoration: none;
+color: #8F8F8F;
+}
+
+.SAobsDownloadURL {
+color: #F4900C;
+font-weight: 900;
+text-decoration: underline;
+} 
+
+.SAobsDownload {
+display: flex;
+align-items: center;
+gap: 5px;
+}
+
+#SAobsDownload_title {
+margin-bottom: 0;
+}
+
+.SAstreamingServerURLBox {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.SAstreamingServerURLBox button {
+width: 60px;
+height: auto;
+background-color: #D9D9D9;
+border: none;
+padding: 5px 10px;
+margin-bottom: 10px;
+border-radius: 5px;
+cursor: pointer;
+transition: all 0.3s ease-in-out;
+}
+
+.SAstreamingServerURLBox button p {
+font-size: 14px;
+font-weight: 900;
+color: black;
+transition: all 0.3s ease-in-out;
+margin: 0;
+}
+
+.SAstreamingServerURLBox button:hover {
+color: white;
+background-color: #0A369D;
+}
+
+.SAstreamingServerURLBox button:hover p {
+color: white;
+}
+
+#SAstreamingServerURL_title {
+margin-bottom: 1rem;
+}
+
+.SAstreamingServerURL {
+border-bottom: 2px solid #8F8F8F; /* 밑줄 설정 */
+margin-bottom: 18px;
+}
+
+#SAstreamingServerURLId {
+margin-top: 3px;
+margin-bottom: 3px;
+}
+
+#SAstreamingKey_title {
+margin: 0;
+}
+
+.SAstreamingKey {
+border-bottom: 2px solid #8F8F8F; /* 밑줄 설정 */
+margin-bottom: 18px;
+}
+
+.SAstreamingKey img {
+width: 20px;
+height: 20px;
+}
+
+#SAstreamingKeyId {
+margin-top: 20px;
+margin-bottom: 3px;
+}
+
+.SAstreamingKeyBox {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.SAstreamingKeyBox button {
+width: 60px;
+height: auto;
+color: black;
+background-color: #D9D9D9;
+font-size: 14px;
+font-weight: 900;
+border: none;
+padding: 5px 10px;
+margin-bottom: 10px;
+border-radius: 5px;
+cursor: pointer;
+transition: all 0.3s ease-in-out;
+}
+
+.SAstreamingKeyBox button p {
+color: black;
+font-size: 14px;
+font-weight: 900;
+transition: all 0.3s ease-in-out;
+margin: 0;
+}
+
+.SAstreamingKeyBox button p:hover {
+color: white;
+}
+
+.SAstreamingKeyBox button:hover {
+background-color: #0A369D;
+}
+
+.SAstreamingKey {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.SAstreamingKeyEyeIcon {
+margin-top: 0.9rem;
+}
+
+#SAbroadcastStart {
+margin-top: 0.9rem;
+}
+
+.SAstreamingBttnBox {
+background-color: #444444;
+display: flex;
+justify-content: space-between;
+gap: 1rem;
+padding: 10px;
+border-radius: 5px;
+}
+  
+.SAstreamingBttnBox button {
+width: auto;
+height: auto;
+background-color: #D9D9D9;
+border: none;
+padding: 5px 10px;
+border-radius: 5px;
+cursor: pointer;
+transition: all 0.3s ease-in-out;
+}
+
+.SAstreamingBttnBox button p {
+color: black;
+font-size: 14px;
+font-weight: 900;
+}
+
+.SAstreamingBttnBox button:hover {
+background-color: #0A369D;
+}
+
+.SAstreamingBttnBox button:hover p {
+color: white;
+}

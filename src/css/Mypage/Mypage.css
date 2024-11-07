@@ -1,998 +1,1067 @@
-.etc1_container {
+.blank {
+    height: 100px;
+}
+
+.Mypage_Container {
+    width: 1200px;
+    height: max-content;
     display: flex;
-    max-width: 1200px;
-    margin: 20px auto;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
 }
-/* Mypage 사이드바 관련 css */
-.etc1_sidebar {
-    width: 21%;
-    height: 55rem;
-    background: #fff;
-    padding: 1.5%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-    border: 1px solid black;
+
+.Mypage_SideBarContainer {
+    width: 300px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
     border-radius: 10px;
+    border: 2px solid #BFBFBF;
+    justify-content: center;
+    align-items: center;
 }
 
-@media screen and (max-width: 700px) {
-    img {
-        width: 174px;
-    }
-
-    .etc1_seller img {
-        width: 36px;
-    }
-
-    .etc1_buyer img {
-        width: 36px;
-    }
+.Mypage_SideBarProfile {
+    display: flex;
+    width: 280px;
+    height: 280px;
+    border-bottom: 2px solid #BFBFBF;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.etc1_sidebar img {
-    padding: 0 3.125rem;
+.Mypage_ProfileImgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.Mypage_ProfileImg {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    border: 1px solid #BFBFBF;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: end;
+    
+}
+
+.Mypage_ProfileImgModifyBtn {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    background-color: #e9e9e9;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    cursor: pointer;
+    bottom: 12px;
+    left: 150px;
+    transition: all 0.3s ease-in-out;
+}
+
+.Mypage_ProfileImgModifyBtn:hover {
+    background-color: #0A369D;
+    color: white;
+}
+
+.Mypage_ProfileImgModifyBtn img {
+    width: 18px;
+    height: 18px;
+    content: url('../../images/change_icon.svg');
+}
+
+.Mypage_ProfileImgModifyBtn:hover img {
+    content: url('../../images/white_change_icon.svg');
+}
+
+.Mypage_SideBarCategory {
+    width: 300px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Mypage_SideBarCategory_List_Box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Mypage_SideBarCategory_List {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Mypage_SideBarCategory_List div {
+    transition: all 0.3s ease-in-out;
+}
+
+.Mypage_SideBarCategory_List div:hover {
+    transform: scale(1.2);
+}
+
+#remove_wallet_margin {
+    margin-bottom: 0;
+}
+
+.Mypage_SideBarCategory div {
+    height: auto;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.Mypage_SideBarCategory div p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+.Mypage_ProfileBoxContainer {
+    display: flex;
+    width: 900px;
+    height: 800px;
+    display: flex;
+    border-radius: 10px;
+    border: 2px solid #BFBFBF;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Mypage_UserInfoContainer {
+    display: flex;
+    width: 800px;
+    height: 600px;
+    flex-direction: column;
+}
+
+.Mypage_UserInfoDetail {
+    display: grid;
+    width: 800px;
+    height: 75px;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    justify-items: center;
+    border-top: 1px solid #BFBFBF;
+}
+
+.Mypage_UserInfoDetail2 {
+    display: grid;
+    width: 800px;
+    height: 150px;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    justify-items: center;
+    border-top: 1px solid #BFBFBF;
+}
+
+.Mypage_UserInfoDetail3 {
+    display: grid;
+    width: 800px;
+    height: 150px;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.Mypage_UserInfoDetail2 .right-column {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+    align-items: center;
+}
+
+.right-column-top {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    width: 500px;
+}
+
+.right-column-bottom {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    width: 500px;
+    border-top: 1px solid #BFBFBF;
+}
+
+.rightOne {
+    display: flex;
+    width: 500px;
+    height: 75px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.rightOne2 {
+    display: flex;
+    width: 500px;
+    height: 30px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.rightTwo {
+    display: flex;
+    width: 500px;
+    height: 75px;
+    align-items: center;
+    justify-content: flex-start;
+    border-top: 1px solid #BFBFBF;
+}
+
+.rightTwo2 {
+    display: flex;
+    width: 500px;
+    height: 30px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.Mypage_UserInfoTitle {
+    display: flex;
+    height: 75px;
+    align-items: center;
+}
+
+.Mypage_UserInfoModifyBtn {
+    display: flex;
+    width: 100px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: #D9D9D9;
+    color: black; 
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.Mypage_UserInfoModifyBtn:hover {
+    background-color: #0A369D;
+    color: white;
+}
+
+/* .Mypage_AuctionInfoContainer {
+    display: flex;
+    width: 800px;
+    height: 800px;
+    flex-direction: column;
+} */
+
+.Mypage_WalletInfoContainer {
+    display: flex;
+    width: 700px;
+    height: 80px;
+    justify-content: space-between;
+}
+
+.Mypage_WalletCredit {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Mypage_WalletCredit div p {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.Mypage_WalletBtn {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    justify-content: right;
+    align-items: center;
+}
+
+.Mypage_WalletBoxContainer {
+    display: flex;
+    width: 900px;
+    height: 800px;
+    display: flex;
+    border-radius: 10px;
+    border: 2px solid #BFBFBF;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Mypage_WalletUsedContainer {
+    width: 700px;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px #BFBFBF;
+    border-radius: 5px;
+}
+
+.Mypage_WalletUsed {
+    width: 700px;
+    height: 490px;
+    overflow-y: auto;
+}
+
+.Mypage_WalletUsed::-webkit-scrollbar {
+    display: none;
+}
+
+.Mypage_NoRecord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 490px;
+
+}
+
+.Mypage_TitleContainer {
+    display: flex;
+    width: 800px;
+    height: 100px;
+    border-bottom: 5px solid #BFBFBF;
+    justify-content: center;
+    align-items: center;
+}
+
+.Mypage_ModifyBtnContainer {
+    display: flex;
+    width: 800px;
+    height: 100px;
+    border-top: 5px solid #BFBFBF;
+    justify-content: center;
+    align-items: center;
+}
+
+.Mypage_WalletCard {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    border: 1px solid #BFBFBF;
+    border-radius: 5px;
+    margin: 5px 5px 5px 5px;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.Mypage_WalletCard:hover {
+    background-color: #e2e2e2;
+}
+
+.Mypage_WalletCardLeft {
+    display: flex;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.Mypage_WalletCardLeft img{
+    width: 70px;
+    height: 70px;
+}
+
+.Mypage_WalletCardRight {
+    display: flex;
+    flex-direction: column;
+    width: 520px;
+    height: 90px;
+    justify-content: center;
+    align-content: center;
+    margin-top: 5px;
+}
+
+.Mypage_WalletCardLine1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Mypage_WalletCardLine1 div h3 {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.Mypage_WalletCardLine2 {
+    display: flex;
+    flex-direction: row;
+}
+
+.Mypage_WalletCardText {
+    width: 500px;
+    overflow: hidden; /* Hide overflow text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Show ellipsis (...) when text is truncated */
+}
+
+.Mypage_WalletCardLine3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center ;
+}
+
+.Mypage_WalletLine {
+    display: flex;
+    height: 90px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.Mypage_WalletRecordLine {
+    display: flex;
+    width: 700px;
+    height: 50px;
+    align-items: center;
+}
+
+.Mypage_BttnBox {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.Mypage_Bttn {
+    background-color: #D9D9D9;
+    width: 100px;
+    padding: 10px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 900;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.Mypage_Bttn:hover {
+    background-color: #0A369D;
+    color: white;
+}
+
+.Mypage_AuctionInfoContainer {
+    display: flex;
+    width: 800px;
+    height: 120px;
+    flex-direction: column;
+    border: 2px solid #BFBFBF;
+    border-radius: 5px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Mypage_AuctionCategory {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 650px;
+    height: 40px;
+}
+
+.Mypage_AuctionCategory_Title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Mypage_AuctionCategory_Title h3{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+.Mypage_AuctionCategoryBtnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 650px;
+    height: 40px;
+}
+
+.Mypage_AuctionCategoryBtnContainer button  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Mypage_AuctionCategoryBtnContainer button p {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.Mypage_AuctionCategoryBtn {
+    display: flex;
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    background-color: #D9D9D9; 
+    color: black;
+    font-weight: bold; 
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.Mypage_AuctionCategoryBtn:hover {
+    background-color: #0A369D;
+    color: white;
+}
+
+.Mypage_AuctionCardContinaer {
+    max-height: 550px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.Mypage_AuctionCardContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.Mypage_AuctionMainContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.Mypage_blank {
+    height: 20px;
+}
+
+.Mypage_AuctionCard {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: 300px;
+    border: solid 2px #BFBFBF;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.Mypage_AuctionCard:hover {
+    background-color: #e2e2e2;
+}
+
+.Mypage_AuctionProcess {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #BFBFBF;
+}
+
+.Mypage_AuctionBoxContainer {
+    display: flex;
+    width: 900px;
+    height: 800px;
+    display: flex;
+    border-radius: 10px;
+    border: 2px solid #BFBFBF;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Mypage_AuctionContentBox {
+    display: flex;
+    flex-direction: row;
+    height: 170px;
+    border-bottom: solid 1px #BFBFBF;
+}
+
+.Mypage_AuctionCardType {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+}
+
+.Mypage_AuctionCardType p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.Mypage_AuctionCardBtnCategory {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+}
+
+.Mypage_AuctionCardBtn {
+    background-color: #D9D9D9;
+    color:black;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Mypage_AuctionCardBtn p {
+    font-weight: 600; 
+    font-size: 16px;   
+}
+
+.Mypage_AuctionContentImgBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 160px;
+}
+
+.Mypage_AuctionContentImg {
+    width: 140px;
+    height: 140px;
+}
+
+.Mypage_AuctionContentDetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 420px;
+
+}
+
+.Mypage_AuctionContentBtnBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.Mypage_AuctionContentBtnCategory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+
+}
+
+.Mypage_AuctionContentDetailTitle {
+    width: 420px;
+    height: 50px;
+    justify-content: start;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 10px;
+}
+
+.Mypage_AuctionContentDetailTitle h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.Mypage_AuctionContentDetailContainer {
+    display: flex;
+    height: 110px;
+    flex-direction: row;
+}
+
+.Mypage_AuctionContentDetailContainer p {
+    font-size: 16px;
+    font-weight: 600;
+
+}
+
+.Mypage_AuctionContentPrice, .Mypage_AuctionContentNumber {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px;
+    height: 100px;
+    border-right: solid 1px #BFBFBF;
+}
+
+.Mypage_AuctionContentSeller {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px;
+    height: 100px;
+    
+}
+
+.Mypage_AuctionContenttitle {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.Mypage_AuctionContenttext {
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+
+.Mypage_AuctionAlert {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.Mypage_AuctionAlert div p {
+    font-size: 14px;
+    font-weight: 600;
+    color: red;
+}
+
+.Mypage_AuctionProcessLine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 420px;
+}
+
+.Mypage_AuctionProcessLineText {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    height: 20px;
+    justify-content: space-between;
+}
+
+.Mypage_AuctionProcessLineText p {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.Mypage_AuctionManagementContinaer {
+    max-height: 550px;
+    overflow-y: auto;
+    scrollbar-width: none;   
+}
+
+.Mypage_AuctionManagementBar {
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    border: solid 2px #BFBFBF;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.Mypage_AuctionManagementBar div p {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.Mypage_AuctionManagementCard {
+    display: flex;
+    flex-direction: row;
+    width: 800px;
+    height: 140px;
+    border: solid 2px #BFBFBF;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.Mypage_AuctionManagementCard:hover {
+    background-color: #e2e2e2;
+}
+
+.Mypage_AuctionManagementCardImgBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+}
+
+.Mypage_AuctionManagementCardImg {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #BFBFBF;
     object-fit: contain;
 }
 
-.etc1_sidebar h2 {
-    margin-top: 0;
-    text-align: center;
-}
-
-.etc1_seller_buyer {
+.Mypage_AuctionManagementCardTitleBox {
     display: flex;
-    justify-content: flex-start;
-    margin: 1.25rem 0;
-    padding: 0 0 1.875rem;
-    border-bottom: 1px solid black;
-}
-
-/* .etc1_sidebar nav h2 {
-    text-shadow: 0px 2px 4px black;
-} */
-
-.etc1_sidebar span {
-    padding: 0 42px;
-}
-
-.etc1_sidebar li {
-    list-style-type: none;
-}
-
-.etc1_sidebar a:hover {
-    color: #0A369D;
-}
-
-.etc1_sidebar nav ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: center;
-}
-
-.etc1_sidebar nav ul a {
-    margin: 10px 0;
-    text-align: left;
-    display: flex;
+    justify-content: center;
     align-items: center;
-    font-weight: bold;
+    width: 160px;
 }
 
-.etc1_sidebar nav ul li {
-    margin: 10px 0;
-    text-align: left;
+.Mypage_AuctionManagementCardTitle {
     display: flex;
+    justify-content: center;
     align-items: center;
+    width: 160px;
 }
 
-.etc1_sidebar nav ul li img {
-    width: 21px;
-    margin-top: 15px;
-    margin-right: -70px;
-    margin-bottom: 15px;
-    
-}
-.etc1_sidebar nav ul li a {
-    text-decoration: none;
-    color: #333;
+.Mypage_AuctionManagementCardPrice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
 }
 
-/* Mypage_info 컴포넌트 관련 css */
-.etc1_profile {
-    width: 75%;
-    height: 55rem;
-    margin-left: 2%;
-    background: #fff;
-    padding: 1.5%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-    border: 1px solid black;
-    border-radius: 10px;
+.Mypage_AuctionManagementCardBid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
 }
 
-
-.etc1_profile_title {
-    margin-top: 2%;
-    text-align: center;
-    font-weight: bold;
+.Mypage_AuctionManagementCardPeriod {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
 }
 
-.etc1_profile-image {
-    text-align: center;
+.Mypage_AuctionManagementCardDeleteBtnBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
 }
 
-.etc1_profile-image img {
+.Mypage_AuctionManagementCardDeleteBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 36px;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+    color: black;
+    font-weight: bold; 
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.Mypage_AuctionManagementCardDeleteBtn:hover {
+    background-color: #0A369D;
+    color: white;
+}
+
+.Mypage_AuctionManagementImg {
+    display: flex;
+    justify-content: center;
+    width: 140px;
+}
+
+.Mypage_AuctionManagementTitle {
+    display: flex;
+    justify-content: center;
+    width: 160px;
+}
+
+.Mypage_AuctionManagementPrice {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+}
+
+.Mypage_AuctionManagementBid {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+}
+
+.Mypage_AuctionManagementPeriod {
+    display: flex;
+    justify-content: center;
+    width: 240px;
+}
+
+.Mypage_AuctionManagementDeleteBtn {
+    display: flex;
+    justify-content: center;
+    width: 60px;
+}
+
+.Mypage_AuctionProcessLinePoint {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 50px;
+}
+
+.Mypage_AuctionProcessLinePoint {
+    position: relative;
+  }
+  
+  .progress-container {
+    width: 330px;
+    height: 10px;
+    background: #ccc;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #76c7c0, blue);
+    border-radius: 5px 0 0 5px;
+    position: relative;
+  }
+  
+  .progress-circle {
+    width: 20px;
+    height: 20px;
+    background: blue;
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
-    display: inline;
-}
+    position: absolute;
+    top: -5px;
+    transform: translate(-50%, 0);
+  }
 
-.etc1_info {
-    margin-top: 20px;
-    width: 100%;
-    border-top: 4px solid gray;
-    border-bottom: 4px solid gray;
-    border-collapse: collapse;
-}
+  .headerSearchBox {
+    padding: 0 !important;
+  }
 
-.etc1_info tr {
-    border-bottom: 1px solid gray;
-    height: 50px;
-}
-
-.etc1_address_detail_1,.etc1_address_detail_2 {
-    width: 100%;
-    height: 3.438rem;
-    box-sizing: border-box;
-    display: block;
-    border-bottom: 1px solid gray;
-}
-
-.etc1_info .etc1_address_detail_2 {
-    border-bottom: none;
-}
-
-.etc1_info th {
-    font-weight: bold;
-}
-.etc1_info p {
-    margin: 10px 0;
-}
-
-button:hover {
-    background-color: #0056b3;
-    color: white;
-    font-weight: bold;
-}
-
-.info_update_btn {
-    margin-top: 20px;
-    margin-left: 45%;
-    width: 100px;
-    height: 30px;
-    cursor: pointer;
-    background-color: #0A369D;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    
-}
-
-/* Mypage_info_update 컴포넌트 관련 css */
-.etc1_change_profile_image {
-    margin-top: 20px;
-    margin-left: 38%;
-    width: 200px;
-    background-color: #BFBFBF;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.etc1_validation_box {
-    text-align: right;
-}
-
-strong {
-    color: #0056b3;
-}
-
-.etc1_validation_msg {
-    font-weight: bold;
-}
-
-.etc1_info input {
-    height: 30px;
-}
-
-.etc1_info select {
-    margin-left: 10px;
-    height: 35px;
-}
-
-.etc1_address_search_button {
-    margin: 0 0 0 20px;
-    width: 100px;
-    height: 35px;
-    background-color: #4B4B4B;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#etc1_address_detail_search2 {
-    width: 90%;
-}
-
-.etc1_button_roundary {
-    display: inline-flex;
-    margin-left: 35%;
-
-}
-
-#etc1_update_button {
-    margin-top: 10px;
-    width: 100px;
-    height: 30px;
-    background-color: #BFBFBF;
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-}
-
-#etc1_update_button:hover {
-    margin-top: 10px;
-    width: 100px;
-    height: 30px;
-    background-color: #0056b3;
-    color:white;
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-}
-
-#etc1_cancel_button {
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 100px;
-    height: 30px;
-    background-color: #BFBFBF;
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-}
-
-#etc1_cancel_button:hover {
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 100px;
-    height: 30px;
-    background-color: #0056b3;
-    color:white;
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-}
-
-/* Mypage_bids_history 관련 css */
-.etc1_auction-container {
-    max-width: 75%;
-    margin-left: 2%;
-    width: 100%;
-    border: 1px solid black;
-    border-radius: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    padding: 20px;
-}
-
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.etc1_tabs button {
-    width: 17.5%;
-    background-color: #BFBFBF;
-    color: black;
-    font-weight: bold;
-    border-radius: 0;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-}
-
-.etc1_tabs .etc1_active {
-    width: 17.5%;
-    background-color: white;
-    color: black;
-    font-weight: bold;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-}
-
-.etc1_tabs button:hover {
-    background-color: white;
-    font-weight: bold;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-}
-
-.etc1_auction_table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    border: 1px solid black;
-    /* border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black; */
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.etc1_auction_table th, .etc1_auction_table td {
-    border: none;
-    padding: 10px;
-    text-align: center;
-}
-
-.etc1_auction_table th {
-    background-color: #f2f2f2;
-}
-
-.etc1_auction_table img {
-    width: 100px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-.etc1_auction_table button {
-    width: 2rem;
-    background-color: white;
-    border: none;
-}
-
-.etc1_auction_table button:hover {
-    border: 1px solid black;
-    border-radius: 10px;
-}
-
-.etc1_bids_button_roundary {
-    text-align: center;
-    padding-bottom: 20px;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-.etc1_bids_button_roundary button {
-    background-color: #BFBFBF;
-    margin-left: 10px;
-    width: 100px;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-}
-
-.etc1_bids_button_roundary button:hover {
-    background-color: white;
-    border: 1px solid black;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#bids_interest_delete_btn {
-    background-color: #0056b3;
-    color: white;
-    font-weight: bold;
-}
-
-/* Mypage_interest_bids_detail 관련 */
-.etc1_interest_bids_detail {
-    max-width: 75%;
-    margin-left: 2%;
-    width: 100%;
-    height: 55rem;
-    border: 1px solid black;
-    border-radius: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    padding: 18px;
-}
-
-.etc1_interest_bids_detail_box {
+  .AuctionCardModal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-}
-
-.etc1_interest_bids_detail_info {
-    margin-left: 2%;
-    width: 100%;
-}
-
-.etc1_interest_bids_title_box {
-    display: flex;
-    justify-content: space-between;
-}
-
-.etc1_interest_bids_title_box .interest_heart_icon {
-    padding-top: 5%;
-    height: 24px;
-}
-
-.etc1_current_price_box {
-    display: flex;
+    justify-content: center;
     align-items: center;
-}
-
-.etc1_current_price_title {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.etc1_current_price_value {
-    margin-left: 13%;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.etc1_rest_time_box {
+    z-index: 1000; 
+  }
+  
+  .AuctionCardModal-content {
+    background: white;
     display: flex;
-    margin-top: 5%;
-}
-
-.etc1_rest_time_title {
-    margin-top: 3%;
-    font-size: 18px;
-}
-
-.etc1_rest_time_value {
-    width: 100%;
-    margin-left: 27%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    height: 200px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .AuctionCardModal-content div h3 {
     font-size: 20px;
-}
+    font-weight: 600;
+  }
 
-.etc1_due_time_value {
-    width: 100%;
-    margin-left: 27%;
-    font-size: 18px;
-    color:gray;
-}
-
-.etc1_bids_number_box {
-    display: flex;
-    margin-top: 5%;
-}
-
-.etc1_bids_number_title {
-    font-size: 18px;
-}
-
-.etc1_bids_number_value, .etc1_bids_record_value, .etc1_bids_unit_value {
-    margin-left: 13%;
-    font-size: 18px;
-    color: gray;
-}
-
-.etc1_bids_record_box {
-    display: flex;
-    margin-top: 5%;
-}
-
-.etc1_bids_record_title {
-    font-size: 18px;
-}
-
-.etc1_bids_unit_box {
-    display: flex;
-    margin-top: 5%;
-}
-
-.etc1_bids_unit_title {
-    font-size: 18px;
-}
-
-.etc1_bids_hope_price_box {
-    display: flex;
-    margin-top: 5%;
-}
-
-.etc1_bids_hope_price_title {
-    margin-top: 4%;
-    font-size: 18px;
-}
-
-.etc1_bid_input_price {
-    margin-top: 4%;
-    margin-left: 8%;
-    height: 25px;
-    text-align: right;
-}
-
-.etc1_bids_input_price_unit {
-    margin-top: 4%;
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
-.etc1_button_container {
-    display: inline-grid;
-    gap: 10%;
-}
-
-.etc1_bid_input_price {
+  .AuctionCardModal-content div p {
     font-size: 16px;
-    font-weight: bold;
-}
+    font-weight: 600;
+  }
 
-.etc1_button_container .bid_pirce_plus_btn, .bid_pirce_minus_btn {
-    background-color: #BFBFBF;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.etc1_bids_predict_price_box {
+  .AuctionCardModal-buttons {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+.AuctionCardModal-buttons button {
+    width: 60px;
+    height: 36px;
+    background-color: #D9D9D9;
+    color: black; 
+    font-weight: bold; 
+    font-size: 1rem; 
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
 }
 
-.etc1_bids_predict_price_title {
-    margin-top: 4%;
-    font-size: 18px;
-}
-
-.etc1_predict_value_box {
-    display: grid;
-    margin-top: 2%;
-    margin-left: 8%;
-}
-
-.etc1_predict_value {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.etc1_more_bids_images {
-    display: flex;
-}
-
-.etc1_image_box {
-    display: contents;
-}
-.etc1_predict_and_charge_value {
-    color:gray;
-}
-
-.etc1_arrow_icon {
-    margin-bottom: 1%;
-}
-
-.etc1_slide_box {
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
-.etc1_line_box {
-    margin-top: 2%;
-    margin-left: 2%;
-}
-
-.etc1_seller_info_box {
-    margin-top: 4px;
-    margin-left: 2%;
-}
-
-.etc1_seller_info_box strong {
-    font-size: 20px;
-    color: black;
-}
-
-.etc1_seller_info_box button {
-    margin-top: 3%;
-    margin-left: 15%;
-    background-color: #BFBFBF;
-    color: black;
-}
-
-.etc1_bids_btn_box {
-    display: flex;
-}
-
-.etc1_bids_buy_btn {
-    margin-top: -10%;
-    margin-left: 48%;
-    
-}
-
-.etc1_bids_buy_btn button {
-    display: block;
-    width: 90%;
-    background-color: #BFBFBF;
-    color: black;
-    font-weight: bold;
-}
-
-.etc1_bid_buy_btn {
-    margin-top: 1%;
-    margin-bottom: 2%;
-}
-
-.etc1_bid_buy_btn, .etc1_instant_buy_btn {
-    font-size: 18px;
-}
-
-.etc1_delete_interest_bids_btn {
-    margin-top: 14%;
-    margin-bottom: 1%;
-    margin-left: 33%;
+.AuctionCardModal-buttons button:hover {
     background-color: #0A369D;
-    width: 30%;
-    font-size: 18px;
-}
-/* Mypage_wallet_management 관련 */
-.etc1_wallet_management_container {
-    max-width: 75%;
-    margin-left: 2%;
-    width: 100%;
-    height: 55rem;
-    border: 1px solid black;
-    border-radius: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    padding: 18px;
-}
-
-.etc1_wallet_menu {
-    display: flex;
-}
-
-.etc1_wallet_menu img {
-    height: 50px;
-}
-
-.etc1_wallet_balance {
-    display: flex;
-    margin-top: 3%;
-    padding-top: 3%;
-}
-
-.etc1_wallet_balance_title {
-    margin-left: 12%;
-    font-size: 24px;
-    font-weight: bold;
-    width: 110px;
-}
-
-.etc1_wallet_balance_value {
-    margin-left: 12%;
-    font-size: 24px;
-    font-weight: bold;
-    width: 230px;
-}
-
-.etc1_wallet_manage {
-    display: flex;
-    font-size: 18px;
-    margin-top: 3%;
-    text-align: center;
-    gap: 10%;
-}
-
-.etc1_bids_sell {
-    margin-left: 45%;
-}
-
-.etc1_wallet_management_container h3 {
-    margin-left: 5%;
-}
-
-.etc1_cash_charge_history {
-    max-width: 85%;
-    margin-top: 0%;
-    margin-left: 4.2%;
-    width: 100%;
-    height: 31.25rem;
-    border: 1px solid black;
-    border-radius: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-}
-
-.etc1_cash_charge_history_item {
-    display: flex;
-    padding-bottom: 2%;
-    border-bottom: 1px solid gray;
-}
-
-.etc1_cash_charge_history .etc1_info {
-    margin-left: 3%;
-    width: 100%;
-}
-
-.etc1_cash_charge_history_item_info_type_date {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2%;
-    width: 40rem;
-}
-
-.etc1_cash_charge_history_item_info_type_date .etc1_cash_charge_history_item_info_type {
-    margin-bottom: 1%;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.etc1_cash_charge_history_item_info_type_date .etc1_cash_charge_history_item_info_date {
-    color:#BFBFBF;
-}
-
-.etc1_cash_charge_history_item_info_calculate_balance {
-    margin-top: 1%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.etc1_cash_charge_history_item_info_calculate_balance .etc1_cash_charge_history_item_info_balance {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.etc1_balance_up {
-    color: #D42D2D;
-}
-
-.etc1_balance_down {
-    color: #0056b3;
-}
-
-.etc1_exchange_img_class, .etc1_seller_img_class, .etc1_buyer_img_class {
-    height: 100%;
-    margin-right: 3%;
-    padding-top: 4%;
-}
-
-.etc1_cash_img_class {
-    height: 100%;
-    margin-right: 2%;
-    padding-top: 4%;
-}
-
-.etc1_charge_btn {
-    margin-top: 3%;
-    margin-left: 43%;
-    width: 7rem;
-    font-size: 20px;
-    background-color: #0056b3;
-}
-
-/* Mypage_bids_progress 관련 */
-.etc1_category_progress {
-    border : 1px solid #BFBFBF;
-    border-radius: 8px;
-}
-
-.etc1_category_progress h3 {
-    text-align: center;
-}
-
-.etc1_category_progress button {
-    margin: 0 1% 1% 2.5%;
-    width: 8.5rem;
-    height: 2rem;
-    color: black;
-    background-color: #BFBFBF;
-    font-weight: bold;
-}
-
-.etc1_category_progress button:hover {
-    background-color: #0056b3;
     color: white;
 }
 
-.etc1_common_action_item {
-    margin-top: 2%;
-    border : 1px solid #BFBFBF;
-    border-radius: 8px;
-    height: 20rem;
-}
+  .AuctionCardModal-buttons button {
+    margin: 0 10px;
+  }
 
-.etc1_common_action_status {
-    background-color: #f4f4f4;
+  .AuctionCardModal-head {
     display: flex;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    height: 5rem;
-}
+    justify-content: center;
+    align-items: center;
+    width: 360px;
+    height: 60px;
+    border-bottom: 1px solid #BFBFBF; 
+  }
 
-.etc1_common_action_status h3 {
-    margin-top: 3%;
-    margin-left: 2%;
-}
+  .Mypage_UserInfoDetail_title p {
+    font-size: 18px;
+    font-weight: 600;
+  }
 
-.etc1_progressbar {
+  .Mypage_UserInfoDetail_content p {
+    font-size: 18px;
     display: block;
-    margin-top: 2%;
-    margin-left: 5%;
-    width: 33rem;
-}
+  }
 
-.etc1_progressbar_img img {
-    height: 0.3rem;
-}
+  .MypageAuctionManagementCardTitle p {
+    font-size: 16px;
+    font-weight: 600;
+  }
 
-/* .etc1_progressbar_img_left {
-    background-color: #0056b3;
-    width: 10rem;
-}
+  .Mypage_AuctionManagementCardPrice p {
+    font-size: 16px;
+    font-weight: 600;
+  }
 
-.etc1_progressbar_img_right {
-    background-color: #BFBFBF;
-    width: 23rem;
-} */
+  .Mypage_AuctionManagementCardBid p {
+    font-size: 16px;
+    font-weight: 600;
+  }
 
-.etc1_progressbar_msg {
-    display: flex;
-    justify-content: space-between;
-}
+  .Mypage_AuctionManagementCardPeriod p {
+    font-size: 16px;
+    font-weight: 600;
+  }
 
-.etc1_prgressbar_info_btn {
-    margin-top: 3%;
-    margin-left: 3%;
-}
-
-.etc1_prgressbar_info_btn button {
-    background-color: #BFBFBF;
-    color: black;
-    font-weight: bold;
-    width: 8.5rem;
-}
-
-.etc1_bids_detail_info {
-    display: flex;
-}
-
-.etc1_bids_image {
-    margin-top: 3%;
-    margin-left: 3%;
-    width: 7rem;
-    height: 7rem;
-}
-
-.etc1_bids_title {
-    margin-left: 5%;
-    font-weight: bold;
-}
-
-.etc1_bids_seller_info {
-    display: flex;
-}
-
-.etc1_bids_seller_price {
-    display: grid;
-    gap: 10%;
-    width: 7rem;
-}
-
-.etc1_bid_seller_number {
-    display: grid;
-    gap: 10%;
-    height: 4rem;
-    border-left: 3px solid #BFBFBF;
-    border-right: 3px solid #BFBFBF;
-    margin-left: 2%;
-    margin-right: 2%;
-    padding-left: 4%;
-    padding-right: 4%;
-    text-align: center;
-}
-
-.etc1_bid_seller_name {
-    display: grid;
-    text-align: center;
-    gap: 10%;
-    width: 7rem;
-}
-
-.etc1_bids_deal_or_cancel {
-    display: grid;
-    margin: 3% 0;
-    width: 8.5rem;
-    height: 5rem;
-}
-
-.etc1_bids_deal_or_cancel button {
-    margin-bottom: 5%;
-    background-color: #BFBFBF;
-    color: black;
-    font-weight: bold;
-}
-
-.etc1_bids_warning_msg {
-    display: grid;
-    margin-top: 1%;
-    margin-left: 20%;
-}
-
-.etc1_warning_red {
-    color: red;
-    font-size:large;
-    font-weight: bold;
-}
-
-/* Mypage_qna 관련 */
-.etc1_qna {
-    max-width: 75%;
-    margin-left: 1.5%;
+  .Mypage_NoAuctionsMessage {
     width: 100%;
-    border: 1px solid black;
-    border-radius: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    padding: 20px;
-}
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.etc1_qna_box {
-    border: 1px solid black;
-    border-radius: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    padding: 10% 3%;
-}
-
-.etc1_check_msg {
-    color:gray;
-}
-
-.etc1_qna_list {
-    width: 100%;
-    border-top: 4px solid gray;
-    border-bottom: 1px solid black;
-    border-collapse: collapse;
-}
-
-.etc1_qna_list th {
-    font-size: 20px;
-    font-weight: bold;
-    padding: 1% 0;
-}
-
-.etc1_qna_list td {
-    text-align: center;
-    border-top: 1px solid #BFBFBF;
-    padding: 0.7% 0;
-}
-
-.etc1_qna_accept {
-    color: orange;
-}
+  .Mypage_NoAuctionsMessage p {
+    font-size: 18px;
+    font-weight: 600;
+  }

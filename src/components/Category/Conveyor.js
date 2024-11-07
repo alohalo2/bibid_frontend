@@ -4,6 +4,8 @@ import '../../css/Category.css';
 import  axios  from 'axios';
 import defaultFileImg from '../../images/defaultFileImg.png';
 
+const bucketName = process.env.REACT_APP_BUCKET_NAME;
+
 const View = styled.div`
     display: flex;
     width:1200px;
@@ -16,7 +18,7 @@ const Slide = styled.ul`
     position: relative;
     width: calc(165px * 20); // ⭐️ (original + clone)의 너비
     animation: autoPlay 15s linear infinite;
-    animation-play-state: ${(props) => (props.isPaused ? 'paused' : 'running')};
+    animation-play-state: ${(props) => (props.$isPaused ? 'paused' : 'running')};
 
     @keyframes autoPlay {
         0% {
@@ -44,6 +46,11 @@ const Slide = styled.ul`
     }
 `;
 
+const handleItemClick = (auctionIndex) => {
+    window.location.href = `/category-itemdetail/${auctionIndex}`;
+  };
+
+
 function Conveyor() {
     const [bestProducts, setBestProducts] = useState([]);
     const [isPaused, setIsPaused] = useState(false);
@@ -51,12 +58,12 @@ function Conveyor() {
     useEffect(() => {
         const fetchBestProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auction/conveyor');
+                const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/auction/conveyor`);
                 if (response.data.statusCode !== 200) {
                     throw new Error('데이터를 가져오는 데 실패했습니다.');
                 }
                 const data = response.data;
-                console.log(data.pageItems.content);
+
                 setBestProducts(response.data.pageItems.content);
             } catch (error) {
                 console.error('상품을 가져오는 중 오류 발생:', error);
@@ -68,19 +75,27 @@ function Conveyor() {
     
     return (
         <View>
-            <p className='CV_title'>마감임박 경매</p>
-            <Slide isPaused={isPaused}
+            <div className='CV_header'>
+            <h2>마감임박 경매</h2>
+            <p>경매 종료까지 시간이 얼마 남지 않은 경매입니다.</p>
+            </div>
+            <Slide $isPaused={isPaused}
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}>
                 {bestProducts.concat(bestProducts).map((auction, index) => {
                     const thumbnailImage = auction.auctionImageDtoList.find(image => image.thumbnail === true);
                     const imageSrc = thumbnailImage && thumbnailImage.filetype === 'image'
-                        ? `https://kr.object.ncloudstorage.com/bitcamp73/${thumbnailImage.filepath}${thumbnailImage.filename}`
+                        ? `https://kr.object.ncloudstorage.com/${bucketName}/${thumbnailImage.filepath}${thumbnailImage.filename}`
                         : `${defaultFileImg}`;
 
                     return (
                         <li key={index}>
-                            <img className='CV_conveyor-img' src={imageSrc} alt={auction.productName} style={{ width: '100%', height: '100%', borderRadius: '5px' }} />
+                            <img className='CV_conveyor-img' 
+                                 src={imageSrc} 
+                                 alt={auction.productName} 
+                                 style={{ width: '100%', height: '100%', borderRadius: '5px' }} 
+                                 onClick={() => handleItemClick(auction.auctionIndex)}
+                                 />
                         </li>
                     );
                 })}

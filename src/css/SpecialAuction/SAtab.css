@@ -25,9 +25,15 @@
     color: black;
 }
 
+.SAliveAuctionBox p,
+.SAblindAuctionBox p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .SAliveAuctionBox:hover,
 .SAblindAuctionBox:hover {
-    background-color: #3E3E3E;
+    background-color: #727272;
     color: black;
 }
 
@@ -48,11 +54,11 @@
 }
 
 .SAauctionTotalBox {
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-left: 20px;
+    display: flex;
+    padding: 20px;
     border: 2px solid #ccc;
     background-color: white;
     border-radius: 0 10px 10px 10px;
     margin-bottom: 1rem;
+    justify-content: center;
 }

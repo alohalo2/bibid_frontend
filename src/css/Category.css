@@ -5,6 +5,21 @@
     flex-direction: column;
 }
 
+.CTG_searchInfo_box {
+    width: 1000px;
+    height: 100px;
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.CTG_searchInfo {
+    font-size: 20px;
+    font-weight: 900;
+}
+
 .CTG_container {
     display: flex;
     flex-direction: row;
@@ -17,6 +32,7 @@
 
 .CTG_main-btn {
     cursor: pointer;
+    margin-top: 15px;
 }
 
 .CTG_Category-btn {
@@ -86,6 +102,11 @@
     color: black; 
     height: 100%;
     cursor: pointer;
+}
+
+.CTG_item-text p {
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .CTG_grid-item-none {
@@ -193,7 +214,7 @@
 .CTG_grid-container-product {
     display: grid;
     width: 1200px;
-    height: 400px;
+    height: auto;
     grid-template-columns: repeat(5, 1fr); 
     grid-template-rows: repeat(1, 1fr);  
     gap: 10px;
@@ -205,8 +226,10 @@
     border-radius: 5px;
     align-items: center;
     justify-content: center;
+    width: 232px;
     height: 232px;
     cursor: pointer;
+    object-fit: contain;
 }
 
 .CTG_gird-item-text {
@@ -225,6 +248,114 @@
     margin-bottom: 5px;
 }
 
+.CTG_productName {
+    width: 220px; /* Set a fixed width */
+    overflow: hidden; /* Hide overflow text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Show ellipsis (...) when text is truncated */
+  }
+
+.CV_header p {
+    color: #555555;
+    font-size: 16px;
+    font-weight: 600;
+}
+
 .CV_conveyor-img {
     object-fit: contain;
+}
+
+.CTG_productText {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 10px 0;
+    gap: 10px;
+}
+
+.SR_container {
+    background-color: gray;
+}
+
+.SB_Button {
+    width: 60px;
+    height: 35px;
+    background-color: #ccc !important;
+    color: black !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+.SB_Button:hover {
+    background-color: #0A369D !important;
+    color: white !important;
+}
+
+.SB_searchContainer {
+    display: flex;
+    justify-content: center;
+    width: 900px;
+    gap: 20px;
+}
+
+.SB_searchCondition {
+    border: 2px solid #BFBFBF;
+    border-radius: 5px;
+}
+
+.dateTimePickerAlert {
+    color: red;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.DC_productContainer {
+    width: 1200px;
+    min-height: 200px;
+    height: auto;
+}
+
+.DC_productContainer_header {
+    height: 50px;
+}
+
+.DC_productContainer_result_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#DC_productContainer_result {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    height: 200px;
+}
+
+.CTG_productName {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+}
+
+.CTG_startingPrice {
+    font-size: 20px;
+    font-weight: 700;
+    color: #222;
+}
+
+.CTG_bidInfo {
+    font-size: 12px;
+    color: #444;
+}
+
+#DC_productContainer_cate_result {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.CTG_BestItems p {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
 }

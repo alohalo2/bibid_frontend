@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { isSeller, getAuctionData } from '../../apis/SpecialAuction/SAapis';
+import { getAuctionData } from '../../apis/SpecialAuction/SAapis';
 
 const specialAuctionSlice = createSlice({
   name: 'specialAuction',
@@ -19,6 +19,9 @@ const specialAuctionSlice = createSlice({
     setAuctionType: (state, action) => {
       state.auctionType = action.payload;
     },
+    setCarouselData: (state, action) => { // 새로운 액션 생성
+      state.carouselData = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -28,16 +31,13 @@ const specialAuctionSlice = createSlice({
       })
       // 성공적으로 데이터 로드됨
       .addCase(getAuctionData.fulfilled, (state, action) => {
-        console.log('getAuctionData succeeded');
         state.status = 'succeeded';
 
         // 경매 타입에 따라 데이터를 분기 처리
         if (action.meta.arg === 'realtime') {
           state.liveAuctionList = action.payload.pageItems.content || []; // items 배열 할당
-          console.log('liveAuctionList: ', state.liveAuctionList);
         } else if (action.meta.arg === 'blind') {
           state.blindAuctionList = action.payload.pageItems.content || []; // items 배열 할당
-          console.log('blindAuctionList: ', state.blindAuctionList);
         }
       })
       // 데이터 로드 실패
@@ -49,6 +49,6 @@ const specialAuctionSlice = createSlice({
   },
 });
 
-export const { setFormData, setAuctionType } = specialAuctionSlice.actions;
+export const { setFormData, setAuctionType, setCarouselData } = specialAuctionSlice.actions;
 
 export default specialAuctionSlice.reducer;

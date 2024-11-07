@@ -5,20 +5,22 @@ import defaultFileImg from '../../images/defaultFileImg.png';
 
 const BestProduct_Clothing = ({category}) => {
 
+  const bucketName = process.env.REACT_APP_BUCKET_NAME;
+
   const [bestProducts, setBestProducts] = useState([]);
 
   useEffect(() => {
     const fetchBestProductsByCategory = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/auction/best/의류, 잡화`); 
-        console.log(response.data);
+        const response = await axios.get(`${process.env.REACT_APP_BACK_SERVER}/auction/best/의류, 잡화`);
+
 
 
         if (!response.statusMessage === 'ok') {
           throw new Error('데이터를 가져오는 데 실패했습니다.');
         }
         const data = response.data;
-        console.log(data.pageItems.content);
+
         setBestProducts(data.pageItems.content);
       } catch (error) {
         console.error('베스트 상품을 가져오는 중 오류 발생:', error);
@@ -28,6 +30,10 @@ const BestProduct_Clothing = ({category}) => {
     fetchBestProductsByCategory();
   }, [category]);
 
+  const handleItemClick = (auctionIndex) => {
+    window.location.href = `/category-itemdetail/${auctionIndex}`;
+  };
+
   return (
     <div className='CTG_container3'>
     <div className='CTG_grid-container-clothing'>
@@ -35,7 +41,7 @@ const BestProduct_Clothing = ({category}) => {
 
         const thumbnailImage = auction.auctionImageDtoList.find(image => image.thumbnail === true);
         const imageSrc = thumbnailImage && thumbnailImage.filetype === 'image'
-          ? `https://kr.object.ncloudstorage.com/bitcamp73/${thumbnailImage.filepath}${thumbnailImage.filename}`
+          ? `https://kr.object.ncloudstorage.com/${bucketName}/${thumbnailImage.filepath}${thumbnailImage.filename}`
           : `${defaultFileImg}`;  // 이미지가 없거나 썸네일이 아닐 경우 기본 이미지
 
         return (
@@ -43,7 +49,9 @@ const BestProduct_Clothing = ({category}) => {
           
             <img 
             className='CTG_grid-img-clothing'
-            src={imageSrc} alt={auction.productName} />
+            src={imageSrc} alt={auction.productName} 
+            onClick={() => handleItemClick(auction.auctionIndex)}
+            />
         </div>
         )
       }
