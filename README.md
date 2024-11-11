@@ -25,7 +25,7 @@ BID(입찰) + VIVID(생생한,강렬한) = BIBID
 
 ![erd cloud 이미지](https://github.com/user-attachments/assets/f69c075c-2d01-4a43-aeb3-95179c92cb85)
 
-# UI/UX 스타일 가이드라인
+# 🎨 UI/UX 스타일 가이드라인
 
 ![가이드 라인](https://github.com/user-attachments/assets/e2313ff3-0756-412c-88da-801f5679972b)
 
@@ -33,11 +33,11 @@ BID(입찰) + VIVID(생생한,강렬한) = BIBID
 
 ![기술 스택 이미지](https://github.com/user-attachments/assets/0138d37d-4959-4728-a1c7-74ffad683668)
 
-# 경매진행과정
+# ⚖️ 경매진행과정
 
 ![경매 흐름도](https://github.com/user-attachments/assets/bd16d165-1a9e-4161-80b9-07a16427dcd3)
 
-# 수익구조
+# 💰 수익구조
 
 ![수익구조 이미지](https://github.com/user-attachments/assets/85266592-f3b8-4ce2-bc73-ec01b0a46c1a)
 
