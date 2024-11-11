@@ -15,13 +15,35 @@ BID(입찰) + VIVID(생생한,강렬한) = BIBID
 
 # 🧑‍🤝‍🧑 참여인원
 
-
+![멤버소개 이미지](https://github.com/user-attachments/assets/4875b102-7fcb-49ba-8026-32aeb3ee3fc9)
 
 # 🚩 와이어프레임(Figma)
 
+![피그마 이미지](https://github.com/user-attachments/assets/dc7a4f33-8885-437a-ab14-18660ca692c7)
+
 # 💾 DB 설계(ERD Cloud)
+
+![erd cloud 이미지](https://github.com/user-attachments/assets/f69c075c-2d01-4a43-aeb3-95179c92cb85)
+
+# UI/UX 스타일 가이드라인
+
+![가이드 라인](https://github.com/user-attachments/assets/e2313ff3-0756-412c-88da-801f5679972b)
 
 # 🦾 사용기술 / 개발환경
 
+![기술 스택 이미지](https://github.com/user-attachments/assets/0138d37d-4959-4728-a1c7-74ffad683668)
+
+# 경매진행과정
+
+![경매 흐름도](https://github.com/user-attachments/assets/bd16d165-1a9e-4161-80b9-07a16427dcd3)
+
+# 수익구조
+
+![수익구조 이미지](https://github.com/user-attachments/assets/85266592-f3b8-4ce2-bc73-ec01b0a46c1a)
+
 # 🏁 서비스 발표영상 / PPT
+
+![서비스 발표영상](https://youtu.be/wx34GD--cko)
+![PPT]()
+
 
