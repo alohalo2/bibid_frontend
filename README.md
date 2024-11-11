@@ -43,7 +43,8 @@ BID(입찰) + VIVID(생생한,강렬한) = BIBID
 
 # 🏁 서비스 발표영상 / PPT
 
-[서비스 발표영상](https://youtu.be/wx34GD--cko)
-[Final Project PPT(BIBID) (최종).pdf](https://github.com/user-attachments/files/17701371/Final.Project.PPT.BIBID.pdf)
+- [서비스 발표영상](https://youtu.be/wx34GD--cko)
+
+- [Final Project PPT(BIBID) (최종).pdf](https://github.com/user-attachments/files/17701371/Final.Project.PPT.BIBID.pdf)
 
 
