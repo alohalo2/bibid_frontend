@@ -4,7 +4,7 @@ import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import { store } from "./store/store";
 import NotificationInitializer from "./context/NotificationInitializer";
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Mainpage from "./pages/Mainpage";
 import Search from "./pages/search/Search";
@@ -35,7 +35,6 @@ import KakaoLogout from "./pages/oauth/KakaoLogout";
 import GoogleLogin from "./pages/oauth/GoogleLogin";
 import FailPage from "./pages/Fail";
 import TestApi2 from "./components/specialAuction/TestApi2";
-import MemberInitializer from "./context/MemberInitializer";
 import WidgetCheckoutPage from "./pages/payment/WidgetCheckout";
 import WidgetSuccessPage from "./pages/payment/WidgetSuccess";
 import DetailedCategory_Art from "./pages/DetailedCategory_Art";
@@ -75,7 +74,7 @@ function App() {
                         <Route path="/category/pic" element={<DetailedCategory_Pic />} />
                         <Route path="/category/antique" element={<DetailedCategory_Antique />} />
                         <Route path="/category-itemdetail/:auctionNumber" element={<CategoryItemDetail />} />
-                        <Route path="/testApi" element={<TestApi2/>} />
+                        <Route path="/testApi" element={<TestApi2 />} />
                         <Route path="join/*" element={<JoinRoutes />} />
 
                         {/* Mypage Routes */}
@@ -83,7 +82,7 @@ function App() {
                         <Route path="/mypage/userInfo/modify" element={<Mypage_UserInfoModify />} />
                         <Route path="/mypage/auctioninfo/" element={<Mypage_AuctionInfo />} />
                         <Route path="/mypage/wallet/" element={<Mypage_Wallet />} />
-                        <Route path="mypage/auctionmanagement/" element={<Mypage_AuctionManagement/>}/>
+                        <Route path="mypage/auctionmanagement/" element={<Mypage_AuctionManagement />} />
                     </Route>
 
                     {/* Widget Routes */}
@@ -99,5 +98,3 @@ function App() {
 }
 
 export default App;
-
-
